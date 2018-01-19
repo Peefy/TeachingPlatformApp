@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 using TeachingPlatformApp.Controls;
+using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Utils
 {
@@ -28,6 +29,8 @@ namespace TeachingPlatformApp.Utils
         public ComConfig ComConfig { get; set; }
 
         public GridAxesDrawPara GridAxesDrawPara { get; set; }
+
+        public WswData WswData { get; set; }
 
         public void WriteToFile()
         {
@@ -62,6 +65,7 @@ namespace TeachingPlatformApp.Utils
         {
             this.StringResource = new StringResource();
             this.ComConfig = new ComConfig();
+            this.WswData = new WswData();
             GridAxesDrawPara = new GridAxesDrawPara();
         }
 
@@ -104,6 +108,40 @@ namespace TeachingPlatformApp.Utils
 
         [JsonProperty("wswUdpPort")]
         public int WswUdpPort { get; set; } = 15000;
+    }
+
+    public class WswData
+    {
+        /// <summary>
+        /// flighterInitInfo
+        /// </summary>
+        [JsonProperty("flighterInitInfo")]
+        public AngleWithLocation FlighterInitInfo;
+
+        /// <summary>
+        /// helicopterInitInfo
+        /// </summary>
+        [JsonProperty("helicopterInitInfo")]
+        public AngleWithLocation HelicopterInitInfo;
+
+        public WswData()
+        {
+            FlighterInitInfo = default(AngleWithLocation);
+            FlighterInitInfo.X = -2169349.3768;
+            FlighterInitInfo.Y = 4386443.6876;
+            FlighterInitInfo.Z = 4106805.1241;
+            FlighterInitInfo.Yaw = 0.1873927;
+            FlighterInitInfo.Pitch = 0.0011897;
+            FlighterInitInfo.Roll = 0.0013987;
+            HelicopterInitInfo = default(AngleWithLocation);
+            HelicopterInitInfo.X = -2166765.6698;
+            HelicopterInitInfo.Y = 4381229.0368;
+            HelicopterInitInfo.Z = 4101920.0426;
+            HelicopterInitInfo.Yaw = -0.5154596;
+            HelicopterInitInfo.Pitch = 0.0011189;
+            HelicopterInitInfo.Roll = 0.00139873;
+        }
+
     }
 
 }

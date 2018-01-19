@@ -136,6 +136,7 @@
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
+    <Compile Include="WswPlatform\WswHelper.cs" />
     <Compile Include="ZyPlatform\AngleDef.cs" />
     <Compile Include="ZyPlatform\EffectDef.cs" />
     <Compile Include="ZyPlatform\GameSharedDef.cs" />

@@ -10,17 +10,17 @@ namespace TeachingPlatformApp.WswPlatform
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct AngleWithLocation
     {
-        public double Roll;
-
-        public double Yaw;
-
-        public double Pitch;
-
         public double X;
 
         public double Y;
 
         public double Z;
+
+        public double Yaw;
+
+        public double Pitch;
+
+        public double Roll;
 
     }
 }

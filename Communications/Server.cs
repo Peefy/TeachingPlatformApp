@@ -13,12 +13,12 @@ namespace TeachingPlatformApp.Communications
     public class Server : ITranslateData, IDisposable
     {
 
-        public const int DefaultPort = 15000;
+        public const int DefaultPort = 16000;
 
         UdpClient server;
         
-        int _udp720Port = 16000;
-        int _wswUdpPort = 15000;
+        int _udp720Port = 15000;
+        int _wswUdpPort = 14000;
 
         int _port = DefaultPort;
         string _ip = "192.168.0.133"; //本机Ip;
@@ -108,6 +108,11 @@ namespace TeachingPlatformApp.Communications
             return await server.ReceiveAsync();
         }
 
+        public byte[] Recieve(ref IPEndPoint iPEndPoint)
+        {
+            return server.Receive(ref iPEndPoint);
+        }
+
         ~Server()
         {
             Dispose();
@@ -150,6 +155,7 @@ namespace TeachingPlatformApp.Communications
             // TODO: 如果在以上内容中替代了终结器，则取消注释以下行。
             // GC.SuppressFinalize(this);
         }
+
         #endregion
 
     }

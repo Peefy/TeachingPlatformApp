@@ -154,3 +154,4 @@ F:\_VSpro\CSharp\WPF\TeachingPlatformApp-master\obj\Debug\TeachingPlatformApp.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp-master\obj\Debug\TeachingPlatformApp.csproj.CoreCompileInputs.cache
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp-master\obj\Debug\TeachingPlatformApp.exe
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp-master\obj\Debug\TeachingPlatformApp.pdb
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp-master\obj\Debug\TeachingPlatformApp.csprojResolveAssemblyReference.cache

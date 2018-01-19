@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Windows.Controls;
@@ -20,7 +21,6 @@ using TeachingPlatformApp.Extensions;
 using TeachingPlatformApp.Communications;
 using TeachingPlatformApp.Models.UI;
 using TeachingPlatformApp.Utils;
-
 
 namespace TeachingPlatformApp.ViewModels
 {
@@ -182,21 +182,21 @@ namespace TeachingPlatformApp.ViewModels
 
         private void ComInit()
         {
-            Task.Run(async () =>
+            Task.Run(() =>
             {
                 try
                 {
                     while (true)
                     {
-                        var recieveResult = await UdpServer.RecieveAsync();
-                        var recieveBytes = recieveResult.Buffer;
-                        var ip = recieveResult.RemoteEndPoint.ToString();
+                        var ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                        var recieveBytes = UdpServer.Recieve(ref ipEndPoint);
+                        var ip = ipEndPoint.ToString();
                         var length = recieveBytes.Length;
                         if (length == StructHelper.GetStructSize<AngleWithLocation>())
                         {
                             DealAngleWithLocationData(ip, recieveBytes);
                         }
-                        AppendStatusText($"{ip}:  length:{length}");
+
                     }
                 }
                 catch (Exception ex)
@@ -281,8 +281,10 @@ namespace TeachingPlatformApp.ViewModels
 
         private void DealAngleWithLocationData(string ip, byte[] recieveBytes)
         {
+            var config = JsonFileConfig.Instance.ComConfig;
             var angleWithLocation = StructHelper.BytesToStruct<AngleWithLocation>(recieveBytes);
-            if (ip.StartsWith("192.168.1.131") == false)
+            angleWithLocation = WswHelper.MathRoundAngle(angleWithLocation, 2);
+            if (ip.StartsWith(config.Ip720Platform) == true)
             {             
                 foreach (var flight in FlightExperiments)
                 {
@@ -293,7 +295,7 @@ namespace TeachingPlatformApp.ViewModels
                     flight.NowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
-            else
+            else if(ip.StartsWith(config.IpWswUdpServer) == true)
             {
                 foreach (var flight in FlightExperiments)
                 {
@@ -304,6 +306,9 @@ namespace TeachingPlatformApp.ViewModels
                     flight.SixPlatformNowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
+            Logger.Info($"{ip.ToString()}:\r\n" +
+                WswHelper.AngleWithLocationToString(angleWithLocation));
         }
+
     }
 }
