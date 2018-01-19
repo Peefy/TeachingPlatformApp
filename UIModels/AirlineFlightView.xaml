@@ -1,0 +1,69 @@
+﻿<Grid
+    x:Class="TeachingPlatformApp.UIModels.AirlineFlightView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TeachingPlatformApp.UIModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:myconvers="clr-namespace:TeachingPlatformApp.Converters"
+    xmlns:myctrls="clr-namespace:TeachingPlatformApp.Controls"
+    mc:Ignorable="d">
+    <Grid.Background>
+        <SolidColorBrush Color="White" />
+    </Grid.Background>
+    <Grid.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+            <myconvers:SetPointsToStringConverter x:Key="SetPointsToStringConverter" />
+            <myconvers:PointToStringConverter x:Key="PointToStringConverter" />
+        </ResourceDictionary>
+    </Grid.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Margin="1"
+            Orientation="Horizontal">
+            <Label Content="飞行实验名称:" />
+            <Label Content="{Binding Name}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Margin="1"
+            Orientation="Horizontal">
+            <Label Content="滚转角:" />
+            <Label Content="{Binding Roll.Value}" />
+            <Label Content="俯仰角:" />
+            <Label Content="{Binding Pitch.Value}" />
+            <Label Content="偏航角:" />
+            <Label Content="{Binding Yaw.Value}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="2"
+            Margin="1"
+            Orientation="Horizontal">
+            <Label Content="预设航路点坐标:" />
+            <myctrls:SetPointsTextBox
+                MinWidth="400"
+                VerticalContentAlignment="Center"
+                FontSize="22"
+                Text="{Binding SetPoints, Mode=TwoWay, Converter={StaticResource SetPointsToStringConverter}}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="3"
+            Margin="1"
+            Orientation="Horizontal">
+            <Label Content="直升机坐标:" />
+            <Label Content="{Binding NowLocation, Converter={StaticResource PointToStringConverter}}" />
+            <Label Content="战斗机坐标:" />
+            <Label Content="{Binding SixPlatformNowLocation, Converter={StaticResource PointToStringConverter}}" />
+        </StackPanel>
+    </Grid>
+</Grid>
