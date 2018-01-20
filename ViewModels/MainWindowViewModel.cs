@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Windows;
-using System.Windows.Navigation;
 using System.Windows.Controls;
-using System.IO;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Prism.Mvvm;
@@ -14,10 +11,8 @@ using DuGu.NetFramework.Services;
 using DuGu.NetFramework.Logs;
 
 using TeachingPlatformApp.WswPlatform;
-using TeachingPlatformApp.ZyPlatform;
 using TeachingPlatformApp.Models;
 using TeachingPlatformApp.Views;
-using TeachingPlatformApp.Extensions;
 using TeachingPlatformApp.Communications;
 using TeachingPlatformApp.Models.UI;
 using TeachingPlatformApp.Utils;
