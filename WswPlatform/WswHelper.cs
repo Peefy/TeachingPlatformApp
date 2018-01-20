@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using TeachingPlatformApp.Utils;
+
 namespace TeachingPlatformApp.WswPlatform
 {
     public static class WswHelper
@@ -23,5 +25,24 @@ namespace TeachingPlatformApp.WswPlatform
                 Roll = Math.Round(angle.Roll, digit)
             };
         }
+
+        public static string GetAngleWithLocationDeltaXY(string ip, AngleWithLocation angleWithLocation)
+        {
+            var deltaX = 0.0;
+            var deltaY = 0.0;
+            var config = JsonFileConfig.Instance;
+            if(ip.StartsWith(config.ComConfig.Ip720Platform))
+            {
+                deltaX = angleWithLocation.X - config.WswData.FlighterInitInfo.X;
+                deltaY = angleWithLocation.Y - config.WswData.FlighterInitInfo.Y;
+            }
+            else if(ip.StartsWith(config.ComConfig.IpWswUdpServer))
+            {
+                deltaX = angleWithLocation.X - config.WswData.HelicopterInitInfo.X;
+                deltaY = angleWithLocation.Y - config.WswData.HelicopterInitInfo.Y;
+            }
+            return $"deltaX:{deltaX}; deltaY:{deltaY}";
+        }
+
     }
 }

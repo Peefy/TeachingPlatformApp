@@ -15,13 +15,13 @@ namespace TeachingPlatformApp.WswPlatform
         {
             var timeStr = DateTime.Now.ToString();
             var str = WswHelper.AngleWithLocationToString(angleWithLocation);
+            var deltaStr = WswHelper.GetAngleWithLocationDeltaXY(ip, angleWithLocation);
             var fileName = ip + ".txt";
-            var config = JsonFileConfig.Instance;
             File.AppendAllLines(fileName, new string[]
             {
-                timeStr,
+                timeStr + $"__{ip}:",
                 str,
-
+                deltaStr
             });
         }
     }
