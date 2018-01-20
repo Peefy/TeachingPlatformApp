@@ -185,19 +185,22 @@ namespace TeachingPlatformApp.ViewModels
             {
                 try
                 {
+                    int i = 0;
                     while (true)
                     {
                         var ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
                         var recieveBytes = UdpServer.Recieve(ref ipEndPoint);
                         var ip = ipEndPoint.ToString();
                         var length = recieveBytes.Length;
-                        Logger.Info($"{ip}:{length}\r\n");
-                        if(++RecieveUdpPacketCount >= 10)
+                        Logger.Info($"{ip}:{length}\r\n");                    
+                        if(++i >= RecieveUdpPacketCount)
                         {
+                            i = 0;
                             if (length == StructHelper.GetStructSize<AngleWithLocation>())
                             {
                                 DealAngleWithLocationData(ip, recieveBytes);
                             }
+                            AppendStatusText($"{ip}:{length}");
                         }
                     }
                 }
