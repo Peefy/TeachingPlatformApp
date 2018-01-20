@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using DuGu.NetFramework.Services;
 using TeachingPlatformApp.WswPlatform;
+using TeachingPlatformApp.Communications;
 
 namespace TeachingPlatformApp.Utils
 {

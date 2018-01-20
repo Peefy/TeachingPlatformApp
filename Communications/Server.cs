@@ -113,6 +113,14 @@ namespace TeachingPlatformApp.Communications
             return server.Receive(ref iPEndPoint);
         }
 
+        public void SendTo(byte[] bytes, IPEndPoint iPEndPoint)
+        {
+            if(bytes != null && iPEndPoint != null)
+            {
+                server.Send(bytes, bytes.Length, iPEndPoint);
+            }
+        }
+
         ~Server()
         {
             Dispose();
@@ -155,6 +163,8 @@ namespace TeachingPlatformApp.Communications
             // TODO: 如果在以上内容中替代了终结器，则取消注释以下行。
             // GC.SuppressFinalize(this);
         }
+
+
 
         #endregion
 

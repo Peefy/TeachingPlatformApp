@@ -16,6 +16,7 @@ namespace TeachingPlatformApp.Communications
     public interface ITranslateData
     {
         void SendToUnity720View(byte[] bytes);
+        void SendTo(byte[] bytes, IPEndPoint iPEndPoint);
         Task<int> SendAsyncToOne(byte[] data);
         Task<int> SendAsyncToTwo(byte[] data);
         Task<int> SendAsyncToThree(byte[] data);
