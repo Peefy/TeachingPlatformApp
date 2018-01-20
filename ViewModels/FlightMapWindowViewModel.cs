@@ -122,7 +122,7 @@ namespace TeachingPlatformApp.ViewModels
                 while(true)
                 {
                     BuildFlightLocationString();
-                    Thread.Sleep(20);
+                    Thread.Sleep(30);
                 }
             });
             Task.Run(() =>
@@ -139,7 +139,7 @@ namespace TeachingPlatformApp.ViewModels
                         HelicopterAngle = 0;
                     FlighterPosition = point1;
                     HelicopterPosition = point2;
-                    Thread.Sleep(20);
+                    Thread.Sleep(30);
                     i += 0.01f;
                 }
             });

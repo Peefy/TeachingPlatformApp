@@ -342,6 +342,17 @@
                     Command="{Binding OpenFlightMapCommand}"
                     Content="查 看 地 图"
                     FontSize="24" />
+                <Button
+                    x:Name="testButton"
+                    Visibility="Collapsed"
+                    Height="32"
+                    Margin="13,5,13,0"
+                    VerticalAlignment="Bottom"
+                    Background="DarkBlue"
+                    Foreground="White"
+                    Command="{Binding TestCommand}"
+                    Content="TEST"
+                    FontSize="24" />
             </StackPanel>
             <Grid VerticalAlignment="Bottom" Height="120">
                 <Grid.ColumnDefinitions>

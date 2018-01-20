@@ -25,6 +25,8 @@ namespace TeachingPlatformApp.ViewModels
         public ILog Logger => LogManager.GetCurrentLogger();
         public ITranslateData UdpServer => Ioc.Get<ITranslateData>();
 
+        public int RecieveUdpPacketCount { get; set; } = 0;
+
         int _milliSeconds = Convert.ToInt32(LogAndConfig.Config.
             GetProperty(ConfigKeys.UdpPort,4000));
         public int MilliSeconds
@@ -120,6 +122,7 @@ namespace TeachingPlatformApp.ViewModels
         public DelegateCommand StopCommand { get; set; }
         public DelegateCommand ClearCommand { get; set; }
         public DelegateCommand OpenFlightMapCommand { get; set; }
+        public DelegateCommand TestCommand { get; set; }
 
         public DelegateCommand<TreeView> TreeViewSelectedCommand { get; set; }
         public ObservableRangeCollection<TreeViewModelItem> TreeViewNodes { get; set; }
@@ -177,6 +180,7 @@ namespace TeachingPlatformApp.ViewModels
 
         private void ComInit()
         {
+            ConfigInit();
             Task.Run(() =>
             {
                 try
@@ -187,11 +191,14 @@ namespace TeachingPlatformApp.ViewModels
                         var recieveBytes = UdpServer.Recieve(ref ipEndPoint);
                         var ip = ipEndPoint.ToString();
                         var length = recieveBytes.Length;
-                        if (length == StructHelper.GetStructSize<AngleWithLocation>())
+                        Logger.Info($"{ip}:{length}\r\n");
+                        if(++RecieveUdpPacketCount >= 10)
                         {
-                            DealAngleWithLocationData(ip, recieveBytes);
+                            if (length == StructHelper.GetStructSize<AngleWithLocation>())
+                            {
+                                DealAngleWithLocationData(ip, recieveBytes);
+                            }
                         }
-
                     }
                 }
                 catch (Exception ex)
@@ -271,7 +278,19 @@ namespace TeachingPlatformApp.ViewModels
                 }
                 flightMapWindow.Show();
             });
+            TestCommand = new DelegateCommand(() =>
+            {
+                var strs = Test.Run();
+                foreach(var str in strs)
+                    AppendStatusText(str);
+            });
             Logger.Info($"{DateTime.Now}:MainViewModel初始化成功！");
+        }
+
+        private void ConfigInit()
+        {
+            var config = JsonFileConfig.Instance;
+            RecieveUdpPacketCount = config.ComConfig.RenewUIRecieveCount;
         }
 
         private void DealAngleWithLocationData(string ip, byte[] recieveBytes)
@@ -301,8 +320,8 @@ namespace TeachingPlatformApp.ViewModels
                     flight.SixPlatformNowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
-            Logger.Info($"{ip.ToString()}:\r\n" +
-                WswHelper.AngleWithLocationToString(angleWithLocation));
+            //Logger.Info($"{ip.ToString()}:\r\n" +
+            //    WswHelper.AngleWithLocationToString(angleWithLocation));
         }
 
     }

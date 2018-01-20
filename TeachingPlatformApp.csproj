@@ -129,6 +129,7 @@
     <Compile Include="MemoryShare\ZyShareMem.cs" />
     <Compile Include="Models\PlaneInfo.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
+    <Compile Include="Utils\Test.cs" />
     <Compile Include="ViewModels\FlightMapWindowViewModel.cs" />
     <Compile Include="Views\FlightMapWindow.xaml.cs">
       <DependentUpon>FlightMapWindow.xaml</DependentUpon>
@@ -136,6 +137,7 @@
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
+    <Compile Include="WswPlatform\WswDataDebuger.cs" />
     <Compile Include="WswPlatform\WswHelper.cs" />
     <Compile Include="ZyPlatform\AngleDef.cs" />
     <Compile Include="ZyPlatform\EffectDef.cs" />

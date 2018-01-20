@@ -108,6 +108,10 @@ namespace TeachingPlatformApp.Utils
 
         [JsonProperty("wswUdpPort")]
         public int WswUdpPort { get; set; } = 15000;
+
+        [JsonProperty("renewUIRecieveCount")]
+        public int RenewUIRecieveCount { get; set; } = 10;
+
     }
 
     public class WswData

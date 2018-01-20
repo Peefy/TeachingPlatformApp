@@ -31,9 +31,23 @@ namespace TeachingPlatformApp.Views
             {
                 if(DataContext is MainWindowViewModel viewModel)
                 {
-                    viewModel.ClearCommand.Execute();
-                    
+                    viewModel.ClearCommand.Execute();                 
                 }
+            }
+            else if(e.Key == System.Windows.Input.Key.S)
+            {
+                consoleTextBox.FontSize -= 2;
+            }
+            else if(e.Key == System.Windows.Input.Key.W)
+            {
+                consoleTextBox.FontSize += 2;
+            }
+            else if(e.Key == System.Windows.Input.Key.T)
+            {
+                if (testButton.Visibility == Visibility.Collapsed)
+                    testButton.Visibility = Visibility.Visible;
+                else
+                    testButton.Visibility = Visibility.Collapsed;
             }
         }
 
