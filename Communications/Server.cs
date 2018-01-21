@@ -91,7 +91,8 @@ namespace TeachingPlatformApp.Communications
 
         public void SendToUnity720View(byte[] bytes)
         {
-            server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Broadcast, _udp720Port));
+            server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Parse(_ipThree), 13000));
+            server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Broadcast, 13000));
         }
 
         public async Task<byte[]> RecieveDataAsync()

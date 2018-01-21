@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Sockets;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,9 @@ namespace TeachingPlatformApp.Utils
     {
         public static string[] Run()
         {
+            var bytes = new TeachingCommandBuilder(1, false).BuildCommandBytes();
+            var ip = new IPEndPoint(IPAddress.Broadcast, 13000);
+            Ioc.Get<ITranslateData>().SendTo(bytes, ip);
             var FlighterInitInfo =  WswHelper.MathRoundAngle(JsonFileConfig.Instance.WswData.FlighterInitInfo, 3);
             var HelicopterInitInfo = WswHelper.MathRoundAngle(JsonFileConfig.Instance.WswData.HelicopterInitInfo, 3);
             var vector1 = new Vector(FlighterInitInfo.X / 1000.0f,

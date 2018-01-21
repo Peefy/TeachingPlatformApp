@@ -13,7 +13,7 @@
     "ipWswUdpServer": "192.168.0.131",
     "ipGunBarrel": "192.168.0.133",
     "wswUdpPort": 14000,
-    "renewUIRecieveCount": 10
+    "renewUIRecieveCount": 50
   },
   "GridAxesDrawPara": {
     "axesHeight": 700.0,
