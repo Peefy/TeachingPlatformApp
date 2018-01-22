@@ -11,7 +11,7 @@ namespace TeachingPlatformApp.Controls
         {
             this.PreviewKeyDown += NumuricTextBlock_PreviewKeyDown;
             InputMethod.SetIsInputMethodEnabled(this, false);
-            DataObject.AddPastingHandler(this, (sen,e) => 
+            DataObject.AddPastingHandler(this, (sender, e) => 
             {
                 if (e.DataObject.GetDataPresent(typeof(String)))
                 {
@@ -43,9 +43,7 @@ namespace TeachingPlatformApp.Controls
         private void NumuricTextBlock_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
-            {
                 e.Handled = true;
-            }
             if (e.Key == Key.Space)
                 e.Handled = true;
         }

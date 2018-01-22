@@ -25,8 +25,8 @@ namespace TeachingPlatformApp.Views
         private void RenewUI()
         {
             var config = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
-            this.Width = config.axesWidth;
-            this.Height = config.axesHeight;
+            this.Width = config.AxesWidth;
+            this.Height = config.AxesHeight;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

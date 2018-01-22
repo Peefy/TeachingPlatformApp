@@ -21,12 +21,11 @@ namespace TeachingPlatformApp.ViewModels
     {
 
         ITranslateData _translateData;
+        JsonFileConfig _config;
 
         string _helicopterName = "直升机";
         string _flighterName = "战斗机";
         int _mapRefreshInterval = 30;
-
-        JsonFileConfig _config;
 
         private string _title = "地图";
         public string Title
@@ -197,7 +196,6 @@ namespace TeachingPlatformApp.ViewModels
                 FlighterPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
                 HelicopterPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
             }
-           
         }
 
         private string PlaneInfoToString(AngleWithLocation angleWithLocation)

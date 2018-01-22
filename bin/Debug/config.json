@@ -1,11 +1,11 @@
 {
-  "StringResource": {
+  "stringResource": {
     "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
     "helicopterName": "直升机",
     "flighterName": "战斗机"
   },
-  "ComConfig": {
+  "comConfig": {
     "selfPort": 15000,
     "udp720Port": 16000,
     "ipSelf": "192.168.0.132",
@@ -17,9 +17,9 @@
     "udp720TestConsolePort": 11000,
     "renewUIRecieveCount": 10
   },
-  "GridAxesDrawPara": {
-    "axesHeight": 760.0,
-    "axesWidth": 960.0,
+  "mapGridAxesDrawPara": {
+    "axesHeight": 860.0,
+    "axesWidth": 1360.0,
     "drawTop": -30.0,
     "drawDown": 30.0,
     "drawLeft": -30.0,
@@ -30,7 +30,7 @@
     "labelAxesInterval": 10,
     "labelAxesInit": 0
   },
-  "WswData": {
+  "wswData": {
     "flighterInitInfo": {
       "X": -2169349.3768,
       "Y": 4386443.6876,
@@ -48,27 +48,34 @@
       "Roll": 0.00139873
     }
   },
-  "DataShowConfig": {
+  "dataShowConfig": {
     "angleShowDigit": 2,
     "pointShowDigit": 2,
     "mapUiRefreshMs": 30
   },
-  "MyHelicopterInfo": {
-    "InitMyPointX": 40.0,
-    "InitMyPointY": 40.0,
-    "InitMyPointZ": 0.0,
-    "PointScaleFactorX": 0.5,
-    "PointScaleFactorY": 0.5,
-    "PointScaleFactorZ": 0.5,
-    "InitYaw": 0.0
+  "myHelicopterInfo": {
+    "initMyPointX": 40.0,
+    "initMyPointY": 40.0,
+    "initMyPointZ": 0.0,
+    "pointScaleFactorX": 0.5,
+    "pointScaleFactorY": 0.5,
+    "pointScaleFactorZ": 0.5,
+    "initYaw": 0.0
   },
-  "MyFlighterInfo": {
-    "InitMyPointX": 10.0,
-    "InitMyPointY": 10.0,
-    "InitMyPointZ": 0.0,
-    "PointScaleFactorX": 0.5,
-    "PointScaleFactorY": 0.5,
-    "PointScaleFactorZ": 0.5,
-    "InitYaw": 180.0
+  "myFlighterInfo": {
+    "initMyPointX": 10.0,
+    "initMyPointY": 10.0,
+    "initMyPointZ": 0.0,
+    "pointScaleFactorX": 0.5,
+    "pointScaleFactorY": 0.5,
+    "pointScaleFactorZ": 0.5,
+    "initYaw": 180.0
+  },
+  "speechConfig": {
+    "speechTextOutofRouteLeft": "您已经向左偏离航线",
+    "speechTextOutofRouteRight": "您已经向右偏离航线",
+    "speechTextReserved1": "SpeechTextReserved1",
+    "speechTextReserved2": "SpeechTextReserved2",
+    "speechTextReserved3": "SpeechTextReserved3"
   }
 }

@@ -19,7 +19,8 @@ namespace TeachingPlatformApp.Models
 {
     public abstract class FlightExperiment : BindableBase, IFlightProcess
     {
-
+        string _helicopterName = "";
+        string _flighterName = "";
         string _name = "";
         int _index = 0;
         bool _isStart;
@@ -36,6 +37,18 @@ namespace TeachingPlatformApp.Models
         AngleValidatableObject _sixPlatformYaw;
 
         ValidatableObject<float> _speed;
+
+        public string HelicopterName
+        {
+            get => _helicopterName;
+            set => SetProperty(ref _helicopterName, value);
+        }
+
+        public string FlighterName
+        {
+            get => _flighterName;
+            set => SetProperty(ref _flighterName, value);
+        }
 
         public string Name
         {
@@ -177,6 +190,7 @@ namespace TeachingPlatformApp.Models
 
         public FlightExperiment()
         {
+            var resource = JsonFileConfig.Instance.StringResource;
             _nowLocation = new Point(0.01, 0.01);
             _sixPlatformLocation = new Point(0.01, 0.01);
             _720roll = new AngleValidatableObject(0.01f);
@@ -186,6 +200,8 @@ namespace TeachingPlatformApp.Models
             _sixPlatformYaw = new AngleValidatableObject(0.01f);
             _sixPlatformPitch = new AngleValidatableObject(0.01f);
             _speed = new ValidatableObject<float>();
+            _flighterName = resource.FlighterName;
+            _helicopterName = resource.HelicopterName;
         }
 
     }

@@ -32,12 +32,21 @@
             Margin="1"
             Orientation="Horizontal">
             <Label Content="飞行实验名称:" />
-            <Label Content="{Binding Name}" />
+            <Label Content="{Binding Name}" FontStyle="Italic"/>
         </StackPanel>
         <StackPanel
             Grid.Row="1"
             Margin="1"
             Orientation="Horizontal">
+            <myctrls:Flighter Margin="25,22,13,0">
+                <myctrls:Flighter.RenderTransform>
+                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                </myctrls:Flighter.RenderTransform>
+            </myctrls:Flighter>
+            <Label Content="{Binding FlighterName}"/>
+            <Label Content=":"/>
+            <Label Content="坐标:" />
+            <Label Content="{Binding NowLocation, Converter={StaticResource PointToStringConverter}}" />
             <Label Content="滚转角:" />
             <Label Content="{Binding Roll.Value}" />
             <Label Content="俯仰角:" />
@@ -49,21 +58,33 @@
             Grid.Row="2"
             Margin="1"
             Orientation="Horizontal">
-            <Label Content="预设航路点坐标:" />
-            <myctrls:SetPointsTextBox
-                MinWidth="400"
-                VerticalContentAlignment="Center"
-                FontSize="22"
-                Text="{Binding SetPoints, Mode=TwoWay, Converter={StaticResource SetPointsToStringConverter}}" />
+            <myctrls:Helicopter Margin="25,20,13,0">
+                <myctrls:Helicopter.RenderTransform>
+                    <ScaleTransform ScaleX="0.6" ScaleY="0.5"/>
+                </myctrls:Helicopter.RenderTransform>
+            </myctrls:Helicopter>
+            <Label Content="{Binding HelicopterName}"/>
+            <Label Content=":"/>
+            <Label Content="坐标:" />
+            <Label Content="{Binding SixPlatformNowLocation, Converter={StaticResource PointToStringConverter}}" />
+            <Label Content="滚转角:" />
+            <Label Content="{Binding SixPlatformRoll.Value}" />
+            <Label Content="俯仰角:" />
+            <Label Content="{Binding SixPlatformPitch.Value}" />
+            <Label Content="偏航角:" />
+            <Label Content="{Binding SixPlatformYaw.Value}" />
         </StackPanel>
         <StackPanel
             Grid.Row="3"
             Margin="1"
             Orientation="Horizontal">
-            <Label Content="战斗机坐标:" />
-            <Label Content="{Binding NowLocation, Converter={StaticResource PointToStringConverter}}" />
-            <Label Content="直升机坐标:" />
-            <Label Content="{Binding SixPlatformNowLocation, Converter={StaticResource PointToStringConverter}}" />
+            <Label Content="预设航路点坐标:" />
+            <myctrls:SetPointsTextBox
+                MinWidth="500"
+                VerticalContentAlignment="Center"
+                FontSize="22"
+                Text="{Binding SetPoints, Mode=TwoWay, Converter={StaticResource SetPointsToStringConverter}}" />
         </StackPanel>
+
     </Grid>
 </Grid>

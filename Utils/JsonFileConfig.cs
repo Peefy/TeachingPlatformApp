@@ -24,19 +24,28 @@ namespace TeachingPlatformApp.Utils
         [JsonIgnore]
         public const string FileName = "config.json";
 
-        public StringResource StringResource { get; set; } 
+        [JsonProperty("stringResource")]
+        public StringResource StringResource { get; set; }
 
+        [JsonProperty("comConfig")]
         public ComConfig ComConfig { get; set; }
 
+        [JsonProperty("mapGridAxesDrawPara")]
         public GridAxesDrawPara GridAxesDrawPara { get; set; }
 
+        [JsonProperty("wswData")]
         public WswData WswData { get; set; }
 
+        [JsonProperty("dataShowConfig")]
         public DataShowConfig DataShowConfig { get; set; }
 
+        [JsonProperty("myHelicopterInfo")]
         public AirPlaneInfo MyHelicopterInfo { get; set; }
+
+        [JsonProperty("myFlighterInfo")]
         public AirPlaneInfo MyFlighterInfo { get; set; }
 
+        [JsonProperty("speechConfig")]
         public SpeechConfig SpeechConfig { get; set; }
 
         public void WriteToFile()
@@ -198,7 +207,20 @@ namespace TeachingPlatformApp.Utils
 
     public class SpeechConfig
     {
-        public string SpeechTextOutofRoute { get; set; } = "您已经偏离航线";
+        [JsonProperty("speechTextOutofRouteLeft")]
+        public string SpeechTextOutofRouteLeft { get; set; } = "您已经向左偏离航线";
+
+        [JsonProperty("speechTextOutofRouteRight")]
+        public string SpeechTextOutofRouteRight { get; set; } = "您已经向右偏离航线";
+
+        [JsonProperty("speechTextReserved1")]
+        public string SpeechTextReserved1 { get; set; } = "SpeechTextReserved1";
+
+        [JsonProperty("speechTextReserved2")]
+        public string SpeechTextReserved2 { get; set; } = "SpeechTextReserved2";
+
+        [JsonProperty("speechTextReserved3")]
+        public string SpeechTextReserved3 { get; set; } = "SpeechTextReserved3";
     }
 
 }

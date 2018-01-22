@@ -40,7 +40,13 @@ namespace TeachingPlatformApp.Communications
         /// 六自由度平台Ip
         /// </summary>
         public IPAddress IpAddressSixPlatform => IPAddress.Parse(_ipSixPlatform);
+        /// <summary>
+        /// 单兵电脑Ip
+        /// </summary>
         public IPAddress IpAddressGunBarrel => IPAddress.Parse(_ipGunBarrel);
+        /// <summary>
+        /// 720度电脑Ip
+        /// </summary>
         public IPAddress IpAddress720Platform => IPAddress.Parse(_ip720Platform);
 
         public PlaneInfo PlaneInfo { get; set; }

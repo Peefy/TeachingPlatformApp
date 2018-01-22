@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using Newtonsoft.Json;
 
 using TeachingPlatformApp.Utils;
 
@@ -60,10 +52,10 @@ namespace TeachingPlatformApp.Controls
         private void DrawParaInit()
         {
             drawPara = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
-            columnNum = (int)(drawPara.axesHeight / YAxesInternal) + 1;
-            rowNum = (int)(drawPara.axesWidth / XAxesInternal) + 1;
-            DrawLeft = drawPara.drawLeft;
-            DrawTop = drawPara.drawTop;
+            columnNum = (int)(drawPara.AxesHeight / YAxesInternal) + 1;
+            rowNum = (int)(drawPara.AxesWidth / XAxesInternal) + 1;
+            DrawLeft = drawPara.DrawLeft;
+            DrawTop = drawPara.DrawTop;
         }
 
         private void RenewAxesLabel()
@@ -79,10 +71,10 @@ namespace TeachingPlatformApp.Controls
                 labelCanvas.Children.Add(new TextBlock()
                 {
                     Foreground = new SolidColorBrush(Colors.Black),
-                    FontSize = drawPara.labelFontSize,
-                    Text = (i * drawPara.labelAxesInterval + drawPara.labelAxesInit).ToString(),
-                    Margin = new Thickness(drawPara.drawLabelLeft + i * XAxesInternal,
-                        drawPara.drawLabelTop, 0, 0)
+                    FontSize = drawPara.LabelFontSize,
+                    Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
+                    Margin = new Thickness(drawPara.DrawLabelLeft + i * XAxesInternal,
+                        drawPara.DrawLabelTop, 0, 0)
                 });
                 var path = new Path()
                 {
@@ -92,7 +84,7 @@ namespace TeachingPlatformApp.Controls
                     {
                         StartPoint = new Point(i * XAxesInternal, 0 + DrawTop),
                         EndPoint = new Point(i * XAxesInternal, 
-                            drawPara.axesHeight + drawPara.drawDown)
+                            drawPara.AxesHeight + drawPara.DrawDown)
                     }
                 };
                 chartCanvas.Children.Add(path);
@@ -102,10 +94,10 @@ namespace TeachingPlatformApp.Controls
                 labelCanvas.Children.Add(new TextBlock()
                 {
                     Foreground = new SolidColorBrush(Colors.Black),
-                    FontSize = drawPara.labelFontSize,
-                    Text = (i * drawPara.labelAxesInterval + drawPara.labelAxesInit).ToString(),
-                    Margin = new Thickness(drawPara.drawLabelLeft, 
-                        drawPara.drawLabelTop + i * YAxesInternal, 0, 0)
+                    FontSize = drawPara.LabelFontSize,
+                    Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
+                    Margin = new Thickness(drawPara.DrawLabelLeft, 
+                        drawPara.DrawLabelTop + i * YAxesInternal, 0, 0)
                 });
                 var path = new Path()
                 {
@@ -114,7 +106,7 @@ namespace TeachingPlatformApp.Controls
                     Data = new LineGeometry()
                     {
                         StartPoint = new Point(0 + DrawLeft, i * YAxesInternal),
-                        EndPoint = new Point(drawPara.axesWidth + drawPara.drawRight, 
+                        EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight, 
                             i * YAxesInternal)
                     }
                 };
@@ -125,18 +117,38 @@ namespace TeachingPlatformApp.Controls
 
     public class GridAxesDrawPara
     {
-        public double axesHeight = 760;
-        public double axesWidth = 960;
-        public double drawTop = -30;
-        public double drawDown = 30;
-        public double drawLeft = -30;
-        public double drawRight = 30;
-        public double drawLabelTop = 5;
-        public double drawLabelLeft = 12;
+        [JsonProperty("axesHeight")]
+        public double AxesHeight = 860;
 
-        public int labelFontSize = 20;
-        public int labelAxesInterval = 10;
-        public int labelAxesInit = 0;
+        [JsonProperty("axesWidth")]
+        public double AxesWidth = 1360;
+
+        [JsonProperty("drawTop")]
+        public double DrawTop = -30;
+
+        [JsonProperty("drawDown")]
+        public double DrawDown = 30;
+
+        [JsonProperty("drawLeft")]
+        public double DrawLeft = -30;
+
+        [JsonProperty("drawRight")]
+        public double DrawRight = 30;
+
+        [JsonProperty("drawLabelTop")]
+        public double DrawLabelTop = 5;
+
+        [JsonProperty("drawLabelLeft")]
+        public double DrawLabelLeft = 12;
+
+        [JsonProperty("labelFontSize")]
+        public int LabelFontSize = 20;
+
+        [JsonProperty("labelAxesInterval")]
+        public int LabelAxesInterval = 10;
+
+        [JsonProperty("labelAxesInit")]
+        public int LabelAxesInit = 0;
 
     }
 
