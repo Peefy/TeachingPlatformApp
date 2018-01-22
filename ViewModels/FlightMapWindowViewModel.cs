@@ -183,8 +183,9 @@ namespace TeachingPlatformApp.ViewModels
                         var j = StructHelper.Deg2Rad(i);
                         FlighterPosition = new Point(point1.X + 10 * Math.Sin(j), point1.Y + 10 * Math.Cos(j));
                         HelicopterPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
+                        FlightLocationString = $"{_flighterName}{PlaneInfoToString(FlighterPosition)};" +
+                            $"{_helicopterName}{PlaneInfoToString(HelicopterPosition)}";
                         Thread.Sleep(_mapRefreshInterval);
-                        LastFlighterPosition = FlighterPosition;
                         i += 1;
                     }
                 });
@@ -225,29 +226,31 @@ namespace TeachingPlatformApp.ViewModels
             HelicopterTrailTempList = new ObservableRangeCollection<Point>();
         }
 
-        public virtual void DrawTrail()
-        {
-
-        }
-
         public virtual void BuildFlightLocationString()
-        {
-            var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
-            FlightLocationString = $"{_helicopterName}{PlaneInfoToString(planeInfo.Helicopter)};" +
-                    $"{_flighterName}{PlaneInfoToString(planeInfo.Flighter)}";
+        {         
             if(_translateData.PlaneInfo.IsConnect == true)
             {
+                var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
+                FlightLocationString = $"{_helicopterName}{PlaneInfoToString(planeInfo.Helicopter)};" +
+                        $"{_flighterName}{PlaneInfoToString(planeInfo.Flighter)}";
                 HelicopterAngle = (float)planeInfo.Helicopter.Yaw;
                 FlighterAngle = (float)planeInfo.Flighter.Yaw;
                 FlighterPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
                 HelicopterPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
             }
-            DrawTrail();
         }
 
         private string PlaneInfoToString(AngleWithLocation angleWithLocation)
         {
             return $"坐标:({angleWithLocation.X},{angleWithLocation.Y},{angleWithLocation.Z})";
+        }
+
+        private string PlaneInfoToString(Point point)
+        {
+            var digit = _config.DataShowConfig.PointShowDigit;
+            var x = Math.Round(point.X, digit);
+            var y = Math.Round(point.Y, digit);
+            return $"坐标:({x},{y})";
         }
 
     }

@@ -63,12 +63,18 @@ namespace TeachingPlatformApp.Views
             catch
             {
 
-                throw;
             }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.Key == Key.C)
+            {
+                var canvasTrailFlighter = gridAxes.Children[1] as CanvasTrail;
+                var canvasTrailHelicopter = gridAxes.Children[2] as CanvasTrail;
+                canvasTrailFlighter.ClearPoint();
+                canvasTrailHelicopter.ClearPoint();
+            }
             if (fatherGrid.RenderTransform is ScaleTransform scale)
             {
                 if (e.Key == Key.PageUp || e.Key == Key.W)
@@ -80,13 +86,6 @@ namespace TeachingPlatformApp.Views
                 {
                     scale.ScaleX -= 0.1;
                     scale.ScaleY -= 0.1;
-                }
-                else if(e.Key == Key.C)
-                {
-                    var canvasTrailFlighter = gridAxes.Children[1] as CanvasTrail;
-                    var canvasTrailHelicopter = gridAxes.Children[2] as CanvasTrail;
-                    canvasTrailFlighter.ClearPoint();
-                    canvasTrailHelicopter.ClearPoint();
                 }
             }
         }

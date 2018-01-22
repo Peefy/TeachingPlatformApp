@@ -51,7 +51,8 @@
   "dataShowConfig": {
     "angleShowDigit": 2,
     "pointShowDigit": 2,
-    "mapUiRefreshMs": 30
+    "mapUiRefreshMs": 30,
+    "drawTrailPointNumUp": 10000
   },
   "myHelicopterInfo": {
     "initMyPointX": 40.0,
