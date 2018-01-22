@@ -139,6 +139,8 @@
     </Compile>
     <Compile Include="WswPlatform\AirPlaneInfo.cs" />
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
+    <Compile Include="WswPlatform\DataPacketToWsw.cs" />
+    <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
     <Compile Include="WswPlatform\WswAirplane.cs" />

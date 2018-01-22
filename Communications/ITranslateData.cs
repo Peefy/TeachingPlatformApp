@@ -24,6 +24,11 @@ namespace TeachingPlatformApp.Communications
         Task<UdpReceiveResult> RecieveAsync();
 
         void SendToUnity720View(byte[] bytes);
+
+        void SendTo720PlatformWsw(byte[] bytes);
+        void SendToGunBarrelWsw(byte[] bytes);
+        void SendToSixPlatformWsw(byte[] bytes);
+
         void SendTo(byte[] bytes, IPEndPoint iPEndPoint);
         byte[] Recieve(ref IPEndPoint iPEndPoint);
 

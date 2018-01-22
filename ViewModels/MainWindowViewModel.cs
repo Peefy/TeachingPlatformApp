@@ -243,6 +243,7 @@ namespace TeachingPlatformApp.ViewModels
                     var item = FlightExperimentSelected;
                     UdpServer?.SendToUnity720View(new TeachingCommandBuilder(SelectIndexTreeNode1, true).
                         BuildCommandBytes());
+                    SendSetPoints(item);
                     await Task.Delay(100);                  
                     StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
@@ -306,6 +307,18 @@ namespace TeachingPlatformApp.ViewModels
                 foreach(var str in strs)
                     AppendStatusText(str);
             });
+        }
+
+        private void SendSetPoints(FlightExperiment item)
+        {
+            if(item.SetPoints != null && UdpServer != null)
+            {
+                for (var i = 0; i < item.SetPoints.Count; ++i)
+                {
+                    UdpServer.SendTo720PlatformWsw(new DataPacketToWswBuilder(i,
+                        item.SetPoints[i].X, item.SetPoints[i].Y).BuildBytes());
+                }
+            }
         }
 
         private void ConfigInit()

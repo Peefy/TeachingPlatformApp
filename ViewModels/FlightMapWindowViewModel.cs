@@ -181,7 +181,6 @@ namespace TeachingPlatformApp.ViewModels
         public virtual void JudgeRouteTask()
         {
             var setPointsCount = SetPoints.Count;
-
         }
 
         public virtual void BuildFlightLocationString()

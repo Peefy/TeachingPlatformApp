@@ -49,6 +49,10 @@ namespace TeachingPlatformApp.Communications
         /// </summary>
         public IPAddress IpAddress720Platform => IPAddress.Parse(_ip720Platform);
 
+        public IPEndPoint IpEndPointSixPlatform { get; set; }
+        public IPEndPoint IpEndPointGunBarrel { get; set; }
+        public IPEndPoint IpEndPoint720Platform { get; set; }
+
         public PlaneInfo PlaneInfo { get; set; }
 
         public Server()
@@ -64,7 +68,10 @@ namespace TeachingPlatformApp.Communications
             _ip720Platform = config.Ip720Platform;
             _udp720TechingPort = config.Udp720TechingPort;
             _udp720TestConsolePort = config.Udp720TestConsolePort;
-            _server = new UdpClient(_port);         
+            _server = new UdpClient(_port);
+            IpEndPoint720Platform = new IPEndPoint(IpAddress720Platform, _udp720Port);
+            IpEndPointSixPlatform = new IPEndPoint(IpAddressSixPlatform, _wswUdpPort);
+            IpEndPointGunBarrel = new IPEndPoint(IpAddressGunBarrel, _wswUdpPort);
         }
 
         public async Task<int> SendToSixPlatformAsync(byte[] data)
@@ -112,6 +119,22 @@ namespace TeachingPlatformApp.Communications
         {
             _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TechingPort));
             _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TestConsolePort));
+        }
+
+        public void SendToGunBarrelWsw(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, IpEndPointGunBarrel);
+        }
+
+        public void SendToSixPlatformWsw(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, IpEndPointSixPlatform);
+        }
+
+
+        public void SendTo720PlatformWsw(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, IpEndPoint720Platform);
         }
 
         public async Task<byte[]> RecieveDataAsync()
@@ -183,8 +206,6 @@ namespace TeachingPlatformApp.Communications
             // TODO: 如果在以上内容中替代了终结器，则取消注释以下行。
             // GC.SuppressFinalize(this);
         }
-
-
 
         #endregion
 
