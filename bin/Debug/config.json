@@ -6,26 +6,26 @@
     "flighterName": "战斗机"
   },
   "ComConfig": {
-    "selfPort": 16000,
-    "udp720Port": 15000,
-    "ipSelf": "192.168.0.135",
+    "selfPort": 15000,
+    "udp720Port": 16000,
+    "ipSelf": "192.168.0.132",
     "ip720Platform": "192.168.0.134",
     "ipWswUdpServer": "192.168.0.131",
     "ipGunBarrel": "192.168.0.133",
-    "wswUdpPort": 14000,
+    "wswUdpPort": 15000,
     "udp720TechingPort": 12000,
     "udp720TestConsolePort": 11000,
-    "renewUIRecieveCount": 50
+    "renewUIRecieveCount": 10
   },
   "GridAxesDrawPara": {
-    "axesHeight": 700.0,
-    "axesWidth": 1000.0,
+    "axesHeight": 760.0,
+    "axesWidth": 960.0,
     "drawTop": -30.0,
     "drawDown": 30.0,
     "drawLeft": -30.0,
     "drawRight": 30.0,
     "drawLabelTop": 5.0,
-    "drawLabelLeft": 14.0,
+    "drawLabelLeft": 12.0,
     "labelFontSize": 20,
     "labelAxesInterval": 10,
     "labelAxesInit": 0
@@ -47,5 +47,28 @@
       "Pitch": 0.0011189,
       "Roll": 0.00139873
     }
+  },
+  "DataShowConfig": {
+    "angleShowDigit": 2,
+    "pointShowDigit": 2,
+    "mapUiRefreshMs": 30
+  },
+  "MyHelicopterInfo": {
+    "InitMyPointX": 40.0,
+    "InitMyPointY": 40.0,
+    "InitMyPointZ": 0.0,
+    "PointScaleFactorX": 0.5,
+    "PointScaleFactorY": 0.5,
+    "PointScaleFactorZ": 0.5,
+    "InitYaw": 0.0
+  },
+  "MyFlighterInfo": {
+    "InitMyPointX": 10.0,
+    "InitMyPointY": 10.0,
+    "InitMyPointZ": 0.0,
+    "PointScaleFactorX": 0.5,
+    "PointScaleFactorY": 0.5,
+    "PointScaleFactorZ": 0.5,
+    "InitYaw": 180.0
   }
 }

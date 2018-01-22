@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace TeachingPlatformApp.Speech
 {
-    public static class TeachingSpeeker
+    public class TeachingSpeeker : ISpeek
     {
         ///<summary>
-        /// 调用系统 语音朗读   备注 该方法只支持.net 4.0 版本以上
+        /// 调用系统 语音朗读
         /// </summary>
         /// <param name="words">朗读的内容</param>
         /// <param name="isAsync">是否同步朗读</param>
         /// <param name="language">朗读语言:英语"en-US"，简体中文"zh-CN"，台湾中文"zh-TW"</param>
-        public static void SpeekWords(string words, bool isAsync = true, string language = "zh-CN")
+        public void SpeekWords(string words, bool isAsync = true, string language = "zh-CN")
         {
             using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
             {
@@ -39,11 +39,11 @@ namespace TeachingPlatformApp.Speech
             }
         }
 
-        public static void GetInstalledVoices(string language = "zh-CN")
+        public IReadOnlyCollection<InstalledVoice> GetInstalledVoices(string language = "zh-CN")
         {
-            using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
+            using (var synthesizer = new SpeechSynthesizer())
             {
-                var voices = synthesizer.GetInstalledVoices(new CultureInfo(language));
+                return synthesizer.GetInstalledVoices(new CultureInfo(language));
             }
         }
 

@@ -30,8 +30,8 @@ namespace TeachingPlatformApp.Utils
             var deltaX = vector1.X - vector2.X;
             var deltaY = vector1.Y - vector2.Y;
 
-            TeachingSpeeker.SpeekWords("哈哈哈");
-            TeachingSpeeker.GetInstalledVoices();
+            Ioc.Get<ISpeek>().SpeekWords("哈哈哈");
+            Ioc.Get<ISpeek>().GetInstalledVoices();
 
             return new string[]
             {

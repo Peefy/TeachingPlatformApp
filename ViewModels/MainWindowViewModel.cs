@@ -3,6 +3,7 @@ using System.Speech;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Prism.Mvvm;
@@ -22,14 +23,25 @@ namespace TeachingPlatformApp.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-
+        /// <summary>
+        /// 日志记录
+        /// </summary>
         public ILog Logger => LogManager.GetCurrentLogger();
+        /// <summary>
+        /// Udp通信接口 (控制反转方式获得)
+        /// </summary>
         public ITranslateData UdpServer => Ioc.Get<ITranslateData>();
 
+        /// <summary>
+        /// 接收RecieveUdpPacketCount次数据刷新一次UI,春哥发太快了.....
+        /// </summary>
         public int RecieveUdpPacketCount { get; set; } = 0;
 
         int _milliSeconds = Convert.ToInt32(LogAndConfig.Config.
-            GetProperty(ConfigKeys.UdpPort,4000));
+            GetProperty(ConfigKeys.UdpPort, 100_000));
+        /// <summary>
+        /// 飞行实验时间：100s
+        /// </summary>
         public int MilliSeconds
         {
             get => _milliSeconds;
@@ -38,6 +50,13 @@ namespace TeachingPlatformApp.ViewModels
                 SetProperty(ref _milliSeconds, value);
                 LogAndConfig.Config.SetProperty(ConfigKeys.MilliSeconds, value);
             } 
+        }
+
+        private bool _isConnect;
+        public bool IsConnect
+        {
+            get => _isConnect;
+            set => SetProperty(ref _isConnect, value);
         }
 
         private int _platformRunTime;
@@ -135,8 +154,7 @@ namespace TeachingPlatformApp.ViewModels
             SelectIndexTreeNode1 == -1 ? null : FlightExperiments[SelectIndexTreeNode1];
 
         public MainWindowViewModel()
-        {
-            Ioc.Register<ITranslateData, Server>();
+        {          
             TreeViewNodes = new ObservableRangeCollection<TreeViewModelItem>
             {
                 new TreeViewModelItem()
@@ -171,7 +189,7 @@ namespace TeachingPlatformApp.ViewModels
                     SelectIndexTreeNode1 = TreeViewNodes[0].Children.IndexOf(item);
                 }
             });
-            ComInit();
+            ComAndCommandInit();
         }
 
         public void AppendStatusText(string str)
@@ -179,28 +197,29 @@ namespace TeachingPlatformApp.ViewModels
             StatusText += str + Environment.NewLine;
         }
 
-        private void ComInit()
+        private void ComAndCommandInit()
         {
             ConfigInit();
             Task.Run(() =>
             {
                 try
                 {
-                    int i = 0;
+                    var realRecieCount = 0;
                     while (true)
                     {
                         var ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
                         var recieveBytes = UdpServer.Recieve(ref ipEndPoint);
                         var ip = ipEndPoint.ToString();
-                        var length = recieveBytes.Length;
+                        var length = recieveBytes.Length;                       
                         Logger.Info($"{ip}:{length}\r\n");                    
-                        if(++i >= RecieveUdpPacketCount)
+                        if(++realRecieCount >= RecieveUdpPacketCount)
                         {
-                            i = 0;
+                            realRecieCount = 0;
                             if (length == StructHelper.GetStructSize<AngleWithLocation>())
                             {
                                 DealAngleWithLocationData(ip, recieveBytes);
-                            }
+                                UdpServer.PlaneInfo.IsConnect = true;
+                            }                      
                             AppendStatusText($"{ip}:{length}");
                         }
                     }
@@ -209,7 +228,6 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     Logger.Error(ex);
                 }
-
             });
             StartCommand = new DelegateCommand(async () =>
             {
@@ -298,25 +316,29 @@ namespace TeachingPlatformApp.ViewModels
 
         private void DealAngleWithLocationData(string ip, byte[] recieveBytes)
         {
-            var config = JsonFileConfig.Instance.ComConfig;
+            var config = JsonFileConfig.Instance;
             var angleWithLocation = StructHelper.BytesToStruct<AngleWithLocation>(recieveBytes);
-            angleWithLocation = WswHelper.MathRoundAngle(angleWithLocation, 2);
-            if (ip.StartsWith(config.Ip720Platform) == true)
+            var angleDataDigit = config.DataShowConfig.AngleShowDigit;
+            if (ip.StartsWith(config.ComConfig.Ip720Platform) == true)
             {             
+                angleWithLocation = WswHelper.
+                    MyDealWswAngle(angleWithLocation, WswAirplane.Flighter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
                 {
-                    UdpServer.PlaneInfo.Helicopter = angleWithLocation;
+                    UdpServer.PlaneInfo.Flighter = angleWithLocation;
                     flight.Roll.Value = (float)angleWithLocation.Roll;
                     flight.Pitch.Value = (float)angleWithLocation.Pitch;
                     flight.Yaw.Value = (float)angleWithLocation.Yaw;
                     flight.NowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
-            else if(ip.StartsWith(config.IpWswUdpServer) == true)
+            else if(ip.StartsWith(config.ComConfig.IpWswUdpServer) == true)
             {
+                angleWithLocation = WswHelper.
+                    MyDealWswAngle(angleWithLocation, WswAirplane.Helicopter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
                 {
-                    UdpServer.PlaneInfo.Flighter = angleWithLocation;
+                    UdpServer.PlaneInfo.Helicopter = angleWithLocation;
                     flight.SixPlatformRoll.Value = (float)angleWithLocation.Roll;
                     flight.SixPlatformPitch.Value = (float)angleWithLocation.Pitch;
                     flight.SixPlatformYaw.Value = (float)angleWithLocation.Yaw;
@@ -324,10 +346,6 @@ namespace TeachingPlatformApp.ViewModels
                 }
             }
             WswDataDebuger.Record(ip, angleWithLocation);
-            //Test.Run();
-            //Logger.Info($"{ip.ToString()}:\r\n" +
-            //    WswHelper.AngleWithLocationToString(angleWithLocation));
         }
-
     }
 }

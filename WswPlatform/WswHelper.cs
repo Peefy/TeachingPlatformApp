@@ -13,17 +13,59 @@ namespace TeachingPlatformApp.WswPlatform
         public static string AngleWithLocationToString(AngleWithLocation angle) => 
             $"x:{angle.X} y:{angle.Y} z:{angle.Z} roll:{angle.Roll} yaw:{angle.Yaw} pitch:{angle.Pitch}";
 
-        public static AngleWithLocation MathRoundAngle(AngleWithLocation angle, int digit)
+        public static AngleWithLocation MathRoundAngle(AngleWithLocation angleWithLocation, int digit)
         {
             return new AngleWithLocation
             {
-                X = Math.Round(angle.X, digit),
-                Y = Math.Round(angle.Y, digit),
-                Z = Math.Round(angle.Z, digit),
-                Yaw = Math.Round(angle.Yaw, digit),
-                Pitch = Math.Round(angle.Pitch, digit),
-                Roll = Math.Round(angle.Roll, digit)
+                X = (float)Math.Round(angleWithLocation.X, digit),
+                Y = (float)Math.Round(angleWithLocation.Y, digit),
+                Z = (float)Math.Round(angleWithLocation.Z, digit),
+                Roll = (float)Math.Round(angleWithLocation.Roll, digit),
+                Yaw = (float)Math.Round(angleWithLocation.Yaw, digit),
+                Pitch = (float)Math.Round(angleWithLocation.Pitch, digit),
             };
+        }
+
+        public static AngleWithLocation MyDealWswAngle(AngleWithLocation angle,WswAirplane wswAirplane, int digit = 2)
+        {
+            var config = JsonFileConfig.Instance;
+            var wswInitData = config.WswData;
+            var angleNew = new AngleWithLocation();
+            if(wswAirplane == WswAirplane.Flighter)
+            {
+                var myFlighterInfo = config.MyFlighterInfo;
+                angleNew.X = (angle.X - wswInitData.FlighterInitInfo.X) *
+                    myFlighterInfo.PointScaleFactorX + myFlighterInfo.InitMyPointX;
+                angleNew.Y = (angle.Y - wswInitData.FlighterInitInfo.Y) *
+                    myFlighterInfo.PointScaleFactorY + myFlighterInfo.InitMyPointY;
+                angleNew.Z = (angle.Z - wswInitData.FlighterInitInfo.Z) *
+                    myFlighterInfo.PointScaleFactorZ + myFlighterInfo.InitMyPointZ;
+                angleNew.Roll = angle.Roll;
+                angleNew.Pitch = angle.Pitch;
+                angleNew.Yaw = angle.Yaw - myFlighterInfo.InitYaw;
+
+            };
+            if(wswAirplane == WswAirplane.Helicopter)
+            {
+                var myHelicopterInfo = config.MyHelicopterInfo;
+                angleNew.X = (angle.X - wswInitData.FlighterInitInfo.X) *
+                    myHelicopterInfo.PointScaleFactorX + myHelicopterInfo.InitMyPointX;
+                angleNew.Y = (angle.Y - wswInitData.FlighterInitInfo.Y) *
+                    myHelicopterInfo.PointScaleFactorY + myHelicopterInfo.InitMyPointY;
+                angleNew.Z = (angle.Z - wswInitData.FlighterInitInfo.Z) *
+                    myHelicopterInfo.PointScaleFactorZ + myHelicopterInfo.InitMyPointZ;
+                angleNew.Roll = angle.Roll;
+                angleNew.Pitch = angle.Pitch;
+                angleNew.Yaw = angle.Yaw - myHelicopterInfo.InitYaw;
+            }
+            angleNew.X = Math.Round(angleNew.X, digit);
+            angleNew.Y = Math.Round(angleNew.Y, digit);
+            angleNew.Z = Math.Round(angleNew.Z, digit);
+            angleNew.Roll = Math.Round(angleNew.Roll, digit);
+            angleNew.Yaw = Math.Round(angleNew.Yaw, digit);
+            angleNew.Pitch = Math.Round(angleNew.Pitch, digit);
+
+            return angleNew;
         }
 
         public static string GetAngleWithLocationDeltaXY(string ip, AngleWithLocation angleWithLocation)

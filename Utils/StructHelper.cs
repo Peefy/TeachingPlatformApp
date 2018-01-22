@@ -56,24 +56,24 @@ namespace TeachingPlatformApp.Utils
             return num;
         }
 
-        public static float Rad2Deg(float rad)
+        public static float Rad2Deg(float rad, int digit = 2)
         {
-            return (float)Math.Round(rad * 57.29577951 / Math.PI, 2);
+            return (float)Math.Round(rad * 57.29577951 / Math.PI, digit);
         }
 
-        public static float Rad2Deg(double rad)
+        public static float Rad2Deg(double rad, int digit = 2)
         {
-            return (float)Math.Round(rad * 57.29577951 / Math.PI, 2);
+            return (float)Math.Round(rad * 57.29577951 / Math.PI, digit);
         }
 
-        public static float Deg2Rad(float deg)
+        public static float Deg2Rad(float deg, int digit = 2)
         {
-            return (float)Math.Round(deg * 0.01745329, 2);
+            return (float)Math.Round(deg * 0.01745329, digit);
         }
 
-        public static float Deg2Rad(double deg)
+        public static float Deg2Rad(double deg, int digit = 2)
         {
-            return (float)Math.Round(deg * 0.01745329, 2);
+            return (float)Math.Round(deg * 0.01745329, digit);
         }
 
     }

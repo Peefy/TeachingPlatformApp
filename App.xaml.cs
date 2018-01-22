@@ -9,6 +9,7 @@ using System.Windows;
 
 using DuGu.NetFramework.Services;
 
+using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.Communications;
 using TeachingPlatformApp.Utils;
 
@@ -29,6 +30,8 @@ namespace TeachingPlatformApp
 
         void AppInit()
         {
+            Ioc.Register<ITranslateData, Server>();
+            Ioc.Register<ISpeek, TeachingSpeeker>();
             LogAndConfig.Init();            
             this.Exit += App_Exit;         
         }

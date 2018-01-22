@@ -24,16 +24,24 @@ namespace TeachingPlatformApp.Communications
         int _udp720TestConsolePort = 11000;
 
         int _port = DefaultPort;
-        string _ip = "192.168.0.133"; //本机Ip;
+        string _ip = "192.168.0.132"; //本机Ip;
 
-        string _ipOne = "192.168.0.131";
-        string _ipTwo = "192.168.0.132";
-        string _ipThree = "192.168.0.134";
+        string _ipSixPlatform = "192.168.0.131";
+        string _ipGunBarrel = "192.168.0.133";
+        string _ip720Platform = "192.168.0.134";
 
+        int _sendAfterDelay = 10;
+
+        /// <summary>
+        /// 自己电脑IP
+        /// </summary>
         public IPAddress IpAddressLocal => IPAddress.Parse(_ip);
-        public IPAddress IpAddressOne => IPAddress.Parse(_ipOne);
-        public IPAddress IpAddressTwo => IPAddress.Parse(_ipTwo);
-        public IPAddress IpAddressThree => IPAddress.Parse(_ipThree);
+        /// <summary>
+        /// 六自由度平台Ip
+        /// </summary>
+        public IPAddress IpAddressSixPlatform => IPAddress.Parse(_ipSixPlatform);
+        public IPAddress IpAddressGunBarrel => IPAddress.Parse(_ipGunBarrel);
+        public IPAddress IpAddress720Platform => IPAddress.Parse(_ip720Platform);
 
         public PlaneInfo PlaneInfo { get; set; }
 
@@ -45,50 +53,50 @@ namespace TeachingPlatformApp.Communications
             _udp720Port = config.Udp720Port;
             _wswUdpPort = config.WswUdpPort;
             _ip = config.IpSelf;
-            _ipOne = config.IpWswUdpServer;
-            _ipTwo = config.IpGunBarrel;
-            _ipThree = config.Ip720Platform;
+            _ipSixPlatform = config.IpWswUdpServer;
+            _ipGunBarrel = config.IpGunBarrel;
+            _ip720Platform = config.Ip720Platform;
             _udp720TechingPort = config.Udp720TechingPort;
             _udp720TestConsolePort = config.Udp720TestConsolePort;
             _server = new UdpClient(_port);         
         }
 
-        public async Task<int> SendAsyncToOne(byte[] data)
+        public async Task<int> SendToSixPlatformAsync(byte[] data)
         {
             var result = await _server.SendAsync(data, data.Length,
-                new IPEndPoint(IPAddress.Parse(_ipOne), _wswUdpPort));
-            await Task.Delay(10);
+                new IPEndPoint(IpAddressSixPlatform, _wswUdpPort));
+            await Task.Delay(_sendAfterDelay);
             return result;
         }
 
-        public async Task<int> SendAsyncToTwo(byte[] data)
+        public async Task<int> SendToGunBarrelAsync(byte[] data)
         {
             var result = await _server.SendAsync(data, data.Length,
-                new IPEndPoint(IPAddress.Parse(_ipTwo), _wswUdpPort));
-            await Task.Delay(10);
+                new IPEndPoint(IpAddressGunBarrel, _wswUdpPort));
+            await Task.Delay(_sendAfterDelay);
             return result;
         }
 
-        public async Task<int> SendAsyncToThree(byte[] data)
+        public async Task<int> SendTo720PlatformAsync(byte[] data)
         {
             var result = await _server.SendAsync(data, data.Length,
-                new IPEndPoint(IPAddress.Parse(_ipTwo), _wswUdpPort));
-            await Task.Delay(10);
+                new IPEndPoint(IpAddress720Platform, _wswUdpPort));
+            await Task.Delay(_sendAfterDelay);
             return result;
         }
         
-        public async Task<int> SendAsync(string str,int num)
+        public async Task<int> SendStringToAsync(string str,int num)
         {
             var bytes = Encoding.Default.GetBytes(str);
             await _server.SendAsync(bytes, bytes.Length);
             switch(num)
             {
                 case 0:
-                    return await SendAsyncToOne(bytes);
+                    return await SendToSixPlatformAsync(bytes);
                 case 1:
-                    return await SendAsyncToTwo(bytes);
+                    return await SendToGunBarrelAsync(bytes);
                 case 2:
-                    return await SendAsyncToThree(bytes);
+                    return await SendTo720PlatformAsync(bytes);
                 default:
                     return await Task.FromResult(-1);
             }
@@ -96,8 +104,8 @@ namespace TeachingPlatformApp.Communications
 
         public void SendToUnity720View(byte[] bytes)
         {
-            _server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Parse(_ipThree), 12000));
-            _server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Parse(_ipThree), 11000));
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TechingPort));
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TestConsolePort));
         }
 
         public async Task<byte[]> RecieveDataAsync()

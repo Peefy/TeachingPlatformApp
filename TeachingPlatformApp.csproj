@@ -129,6 +129,7 @@
     <Compile Include="MemoryShare\CLStartCamera.cs" />
     <Compile Include="MemoryShare\ZyShareMem.cs" />
     <Compile Include="Models\PlaneInfo.cs" />
+    <Compile Include="Speech\ISpeek.cs" />
     <Compile Include="Speech\TeachingSpeeker.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
     <Compile Include="Utils\Test.cs" />
@@ -136,9 +137,11 @@
     <Compile Include="Views\FlightMapWindow.xaml.cs">
       <DependentUpon>FlightMapWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WswPlatform\AirPlaneInfo.cs" />
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
+    <Compile Include="WswPlatform\WswAirplane.cs" />
     <Compile Include="WswPlatform\WswDataDebuger.cs" />
     <Compile Include="WswPlatform\WswHelper.cs" />
     <Compile Include="ZyPlatform\AngleDef.cs" />
@@ -284,9 +287,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="icon.ico" />
   </ItemGroup>

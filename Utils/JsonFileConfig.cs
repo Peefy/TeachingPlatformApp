@@ -32,6 +32,13 @@ namespace TeachingPlatformApp.Utils
 
         public WswData WswData { get; set; }
 
+        public DataShowConfig DataShowConfig { get; set; }
+
+        public AirPlaneInfo MyHelicopterInfo { get; set; }
+        public AirPlaneInfo MyFlighterInfo { get; set; }
+
+        public SpeechConfig SpeechConfig { get; set; }
+
         public void WriteToFile()
         {
             try
@@ -66,7 +73,29 @@ namespace TeachingPlatformApp.Utils
             this.StringResource = new StringResource();
             this.ComConfig = new ComConfig();
             this.WswData = new WswData();
-            GridAxesDrawPara = new GridAxesDrawPara();
+            this.DataShowConfig = new DataShowConfig();
+            this.MyFlighterInfo = new AirPlaneInfo()
+            {
+                InitMyPointX = 10,
+                InitMyPointY = 10,
+                InitMyPointZ = 0,
+                InitYaw = 180,
+                PointScaleFactorX = 0.5f,
+                PointScaleFactorY = 0.5f,
+                PointScaleFactorZ = 0.5f,
+            };
+            this.MyHelicopterInfo = new AirPlaneInfo()
+            {
+                InitMyPointX = 40,
+                InitMyPointY = 40,
+                InitMyPointZ = 0,
+                InitYaw = 0,
+                PointScaleFactorX = 0.5f,
+                PointScaleFactorY = 0.5f,
+                PointScaleFactorZ = 0.5f,
+            };
+            this.GridAxesDrawPara = new GridAxesDrawPara();
+            this.SpeechConfig = new SpeechConfig();
         }
 
     }
@@ -120,6 +149,19 @@ namespace TeachingPlatformApp.Utils
 
     }
 
+    public class DataShowConfig
+    {
+        [JsonProperty("angleShowDigit")]
+        public int AngleShowDigit { get; set; } = 2;
+
+        [JsonProperty("pointShowDigit")]
+        public int PointShowDigit { get; set; } = 2;
+
+        [JsonProperty("mapUiRefreshMs")]
+        public int MapUiRefreshMs { get; set; } = 30;
+
+    }
+
     public class WswData
     {
         /// <summary>
@@ -152,6 +194,11 @@ namespace TeachingPlatformApp.Utils
             HelicopterInitInfo.Roll = 0.00139873;
         }
 
+    }
+
+    public class SpeechConfig
+    {
+        public string SpeechTextOutofRoute { get; set; } = "您已经偏离航线";
     }
 
 }

@@ -58,7 +58,7 @@
                                   Panel.ZIndex="0">
                     <myctrls:Flighter.RenderTransform>
                         <TransformGroup>
-                            <RotateTransform Angle="{Binding HelicopterAngle}"/>
+                            <RotateTransform Angle="{Binding FlighterAngle}"/>
                         </TransformGroup>
                     </myctrls:Flighter.RenderTransform>
                 </myctrls:Flighter>

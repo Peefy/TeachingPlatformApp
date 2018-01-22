@@ -20,8 +20,13 @@ namespace TeachingPlatformApp.ViewModels
     public class FlightMapWindowViewModel : BindableBase
     {
 
-        string helicopterName = "直升机";
-        string flighterName = "战斗机";
+        ITranslateData _translateData;
+
+        string _helicopterName = "直升机";
+        string _flighterName = "战斗机";
+        int _mapRefreshInterval = 30;
+
+        JsonFileConfig _config;
 
         private string _title = "地图";
         public string Title
@@ -88,10 +93,13 @@ namespace TeachingPlatformApp.ViewModels
 
         public FlightMapWindowViewModel()
         {
-            var config = JsonFileConfig.ReadFromFile().StringResource;
-            Title = config.FlightMapTitle;
-            helicopterName = config.HelicopterName;
-            flighterName = config.FlighterName;
+            _config = JsonFileConfig.ReadFromFile();
+            var resource = _config.StringResource;
+            Title = resource.FlightMapTitle;
+            _helicopterName = resource.HelicopterName;
+            _flighterName = resource.FlighterName;
+            _mapRefreshInterval = _config.DataShowConfig.MapUiRefreshMs;
+            _translateData = Ioc.Get<ITranslateData>();
             _hasSetPoints = new ObservableRangeCollection<bool>
             {
                 false,false,false,false,false,false,false
@@ -108,7 +116,7 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     HasSetPoints[i] = SetPoints[i] != null;
                 }
-                catch (Exception)
+                catch
                 {
                     
                 }
@@ -122,38 +130,74 @@ namespace TeachingPlatformApp.ViewModels
                 while(true)
                 {
                     BuildFlightLocationString();
-                    Thread.Sleep(30);
+                    Thread.Sleep(_mapRefreshInterval);
                 }
             });
-            Task.Run(() =>
+            if(_translateData.PlaneInfo.IsConnect == false)
             {
-                var i = 0.01f;
-                var random = new Random();
-                var point1 = new Point(random.Next(90), random.Next(70));
-                var point2 = new Point(random.Next(90), random.Next(70));
-                while (true)
+                Task.Run(() =>
+                { 
+                    var random = new Random();
+                    var point1 = new Point(random.Next(90), random.Next(70));
+                    var point2 = new Point(random.Next(90), random.Next(70));
+                    while (true)
+                    {
+                        var ram = new Random();
+                        HelicopterAngle += 1;
+                        if (HelicopterAngle >= 360)
+                            HelicopterAngle = 0;
+                        FlighterAngle += 2;
+                        if (FlighterAngle >= 360)
+                            FlighterAngle = 0;
+                        FlighterPosition = point1;
+                        HelicopterPosition = point2;
+                        Thread.Sleep(_mapRefreshInterval);
+                        
+                    }
+                });
+            }
+            if(_setPoints != null)
+            {
+                Task.Run(() =>
                 {
-                    var ram = new Random();
-                    HelicopterAngle += 1;
-                    if (HelicopterAngle >= 360)
-                        HelicopterAngle = 0;
-                    FlighterPosition = point1;
-                    HelicopterPosition = point2;
-                    Thread.Sleep(30);
-                    i += 0.01f;
-                }
-            });
+                    while (true)
+                    {
+                        try
+                        {
+                            JudgeRouteTask();
+                        }
+                        catch (Exception ex)
+                        {
+                            LogAndConfig.Log.Error(ex);
+                        }
+                        
+                    }
+                });
+            }
         }
 
-        public void BuildFlightLocationString()
+        /// <summary>
+        /// 检测是否偏离航线
+        /// </summary>
+        public virtual void JudgeRouteTask()
+        {
+            var setPointsCount = SetPoints.Count;
+
+        }
+
+        public virtual void BuildFlightLocationString()
         {
             var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
-            FlightLocationString = $"{helicopterName}{PlaneInfoToString(planeInfo.Helicopter)};" +
-                    $"{flighterName}{PlaneInfoToString(planeInfo.Flighter)}";
-            //HelicopterAngle = StructHelper.Rad2Deg(planeInfo.Helicopter.Yaw);
-            //FlighterAngle = StructHelper.Rad2Deg(planeInfo.Flighter.Yaw);
-            //FlighterPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
-            //HelicopterPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
+            FlightLocationString = $"{_helicopterName}{PlaneInfoToString(planeInfo.Helicopter)};" +
+                    $"{_flighterName}{PlaneInfoToString(planeInfo.Flighter)}";
+            if(_translateData.PlaneInfo.IsConnect == true)
+            {
+                HelicopterAngle = (float)planeInfo.Helicopter.Yaw;
+                FlighterAngle = (float)planeInfo.Flighter.Yaw;
+                FlighterPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
+                HelicopterPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
+            }
+           
         }
 
         private string PlaneInfoToString(AngleWithLocation angleWithLocation)
