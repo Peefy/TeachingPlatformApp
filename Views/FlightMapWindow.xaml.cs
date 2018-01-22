@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,6 +8,10 @@ using System.Windows.Media;
 using MahApps.Metro.Controls;
 
 using TeachingPlatformApp.Utils;
+using TeachingPlatformApp.ViewModels;
+using TeachingPlatformApp.Controls;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace TeachingPlatformApp.Views
 {
@@ -15,10 +20,18 @@ namespace TeachingPlatformApp.Views
     /// </summary>
     public partial class FlightMapWindow : MetroWindow
     {
+        FlightMapWindowViewModel viewModel;
+
+        Dispatcher _dip;
+        SynchronizationContext _ds;
 
         public FlightMapWindow()
         {
             InitializeComponent();
+            _dip = Dispatcher.CurrentDispatcher;
+            _ds = new DispatcherSynchronizationContext();
+            viewModel = new FlightMapWindowViewModel();
+            this.DataContext = viewModel;
             RenewUI();
         }
 
@@ -27,6 +40,31 @@ namespace TeachingPlatformApp.Views
             var config = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
             this.Width = config.AxesWidth;
             this.Height = config.AxesHeight;
+            
+            var timer = new System.Timers.Timer();
+            timer.Elapsed += new ElapsedEventHandler(AddPoint);
+            timer.Interval = JsonFileConfig.Instance.DataShowConfig.MapUiRefreshMs;
+            timer.AutoReset = true; 
+            timer.Enabled = true;
+        }
+
+        private void AddPoint(object sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                _dip.Invoke(new Action(() =>
+                {
+                    var canvasTrailFlighter = gridAxes.Children[1] as CanvasTrail;
+                    var canvasTrailHelicopter = gridAxes.Children[2] as CanvasTrail;
+                    canvasTrailFlighter.AddPoint(viewModel.FlighterPosition);
+                    canvasTrailHelicopter.AddPoint(viewModel.HelicopterPosition);
+                }));
+            }
+            catch
+            {
+
+                throw;
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -42,6 +80,13 @@ namespace TeachingPlatformApp.Views
                 {
                     scale.ScaleX -= 0.1;
                     scale.ScaleY -= 0.1;
+                }
+                else if(e.Key == Key.C)
+                {
+                    var canvasTrailFlighter = gridAxes.Children[1] as CanvasTrail;
+                    var canvasTrailHelicopter = gridAxes.Children[2] as CanvasTrail;
+                    canvasTrailFlighter.ClearPoint();
+                    canvasTrailHelicopter.ClearPoint();
                 }
             }
         }

@@ -41,14 +41,14 @@ namespace TeachingPlatformApp.ViewModels
             set { SetProperty(ref _flightLocationString, value); }
         }
 
-        private float _helicopterAngle = 300;
+        private float _helicopterAngle = 180;
         public float HelicopterAngle
         {
             get => _helicopterAngle;
             set => SetProperty(ref _helicopterAngle, value);
         }
 
-        private float _flighterAngle = 300;
+        private float _flighterAngle = 90;
         public float FlighterAngle
         {
             get => _flighterAngle;
@@ -68,6 +68,8 @@ namespace TeachingPlatformApp.ViewModels
             get => _flighterPosition;
             set => SetProperty(ref _flighterPosition, value);
         }
+
+        public Point LastFlighterPosition;
 
         protected ObservableRangeCollection<Point> _setPoints;
         public ObservableRangeCollection<Point> SetPoints
@@ -90,6 +92,25 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _figurePathString, value);
         }
 
+        protected ObservableRangeCollection<Point> _flighterTrail;
+        public ObservableRangeCollection<Point> FlighterTrail
+        {
+            get => _flighterTrail;
+            set => SetProperty(ref _flighterTrail, value);
+        }
+
+        protected ObservableRangeCollection<Point> _helicopterTrail;
+        public ObservableRangeCollection<Point> HelicopterTrail
+        {
+            get => _helicopterTrail;
+            set => SetProperty(ref _helicopterTrail, value);
+        }
+
+        public ObservableRangeCollection<Point> HelicopterTrailTempList { get; set; }
+        public ObservableRangeCollection<Point> FlighterTrailTempList { get; set; }
+
+        public DelegateCommand ClearTrailCommand { get; set; }
+
         public FlightMapWindowViewModel()
         {
             _config = JsonFileConfig.ReadFromFile();
@@ -103,8 +124,18 @@ namespace TeachingPlatformApp.ViewModels
             {
                 false,false,false,false,false,false,false
             };
+            TrailInit();
             BuildFlightLocationString();
             InfoRenewInit();
+            CommandInit();
+        }
+
+        private void CommandInit()
+        {
+            ClearTrailCommand = new DelegateCommand(() =>
+            {
+                FlighterTrail.Clear();
+            });
         }
 
         public void DealHasSetPoints()
@@ -135,7 +166,8 @@ namespace TeachingPlatformApp.ViewModels
             if(_translateData.PlaneInfo.IsConnect == false)
             {
                 Task.Run(() =>
-                { 
+                {
+                    var i = 0.0f;
                     var random = new Random();
                     var point1 = new Point(random.Next(90), random.Next(70));
                     var point2 = new Point(random.Next(90), random.Next(70));
@@ -145,13 +177,15 @@ namespace TeachingPlatformApp.ViewModels
                         HelicopterAngle += 1;
                         if (HelicopterAngle >= 360)
                             HelicopterAngle = 0;
-                        FlighterAngle += 2;
-                        if (FlighterAngle >= 360)
-                            FlighterAngle = 0;
-                        FlighterPosition = point1;
-                        HelicopterPosition = point2;
+                        FlighterAngle -= 1;
+                        if (FlighterAngle <= 0)
+                            FlighterAngle = 360;
+                        var j = StructHelper.Deg2Rad(i);
+                        FlighterPosition = new Point(point1.X + 10 * Math.Sin(j), point1.Y + 10 * Math.Cos(j));
+                        HelicopterPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
                         Thread.Sleep(_mapRefreshInterval);
-                        
+                        LastFlighterPosition = FlighterPosition;
+                        i += 1;
                     }
                 });
             }
@@ -183,6 +217,19 @@ namespace TeachingPlatformApp.ViewModels
             var setPointsCount = SetPoints.Count;
         }
 
+        public void TrailInit()
+        {
+            FlighterTrail = new ObservableRangeCollection<Point>();
+            HelicopterTrail = new ObservableRangeCollection<Point>();
+            FlighterTrailTempList = new ObservableRangeCollection<Point>();
+            HelicopterTrailTempList = new ObservableRangeCollection<Point>();
+        }
+
+        public virtual void DrawTrail()
+        {
+
+        }
+
         public virtual void BuildFlightLocationString()
         {
             var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
@@ -195,6 +242,7 @@ namespace TeachingPlatformApp.ViewModels
                 FlighterPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
                 HelicopterPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
             }
+            DrawTrail();
         }
 
         private string PlaneInfoToString(AngleWithLocation angleWithLocation)

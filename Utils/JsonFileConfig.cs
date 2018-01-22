@@ -169,6 +169,9 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("mapUiRefreshMs")]
         public int MapUiRefreshMs { get; set; } = 30;
 
+        [JsonProperty("drawTrailPointNumUp")]
+        public int DrawTrailPointNumUp { get; set; } = 10000;
+
     }
 
     public class WswData

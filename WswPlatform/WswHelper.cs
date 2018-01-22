@@ -48,11 +48,11 @@ namespace TeachingPlatformApp.WswPlatform
             if(wswAirplane == WswAirplane.Helicopter)
             {
                 var myHelicopterInfo = config.MyHelicopterInfo;
-                angleNew.X = (angle.X - wswInitData.FlighterInitInfo.X) *
+                angleNew.X = (angle.X - wswInitData.HelicopterInitInfo.X) *
                     myHelicopterInfo.PointScaleFactorX + myHelicopterInfo.InitMyPointX;
-                angleNew.Y = (angle.Y - wswInitData.FlighterInitInfo.Y) *
+                angleNew.Y = (angle.Y - wswInitData.HelicopterInitInfo.Y) *
                     myHelicopterInfo.PointScaleFactorY + myHelicopterInfo.InitMyPointY;
-                angleNew.Z = (angle.Z - wswInitData.FlighterInitInfo.Z) *
+                angleNew.Z = (angle.Z - wswInitData.HelicopterInitInfo.Z) *
                     myHelicopterInfo.PointScaleFactorZ + myHelicopterInfo.InitMyPointZ;
                 angleNew.Roll = angle.Roll;
                 angleNew.Pitch = angle.Pitch;

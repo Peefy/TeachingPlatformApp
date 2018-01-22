@@ -93,7 +93,7 @@
             Orientation="Horizontal">
             <Label Content="预设航路点坐标:" />
             <myctrls:SetPointsTextBox
-                MinWidth="400"
+                MinWidth="600"
                 VerticalContentAlignment="Center"
                 FontSize="22"
                 Text="{Binding SetPoints, Mode=TwoWay, Converter={StaticResource SetPointsToStringConverter}}" />

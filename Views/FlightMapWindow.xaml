@@ -5,7 +5,6 @@
              xmlns:myctrls="clr-namespace:TeachingPlatformApp.Controls"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:mycon="clr-namespace:TeachingPlatformApp.Converters"
-             prism:ViewModelLocator.AutoWireViewModel="True"
              x:Name="Window"
              Title="{Binding Title}"
              Width="800"
@@ -24,6 +23,7 @@
             <mycon:SetPointToRealMarginPointConverter x:Key="SetPointToRealMarginPointConverter"/>
             <mycon:NullToVisiblyConverter x:Key="NullToVisiblyConverter"/>
             <mycon:BoolToVisiblyConverter x:Key="BoolToVisiblyConverter"/>
+            <mycon:TrailPointsToPathFigureConverter x:Key="TrailPointsToPathFigureConverter"/>
         </ResourceDictionary>
     </Controls:MetroWindow.Resources>
     <Grid x:Name="fatherGrid">
@@ -40,7 +40,8 @@
                           Width="{Binding ElementName=Window, Path=Width}"
                           Height="{Binding ElementName=Window, Path=Height}"
                           x:Name="gridAxes">
-            <Grid>
+            <myctrls:CanvasTrail />
+            <myctrls:CanvasTrail />
                 <myctrls:Helicopter Margin="{Binding HelicopterPosition, Converter={StaticResource PositionToMarginConverter}}" 
                                     Height="1" Width="1"
                                 HorizontalAlignment="Left" 
@@ -62,120 +63,128 @@
                         </TransformGroup>
                     </myctrls:Flighter.RenderTransform>
                 </myctrls:Flighter>
-                <Canvas>
-                    <TextBlock Text="航路点1" FontSize="16" Margin="{Binding SetPoints[0]
+            <Canvas>
+                <Path Stroke="Gray"  StrokeThickness="2" Data="{Binding FlighterTrail, 
+                                Converter={StaticResource TrailPointsToPathFigureConverter}}">
+                </Path>
+                <Path Stroke="Gray"  StrokeThickness="2">
+                    <Path.Data>
+                        <PathGeometry Figures="{Binding HelicopterTrail, 
+                                Converter={StaticResource  SetPointsToPathFigureConverter}}"/>
+                    </Path.Data>
+                </Path>
+                <TextBlock Text="航路点1" FontSize="16" Margin="{Binding SetPoints[0]
                         ,Converter={StaticResource PositionToMarginConverter}}"
                          Visibility="{Binding HasSetPoints[0],Converter={StaticResource
                         BoolToVisiblyConverter}}"/>
-                    <TextBlock Text="航路点2" FontSize="16" Margin="{Binding SetPoints[1]
+                <TextBlock Text="航路点2" FontSize="16" Margin="{Binding SetPoints[1]
                         ,Converter={StaticResource PositionToMarginConverter}}"
                          Visibility="{Binding HasSetPoints[1],Converter={StaticResource
                         BoolToVisiblyConverter}}"/>
-                    <TextBlock Text="航路点3" FontSize="16" Margin="{Binding SetPoints[2]
+                <TextBlock Text="航路点3" FontSize="16" Margin="{Binding SetPoints[2]
                         ,Converter={StaticResource PositionToMarginConverter}}"
                          Visibility="{Binding HasSetPoints[2],Converter={StaticResource
                         BoolToVisiblyConverter}}"/>
-                    <TextBlock Text="航路点4" FontSize="16" Margin="{Binding SetPoints[3]
+                <TextBlock Text="航路点4" FontSize="16" Margin="{Binding SetPoints[3]
                         ,Converter={StaticResource PositionToMarginConverter}}"
                          Visibility="{Binding HasSetPoints[3],Converter={StaticResource
                         BoolToVisiblyConverter}}"/>
-                    <TextBlock Text="航路点5" FontSize="16" Margin="{Binding SetPoints[4]
+                <TextBlock Text="航路点5" FontSize="16" Margin="{Binding SetPoints[4]
                         ,Converter={StaticResource PositionToMarginConverter}}"
                          Visibility="{Binding HasSetPoints[4],Converter={StaticResource
                         BoolToVisiblyConverter}}"/>
-                    <TextBlock Text="航路点6" FontSize="16" Margin="{Binding SetPoints[5]
+                <TextBlock Text="航路点6" FontSize="16" Margin="{Binding SetPoints[5]
                         ,Converter={StaticResource PositionToMarginConverter}}"
                          Visibility="{Binding HasSetPoints[5],Converter={StaticResource
                         BoolToVisiblyConverter}}"/>
-                    <TextBlock Text="航路点7" FontSize="16" Margin="{Binding SetPoints[6]
+                <TextBlock Text="航路点7" FontSize="16" Margin="{Binding SetPoints[6]
                         ,Converter={StaticResource PositionToMarginConverter}}"
                          Visibility="{Binding HasSetPoints[6],Converter={StaticResource
                         BoolToVisiblyConverter}}"/>
-                    <Path Stroke="Yellow" StrokeThickness="3">
-                        <Path.Data>
-                            <PathGeometry Figures="{Binding SetPoints, 
+                <Path Stroke="Yellow" StrokeThickness="3">
+                    <Path.Data>
+                        <PathGeometry Figures="{Binding SetPoints, 
                                 Converter={StaticResource SetPointsToPathFigureConverter}}"/>
-                        </Path.Data>
-                    </Path>
-                    <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
                           Visibility="{Binding HasSetPoints[0], 
                                 Converter={StaticResource BoolToVisiblyConverter}}">
-                        <Path.Data>
-                            <EllipseGeometry
+                    <Path.Data>
+                        <EllipseGeometry
                                 Center="{Binding SetPoints[0] ,
                                 Converter={StaticResource SetPointToRealMarginPointConverter}}" 
                                              RadiusX="6"
                                              RadiusY="6"/>
-                        </Path.Data>
-                    </Path>
-                    <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
                           Visibility="{Binding HasSetPoints[1], 
                                 Converter={StaticResource BoolToVisiblyConverter}}">
-                        <Path.Data>
-                            <EllipseGeometry
+                    <Path.Data>
+                        <EllipseGeometry
                                 Center="{Binding SetPoints[1] ,
                                 Converter={StaticResource SetPointToRealMarginPointConverter}}" 
                                              RadiusX="6"
                                              RadiusY="6"/>
-                        </Path.Data>
-                    </Path>
-                    <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
                           Visibility="{Binding HasSetPoints[2], 
                                 Converter={StaticResource BoolToVisiblyConverter}}">
-                        <Path.Data>
-                            <EllipseGeometry
+                    <Path.Data>
+                        <EllipseGeometry
                                 Center="{Binding SetPoints[2] ,
                                 Converter={StaticResource SetPointToRealMarginPointConverter}}" 
                                              RadiusX="6"
                                              RadiusY="6"/>
-                        </Path.Data>
-                    </Path>
-                    <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
                           Visibility="{Binding HasSetPoints[3], 
                                 Converter={StaticResource BoolToVisiblyConverter}}">
-                        <Path.Data>
-                            <EllipseGeometry
+                    <Path.Data>
+                        <EllipseGeometry
                                 Center="{Binding SetPoints[3] ,
                                 Converter={StaticResource SetPointToRealMarginPointConverter}}" 
                                              RadiusX="6"
                                              RadiusY="6"/>
-                        </Path.Data>
-                    </Path>
-                    <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
                           Visibility="{Binding HasSetPoints[4], 
                                 Converter={StaticResource BoolToVisiblyConverter}}">
-                        <Path.Data>
-                            <EllipseGeometry
+                    <Path.Data>
+                        <EllipseGeometry
                                 Center="{Binding SetPoints[4] ,
                                 Converter={StaticResource SetPointToRealMarginPointConverter}}" 
                                              RadiusX="6"
                                              RadiusY="6"/>
-                        </Path.Data>
-                    </Path>
-                    <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
                           Visibility="{Binding HasSetPoints[5], 
                                 Converter={StaticResource BoolToVisiblyConverter}}">
-                        <Path.Data>
-                            <EllipseGeometry
+                    <Path.Data>
+                        <EllipseGeometry
                                 Center="{Binding SetPoints[5] ,
                                 Converter={StaticResource SetPointToRealMarginPointConverter}}" 
                                              RadiusX="6"
                                              RadiusY="6"/>
-                        </Path.Data>
-                    </Path>
-                    <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Purple" StrokeThickness="5" Fill="Purple" 
                           Visibility="{Binding HasSetPoints[6], 
                                 Converter={StaticResource BoolToVisiblyConverter}}">
-                        <Path.Data>
-                            <EllipseGeometry
+                    <Path.Data>
+                        <EllipseGeometry
                                 Center="{Binding SetPoints[6] ,
                                 Converter={StaticResource SetPointToRealMarginPointConverter}}" 
                                              RadiusX="6"
                                              RadiusY="6"/>
-                        </Path.Data>
-                    </Path>
-                </Canvas>
-            </Grid>
+                    </Path.Data>
+                </Path>
+            </Canvas>
         </myctrls:GridAxes>
         <Label VerticalAlignment="Center" 
                Content="{Binding FlightLocationString}" 
