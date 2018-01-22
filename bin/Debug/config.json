@@ -13,6 +13,8 @@
     "ipWswUdpServer": "192.168.0.131",
     "ipGunBarrel": "192.168.0.133",
     "wswUdpPort": 14000,
+    "udp720TechingPort": 12000,
+    "udp720TestConsolePort": 11000,
     "renewUIRecieveCount": 50
   },
   "GridAxesDrawPara": {

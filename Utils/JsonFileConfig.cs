@@ -109,6 +109,12 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("wswUdpPort")]
         public int WswUdpPort { get; set; } = 15000;
 
+        [JsonProperty("udp720TechingPort")]
+        public int Udp720TechingPort { get; set; } = 12000;
+
+        [JsonProperty("udp720TestConsolePort")]
+        public int Udp720TestConsolePort { get; set; } = 11000;
+
         [JsonProperty("renewUIRecieveCount")]
         public int RenewUIRecieveCount { get; set; } = 10;
 

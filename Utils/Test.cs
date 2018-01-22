@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Net;
-using System.Net.Sockets;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 using DuGu.NetFramework.Services;
+
+using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.WswPlatform;
 using TeachingPlatformApp.Communications;
 
@@ -32,6 +29,10 @@ namespace TeachingPlatformApp.Utils
             var distance = VectorDistance(vector1, vector2);
             var deltaX = vector1.X - vector2.X;
             var deltaY = vector1.Y - vector2.Y;
+
+            TeachingSpeeker.SpeekWords("哈哈哈");
+            TeachingSpeeker.GetInstalledVoices();
+
             return new string[]
             {
                 $"{vector1} and {vector2}",

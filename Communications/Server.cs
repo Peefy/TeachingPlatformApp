@@ -15,10 +15,13 @@ namespace TeachingPlatformApp.Communications
 
         public const int DefaultPort = 16000;
 
-        UdpClient server;
+        UdpClient _server;
         
         int _udp720Port = 15000;
         int _wswUdpPort = 14000;
+
+        int _udp720TechingPort = 12000;
+        int _udp720TestConsolePort = 11000;
 
         int _port = DefaultPort;
         string _ip = "192.168.0.133"; //本机Ip;
@@ -45,12 +48,14 @@ namespace TeachingPlatformApp.Communications
             _ipOne = config.IpWswUdpServer;
             _ipTwo = config.IpGunBarrel;
             _ipThree = config.Ip720Platform;
-            server = new UdpClient(_port);         
+            _udp720TechingPort = config.Udp720TechingPort;
+            _udp720TestConsolePort = config.Udp720TestConsolePort;
+            _server = new UdpClient(_port);         
         }
 
         public async Task<int> SendAsyncToOne(byte[] data)
         {
-            var result = await server.SendAsync(data, data.Length,
+            var result = await _server.SendAsync(data, data.Length,
                 new IPEndPoint(IPAddress.Parse(_ipOne), _wswUdpPort));
             await Task.Delay(10);
             return result;
@@ -58,7 +63,7 @@ namespace TeachingPlatformApp.Communications
 
         public async Task<int> SendAsyncToTwo(byte[] data)
         {
-            var result = await server.SendAsync(data, data.Length,
+            var result = await _server.SendAsync(data, data.Length,
                 new IPEndPoint(IPAddress.Parse(_ipTwo), _wswUdpPort));
             await Task.Delay(10);
             return result;
@@ -66,7 +71,7 @@ namespace TeachingPlatformApp.Communications
 
         public async Task<int> SendAsyncToThree(byte[] data)
         {
-            var result = await server.SendAsync(data, data.Length,
+            var result = await _server.SendAsync(data, data.Length,
                 new IPEndPoint(IPAddress.Parse(_ipTwo), _wswUdpPort));
             await Task.Delay(10);
             return result;
@@ -75,7 +80,7 @@ namespace TeachingPlatformApp.Communications
         public async Task<int> SendAsync(string str,int num)
         {
             var bytes = Encoding.Default.GetBytes(str);
-            await server.SendAsync(bytes, bytes.Length);
+            await _server.SendAsync(bytes, bytes.Length);
             switch(num)
             {
                 case 0:
@@ -91,8 +96,8 @@ namespace TeachingPlatformApp.Communications
 
         public void SendToUnity720View(byte[] bytes)
         {
-            server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Parse(_ipThree), 12000));
-            server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Parse(_ipThree), 11000));
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Parse(_ipThree), 12000));
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IPAddress.Parse(_ipThree), 11000));
         }
 
         public async Task<byte[]> RecieveDataAsync()
@@ -100,25 +105,25 @@ namespace TeachingPlatformApp.Communications
             return await Task.Run(() =>
             {
                 var ipEndPointnew = new IPEndPoint(IPAddress.Any, 0);
-                return server.Receive(remoteEP: ref ipEndPointnew);
+                return _server.Receive(remoteEP: ref ipEndPointnew);
             });
         }
 
         public async Task<UdpReceiveResult> RecieveAsync()
         {
-            return await server.ReceiveAsync();
+            return await _server.ReceiveAsync();
         }
 
         public byte[] Recieve(ref IPEndPoint iPEndPoint)
         {
-            return server.Receive(ref iPEndPoint);
+            return _server.Receive(ref iPEndPoint);
         }
 
         public void SendTo(byte[] bytes, IPEndPoint iPEndPoint)
         {
             if(bytes != null && iPEndPoint != null)
             {
-                server.Send(bytes, bytes.Length, iPEndPoint);
+                _server.Send(bytes, bytes.Length, iPEndPoint);
             }
         }
 
@@ -138,10 +143,10 @@ namespace TeachingPlatformApp.Communications
                 {
                     // TODO: 释放托管状态(托管对象)。
                 }
-                if(server != null)
+                if(_server != null)
                 {
-                    server.Close();
-                    server = null;
+                    _server.Close();
+                    _server = null;
                 }
                 // TODO: 释放未托管的资源(未托管的对象)并在以下内容中替代终结器。
                 // TODO: 将大型字段设置为 null。

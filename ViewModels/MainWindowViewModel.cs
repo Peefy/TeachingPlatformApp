@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Speech;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -287,7 +288,6 @@ namespace TeachingPlatformApp.ViewModels
                 foreach(var str in strs)
                     AppendStatusText(str);
             });
-            //Logger.Info($"{DateTime.Now}:MainViewModel初始化成功！");
         }
 
         private void ConfigInit()
