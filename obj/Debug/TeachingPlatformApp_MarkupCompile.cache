@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\
+F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\
 TeachingPlatformApp
 none
 false
 DEBUG;TRACE
-D:\_VSPros\C#\WPF\TeachingPlatformAppV2\App.xaml
+F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\App.xaml
 12306724655
 
 70711687122
-77599911468
+77-2097923220
 Controls\Flighter.xaml;Controls\GridAxes.xaml;Controls\Helicopter.xaml;UIModels\AirlineFlightView.xaml;UIModels\DiveJumpView.xaml;UIModels\HoverFligntView.xaml;UIModels\OnlyInstrumencs.xaml;UIModels\SomersaultView.xaml;UIModels\TakeOffLandingView.xaml;UIModels\ToTalFlightView.xaml;Views\FlightMapWindow.xaml;Views\MainWindow.xaml;
 
 False

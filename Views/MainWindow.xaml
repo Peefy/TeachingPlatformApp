@@ -18,11 +18,12 @@
     MinWidth="920"
     MinHeight="700"
     prism:ViewModelLocator.AutoWireViewModel="True"
-    BorderThickness="1" 
+    BorderThickness="1"
     GlowBrush="Black"
-    WindowTransitionsEnabled="False"
     Keyboard.KeyDown="Window_KeyDown"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    WindowTransitionsEnabled="False">
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>
             <Style TargetType="Button">
@@ -338,39 +339,39 @@
                     Margin="13,5,13,0"
                     VerticalAlignment="Bottom"
                     Background="Black"
-                    Foreground="White"
                     Command="{Binding OpenFlightMapCommand}"
                     Content="查 看 地 图"
-                    FontSize="24" />
+                    FontSize="24"
+                    Foreground="White" />
                 <Button
                     x:Name="testButton"
-                    Visibility="Collapsed"
                     Height="32"
                     Margin="13,5,13,0"
                     VerticalAlignment="Bottom"
                     Background="DarkBlue"
-                    Foreground="White"
                     Command="{Binding TestCommand}"
                     Content="TEST"
-                    FontSize="24" />
+                    FontSize="24"
+                    Foreground="White"
+                    Visibility="Collapsed" />
             </StackPanel>
-            <Grid VerticalAlignment="Bottom" Height="120">
+            <Grid Height="120" VerticalAlignment="Bottom">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
                     <Label
-                    Margin="0,30,20,0"
-                    HorizontalAlignment="Right"
-                    Content="航电实验室"
-                    FontFamily="楷体"
-                    FontSize="30"
-                    FontStyle="Italic"/>
+                        Margin="0,30,20,0"
+                        HorizontalAlignment="Right"
+                        Content="航电实验室"
+                        FontFamily="楷体"
+                        FontSize="30"
+                        FontStyle="Italic" />
                     <Label
-                    Margin="0,6,6,0"
-                    HorizontalAlignment="Right"
-                    Content="版本号:V1.0"
-                    FontSize="18" />
+                        Margin="0,6,6,0"
+                        HorizontalAlignment="Right"
+                        Content="版本号:V1.0"
+                        FontSize="18" />
                 </StackPanel>
 
             </Grid>

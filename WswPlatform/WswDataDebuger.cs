@@ -16,7 +16,7 @@ namespace TeachingPlatformApp.WswPlatform
             var timeStr = DateTime.Now.ToString();
             var str = WswHelper.AngleWithLocationToString(angleWithLocation);
             var deltaStr = WswHelper.GetAngleWithLocationDeltaXY(ip, angleWithLocation);
-            var fileName = ip + ".txt";
+            var fileName = "ip.txt";
             File.AppendAllLines(fileName, new string[]
             {
                 timeStr + $"__{ip}:",
