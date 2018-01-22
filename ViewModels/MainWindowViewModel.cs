@@ -250,7 +250,7 @@ namespace TeachingPlatformApp.ViewModels
                     {
                         if(item.IsStart == true)
                         {
-                            UdpServer?.SendToUnity720View(new TeachingCommandBuilder(0, true).
+                            UdpServer?.SendToUnity720View(new TeachingCommandBuilder(0, false).
                                 BuildCommandBytes());
                             await Task.Delay(100);
                             await item.EndAsync();
@@ -287,7 +287,7 @@ namespace TeachingPlatformApp.ViewModels
                 foreach(var str in strs)
                     AppendStatusText(str);
             });
-            Logger.Info($"{DateTime.Now}:MainViewModel初始化成功！");
+            //Logger.Info($"{DateTime.Now}:MainViewModel初始化成功！");
         }
 
         private void ConfigInit()
@@ -323,6 +323,8 @@ namespace TeachingPlatformApp.ViewModels
                     flight.SixPlatformNowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
+            WswDataDebuger.Record(ip, angleWithLocation);
+            //Test.Run();
             //Logger.Info($"{ip.ToString()}:\r\n" +
             //    WswHelper.AngleWithLocationToString(angleWithLocation));
         }

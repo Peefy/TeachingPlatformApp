@@ -44,9 +44,9 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Margin="1"
             Orientation="Horizontal">
-            <Label Content="直升机坐标:" />
-            <Label Content="{Binding NowLocation, Converter={StaticResource PointToStringConverter}}" />
             <Label Content="战斗机坐标:" />
+            <Label Content="{Binding NowLocation, Converter={StaticResource PointToStringConverter}}" />
+            <Label Content="直升机坐标:" />
             <Label Content="{Binding SixPlatformNowLocation, Converter={StaticResource PointToStringConverter}}" />
         </StackPanel>
     </Grid>
