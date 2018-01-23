@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Speech;
 using System.Net;
+using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Controls;
 using System.Threading;
@@ -229,6 +230,29 @@ namespace TeachingPlatformApp.ViewModels
                     Logger.Error(ex);
                 }
             });
+            Task.Run(() => 
+            {
+                var realRecieCount = 0;
+                var config = JsonFileConfig.Instance.ComConfig;
+                var port = config.UdpClientExtraPort;
+                var udpClientExtra = new UdpClient(10000);
+                var ipEndPoint = new IPEndPoint(IPAddress.Parse(config.Ip720Platform), config.Udp720Port);
+                while(true)
+                {
+                    var recieveBytes = udpClientExtra.Receive(ref ipEndPoint);
+                    var length = recieveBytes.Length;
+                    var ip = ipEndPoint.ToString();
+                    if (++realRecieCount >= RecieveUdpPacketCount)
+                    {
+                        realRecieCount = 0;
+                        if (length == StructHelper.GetStructSize<AngleWithLocation>())
+                        {
+                            DealAngleWithLocationData(ip, recieveBytes);
+                            UdpServer.PlaneInfo.IsConnect = true;
+                        }
+                    }
+                }
+            });
             StartCommand = new DelegateCommand(async () =>
             {
                 if (SelectIndexTreeNode1 == -1)
@@ -243,8 +267,15 @@ namespace TeachingPlatformApp.ViewModels
                     var item = FlightExperimentSelected;
                     UdpServer?.SendToUnity720View(new TeachingCommandBuilder(SelectIndexTreeNode1, true).
                         BuildCommandBytes());
-                    SendSetPoints(item);
-                    await Task.Delay(100);                  
+                    await Task.Delay(5);
+                    UdpServer?.SendToUnity720View(new TeachingCommandBuilder(SelectIndexTreeNode1, true).
+                        BuildCommandBytes());
+                    //发两次
+                    await Task.Delay(5);
+                    await SendSetPoints(item);
+                    await Task.Delay(5);
+                    await SendSetPoints(item);
+                    await Task.Delay(5);
                     StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
                     await Task.Delay(200);
@@ -270,6 +301,9 @@ namespace TeachingPlatformApp.ViewModels
                     {
                         if(item.IsStart == true)
                         {
+                            UdpServer?.SendToUnity720View(new TeachingCommandBuilder(0, false).
+                                BuildCommandBytes());
+                            await Task.Delay(10);
                             UdpServer?.SendToUnity720View(new TeachingCommandBuilder(0, false).
                                 BuildCommandBytes());
                             await Task.Delay(100);
@@ -309,16 +343,19 @@ namespace TeachingPlatformApp.ViewModels
             });
         }
 
-        private void SendSetPoints(FlightExperiment item)
+        private async Task SendSetPoints(FlightExperiment item)
         {
-            if(item.SetPoints != null && UdpServer != null)
+            await Task.Run(() =>
             {
-                for (var i = 0; i < item.SetPoints.Count; ++i)
+                if (item.SetPoints != null && UdpServer != null)
                 {
-                    UdpServer.SendTo720PlatformWsw(new DataPacketToWswBuilder(i,
-                        item.SetPoints[i].X, item.SetPoints[i].Y).BuildBytes());
+                    for (var i = 0; i < item.SetPoints.Count; ++i)
+                    {
+                        UdpServer.SendTo720PlatformWsw(new DataPacketToWswBuilder(i,
+                            item.SetPoints[i].X, item.SetPoints[i].Y).BuildBytes());
+                    }
                 }
-            }
+            });
         }
 
         private void ConfigInit()

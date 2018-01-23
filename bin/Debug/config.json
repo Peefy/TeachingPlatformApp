@@ -15,7 +15,8 @@
     "wswUdpPort": 14000,
     "udp720TechingPort": 12000,
     "udp720TestConsolePort": 11000,
-    "renewUIRecieveCount": 50
+    "renewUIRecieveCount": 10,
+    "udpClientExtraPort": 10000
   },
   "mapGridAxesDrawPara": {
     "axesHeight": 860.0,

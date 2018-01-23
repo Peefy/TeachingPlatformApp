@@ -193,6 +193,9 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("renewUIRecieveCount")]
         public int RenewUIRecieveCount { get; set; } = 10;
 
+        [JsonProperty("udpClientExtraPort")]
+        public int UdpClientExtraPort { get; set; } = 10000;
+
     }
 
     public class DataShowConfig
