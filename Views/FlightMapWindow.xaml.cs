@@ -3,15 +3,19 @@ using System.Timers;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+
+
 using MahApps.Metro.Controls;
 
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.ViewModels;
 using TeachingPlatformApp.Controls;
-using System.Windows.Threading;
-using System.Threading;
+
 
 namespace TeachingPlatformApp.Views
 {
@@ -35,12 +39,13 @@ namespace TeachingPlatformApp.Views
             RenewUI();
         }
 
-        private void RenewUI()
+        private async void RenewUI()
         {
             var config = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
             this.Width = config.AxesWidth;
             this.Height = config.AxesHeight;
-            
+
+            await Task.Delay(200);
             var timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(AddPoint);
             timer.Interval = JsonFileConfig.Instance.DataShowConfig.MapUiRefreshMs;

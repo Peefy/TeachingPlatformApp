@@ -33,6 +33,7 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <myctrls:GridAxes Grid.Row="0" Background="Beige" 
                           VerticalAlignment="Stretch"
@@ -189,6 +190,12 @@
         <Label VerticalAlignment="Center" 
                Content="{Binding FlightLocationString}" 
                Grid.Row="1" 
+               FontSize="22" 
+               FontFamily="Times New Roman">
+        </Label>
+        <Label VerticalAlignment="Center" 
+               Content="{Binding HelicopterLocationString}" 
+               Grid.Row="2" 
                FontSize="22" 
                FontFamily="Times New Roman">
         </Label>

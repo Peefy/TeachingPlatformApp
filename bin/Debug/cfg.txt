@@ -1,6 +1,6 @@
 MilliSeconds|150000
 SetPitch|30
-OnlyInstrumencsSetPoints|(20,10),(70,10),(40,50),(20,55),(12,43),(10,20)
+OnlyInstrumencsSetPoints|(30,10),(30,20),(32,43),(40,55),(60,50),(90,10)
 AirlineFlightSetPoints|(10,20),(60,30),(40,50),(20,50),(5,30)
 LocationT|10,15
 UdpPort|15000

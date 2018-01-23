@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,38 +16,71 @@ namespace TeachingPlatformApp.Utils
     public class JsonFileConfig 
     {
         [JsonIgnore]
-        private static JsonFileConfig _instance;
+        protected static Lazy<JsonFileConfig> _lazyInstance;
 
         [JsonIgnore]
-        public static JsonFileConfig Instance =>
-            _instance ?? (_instance = ReadFromFile());
+        protected static Lazy<JsonFileConfig> LazyInstance =>
+            _lazyInstance ?? (_lazyInstance = new Lazy<JsonFileConfig>(() => ReadFromFile(), 
+                LazyThreadSafetyMode.PublicationOnly));
+
+        public static JsonFileConfig Instance => LazyInstance.Value;
 
         [JsonIgnore]
         public const string FileName = "config.json";
 
+        /// <summary>
+        /// 显示字符串标题 配置
+        /// </summary>
         [JsonProperty("stringResource")]
         public StringResource StringResource { get; set; }
 
+        /// <summary>
+        /// 通信 配置
+        /// </summary>
         [JsonProperty("comConfig")]
         public ComConfig ComConfig { get; set; }
 
+        /// <summary>
+        /// 地图界面 配置
+        /// </summary>
         [JsonProperty("mapGridAxesDrawPara")]
         public GridAxesDrawPara GridAxesDrawPara { get; set; }
 
+        /// <summary>
+        /// 威视微数据 配置
+        /// </summary>
         [JsonProperty("wswData")]
         public WswData WswData { get; set; }
 
+        /// <summary>
+        /// 数据展示格式 配置
+        /// </summary>
         [JsonProperty("dataShowConfig")]
         public DataShowConfig DataShowConfig { get; set; }
 
+        /// <summary>
+        /// 我的直升机消息 配置
+        /// </summary>
         [JsonProperty("myHelicopterInfo")]
         public AirPlaneInfo MyHelicopterInfo { get; set; }
 
+        /// <summary>
+        /// 我的战斗机 配置
+        /// </summary>
         [JsonProperty("myFlighterInfo")]
         public AirPlaneInfo MyFlighterInfo { get; set; }
 
+        /// <summary>
+        /// 语音配置
+        /// </summary>
         [JsonProperty("speechConfig")]
         public SpeechConfig SpeechConfig { get; set; }
+
+        /// <summary>
+        /// 航线检测参数 配置
+        /// </summary>
+        [JsonProperty("testTrailRouteConfig")]
+        public TestTrailRouteConfig TestTrailRouteConfig { get; set; }
 
         public void WriteToFile()
         {
@@ -105,6 +139,7 @@ namespace TeachingPlatformApp.Utils
             };
             this.GridAxesDrawPara = new GridAxesDrawPara();
             this.SpeechConfig = new SpeechConfig();
+            this.TestTrailRouteConfig = new TestTrailRouteConfig();
         }
 
     }
@@ -224,6 +259,22 @@ namespace TeachingPlatformApp.Utils
 
         [JsonProperty("speechTextReserved3")]
         public string SpeechTextReserved3 { get; set; } = "SpeechTextReserved3";
+    }
+
+    public class TestTrailRouteConfig
+    {
+        /// <summary>
+        /// 0 代表只检测战斗机，1代表只检测直升机，2代表du检测
+        /// </summary>
+        [JsonProperty("TestSwitch")]
+        public int TestSwitch { get; set; } = 0;
+
+        [JsonProperty("outOfRouteAngle")]
+        public double OutOfRouteAngle { get; set; } = 20.0;
+
+        [JsonProperty("outOfRouteDistance")]
+        public double OutOfRouteDistance { get; set; } = 8.0;
+
     }
 
 }

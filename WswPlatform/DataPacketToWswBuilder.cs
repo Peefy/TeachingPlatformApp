@@ -13,6 +13,7 @@ namespace TeachingPlatformApp.WswPlatform
 
         public DataPacketToWswBuilder(int index, double x, double y)
         {
+            config = JsonFileConfig.Instance;
             var info = config.MyFlighterInfo;
             var wswData = config.WswData.FlighterInitInfo;
             packet = new DataPacketToWsw

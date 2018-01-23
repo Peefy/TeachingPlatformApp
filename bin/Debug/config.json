@@ -49,8 +49,8 @@
     }
   },
   "dataShowConfig": {
-    "angleShowDigit": 2,
-    "pointShowDigit": 2,
+    "angleShowDigit": 1,
+    "pointShowDigit": 1,
     "mapUiRefreshMs": 30,
     "drawTrailPointNumUp": 10000
   },
@@ -78,5 +78,10 @@
     "speechTextReserved1": "SpeechTextReserved1",
     "speechTextReserved2": "SpeechTextReserved2",
     "speechTextReserved3": "SpeechTextReserved3"
+  },
+  "testTrailRouteConfig": {
+    "TestSwitch": 2,
+    "outOfRouteAngle": 20.0,
+    "outOfRouteDistance": 10.0
   }
 }

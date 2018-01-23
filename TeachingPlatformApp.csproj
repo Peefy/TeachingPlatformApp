@@ -134,7 +134,10 @@
     <Compile Include="Speech\ISpeek.cs" />
     <Compile Include="Speech\TeachingSpeeker.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
+    <Compile Include="Utils\MyConsole.cs" />
+    <Compile Include="Utils\NumberUtil.cs" />
     <Compile Include="Utils\Test.cs" />
+    <Compile Include="Utils\VectorPointHelper.cs" />
     <Compile Include="ViewModels\FlightMapWindowViewModel.cs" />
     <Compile Include="Views\FlightMapWindow.xaml.cs">
       <DependentUpon>FlightMapWindow.xaml</DependentUpon>
@@ -143,6 +146,7 @@
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\DataPacketToWsw.cs" />
     <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />
+    <Compile Include="WswPlatform\RouteState.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
     <Compile Include="WswPlatform\WswAirplane.cs" />

@@ -41,6 +41,13 @@ namespace TeachingPlatformApp.ViewModels
             set { SetProperty(ref _flightLocationString, value); }
         }
 
+        private string _helicopterLocationString;
+        public string HelicopterLocationString
+        {
+            get { return _helicopterLocationString; }
+            set { SetProperty(ref _helicopterLocationString, value); }
+        }
+
         private float _helicopterAngle = 180;
         public float HelicopterAngle
         {
@@ -68,8 +75,6 @@ namespace TeachingPlatformApp.ViewModels
             get => _flighterPosition;
             set => SetProperty(ref _flighterPosition, value);
         }
-
-        public Point LastFlighterPosition;
 
         protected ObservableRangeCollection<Point> _setPoints;
         public ObservableRangeCollection<Point> SetPoints
@@ -106,8 +111,26 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _helicopterTrail, value);
         }
 
-        public ObservableRangeCollection<Point> HelicopterTrailTempList { get; set; }
-        public ObservableRangeCollection<Point> FlighterTrailTempList { get; set; }
+        protected RouteState _routeState = RouteState.Normal;
+        public RouteState RouteState
+        {
+            get => _routeState;
+            set => SetProperty(ref _routeState, value);
+        }
+
+        protected bool _helicopterIsOutofRoute;
+        public bool HelicopterIsOutofRoute
+        {
+            get => _helicopterIsOutofRoute;
+            set => SetProperty(ref _helicopterIsOutofRoute, value);
+        }
+
+        protected bool _flighterIsOutofRoute;
+        public bool FlighterIsOutofRoute
+        {
+            get => _flighterIsOutofRoute;
+            set => SetProperty(ref _flighterIsOutofRoute, value);
+        }
 
         public DelegateCommand ClearTrailCommand { get; set; }
 
@@ -124,7 +147,6 @@ namespace TeachingPlatformApp.ViewModels
             {
                 false,false,false,false,false,false,false
             };
-            TrailInit();
             BuildFlightLocationString();
             InfoRenewInit();
             CommandInit();
@@ -169,8 +191,8 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     var i = 0.0f;
                     var random = new Random();
-                    var point1 = new Point(random.Next(90), random.Next(70));
-                    var point2 = new Point(random.Next(90), random.Next(70));
+                    var point1 = new Point(random.Next(80), random.Next(60));
+                    var point2 = new Point(random.Next(80), random.Next(60));
                     while (true)
                     {
                         var ram = new Random();
@@ -183,31 +205,31 @@ namespace TeachingPlatformApp.ViewModels
                         var j = StructHelper.Deg2Rad(i);
                         FlighterPosition = new Point(point1.X + 10 * Math.Sin(j), point1.Y + 10 * Math.Cos(j));
                         HelicopterPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
-                        FlightLocationString = $"{_flighterName}{PlaneInfoToString(FlighterPosition)};" +
-                            $"{_helicopterName}{PlaneInfoToString(HelicopterPosition)}";
+                        FlightLocationString = $"{_flighterName}是否偏离航线：{NumberUtil.BoolToString(FlighterIsOutofRoute)}" +
+                             $"  {PlaneInfoToString(FlighterPosition)};";
+                        HelicopterLocationString = $"{_helicopterName}是否偏离航线：{NumberUtil.BoolToString(HelicopterIsOutofRoute)}" +
+                              $"  {PlaneInfoToString(HelicopterPosition)};";
                         Thread.Sleep(_mapRefreshInterval);
                         i += 1;
                     }
                 });
             }
-            if(_setPoints != null)
+            Task.Run(() =>
             {
-                Task.Run(() =>
+                while (true)
                 {
-                    while (true)
+                    try
                     {
-                        try
-                        {
-                            JudgeRouteTask();
-                        }
-                        catch (Exception ex)
-                        {
-                            LogAndConfig.Log.Error(ex);
-                        }
-                        
+                        JudgeRouteTask();
+                        Thread.Sleep(100);
                     }
-                });
-            }
+                    catch (Exception ex)
+                    {
+                        LogAndConfig.Log.Error(ex);
+                    }
+                }
+            });
+            
         }
 
         /// <summary>
@@ -215,15 +237,91 @@ namespace TeachingPlatformApp.ViewModels
         /// </summary>
         public virtual void JudgeRouteTask()
         {
-            var setPointsCount = SetPoints.Count;
+            if (_setPoints == null)
+                return;
+            var @switch = _config.TestTrailRouteConfig.TestSwitch;
+            var angle = _config.TestTrailRouteConfig.OutOfRouteAngle;
+            var distancesFlighterLine = new List<double>();
+            var distanceFlighterPoint = new List<double>();
+            var distancesHelicopterLine = new List<double>();
+            var distancesHelicopterPoint = new List<double>();
+            if (@switch == 0)
+            {
+                distancesFlighterLine = VectorPointHelper.
+                    GetPointToAllSetPointsLineDistance(FlighterPosition,
+                    SetPoints.ToList());
+                distanceFlighterPoint = VectorPointHelper.
+                    GetPointToAllSetPointsDistance(FlighterPosition,
+                    SetPoints.ToList());
+                FlighterIsOutofRoute = JudgeIsOutOfRoute(FlighterPosition, 
+                    distancesFlighterLine, distanceFlighterPoint);
+            }
+            else if(@switch == 1)
+            {
+                distancesHelicopterLine = VectorPointHelper.
+                    GetPointToAllSetPointsLineDistance(HelicopterPosition,
+                    SetPoints.ToList());
+                distancesHelicopterPoint = VectorPointHelper.
+                    GetPointToAllSetPointsDistance(FlighterPosition,
+                    SetPoints.ToList());
+                HelicopterIsOutofRoute = JudgeIsOutOfRoute(HelicopterPosition, 
+                    distancesHelicopterLine, distancesHelicopterPoint);
+            }
+            else
+            {
+                distancesFlighterLine = VectorPointHelper.
+                    GetPointToAllSetPointsLineDistance(FlighterPosition,
+                    SetPoints.ToList());
+                distanceFlighterPoint = VectorPointHelper.
+                    GetPointToAllSetPointsDistance(FlighterPosition,
+                    SetPoints.ToList());
+
+                distancesHelicopterLine = VectorPointHelper.
+                    GetPointToAllSetPointsLineDistance(HelicopterPosition,
+                    SetPoints.ToList());
+                distancesHelicopterPoint = VectorPointHelper.
+                    GetPointToAllSetPointsDistance(HelicopterPosition,
+                    SetPoints.ToList());
+                FlighterIsOutofRoute = JudgeIsOutOfRoute(FlighterPosition, 
+                    distancesFlighterLine, distanceFlighterPoint);
+                HelicopterIsOutofRoute = JudgeIsOutOfRoute(HelicopterPosition,
+                    distancesHelicopterLine, distancesHelicopterPoint);
+            }
+
         }
 
-        public void TrailInit()
+        public bool JudgeIsOutOfRoute(Point point, IList<double> distanceLines, IList<double> distancePoints)
         {
-            FlighterTrail = new ObservableRangeCollection<Point>();
-            HelicopterTrail = new ObservableRangeCollection<Point>();
-            FlighterTrailTempList = new ObservableRangeCollection<Point>();
-            HelicopterTrailTempList = new ObservableRangeCollection<Point>();
+            if(point == null || distanceLines?.Count < 1 && distancePoints.Count < 1)
+            {
+                return false;
+            }
+            var minDistance = _config.TestTrailRouteConfig.OutOfRouteDistance;
+            var nowMinLineDistance = distanceLines.Min();
+            var nowMinPointDistance = distancePoints.Min();
+            if (nowMinLineDistance <= minDistance)
+            {
+                var indexDistanceMin = distanceLines.IndexOf(nowMinLineDistance);
+                Point point1;
+                Point point2;
+                if(indexDistanceMin == SetPoints.Count - 1)
+                {
+                    point1 = SetPoints[0];
+                    point2 = SetPoints[SetPoints.Count - 1];
+                }
+                else
+                {
+                    point1 = SetPoints[indexDistanceMin];
+                    point2 = SetPoints[indexDistanceMin + 1];
+                }
+                if (VectorPointHelper.JudgePointInParallelogram(point, point1, point2)) 
+                {
+                    return true;
+                }
+            }
+            if (nowMinPointDistance <= minDistance)
+                return true;
+            return false;
         }
 
         public virtual void BuildFlightLocationString()
@@ -231,8 +329,10 @@ namespace TeachingPlatformApp.ViewModels
             if(_translateData.PlaneInfo.IsConnect == true)
             {
                 var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
-                FlightLocationString = $"{_helicopterName}{PlaneInfoToString(planeInfo.Helicopter)};" +
-                        $"{_flighterName}{PlaneInfoToString(planeInfo.Flighter)}";
+                FlightLocationString = $"{_flighterName}是否偏离航线：{NumberUtil.BoolToString(FlighterIsOutofRoute)}" +
+                             $"  {PlaneInfoToString(planeInfo.Flighter)};";
+                HelicopterLocationString = $"{_helicopterName}是否偏离航线：{NumberUtil.BoolToString(HelicopterIsOutofRoute)}" +
+                      $"  {PlaneInfoToString(planeInfo.Helicopter)};";
                 HelicopterAngle = (float)planeInfo.Helicopter.Yaw;
                 FlighterAngle = (float)planeInfo.Flighter.Yaw;
                 FlighterPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
@@ -242,7 +342,11 @@ namespace TeachingPlatformApp.ViewModels
 
         private string PlaneInfoToString(AngleWithLocation angleWithLocation)
         {
-            return $"坐标:({angleWithLocation.X},{angleWithLocation.Y},{angleWithLocation.Z})";
+            var digit = _config.DataShowConfig.PointShowDigit;
+            var x = Math.Round(angleWithLocation.X, digit);
+            var y = Math.Round(angleWithLocation.Y, digit);
+            var z = Math.Round(angleWithLocation.Z, digit);
+            return $"坐标:({x},{y},{z})";
         }
 
         private string PlaneInfoToString(Point point)
