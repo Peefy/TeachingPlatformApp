@@ -34,6 +34,7 @@ namespace TeachingPlatformApp.WswPlatform
             if(wswAirplane == WswAirplane.Flighter)
             {
                 var myFlighterInfo = config.MyFlighterInfo;
+                var yawSign = (myFlighterInfo.YawSign == true) ? 1 : -1;
                 angleNew.X = (angle.X - wswInitData.FlighterInitInfo.X) *
                     myFlighterInfo.PointScaleFactorX + myFlighterInfo.InitMyPointX;
                 angleNew.Y = (angle.Y - wswInitData.FlighterInitInfo.Y) *
@@ -42,12 +43,14 @@ namespace TeachingPlatformApp.WswPlatform
                     myFlighterInfo.PointScaleFactorZ + myFlighterInfo.InitMyPointZ;
                 angleNew.Roll = angle.Roll;
                 angleNew.Pitch = angle.Pitch;
-                angleNew.Yaw = angle.Yaw - myFlighterInfo.InitYaw;
+                
+                angleNew.Yaw = angle.Yaw * yawSign - myFlighterInfo.InitYaw;
 
             };
             if(wswAirplane == WswAirplane.Helicopter)
             {
                 var myHelicopterInfo = config.MyHelicopterInfo;
+                var yawSign = myHelicopterInfo.YawSign == true ? 1 : -1;
                 angleNew.X = (angle.X - wswInitData.HelicopterInitInfo.X) *
                     myHelicopterInfo.PointScaleFactorX + myHelicopterInfo.InitMyPointX;
                 angleNew.Y = (angle.Y - wswInitData.HelicopterInitInfo.Y) *
@@ -56,7 +59,7 @@ namespace TeachingPlatformApp.WswPlatform
                     myHelicopterInfo.PointScaleFactorZ + myHelicopterInfo.InitMyPointZ;
                 angleNew.Roll = angle.Roll;
                 angleNew.Pitch = angle.Pitch;
-                angleNew.Yaw = angle.Yaw - myHelicopterInfo.InitYaw;
+                angleNew.Yaw = angle.Yaw * yawSign - myHelicopterInfo.InitYaw;
             }
             angleNew.X = Math.Round(angleNew.X, digit);
             angleNew.Y = Math.Round(angleNew.Y, digit);

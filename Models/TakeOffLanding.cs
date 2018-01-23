@@ -58,7 +58,7 @@ namespace TeachingPlatformApp.Models
 
         public override async Task StartAsync()
         {
-            Pitch.Value = Pitch.Value + 10;
+            //Pitch.Value = Pitch.Value + 10;
             await base.StartAsync();
         }
 

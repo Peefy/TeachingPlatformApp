@@ -121,21 +121,23 @@ namespace TeachingPlatformApp.Utils
             {
                 InitMyPointX = 10,
                 InitMyPointY = 10,
-                InitMyPointZ = 0,
-                InitYaw = 180,
-                PointScaleFactorX = 0.5f,
-                PointScaleFactorY = 0.5f,
-                PointScaleFactorZ = 0.5f,
+                InitMyPointZ = 50,
+                InitYaw = -180,
+                PointScaleFactorX = 0.01f,
+                PointScaleFactorY = 0.01f,
+                PointScaleFactorZ = 0.01f,
+                YawSign = true,
             };
             this.MyHelicopterInfo = new AirPlaneInfo()
             {
-                InitMyPointX = 40,
-                InitMyPointY = 40,
-                InitMyPointZ = 0,
-                InitYaw = 0,
-                PointScaleFactorX = 0.5f,
-                PointScaleFactorY = 0.5f,
-                PointScaleFactorZ = 0.5f,
+                InitMyPointX = 15,
+                InitMyPointY = 15,
+                InitMyPointZ = 50,
+                InitYaw = -180,
+                PointScaleFactorX = 0.01f,
+                PointScaleFactorY = 0.01f,
+                PointScaleFactorZ = 0.01f,
+                YawSign = true
             };
             this.GridAxesDrawPara = new GridAxesDrawPara();
             this.SpeechConfig = new SpeechConfig();
@@ -162,13 +164,13 @@ namespace TeachingPlatformApp.Utils
     public class ComConfig
     {
         [JsonProperty("selfPort")]
-        public int SelfPort { get; set; } = 15000;
+        public int SelfPort { get; set; } = 16000;
 
         [JsonProperty("udp720Port")]
-        public int Udp720Port { get; set; } = 16000;
+        public int Udp720Port { get; set; } = 15000;
 
         [JsonProperty("ipSelf")]
-        public string IpSelf { get; set; } = "192.168.0.132";
+        public string IpSelf { get; set; } = "192.168.0.135";
 
         [JsonProperty("ip720Platform")]
         public string Ip720Platform { get; set; } = "192.168.0.134";
@@ -196,10 +198,10 @@ namespace TeachingPlatformApp.Utils
     public class DataShowConfig
     {
         [JsonProperty("angleShowDigit")]
-        public int AngleShowDigit { get; set; } = 2;
+        public int AngleShowDigit { get; set; } = 1;
 
         [JsonProperty("pointShowDigit")]
-        public int PointShowDigit { get; set; } = 2;
+        public int PointShowDigit { get; set; } = 1;
 
         [JsonProperty("mapUiRefreshMs")]
         public int MapUiRefreshMs { get; set; } = 30;
@@ -226,16 +228,16 @@ namespace TeachingPlatformApp.Utils
         public WswData()
         {
             FlighterInitInfo = default(AngleWithLocation);
-            FlighterInitInfo.X = -2169349.3768;
-            FlighterInitInfo.Y = 4386443.6876;
-            FlighterInitInfo.Z = 4106805.1241;
+            FlighterInitInfo.X = -2185907.3768;
+            FlighterInitInfo.Y = 4365171.6876;
+            FlighterInitInfo.Z = 4104669.1241;
             FlighterInitInfo.Yaw = 0.1873927;
             FlighterInitInfo.Pitch = 0.0011897;
             FlighterInitInfo.Roll = 0.0013987;
             HelicopterInitInfo = default(AngleWithLocation);
-            HelicopterInitInfo.X = -2166765.6698;
-            HelicopterInitInfo.Y = 4381229.0368;
-            HelicopterInitInfo.Z = 4101920.0426;
+            HelicopterInitInfo.X = -2165844.6698;
+            HelicopterInitInfo.Y = 4379369.0368;
+            HelicopterInitInfo.Z = 4104669.0426;
             HelicopterInitInfo.Yaw = -0.5154596;
             HelicopterInitInfo.Pitch = 0.0011189;
             HelicopterInitInfo.Roll = 0.00139873;
@@ -267,13 +269,13 @@ namespace TeachingPlatformApp.Utils
         /// 0 代表只检测战斗机，1代表只检测直升机，2代表du检测
         /// </summary>
         [JsonProperty("TestSwitch")]
-        public int TestSwitch { get; set; } = 0;
+        public int TestSwitch { get; set; } = 2;
 
         [JsonProperty("outOfRouteAngle")]
         public double OutOfRouteAngle { get; set; } = 20.0;
 
         [JsonProperty("outOfRouteDistance")]
-        public double OutOfRouteDistance { get; set; } = 8.0;
+        public double OutOfRouteDistance { get; set; } = 10.0;
 
     }
 

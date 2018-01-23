@@ -30,6 +30,10 @@ namespace TeachingPlatformApp.WswPlatform
 
         [JsonProperty("initYaw")]
         public float InitYaw { get; set; }
+
+        [JsonProperty("yawSign")]
+        public bool YawSign { get; set; }
+
     }
 
 }

@@ -220,7 +220,7 @@ namespace TeachingPlatformApp.ViewModels
                                 DealAngleWithLocationData(ip, recieveBytes);
                                 UdpServer.PlaneInfo.IsConnect = true;
                             }                      
-                            AppendStatusText($"{ip}:{length}");
+                            //AppendStatusText($"{ip}:{length}");
                         }
                     }
                 }

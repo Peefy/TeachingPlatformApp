@@ -6,16 +6,16 @@
     "flighterName": "战斗机"
   },
   "comConfig": {
-    "selfPort": 15000,
-    "udp720Port": 16000,
-    "ipSelf": "192.168.0.132",
+    "selfPort": 16000,
+    "udp720Port": 15000,
+    "ipSelf": "192.168.0.135",
     "ip720Platform": "192.168.0.134",
     "ipWswUdpServer": "192.168.0.131",
     "ipGunBarrel": "192.168.0.133",
-    "wswUdpPort": 15000,
+    "wswUdpPort": 14000,
     "udp720TechingPort": 12000,
     "udp720TestConsolePort": 11000,
-    "renewUIRecieveCount": 10
+    "renewUIRecieveCount": 50
   },
   "mapGridAxesDrawPara": {
     "axesHeight": 860.0,
@@ -32,17 +32,17 @@
   },
   "wswData": {
     "flighterInitInfo": {
-      "X": -2169349.3768,
-      "Y": 4386443.6876,
-      "Z": 4106805.1241,
+      "X": -2185907.3768,
+      "Y": 4365171.6876,
+      "Z": 4104669.1241,
       "Yaw": 0.1873927,
       "Pitch": 0.0011897,
       "Roll": 0.0013987
     },
     "helicopterInitInfo": {
-      "X": -2166765.6698,
-      "Y": 4381229.0368,
-      "Z": 4101920.0426,
+      "X": -2165844.6698,
+      "Y": 4379369.0368,
+      "Z": 4104669.0426,
       "Yaw": -0.5154596,
       "Pitch": 0.0011189,
       "Roll": 0.00139873
@@ -55,22 +55,24 @@
     "drawTrailPointNumUp": 10000
   },
   "myHelicopterInfo": {
-    "initMyPointX": 40.0,
-    "initMyPointY": 40.0,
-    "initMyPointZ": 0.0,
-    "pointScaleFactorX": 0.5,
-    "pointScaleFactorY": 0.5,
-    "pointScaleFactorZ": 0.5,
-    "initYaw": 0.0
+    "initMyPointX": 15.0,
+    "initMyPointY": 15.0,
+    "initMyPointZ": 50.0,
+    "pointScaleFactorX": 0.01,
+    "pointScaleFactorY": 0.01,
+    "pointScaleFactorZ": 0.01,
+    "initYaw": -180.0,
+    "yawSign": true
   },
   "myFlighterInfo": {
     "initMyPointX": 10.0,
     "initMyPointY": 10.0,
-    "initMyPointZ": 0.0,
-    "pointScaleFactorX": 0.5,
-    "pointScaleFactorY": 0.5,
-    "pointScaleFactorZ": 0.5,
-    "initYaw": 180.0
+    "initMyPointZ": 50.0,
+    "pointScaleFactorX": 0.01,
+    "pointScaleFactorY": 0.01,
+    "pointScaleFactorZ": 0.01,
+    "initYaw": -180.0,
+    "yawSign": true
   },
   "speechConfig": {
     "speechTextOutofRouteLeft": "您已经向左偏离航线",
