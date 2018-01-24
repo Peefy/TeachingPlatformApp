@@ -214,6 +214,9 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("drawTrailPointNumUp")]
         public int DrawTrailPointNumUp { get; set; } = 10000;
 
+        [JsonProperty("setPointsFontSize")]
+        public double SetPointsFontSize { get; set; } = 20;
+
     }
 
     public class WswData
@@ -260,6 +263,9 @@ namespace TeachingPlatformApp.Utils
 
         [JsonProperty("isUsingDotnetSpeech")]
         public bool IsUsingDotnetSpeech { get; set; } = true;
+
+        [JsonProperty("speechEnable")]
+        public bool SpeechEnable { get; set; } = false;
 
         [JsonProperty("speechTextOutofRouteLeft")]
         public string SpeechTextOutofRoute { get; set; } = "偏离航线";

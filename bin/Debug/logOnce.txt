@@ -1,1 +1,99 @@
-2018/1/24 16:54:10
+2018/1/25 星期四 0:08:05
+
+0:08
+0   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+1   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlHelicopter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 340
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 313
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+2   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+3   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlHelicopter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 340
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 313
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+4   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+5   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlHelicopter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 340
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 313
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+6   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+7   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlHelicopter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 340
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 313
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+8   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+9   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+10   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlHelicopter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 340
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 313
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+11   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+12   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlHelicopter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 340
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 313
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。
+
+0:08
+13   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.OutOfRouteSpeechControlFlighter() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 327
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 312
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.<InfoRenewInit>b__80_2() 位置 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 240
+未将对象引用设置到对象的实例。

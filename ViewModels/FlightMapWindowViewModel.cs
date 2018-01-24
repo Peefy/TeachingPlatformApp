@@ -138,6 +138,13 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _flighterIsOutofRoute, value);
         }
 
+        private double _setPointsFontSize = 20;
+        public double SetPointsFontSize
+        {
+            get => _setPointsFontSize;
+            set => SetProperty(ref _setPointsFontSize, value);
+        }
+
         public DelegateCommand ClearTrailCommand { get; set; }
 
         public FlightMapWindowViewModel()
@@ -155,6 +162,7 @@ namespace TeachingPlatformApp.ViewModels
             {
                 false,false,false,false,false,false,false
             };
+            SetPointsFontSize = _config.DataShowConfig.SetPointsFontSize;
             BuildFlightLocationString();
             InfoRenewInit();
             CommandInit();

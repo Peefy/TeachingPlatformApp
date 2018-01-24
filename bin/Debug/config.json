@@ -53,7 +53,8 @@
     "angleShowDigit": 1,
     "pointShowDigit": 1,
     "mapUiRefreshMs": 30,
-    "drawTrailPointNumUp": 10000
+    "drawTrailPointNumUp": 10000,
+    "setPointsFontSize": 30.0
   },
   "myHelicopterInfo": {
     "initMyPointX": 15.0,
@@ -79,6 +80,7 @@
     "volume": 70.0,
     "rate": 0.0,
     "isUsingDotnetSpeech": true,
+    "speechEnable": false,
     "speechTextOutofRouteLeft": "偏离航线",
     "speechTextReserved1": "SpeechTextReserved1",
     "speechTextReserved2": "SpeechTextReserved2",

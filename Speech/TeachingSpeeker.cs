@@ -68,7 +68,8 @@ namespace TeachingPlatformApp.Speech
         {
             config = JsonFileConfig.Instance;
             isUsingDotnetSpeech = config.SpeechConfig.IsUsingDotnetSpeech;
-
+            if (config.SpeechConfig.SpeechEnable == false)
+                return;
             if(isUsingDotnetSpeech == true)
             {
                 speech = new SpVoice();
@@ -128,11 +129,11 @@ namespace TeachingPlatformApp.Speech
         {
             if (isUsingDotnetSpeech == true)
             {
-                speech.Speak("", SpeechVoiceSpeakFlags.SVSFlagsAsync);
+                speech?.Speak("", SpeechVoiceSpeakFlags.SVSFlagsAsync);
             }
             else
             {
-                synthesizer.SpeakAsyncCancelAll();
+                synthesizer?.SpeakAsyncCancelAll();
             }
         }
     }
