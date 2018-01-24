@@ -10,7 +10,7 @@ namespace TeachingPlatformApp.Validations
     {
         public AngleValidatableObject(float angle)
         {
-            this.Validations.Add(new AngleValidationRule(180.0f, -180.0f));
+            //this.Validations.Add(new AngleValidationRule(360.0f, -360.0f));
             this.Value = angle;
         }
     }
