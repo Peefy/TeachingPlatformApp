@@ -49,6 +49,24 @@ namespace TeachingPlatformApp.Views
                 else
                     testButton.Visibility = Visibility.Collapsed;
             }
+            else if(e.Key == System.Windows.Input.Key.Enter)
+            {
+                try
+                {
+                    var index = consoleTextBox.GetLastVisibleLineIndex();
+                    var text = consoleTextBox.GetLineText(index);
+                    if(text == "Speech")
+                    {
+                        new SpeechWindow().Show();
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
+            }
         }
 
         private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

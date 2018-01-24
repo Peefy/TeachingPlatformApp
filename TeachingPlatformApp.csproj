@@ -54,6 +54,10 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetSpeech">
+      <HintPath>packages_my\DotNetSpeech.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="DuGu.NetFramework">
       <HintPath>..\packages_my\DuGu.NetFramework.dll</HintPath>
     </Reference>
@@ -141,6 +145,9 @@
     <Compile Include="ViewModels\FlightMapWindowViewModel.cs" />
     <Compile Include="Views\FlightMapWindow.xaml.cs">
       <DependentUpon>FlightMapWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpeechWindow.xaml.cs">
+      <DependentUpon>SpeechWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WswPlatform\AirPlaneInfo.cs" />
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
@@ -265,6 +272,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SpeechWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

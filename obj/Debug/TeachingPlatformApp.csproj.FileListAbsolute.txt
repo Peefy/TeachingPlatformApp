@@ -254,3 +254,5 @@ F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\TeachingPlatformApp.csproj.
 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\TeachingPlatformApp.csproj.CoreCompileInputs.cache
 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\TeachingPlatformApp.exe
 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\TeachingPlatformApp.pdb
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Views\SpeechWindow.g.cs
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Views\SpeechWindow.baml

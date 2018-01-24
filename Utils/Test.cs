@@ -8,10 +8,15 @@ using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.WswPlatform;
 using TeachingPlatformApp.Communications;
 
+using DotNetSpeech;
+
 namespace TeachingPlatformApp.Utils
 {
     public static class Test
     {
+
+        static SpVoice speech = new SpVoice();
+
         public static string[] Run()
         {
             //var bytes = new TeachingCommandBuilder(1, false).BuildCommandBytes();
@@ -38,6 +43,7 @@ namespace TeachingPlatformApp.Utils
             var point2 = WswHelper.MyDealWswAngle(heli, WswAirplane.Helicopter);
 
             Ioc.Get<ISpeek>().SpeekWords(JsonFileConfig.Instance.SpeechConfig.SpeechTextOutofRouteLeft);
+            Ioc.Get<ISpeek>().SpeekWords("hello!", false, "en-US");
             Ioc.Get<ISpeek>().GetInstalledVoices();
 
             return new string[]
