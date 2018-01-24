@@ -3,13 +3,15 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
+using static TeachingPlatformApp.Converters.ConverterPara;
+
 namespace TeachingPlatformApp.Converters
 {
     public class PositionToMarginConverter : IValueConverter
     {
 
-        private static int scale = 10;
-        private static int init = 20;
+        //private static int scale = 10;
+        //private static int init = 20;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -17,7 +19,7 @@ namespace TeachingPlatformApp.Converters
             var margin = new Thickness(0,0,0,0);
             if (point != null)
             {
-                margin = new Thickness(point.X * scale + init, point.Y * scale + init, 0 , 0);
+                margin = new Thickness(point.X * XScale + XInit, point.Y * YScale + YInit, 0 , 0);
             }
             return margin;
         }

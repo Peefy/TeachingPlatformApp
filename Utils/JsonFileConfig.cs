@@ -31,6 +31,7 @@ namespace TeachingPlatformApp.Utils
         /// <summary>
         /// 显示字符串标题 配置
         /// </summary>
+        
         [JsonProperty("stringResource")]
         public StringResource StringResource { get; set; }
 
@@ -122,7 +123,7 @@ namespace TeachingPlatformApp.Utils
             {
                 InitMyPointX = 15,
                 InitMyPointY = 15,
-                InitMyPointZ = 10,          
+                InitMyPointZ = 50,          
                 PointScaleFactorX = -0.01f,
                 PointScaleFactorY = 0.01f,
                 PointScaleFactorZ = 0.01f,
@@ -137,8 +138,8 @@ namespace TeachingPlatformApp.Utils
                 PointScaleFactorX = -0.01f,
                 PointScaleFactorY = 0.01f,
                 PointScaleFactorZ = 0.01f,
-                InitYaw = 360,
-                YawSign = true,
+                InitYaw = 270,
+                YawSign = false,
             };
             
             this.GridAxesDrawPara = new GridAxesDrawPara();
@@ -215,7 +216,13 @@ namespace TeachingPlatformApp.Utils
         public int DrawTrailPointNumUp { get; set; } = 10000;
 
         [JsonProperty("setPointsFontSize")]
-        public double SetPointsFontSize { get; set; } = 20;
+        public double SetPointsFontSize { get; set; } = 24;
+
+        [JsonProperty("setPointsEllipseRadius")]
+        public double SetPointsEllipseRadius { get; set; } = 6;
+
+        [JsonProperty("locationStringFontSize")]
+        public double LocationStringFontSize { get; set; } = 22;
 
     }
 
@@ -298,7 +305,7 @@ namespace TeachingPlatformApp.Utils
         public int OutOfRouteTestIntervalMs { get; set; } = 100;
 
         [JsonProperty("outOfRouteSpeechUpCount")]
-        public int OutOfRouteSpeechUpCount { get; set; } = 5;
+        public int OutOfRouteSpeechUpCount { get; set; } = 10;
      
     }
 

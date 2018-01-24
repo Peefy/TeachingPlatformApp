@@ -126,6 +126,7 @@
       <DependentUpon>Helicopter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BytesToStringConverter.cs" />
+    <Compile Include="Converters\ConverterPara.cs" />
     <Compile Include="Converters\NullToVisiblyConverter.cs" />
     <Compile Include="Converters\PositionToMarginConverter.cs" />
     <Compile Include="Converters\SetPointsToPathFigureConverter.cs" />

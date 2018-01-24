@@ -37,6 +37,28 @@ namespace TeachingPlatformApp.Views
             viewModel = new FlightMapWindowViewModel();
             this.DataContext = viewModel;
             RenewUI();
+            TaskInit();
+        }
+
+        private void TaskInit()
+        {
+            Task.Run(() =>
+            {
+                var config = JsonFileConfig.Instance;
+                var interval = config.TestTrailRouteConfig.OutOfRouteTestIntervalMs;
+                while (true)
+                {
+                    try
+                    {
+                        viewModel.JudgeRouteTask();
+                        Thread.Sleep(interval);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogAndConfig.Log.Error(ex);
+                    }
+                }
+            });
         }
 
         private async void RenewUI()

@@ -56,6 +56,8 @@ namespace TeachingPlatformApp.Controls
             rowNum = (int)(drawPara.AxesWidth / XAxesInternal) + 1;
             DrawLeft = drawPara.DrawLeft;
             DrawTop = drawPara.DrawTop;
+            XAxesInternal = drawPara.XAxesInternal;
+            YAxesInternal = drawPara.YAxesInternal;
         }
 
         private void RenewAxesLabel()
@@ -118,37 +120,43 @@ namespace TeachingPlatformApp.Controls
     public class GridAxesDrawPara
     {
         [JsonProperty("axesHeight")]
-        public double AxesHeight = 860;
+        public double AxesHeight { get; set; } = 860;
 
         [JsonProperty("axesWidth")]
-        public double AxesWidth = 1360;
+        public double AxesWidth { get; set; } = 1360;
 
         [JsonProperty("drawTop")]
-        public double DrawTop = -30;
+        public double DrawTop { get; set; } = -30;
 
         [JsonProperty("drawDown")]
-        public double DrawDown = 30;
+        public double DrawDown { get; set; } = 30;
 
         [JsonProperty("drawLeft")]
-        public double DrawLeft = -30;
+        public double DrawLeft { get; set; } = -30;
 
         [JsonProperty("drawRight")]
-        public double DrawRight = 30;
+        public double DrawRight { get; set; } = 30;
 
         [JsonProperty("drawLabelTop")]
-        public double DrawLabelTop = 5;
+        public double DrawLabelTop { get; set; } = 5;
 
         [JsonProperty("drawLabelLeft")]
-        public double DrawLabelLeft = 12;
+        public double DrawLabelLeft { get; set; } = 12;
 
         [JsonProperty("labelFontSize")]
-        public int LabelFontSize = 20;
+        public int LabelFontSize { get; set; } = 24;
 
         [JsonProperty("labelAxesInterval")]
-        public int LabelAxesInterval = 10;
-
+        public int LabelAxesInterval { get; set; } = 10;
+        
         [JsonProperty("labelAxesInit")]
-        public int LabelAxesInit = 0;
+        public int LabelAxesInit { get; set; } = 0;
+
+        [JsonProperty("xAxesInternal")]
+        public double XAxesInternal { get; set; } = 100;
+
+        [JsonProperty("yAxesInternal")]
+        public double YAxesInternal { get; set; } = 100;
 
     }
 

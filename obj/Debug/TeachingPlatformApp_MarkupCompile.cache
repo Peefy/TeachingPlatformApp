@@ -12,7 +12,7 @@ DEBUG;TRACE
 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\App.xaml
 131894577175
 
-831318117293
+841262665966
 79-1358205957
 Controls\Flighter.xaml;Controls\GridAxes.xaml;Controls\Helicopter.xaml;UIModels\AirlineFlightView.xaml;UIModels\DiveJumpView.xaml;UIModels\HoverFligntView.xaml;UIModels\OnlyInstrumencs.xaml;UIModels\SomersaultView.xaml;UIModels\TakeOffLandingView.xaml;UIModels\ToTalFlightView.xaml;Views\FlightMapWindow.xaml;Views\MainWindow.xaml;Views\SpeechWindow.xaml;
 

@@ -27,9 +27,11 @@
     "drawRight": 30.0,
     "drawLabelTop": 5.0,
     "drawLabelLeft": 12.0,
-    "labelFontSize": 20,
+    "labelFontSize": 24,
     "labelAxesInterval": 10,
-    "labelAxesInit": 0
+    "labelAxesInit": 0,
+    "xAxesInternal": 100.0,
+    "yAxesInternal": 100.0
   },
   "wswData": {
     "flighterInitInfo": {
@@ -54,12 +56,14 @@
     "pointShowDigit": 1,
     "mapUiRefreshMs": 30,
     "drawTrailPointNumUp": 10000,
-    "setPointsFontSize": 30.0
+    "setPointsFontSize": 24.0,
+    "setPointsEllipseRadius": 6.0,
+    "locationStringFontSize": 22.0
   },
   "myHelicopterInfo": {
     "initMyPointX": 15.0,
     "initMyPointY": 15.0,
-    "initMyPointZ": 10.0,
+    "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.01,
     "pointScaleFactorY": 0.01,
     "pointScaleFactorZ": 0.01,
@@ -73,8 +77,8 @@
     "pointScaleFactorX": -0.01,
     "pointScaleFactorY": 0.01,
     "pointScaleFactorZ": 0.01,
-    "initYaw": 360.0,
-    "yawSign": true
+    "initYaw": 270.0,
+    "yawSign": false
   },
   "speechConfig": {
     "volume": 70.0,
@@ -91,6 +95,6 @@
     "outOfRouteAngle": 20.0,
     "outOfRouteDistance": 10.0,
     "outOfRouteTestIntervalMs": 100,
-    "outOfRouteSpeechUpCount": 5
+    "outOfRouteSpeechUpCount": 10
   }
 }

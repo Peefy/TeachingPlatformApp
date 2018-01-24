@@ -9,13 +9,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 
 using TeachingPlatformApp.Models;
+using static TeachingPlatformApp.Converters.ConverterPara;
 
 namespace TeachingPlatformApp.Converters
 {
     public class SetPointsToPathFigureConverter : IValueConverter
     {
-        private static int scale = 10;
-        private static int init = 20;
+        //private static int scale = 10;
+        //private static int init = 20;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -42,7 +43,7 @@ namespace TeachingPlatformApp.Converters
 
         public static Point SetPointToRealMarginPoint(Point point)
         {
-            return new Point(point.X * scale + init, point.Y * scale + init);
+            return new Point(point.X * XScale + XInit, point.Y * YScale + YInit);
         }
     }
 

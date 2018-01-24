@@ -130,8 +130,8 @@
                     <Path.Data>
                         <EllipseGeometry
                             Center="{Binding SetPoints[0], Converter={StaticResource SetPointToRealMarginPointConverter}}"
-                            RadiusX="6"
-                            RadiusY="6" />
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
                 <Path
@@ -142,8 +142,8 @@
                     <Path.Data>
                         <EllipseGeometry
                             Center="{Binding SetPoints[1], Converter={StaticResource SetPointToRealMarginPointConverter}}"
-                            RadiusX="6"
-                            RadiusY="6" />
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
                 <Path
@@ -154,8 +154,8 @@
                     <Path.Data>
                         <EllipseGeometry
                             Center="{Binding SetPoints[2], Converter={StaticResource SetPointToRealMarginPointConverter}}"
-                            RadiusX="6"
-                            RadiusY="6" />
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
                 <Path
@@ -166,8 +166,8 @@
                     <Path.Data>
                         <EllipseGeometry
                             Center="{Binding SetPoints[3], Converter={StaticResource SetPointToRealMarginPointConverter}}"
-                            RadiusX="6"
-                            RadiusY="6" />
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
                 <Path
@@ -178,8 +178,8 @@
                     <Path.Data>
                         <EllipseGeometry
                             Center="{Binding SetPoints[4], Converter={StaticResource SetPointToRealMarginPointConverter}}"
-                            RadiusX="6"
-                            RadiusY="6" />
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
                 <Path
@@ -190,8 +190,8 @@
                     <Path.Data>
                         <EllipseGeometry
                             Center="{Binding SetPoints[5], Converter={StaticResource SetPointToRealMarginPointConverter}}"
-                            RadiusX="6"
-                            RadiusY="6" />
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
                 <Path
@@ -202,8 +202,8 @@
                     <Path.Data>
                         <EllipseGeometry
                             Center="{Binding SetPoints[6], Converter={StaticResource SetPointToRealMarginPointConverter}}"
-                            RadiusX="6"
-                            RadiusY="6" />
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
             </Canvas>

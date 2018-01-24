@@ -145,6 +145,20 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _setPointsFontSize, value);
         }
 
+        private double _setPointsEllipseRadius = 6;
+        public double SetPointsEllipseRadius
+        {
+            get => _setPointsEllipseRadius;
+            set => SetProperty(ref _setPointsEllipseRadius, value);
+        }
+
+        private double _locationStringFontSize = 22;
+        public double LocationStringFontSize
+        {
+            get => _locationStringFontSize;
+            set => SetProperty(ref _locationStringFontSize, value);
+        }
+
         public DelegateCommand ClearTrailCommand { get; set; }
 
         public FlightMapWindowViewModel()
@@ -230,23 +244,7 @@ namespace TeachingPlatformApp.ViewModels
                     }
                 });
             }
-            Task.Run(() =>
-            {
-                var interval = _config.TestTrailRouteConfig.OutOfRouteTestIntervalMs;
-                while (true)
-                {
-                    try
-                    {
-                        JudgeRouteTask();
-                        Thread.Sleep(interval);
-                    }
-                    catch (Exception ex)
-                    {
-                        LogAndConfig.Log.Error(ex);
-                    }
-                }
-            });
-            
+                    
         }
 
         /// <summary>
