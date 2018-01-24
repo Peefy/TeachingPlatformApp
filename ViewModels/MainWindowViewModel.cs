@@ -235,7 +235,7 @@ namespace TeachingPlatformApp.ViewModels
                 var realRecieCount = 0;
                 var config = JsonFileConfig.Instance.ComConfig;
                 var port = config.UdpClientExtraPort;
-                var udpClientExtra = new UdpClient(10000);
+                var udpClientExtra = new UdpClient(port);
                 var ipEndPoint = new IPEndPoint(IPAddress.Parse(config.Ip720Platform), config.Udp720Port);
                 while(true)
                 {

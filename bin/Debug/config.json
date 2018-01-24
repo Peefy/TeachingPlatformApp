@@ -76,7 +76,10 @@
     "yawSign": true
   },
   "speechConfig": {
-    "speechTextOutofRoute": "偏离航线",
+    "volume": 70.0,
+    "rate": 0.0,
+    "isUsingDotnetSpeech": true,
+    "speechTextOutofRouteLeft": "偏离航线",
     "speechTextReserved1": "SpeechTextReserved1",
     "speechTextReserved2": "SpeechTextReserved2",
     "speechTextReserved3": "SpeechTextReserved3"
@@ -84,6 +87,8 @@
   "testTrailRouteConfig": {
     "TestSwitch": 2,
     "outOfRouteAngle": 20.0,
-    "outOfRouteDistance": 10.0
+    "outOfRouteDistance": 10.0,
+    "outOfRouteTestIntervalMs": 100,
+    "outOfRouteSpeechUpCount": 5
   }
 }
