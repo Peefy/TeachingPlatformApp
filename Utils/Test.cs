@@ -42,9 +42,7 @@ namespace TeachingPlatformApp.Utils
             var point = WswHelper.MyDealWswAngle(heli, WswAirplane.Flighter);
             var point2 = WswHelper.MyDealWswAngle(heli, WswAirplane.Helicopter);
 
-            Ioc.Get<ISpeek>().SpeekWords(JsonFileConfig.Instance.SpeechConfig.SpeechTextOutofRouteLeft);
-            Ioc.Get<ISpeek>().SpeekWords("hello!", false, "en-US");
-            Ioc.Get<ISpeek>().GetInstalledVoices();
+            Ioc.Get<ISpeek>().SpeekAsync("你好");
 
             return new string[]
             {

@@ -10,6 +10,7 @@ using Prism.Mvvm;
 
 using DuGu.NetFramework.Services;
 
+using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.WswPlatform;
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.Models;
@@ -22,10 +23,15 @@ namespace TeachingPlatformApp.ViewModels
 
         ITranslateData _translateData;
         JsonFileConfig _config;
+        ISpeek _speeker;
 
         string _helicopterName = "直升机";
         string _flighterName = "战斗机";
         int _mapRefreshInterval = 30;
+
+        int _flighterOutOfRouteCount = 0;
+        int _helicopterOutOfRouteCount = 0;
+        int _outOfRouteSpeechUpCount = 5;
 
         private string _title = "地图";
         public string Title
@@ -137,6 +143,7 @@ namespace TeachingPlatformApp.ViewModels
         public FlightMapWindowViewModel()
         {
             _config = JsonFileConfig.ReadFromFile();
+            _outOfRouteSpeechUpCount = _config.TestTrailRouteConfig.OutOfRouteSpeechUpCount;
             var resource = _config.StringResource;
             Title = resource.FlightMapTitle;
             _helicopterName = resource.HelicopterName;
@@ -216,12 +223,13 @@ namespace TeachingPlatformApp.ViewModels
             }
             Task.Run(() =>
             {
+                var interval = _config.TestTrailRouteConfig.OutOfRouteTestIntervalMs;
                 while (true)
                 {
                     try
                     {
                         JudgeRouteTask();
-                        Thread.Sleep(100);
+                        Thread.Sleep(interval);
                     }
                     catch (Exception ex)
                     {
@@ -255,6 +263,8 @@ namespace TeachingPlatformApp.ViewModels
                     SetPoints.ToList());
                 FlighterIsOutofRoute = JudgeIsOutOfRoute(FlighterPosition, 
                     distancesFlighterLine, distanceFlighterPoint);
+
+                OutOfRouteSpeechControlFlighter();
             }
             else if(@switch == 1)
             {
@@ -266,6 +276,9 @@ namespace TeachingPlatformApp.ViewModels
                     SetPoints.ToList());
                 HelicopterIsOutofRoute = JudgeIsOutOfRoute(HelicopterPosition, 
                     distancesHelicopterLine, distancesHelicopterPoint);
+
+                OutOfRouteSpeechControlHelicopter();
+
             }
             else
             {
@@ -286,8 +299,37 @@ namespace TeachingPlatformApp.ViewModels
                     distancesFlighterLine, distanceFlighterPoint);
                 HelicopterIsOutofRoute = JudgeIsOutOfRoute(HelicopterPosition,
                     distancesHelicopterLine, distancesHelicopterPoint);
+
+                OutOfRouteSpeechControlFlighter();
+                OutOfRouteSpeechControlHelicopter();
+
             }
 
+        }
+        private void OutOfRouteSpeechControlFlighter()
+        {
+            //false代表偏离航线，true代表没有偏离航线.
+            if (FlighterIsOutofRoute == false)
+                this._flighterOutOfRouteCount++;
+            
+            if (_flighterOutOfRouteCount >= _outOfRouteSpeechUpCount)
+            {
+                _flighterOutOfRouteCount = 0;
+                _speeker.SpeekAsync(_flighterName + _config.SpeechConfig.SpeechTextOutofRoute);
+            }
+            
+        }
+
+        private void OutOfRouteSpeechControlHelicopter()
+        {
+            //false代表偏离航线，true代表没有偏离航线.
+            if (HelicopterIsOutofRoute == false)
+                this._helicopterOutOfRouteCount++;
+            if (_helicopterOutOfRouteCount >= _outOfRouteSpeechUpCount)
+            {
+                _helicopterOutOfRouteCount = 0;
+                _speeker.SpeekAsync(_helicopterName + _config.SpeechConfig.SpeechTextOutofRoute);
+            }
         }
 
         public bool JudgeIsOutOfRoute(Point point, IList<double> distanceLines, IList<double> distancePoints)

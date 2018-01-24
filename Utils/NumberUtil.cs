@@ -22,5 +22,14 @@ namespace TeachingPlatformApp.Utils
             return value == true ? "否" : "是";
         }
 
+        public static double Clamp(double value, double min, double max)
+        {
+            if (value <= min)
+                value = min;
+            if (value >= max)
+                value = max;
+            return value;
+        }
+
     }
 }

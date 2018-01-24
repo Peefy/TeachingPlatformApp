@@ -250,11 +250,17 @@ namespace TeachingPlatformApp.Utils
 
     public class SpeechConfig
     {
-        [JsonProperty("speechTextOutofRouteLeft")]
-        public string SpeechTextOutofRouteLeft { get; set; } = "您已经向左偏离航线";
+        [JsonProperty("volume")]
+        public double Volume { get; set; } = 70;
 
-        [JsonProperty("speechTextOutofRouteRight")]
-        public string SpeechTextOutofRouteRight { get; set; } = "您已经向右偏离航线";
+        [JsonProperty("rate")]
+        public double Rate { get; set; } = 0;
+
+        [JsonProperty("isUsingDotnetSpeech")]
+        public bool IsUsingDotnetSpeech { get; set; } = true;
+
+        [JsonProperty("speechTextOutofRouteLeft")]
+        public string SpeechTextOutofRoute { get; set; } = "偏离航线";
 
         [JsonProperty("speechTextReserved1")]
         public string SpeechTextReserved1 { get; set; } = "SpeechTextReserved1";
@@ -280,6 +286,12 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("outOfRouteDistance")]
         public double OutOfRouteDistance { get; set; } = 10.0;
 
+        [JsonProperty("outOfRouteTestIntervalMs")]
+        public int OutOfRouteTestIntervalMs { get; set; } = 100;
+
+        [JsonProperty("outOfRouteSpeechUpCount")]
+        public int OutOfRouteSpeechUpCount { get; set; } = 5;
+     
     }
 
 }

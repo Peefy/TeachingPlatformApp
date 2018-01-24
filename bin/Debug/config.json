@@ -76,8 +76,7 @@
     "yawSign": true
   },
   "speechConfig": {
-    "speechTextOutofRouteLeft": "您已经向左偏离航线",
-    "speechTextOutofRouteRight": "您已经向右偏离航线",
+    "speechTextOutofRoute": "偏离航线",
     "speechTextReserved1": "SpeechTextReserved1",
     "speechTextReserved2": "SpeechTextReserved2",
     "speechTextReserved3": "SpeechTextReserved3"
