@@ -58,8 +58,8 @@
   "myHelicopterInfo": {
     "initMyPointX": 15.0,
     "initMyPointY": 15.0,
-    "initMyPointZ": 50.0,
-    "pointScaleFactorX": 0.01,
+    "initMyPointZ": 10.0,
+    "pointScaleFactorX": -0.01,
     "pointScaleFactorY": 0.01,
     "pointScaleFactorZ": 0.01,
     "initYaw": -180.0,
@@ -69,10 +69,10 @@
     "initMyPointX": 10.0,
     "initMyPointY": 10.0,
     "initMyPointZ": 50.0,
-    "pointScaleFactorX": 0.01,
+    "pointScaleFactorX": -0.01,
     "pointScaleFactorY": 0.01,
     "pointScaleFactorZ": 0.01,
-    "initYaw": -180.0,
+    "initYaw": 360.0,
     "yawSign": true
   },
   "speechConfig": {

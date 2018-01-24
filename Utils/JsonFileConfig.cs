@@ -117,28 +117,30 @@ namespace TeachingPlatformApp.Utils
             this.ComConfig = new ComConfig();
             this.WswData = new WswData();
             this.DataShowConfig = new DataShowConfig();
-            this.MyFlighterInfo = new AirPlaneInfo()
-            {
-                InitMyPointX = 10,
-                InitMyPointY = 10,
-                InitMyPointZ = 50,
-                InitYaw = -180,
-                PointScaleFactorX = 0.01f,
-                PointScaleFactorY = 0.01f,
-                PointScaleFactorZ = 0.01f,
-                YawSign = true,
-            };
+            
             this.MyHelicopterInfo = new AirPlaneInfo()
             {
                 InitMyPointX = 15,
                 InitMyPointY = 15,
-                InitMyPointZ = 50,
-                InitYaw = -180,
-                PointScaleFactorX = 0.01f,
+                InitMyPointZ = 10,          
+                PointScaleFactorX = -0.01f,
                 PointScaleFactorY = 0.01f,
                 PointScaleFactorZ = 0.01f,
+                InitYaw = -180,
                 YawSign = true
             };
+            this.MyFlighterInfo = new AirPlaneInfo()
+            {
+                InitMyPointX = 10,
+                InitMyPointY = 10,
+                InitMyPointZ = 50,            
+                PointScaleFactorX = -0.01f,
+                PointScaleFactorY = 0.01f,
+                PointScaleFactorZ = 0.01f,
+                InitYaw = 360,
+                YawSign = true,
+            };
+            
             this.GridAxesDrawPara = new GridAxesDrawPara();
             this.SpeechConfig = new SpeechConfig();
             this.TestTrailRouteConfig = new TestTrailRouteConfig();
@@ -182,7 +184,7 @@ namespace TeachingPlatformApp.Utils
         public string IpGunBarrel { get; set; } = "192.168.0.133";
 
         [JsonProperty("wswUdpPort")]
-        public int WswUdpPort { get; set; } = 15000;
+        public int WswUdpPort { get; set; } = 14000;
 
         [JsonProperty("udp720TechingPort")]
         public int Udp720TechingPort { get; set; } = 12000;

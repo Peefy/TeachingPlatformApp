@@ -18,8 +18,8 @@ namespace TeachingPlatformApp.WswPlatform
             var wswData = config.WswData.FlighterInitInfo;
             packet = new DataPacketToWsw
             {
-                Header = 0xCC,
-                Index = (byte)index,
+                Header = 100,
+                Index = index,
                 X = (x - info.InitMyPointX) / info.PointScaleFactorX + wswData.X,
                 Y = (y - info.InitMyPointY) / info.PointScaleFactorY + wswData.Y
             };
