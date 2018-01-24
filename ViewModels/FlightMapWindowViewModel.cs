@@ -144,6 +144,7 @@ namespace TeachingPlatformApp.ViewModels
         {
             _config = JsonFileConfig.ReadFromFile();
             _outOfRouteSpeechUpCount = _config.TestTrailRouteConfig.OutOfRouteSpeechUpCount;
+            _speeker = Ioc.Get<ISpeek>();
             var resource = _config.StringResource;
             Title = resource.FlightMapTitle;
             _helicopterName = resource.HelicopterName;
@@ -315,7 +316,7 @@ namespace TeachingPlatformApp.ViewModels
             if (_flighterOutOfRouteCount >= _outOfRouteSpeechUpCount)
             {
                 _flighterOutOfRouteCount = 0;
-                _speeker.SpeekAsync(_flighterName + _config.SpeechConfig.SpeechTextOutofRoute);
+                _speeker?.SpeekAsync(_flighterName + _config.SpeechConfig.SpeechTextOutofRoute);
             }
             
         }
@@ -328,7 +329,7 @@ namespace TeachingPlatformApp.ViewModels
             if (_helicopterOutOfRouteCount >= _outOfRouteSpeechUpCount)
             {
                 _helicopterOutOfRouteCount = 0;
-                _speeker.SpeekAsync(_helicopterName + _config.SpeechConfig.SpeechTextOutofRoute);
+                _speeker?.SpeekAsync(_helicopterName + _config.SpeechConfig.SpeechTextOutofRoute);
             }
         }
 
