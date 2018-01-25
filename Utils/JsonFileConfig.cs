@@ -31,7 +31,6 @@ namespace TeachingPlatformApp.Utils
         /// <summary>
         /// 显示字符串标题 配置
         /// </summary>
-        
         [JsonProperty("stringResource")]
         public StringResource StringResource { get; set; }
 
