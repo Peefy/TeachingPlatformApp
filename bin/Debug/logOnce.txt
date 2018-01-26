@@ -1,1 +1,17 @@
-2018/1/26 16:38:53
+2018/1/26 17:49:20
+
+17:49
+0   在 TeachingPlatformApp.ViewModels.MainWindowViewModel.<.ctor>b__88_0(TreeView treeView) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\MainWindowViewModel.cs:行号 197
+索引超出了数组界限。
+
+17:49
+1   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__17_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 88
+正在中止线程。
+
+17:52
+2   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__17_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 88
+正在中止线程。

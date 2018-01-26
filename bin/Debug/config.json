@@ -37,7 +37,9 @@
     "labelAxesInterval": 10,
     "labelAxesInit": 0,
     "xAxesInternal": 100.0,
-    "yAxesInternal": 100.0
+    "yAxesInternal": 100.0,
+    "mouseDoubleClickShowPointX": 50.0,
+    "mouseDoubleClickShowPointY": 30.0
   },
   "wswData": {
     "flighterInitInfo": {

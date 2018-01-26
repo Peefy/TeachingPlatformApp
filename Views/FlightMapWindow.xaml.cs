@@ -67,6 +67,7 @@ namespace TeachingPlatformApp.Views
         {
             if(JsonFileConfig.ReadFromFile().GridAxesDrawPara.EnableDragMove == true)
             {
+                gridAxes.MouseLeftButtonDown += gridAxes_MouseLeftButtonDown;
                 gridAxes.MouseRightButtonDown += gridAxes_MouseRightButtonDown;
                 gridAxes.MouseRightButtonUp += gridAxes_MouseRightButtonUp;
                 gridAxes.MouseMove += gridAxes_MouseMove;
@@ -220,15 +221,45 @@ namespace TeachingPlatformApp.Views
         #endregion
 
         #region DragAction
+
+        public void SetMapDrawDeltaLeftTop(Point point)
+        {
+            var x = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointX;
+            var y = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointY;
+            var convert = new PointXYToMarginLeftTop();
+            var left = convert.Convert((x - point.X ).ToString());
+            var top = convert.Convert((y - point.Y).ToString()) ;
+            gridAxes.DrawDeltaLeft = left;
+            gridAxes.DrawDeltaTop = top;
+            gridAxes.RenewBuildAxes(this.Width, this.Height, true);
+            viewModel.DrawMargin = new Thickness(left, top, 0, 0);
+        }
+
+        private void gridAxes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var tmp = (GridAxes)sender;
+            if (e.ClickCount == 2)
+            {
+                SetMapDrawDeltaLeftTop(viewModel.Flighter.MyMapPosition);
+            }
+        }
+
         private void gridAxes_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (enableDrag == true)
-                return;
             var tmp = (GridAxes)sender;
-            pressPoint = e.GetPosition(null);
-            tmp.CaptureMouse();
-            tmp.Cursor = Cursors.Hand;
-            enableDrag = true;
+            if (e.ClickCount == 2)
+            {
+                SetMapDrawDeltaLeftTop(viewModel.Helicopter.MyMapPosition);
+            }
+            else
+            {
+                if (enableDrag == true)
+                    return;
+                pressPoint = e.GetPosition(null);
+                tmp.CaptureMouse();
+                tmp.Cursor = Cursors.Hand;
+                enableDrag = true;
+            }
         }
 
         private void gridAxes_MouseRightButtonUp(object sender, MouseButtonEventArgs e)

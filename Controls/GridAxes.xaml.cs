@@ -202,6 +202,12 @@ namespace TeachingPlatformApp.Controls
         [JsonProperty("yAxesInternal")]
         public double YAxesInternal { get; set; } = 100;
 
+        [JsonProperty("mouseDoubleClickShowPointX")]
+        public double MouseDoubleClickShowPointX { get; set; } = 50;
+
+        [JsonProperty("mouseDoubleClickShowPointY")]
+        public double MouseDoubleClickShowPointY { get; set; } = 30;
+
     }
 
 }

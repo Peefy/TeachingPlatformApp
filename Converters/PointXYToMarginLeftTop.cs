@@ -11,19 +11,19 @@ namespace TeachingPlatformApp.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var data = double.Parse(value.ToString());
-            return data * XScale + XInit;
+            return Math.Round(data * XScale + XInit, 2);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var data = double.Parse(value.ToString());
-            return (data - XInit) / XScale;
+            return Math.Round((data - XInit) / XScale, 2);
         }
 
         public double Convert(string value)
         {
             var data = double.Parse(value.ToString());
-            return data * XScale + XInit;
+            return Math.Round(data * XScale + XInit, 2);
         }
 
     }
