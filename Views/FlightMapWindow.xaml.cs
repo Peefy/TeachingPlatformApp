@@ -9,13 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 
-
 using MahApps.Metro.Controls;
 
+using DuGu.NetFramework.Services;
+
+using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.ViewModels;
 using TeachingPlatformApp.Controls;
 using TeachingPlatformApp.Converters;
+
 
 namespace TeachingPlatformApp.Views
 {
@@ -89,6 +92,8 @@ namespace TeachingPlatformApp.Views
                     }
                 }
             }));
+            if(JsonFileConfig.Instance.SpeechConfig.SpeechEnable == true)
+                speechThread.Start();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -98,6 +103,7 @@ namespace TeachingPlatformApp.Views
             {
                 speechThread.Abort();
                 speechThread = null;
+                Ioc.Get<ISpeek>().StopSpeek();
             }
         }
 
