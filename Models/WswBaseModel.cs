@@ -19,7 +19,7 @@ namespace TeachingPlatformApp.Models
     {
 
         static protected private ISpeek _speeker;
-        static protected private int _outOfRouteSpeechUpCount = 5;
+        static protected private int _outOfRouteSpeechUpCount = 10;
 
         public JsonFileConfig Config { get; set; }
 
@@ -162,9 +162,14 @@ namespace TeachingPlatformApp.Models
             //false代表偏离航线，true代表没有偏离航线.
             IsNotOutofRoute = JudgeIsOutOfRoute(setPoints);
             if (IsNotOutofRoute == false)
+            {
                 this.OutOfRouteCount++;
+            }
             else
+            {
+                this.OutOfRouteCount = 0;
                 _speeker?.StopSpeek();
+            }            
             if (OutOfRouteCount >= _outOfRouteSpeechUpCount)
             {
                 OutOfRouteCount = 0;

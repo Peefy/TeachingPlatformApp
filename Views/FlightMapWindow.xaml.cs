@@ -42,6 +42,8 @@ namespace TeachingPlatformApp.Views
         Point pressPoint = new Point();
         Point movePoint = new Point();
 
+        Thread speechThread;
+
         public FlightMapWindow()
         {
             InitializeComponent();
@@ -70,7 +72,7 @@ namespace TeachingPlatformApp.Views
 
         private void TaskInit()
         {
-            Task.Run(() =>
+            speechThread = new Thread(new ThreadStart(() =>
             {
                 var config = JsonFileConfig.Instance;
                 var interval = config.TestTrailRouteConfig.OutOfRouteTestIntervalMs;
@@ -86,7 +88,17 @@ namespace TeachingPlatformApp.Views
                         LogAndConfig.Log.Error(ex);
                     }
                 }
-            });
+            }));
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            if(speechThread != null)
+            {
+                speechThread.Abort();
+                speechThread = null;
+            }
         }
 
         private async void RenewUI()
@@ -172,6 +184,33 @@ namespace TeachingPlatformApp.Views
                 }
             }
         }
+
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var converter = new PointXYToMarginLeftTop();
+            var x = xTextBox.Text;
+            var y = yTextBox.Text;
+            var left = converter.Convert(x);
+            var top = converter.Convert(y);
+            gridAxes.DrawDeltaLeft = left;
+            gridAxes.DrawDeltaTop = top;
+            gridAxes.RenewBuildAxes(this.Width, this.Height);
+            var dx = viewModel.DrawMargin.Left;
+            var dy = viewModel.DrawMargin.Top;
+            viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            gridAxes.RenewBuildAxes(this.Width, this.Height, true);
+        }
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            gridAxes.RenewBuildAxes(this.Width, this.Height, true);
+
+        }
+
         #endregion
 
         #region DragAction
@@ -212,30 +251,6 @@ namespace TeachingPlatformApp.Views
         }
         #endregion
 
-        private void TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var converter = new PointXYToMarginLeftTop();
-            var x = xTextBox.Text;
-            var y = yTextBox.Text;
-            var left = converter.Convert(x);
-            var top = converter.Convert(y);
-            gridAxes.DrawDeltaLeft = left;
-            gridAxes.DrawDeltaTop = top;
-            gridAxes.RenewBuildAxes(this.Width, this.Height);
-            var dx = viewModel.DrawMargin.Left;
-            var dy = viewModel.DrawMargin.Top;
-            viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
-        }
 
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            gridAxes.RenewBuildAxes(this.Width, this.Height, true);
-        }
-
-        private void Window_StateChanged(object sender, EventArgs e)
-        {
-            gridAxes.RenewBuildAxes(this.Width, this.Height, true);
-            
-        }
     }
 }

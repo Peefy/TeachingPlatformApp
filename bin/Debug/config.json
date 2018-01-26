@@ -119,7 +119,7 @@
     "TestSwitch": 2,
     "outOfRouteAngle": 20.0,
     "outOfRouteDistance": 10.0,
-    "outOfRouteTestIntervalMs": 100,
-    "outOfRouteSpeechUpCount": 10
+    "outOfRouteTestIntervalMs": 1000,
+    "outOfRouteSpeechUpCount": 5
   }
 }
