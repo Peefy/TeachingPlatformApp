@@ -6,8 +6,6 @@ namespace TeachingPlatformApp.Models
     public class MissileModel : WswBaseModel
     {
 
-
-
         public MissileModel()
         {
             this.Angle = Config.MyMissileInfo.InitYaw;

@@ -58,10 +58,8 @@ namespace TeachingPlatformApp.Controls
         private void DrawParaInit()
         {
             drawPara = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
-            //columnNum = (int)(drawPara.AxesHeight / YAxesInternal) + 1;
-            //rowNum = (int)(drawPara.AxesWidth / XAxesInternal) + 1;
-            columnNum = 200;
-            rowNum = 200;
+            columnNum = drawPara.ColumnNumber;
+            rowNum = drawPara.RowNumber;
             DrawLeft = drawPara.DrawLeft;
             DrawTop = drawPara.DrawTop;
             XAxesInternal = drawPara.XAxesInternal;
@@ -155,6 +153,15 @@ namespace TeachingPlatformApp.Controls
 
         [JsonProperty("axesWidth")]
         public double AxesWidth { get; set; } = 1360;
+
+        [JsonProperty("columnNumber")]
+        public int ColumnNumber { get; set; } = 200;
+
+        [JsonProperty("rowNumber")]
+        public int RowNumber { get; set; } = 200;
+
+        [JsonProperty("enableDragMove")]
+        public bool EnableDragMove { get; set; } = true;
 
         [JsonProperty("drawTop")]
         public double DrawTop { get; set; } = -30;

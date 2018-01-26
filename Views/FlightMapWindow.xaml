@@ -42,9 +42,6 @@
         </Grid.RowDefinitions>
         <myctrls:GridAxes
             x:Name="gridAxes"
-            MouseRightButtonDown="gridAxes_MouseRightButtonDown"
-            MouseRightButtonUp="gridAxes_MouseRightButtonUp"
-            MouseMove="gridAxes_MouseMove"
             Grid.Row="0"
             Width="{Binding ElementName=Window, Path=Width}"
             Height="{Binding ElementName=Window, Path=Height}"

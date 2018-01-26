@@ -53,8 +53,19 @@ namespace TeachingPlatformApp.Views
             canvasTrailMissile = _girdWswModel.Children[canvasTrailMissileIndex] as CanvasTrail;
             viewModel = new FlightMapWindowViewModel();
             this.DataContext = viewModel;
+            DragMoveInit();
             RenewUI();
             TaskInit();
+        }
+
+        private void DragMoveInit()
+        {
+            if(JsonFileConfig.ReadFromFile().GridAxesDrawPara.EnableDragMove == true)
+            {
+                gridAxes.MouseRightButtonDown += gridAxes_MouseRightButtonDown;
+                gridAxes.MouseRightButtonUp += gridAxes_MouseRightButtonUp;
+                gridAxes.MouseMove += gridAxes_MouseMove;
+            }
         }
 
         private void TaskInit()

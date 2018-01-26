@@ -1,6 +1,134 @@
-2018/1/26 13:01:53
-2018/1/26 13:01:56:俯冲跃升实验检测结果:True
-2018/1/26 13:01:56:俯冲跃升实验检测结果:True
-2018/1/26 13:01:57:俯冲跃升实验检测结果:True
-2018/1/26 13:01:57:俯冲跃升实验检测结果:True
-2018/1/26 13:01:57:俯冲跃升实验检测结果:True
+2018/1/26 13:18:38
+
+13:18
+0   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+1   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 199
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+2   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 199
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+3   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+4   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+5   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+6   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+7   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+8   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+9   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+10   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+11   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+12   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 199
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+13   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+14   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+15   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+16   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+17   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 198
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。
+
+13:18
+18   在 TeachingPlatformApp.Speech.TeachingSpeeker.SpeekAsync(String text) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 96
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 171
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 199
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__16_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 81
+未将对象引用设置到对象的实例。

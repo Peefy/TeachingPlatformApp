@@ -22,6 +22,9 @@
   "mapGridAxesDrawPara": {
     "axesHeight": 860.0,
     "axesWidth": 1360.0,
+    "columnNumber": 200,
+    "rowNumber": 200,
+    "enableDragMove": true,
     "drawTop": -30.0,
     "drawDown": 30.0,
     "drawLeft": -30.0,
