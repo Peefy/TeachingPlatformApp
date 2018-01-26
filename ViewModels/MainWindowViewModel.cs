@@ -371,8 +371,8 @@ namespace TeachingPlatformApp.ViewModels
             var angleDataDigit = config.DataShowConfig.AngleShowDigit;
             if (ip.StartsWith(config.ComConfig.Ip720Platform) == true)
             {             
-                angleWithLocation = WswHelper.
-                    MyDealWswAngle(angleWithLocation, WswAirplane.Flighter, angleDataDigit);
+                angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation, 
+                    WswModelKind.Flighter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
                 {
                     UdpServer.PlaneInfo.Flighter = angleWithLocation;
@@ -384,8 +384,8 @@ namespace TeachingPlatformApp.ViewModels
             }
             else if(ip.StartsWith(config.ComConfig.IpWswUdpServer) == true)
             {
-                angleWithLocation = WswHelper.
-                    MyDealWswAngle(angleWithLocation, WswAirplane.Helicopter, angleDataDigit);
+                angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation, 
+                    WswModelKind.Helicopter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
                 {
                     UdpServer.PlaneInfo.Helicopter = angleWithLocation;

@@ -50,11 +50,7 @@ namespace DuGu720DegreeView.ShareMemory
 
         private IntPtr m_pwDataRead = IntPtr.Zero;
 
-        private bool m_bAlreadyExist;
-
         private bool m_bInit;
-
-        private long m_MemSize;
 
         private int m_length;
 
@@ -101,11 +97,9 @@ namespace DuGu720DegreeView.ShareMemory
             this.m_hSharedMemoryFile = ZyShareMem.OpenFileMapping(6, false, strName);
             if (this.m_hSharedMemoryFile == IntPtr.Zero)
             {
-                this.m_bAlreadyExist = false;
                 this.m_bInit = false;
                 return 2;
             }
-            this.m_bAlreadyExist = true;
             this.m_pwData = ZyShareMem.MapViewOfFile(this.m_hSharedMemoryFile, 6u, 0u, 0u, 0u);
             this.m_pwDataWrite = this.m_pwData;
             this.m_pwDataRead = (IntPtr)(this.m_pwData.GetHashCode() + 50);

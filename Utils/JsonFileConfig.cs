@@ -13,6 +13,9 @@ using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Utils
 {
+    /// <summary>
+    /// config.json operate.
+    /// </summary>
     public class JsonFileConfig 
     {
         [JsonIgnore]
@@ -62,13 +65,19 @@ namespace TeachingPlatformApp.Utils
         /// 我的直升机消息 配置
         /// </summary>
         [JsonProperty("myHelicopterInfo")]
-        public AirPlaneInfo MyHelicopterInfo { get; set; }
+        public WswModelInfo MyHelicopterInfo { get; set; }
 
         /// <summary>
         /// 我的战斗机 配置
         /// </summary>
-        [JsonProperty("myFlighterInfo")]
-        public AirPlaneInfo MyFlighterInfo { get; set; }
+        [JsonProperty("wswModelInfo")]
+        public WswModelInfo MyFlighterInfo { get; set; }
+
+        /// <summary>
+        /// 我的导弹 配置
+        /// </summary>
+        [JsonProperty("myMissileInfo")]
+        public WswModelInfo MyMissileInfo { get; set; }
 
         /// <summary>
         /// 语音配置
@@ -118,7 +127,7 @@ namespace TeachingPlatformApp.Utils
             this.WswData = new WswData();
             this.DataShowConfig = new DataShowConfig();
             
-            this.MyHelicopterInfo = new AirPlaneInfo()
+            this.MyHelicopterInfo = new WswModelInfo()
             {
                 InitMyPointX = 15,
                 InitMyPointY = 15,
@@ -129,7 +138,7 @@ namespace TeachingPlatformApp.Utils
                 InitYaw = -180,
                 YawSign = true
             };
-            this.MyFlighterInfo = new AirPlaneInfo()
+            this.MyFlighterInfo = new WswModelInfo()
             {
                 InitMyPointX = 10,
                 InitMyPointY = 10,
@@ -140,7 +149,18 @@ namespace TeachingPlatformApp.Utils
                 InitYaw = 270,
                 YawSign = false,
             };
-            
+            this.MyMissileInfo = new WswModelInfo()
+            {
+                InitMyPointX = 50,
+                InitMyPointY = 50,
+                InitMyPointZ = 50,
+                PointScaleFactorX = -0.01f,
+                PointScaleFactorY = 0.01f,
+                PointScaleFactorZ = 0.01f,
+                InitYaw = 180,
+                YawSign = false,
+            };
+
             this.GridAxesDrawPara = new GridAxesDrawPara();
             this.SpeechConfig = new SpeechConfig();
             this.TestTrailRouteConfig = new TestTrailRouteConfig();
@@ -161,6 +181,9 @@ namespace TeachingPlatformApp.Utils
 
         [JsonProperty("flighterName")]
         public string FlighterName { get; set; } = "战斗机";
+
+        [JsonProperty("missileName")]
+        public string MissileName { get; set; } = "导弹";
     }
 
     public class ComConfig
@@ -223,6 +246,12 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("locationStringFontSize")]
         public double LocationStringFontSize { get; set; } = 22;
 
+        [JsonProperty("setPointsLineWidth")]
+        public double SetPointsLineWidth { get; set; } = 3;
+
+
+
+
     }
 
     public class WswData
@@ -239,22 +268,29 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("helicopterInitInfo")]
         public AngleWithLocation HelicopterInitInfo;
 
+        /// <summary>
+        /// missileInitInfo
+        /// </summary>
+        [JsonProperty("missileInitInfo")]
+        public AngleWithLocation MissileInitInfo;
+
         public WswData()
         {
-            FlighterInitInfo = default(AngleWithLocation);
+            FlighterInitInfo = default;
             FlighterInitInfo.X = -2185907.3768;
             FlighterInitInfo.Y = 4365171.6876;
             FlighterInitInfo.Z = 4104669.1241;
             FlighterInitInfo.Yaw = 0.1873927;
             FlighterInitInfo.Pitch = 0.0011897;
             FlighterInitInfo.Roll = 0.0013987;
-            HelicopterInitInfo = default(AngleWithLocation);
+            HelicopterInitInfo = default;
             HelicopterInitInfo.X = -2165844.6698;
             HelicopterInitInfo.Y = 4379369.0368;
             HelicopterInitInfo.Z = 4104669.0426;
             HelicopterInitInfo.Yaw = -0.5154596;
             HelicopterInitInfo.Pitch = 0.0011189;
             HelicopterInitInfo.Roll = 0.00139873;
+            MissileInitInfo = default;
         }
 
     }

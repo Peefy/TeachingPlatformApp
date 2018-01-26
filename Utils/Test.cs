@@ -24,8 +24,8 @@ namespace TeachingPlatformApp.Utils
             //Ioc.Get<ITranslateData>().SendTo(bytes, ip);
             //ip = new IPEndPoint(IPAddress.Parse("192.168.0.134"), 12000);
             //Ioc.Get<ITranslateData>().SendTo(bytes, ip);
-            var FlighterInitInfo =  WswHelper.MathRoundAngle(JsonFileConfig.Instance.WswData.FlighterInitInfo, 3);
-            var HelicopterInitInfo = WswHelper.MathRoundAngle(JsonFileConfig.Instance.WswData.HelicopterInitInfo, 3);
+            var FlighterInitInfo =  WswHelper.MathRound(JsonFileConfig.Instance.WswData.FlighterInitInfo, 3);
+            var HelicopterInitInfo = WswHelper.MathRound(JsonFileConfig.Instance.WswData.HelicopterInitInfo, 3);
             var vector1 = new Vector(FlighterInitInfo.X / 1000.0f,
                 FlighterInitInfo.Y / 1000.0f );
             var vector2 = new Vector(HelicopterInitInfo.X  / 1000.0f, 
@@ -39,8 +39,8 @@ namespace TeachingPlatformApp.Utils
             var heli = new AngleWithLocation();
             heli.X = wswData.HelicopterInitInfo.X;
             heli.Y = wswData.HelicopterInitInfo.Y;
-            var point = WswHelper.MyDealWswAngle(heli, WswAirplane.Flighter);
-            var point2 = WswHelper.MyDealWswAngle(heli, WswAirplane.Helicopter);
+            var point = WswHelper.DealWswAngleToMyMapData(heli, WswModelKind.Flighter);
+            var point2 = WswHelper.DealWswAngleToMyMapData(heli, WswModelKind.Helicopter);
 
             Ioc.Get<ISpeek>().SpeekAsync("你好");
 

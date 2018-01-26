@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 
 namespace TeachingPlatformApp.WswPlatform
 {
+    /// <summary>
+    /// Wsw姿态数据通信Packet
+    /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct AngleWithLocation
     {

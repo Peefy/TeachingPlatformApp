@@ -10,10 +10,21 @@ namespace TeachingPlatformApp.WswPlatform
 {
     public static class WswHelper
     {
+        /// <summary>
+        /// Wsw数据ToString()
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns></returns>
         public static string AngleWithLocationToString(AngleWithLocation angle) => 
             $"x:{angle.X} y:{angle.Y} z:{angle.Z} roll:{angle.Roll} yaw:{angle.Yaw} pitch:{angle.Pitch}";
 
-        public static AngleWithLocation MathRoundAngle(AngleWithLocation angleWithLocation, int digit)
+        /// <summary>
+        /// Wsw数据四舍五入digit位
+        /// </summary>
+        /// <param name="angleWithLocation"></param>
+        /// <param name="digit"></param>
+        /// <returns></returns>
+        public static AngleWithLocation MathRound(AngleWithLocation angleWithLocation, int digit)
         {
             return new AngleWithLocation
             {
@@ -26,12 +37,19 @@ namespace TeachingPlatformApp.WswPlatform
             };
         }
 
-        public static AngleWithLocation MyDealWswAngle(AngleWithLocation angle,WswAirplane wswAirplane, int digit = 2)
+        /// <summary>
+        /// 将Wsw坐标变换为
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="wswAirplane"></param>
+        /// <param name="digit"></param>
+        /// <returns></returns>
+        public static AngleWithLocation DealWswAngleToMyMapData(AngleWithLocation angle,WswModelKind wswAirplane, int digit = 2)
         {
             var config = JsonFileConfig.Instance;
             var wswInitData = config.WswData;
             var angleNew = new AngleWithLocation();
-            if(wswAirplane == WswAirplane.Flighter)
+            if(wswAirplane == WswModelKind.Flighter)
             {
                 var myFlighterInfo = config.MyFlighterInfo;
                 var yawSign = (myFlighterInfo.YawSign == true) ? 1 : -1;
@@ -47,7 +65,7 @@ namespace TeachingPlatformApp.WswPlatform
                 angleNew.Yaw = angle.Yaw * yawSign - myFlighterInfo.InitYaw;
 
             };
-            if(wswAirplane == WswAirplane.Helicopter)
+            if(wswAirplane == WswModelKind.Helicopter)
             {
                 var myHelicopterInfo = config.MyHelicopterInfo;
                 var yawSign = myHelicopterInfo.YawSign == true ? 1 : -1;
@@ -71,7 +89,13 @@ namespace TeachingPlatformApp.WswPlatform
             return angleNew;
         }
 
-        public static string GetAngleWithLocationDeltaXY(string ip, AngleWithLocation angleWithLocation)
+        /// <summary>
+        /// 计算Wsw数据坐标的增量
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="angleWithLocation"></param>
+        /// <returns></returns>
+        public static string GetWswAngleWithLocationDeltaXY(string ip, AngleWithLocation angleWithLocation)
         {
             var deltaX = 0.0;
             var deltaY = 0.0;

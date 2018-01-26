@@ -11,9 +11,9 @@
              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"            
             >
     <Canvas x:Name="labelCanvas" Margin="1">
-        <Canvas x:Name="chartCanvas" Margin="20" 
+    </Canvas>
+    <Canvas x:Name="chartCanvas" Margin="21" 
                 VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch">
-        </Canvas>
     </Canvas>
 </Grid>

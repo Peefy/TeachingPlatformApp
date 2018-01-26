@@ -258,3 +258,7 @@ D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Views\SpeechWindow.g.cs
 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Views\SpeechWindow.baml
 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\Views\SpeechWindow.g.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\Views\SpeechWindow.baml
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Controls\Missile.g.cs
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Controls\Missile.baml
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Views\ConfigWindow.g.cs
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\Views\ConfigWindow.baml

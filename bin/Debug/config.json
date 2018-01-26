@@ -3,7 +3,8 @@
     "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
     "helicopterName": "直升机",
-    "flighterName": "战斗机"
+    "flighterName": "战斗机",
+    "missileName": "导弹"
   },
   "comConfig": {
     "selfPort": 16000,
@@ -49,6 +50,14 @@
       "Yaw": -0.5154596,
       "Pitch": 0.0011189,
       "Roll": 0.00139873
+    },
+    "missileInitInfo": {
+      "X": -2165844.6698,
+      "Y": 4379369.0368,
+      "Z": 4104669.0426,
+      "Yaw": -0.5154596,
+      "Pitch": 0.0011189,
+      "Roll": 0.00139873
     }
   },
   "dataShowConfig": {
@@ -58,7 +67,8 @@
     "drawTrailPointNumUp": 10000,
     "setPointsFontSize": 24.0,
     "setPointsEllipseRadius": 6.0,
-    "locationStringFontSize": 22.0
+    "locationStringFontSize": 22.0,
+    "setPointsLineWidth": 3.0
   },
   "myHelicopterInfo": {
     "initMyPointX": 15.0,
@@ -70,7 +80,7 @@
     "initYaw": -180.0,
     "yawSign": true
   },
-  "myFlighterInfo": {
+  "wswModelInfo": {
     "initMyPointX": 10.0,
     "initMyPointY": 10.0,
     "initMyPointZ": 50.0,
@@ -78,6 +88,16 @@
     "pointScaleFactorY": 0.01,
     "pointScaleFactorZ": 0.01,
     "initYaw": 270.0,
+    "yawSign": false
+  },
+  "myMissileInfo": {
+    "initMyPointX": 50.0,
+    "initMyPointY": 50.0,
+    "initMyPointZ": 50.0,
+    "pointScaleFactorX": -0.01,
+    "pointScaleFactorY": 0.01,
+    "pointScaleFactorZ": 0.01,
+    "initYaw": 180.0,
     "yawSign": false
   },
   "speechConfig": {

@@ -9,33 +9,37 @@ using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.WswPlatform;
 using TeachingPlatformApp.Converters;
 
+using static TeachingPlatformApp.Converters.ConverterPara;
+
 namespace TeachingPlatformApp.Controls
 {
     public class CanvasTrail : Canvas
     {
 
-        private int scale = 10;
-        private int init = 20;
-        private int pointsUpNum = 10000;
+        //private int scale = 10;
+        //private int init = 20;
+        private int pointsUpNum = 5000;
 
         private Color grayColor = Colors.Gray;
 
         private List<Point> points;
 
-        public WswAirplane WswAirplane { get; set; }
+        public WswModelKind WswModelKind { get; set; }
 
         public Point Convert(Point point)
         {
             if (point != null)
             {
-                var newPoint = new Point();
-                newPoint.X = point.X * scale + init;
-                newPoint.Y = point.Y * scale + init;
+                var newPoint = new Point
+                {
+                    X = point.X * XScale + XInit,
+                    Y = point.Y * YScale + YInit
+                };
                 return newPoint;
             }
             else
             {
-                return default(Point);
+                return default;
             }
         }
 

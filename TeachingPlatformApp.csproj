@@ -40,6 +40,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,6 +50,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
@@ -125,9 +127,14 @@
     <Compile Include="Controls\Helicopter.xaml.cs">
       <DependentUpon>Helicopter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Missile.xaml.cs">
+      <DependentUpon>Missile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BytesToStringConverter.cs" />
     <Compile Include="Converters\ConverterPara.cs" />
+    <Compile Include="Converters\MarginLeftTopToPointXY.cs" />
     <Compile Include="Converters\NullToVisiblyConverter.cs" />
+    <Compile Include="Converters\PointXYToMarginLeftTop.cs" />
     <Compile Include="Converters\PositionToMarginConverter.cs" />
     <Compile Include="Converters\SetPointsToPathFigureConverter.cs" />
     <Compile Include="Converters\SetPointToRealMarginPointConverter.cs" />
@@ -135,7 +142,11 @@
     <Compile Include="MemoryShare\CLMemory.cs" />
     <Compile Include="MemoryShare\CLStartCamera.cs" />
     <Compile Include="MemoryShare\ZyShareMem.cs" />
-    <Compile Include="Models\PlaneInfo.cs" />
+    <Compile Include="Models\FlighterModel.cs" />
+    <Compile Include="Models\HelicopterModel.cs" />
+    <Compile Include="Models\MissileModel.cs" />
+    <Compile Include="Models\WswModelInfo.cs" />
+    <Compile Include="Models\WswBaseModel.cs" />
     <Compile Include="Speech\ISpeek.cs" />
     <Compile Include="Speech\TeachingSpeeker.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
@@ -144,6 +155,9 @@
     <Compile Include="Utils\Test.cs" />
     <Compile Include="Utils\VectorPointHelper.cs" />
     <Compile Include="ViewModels\FlightMapWindowViewModel.cs" />
+    <Compile Include="Views\ConfigWindow.xaml.cs">
+      <DependentUpon>ConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FlightMapWindow.xaml.cs">
       <DependentUpon>FlightMapWindow.xaml</DependentUpon>
     </Compile>
@@ -154,10 +168,9 @@
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\DataPacketToWsw.cs" />
     <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />
-    <Compile Include="WswPlatform\RouteState.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
-    <Compile Include="WswPlatform\WswAirplane.cs" />
+    <Compile Include="WswPlatform\WswModelKind.cs" />
     <Compile Include="WswPlatform\WswDataDebuger.cs" />
     <Compile Include="WswPlatform\WswHelper.cs" />
     <Compile Include="ZyPlatform\AngleDef.cs" />
@@ -177,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Helicopter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Missile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIModels\ToTalFlightView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

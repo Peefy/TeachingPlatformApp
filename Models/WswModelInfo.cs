@@ -9,18 +9,21 @@ using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Models
 {
-    public class PlaneInfo
+    public class WswModelInfo
     {
         public AngleWithLocation Flighter { get; set; }
 
         public AngleWithLocation Helicopter { get; set; }
 
+        public AngleWithLocation Missile { get; set; }
+
         public bool IsConnect { get; set; }
 
-        public PlaneInfo()
+        public WswModelInfo()
         {
             var flighterInfo = JsonFileConfig.Instance.MyFlighterInfo;
             var helicopterInfo = JsonFileConfig.Instance.MyHelicopterInfo;
+            var missileInfo = JsonFileConfig.Instance.MyMissileInfo;
             Flighter = new AngleWithLocation()
             {
                 X = flighterInfo.InitMyPointX,
@@ -34,6 +37,13 @@ namespace TeachingPlatformApp.Models
                 Y = helicopterInfo.InitMyPointY,
                 Z = helicopterInfo.InitMyPointZ,
                 Yaw = helicopterInfo.InitYaw,
+            };
+            Missile = new AngleWithLocation()
+            {
+                X = missileInfo.InitMyPointX,
+                Y = missileInfo.InitMyPointY,
+                Z = missileInfo.InitMyPointZ,
+                Yaw = missileInfo.InitYaw
             };
         }
 

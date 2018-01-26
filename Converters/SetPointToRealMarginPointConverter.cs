@@ -10,17 +10,16 @@ namespace TeachingPlatformApp.Converters
     public class SetPointToRealMarginPointConverter : IValueConverter
     {
 
-        //private static int scale = 10;
-        //private static int init = 20;
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var point = (Point)value;
             if (point != null)
             {
-                var newPoint = new Point();
-                newPoint.X = point.X * XScale + XInit;
-                newPoint.Y = point.Y * YScale + YInit;
+                var newPoint = new Point
+                {
+                    X = point.X * XScale + XInit,
+                    Y = point.Y * YScale + YInit
+                };
                 return newPoint;
             }
             else
@@ -33,5 +32,12 @@ namespace TeachingPlatformApp.Converters
         {
             return null;
         }
+
+        public Point ConvertBackToPoint(Thickness margin)
+        {
+            return new Point((margin.Left - XInit) / XScale, (margin.Top - YInit) / YScale);
+        }
+
     }
+
 }

@@ -2,6 +2,9 @@
 
 namespace TeachingPlatformApp.WswPlatform
 {
+    /// <summary>
+    /// 飞行实验通信Packet
+    /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct TeachingCommand
     {

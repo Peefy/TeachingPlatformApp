@@ -2,6 +2,9 @@
 
 namespace TeachingPlatformApp.WswPlatform
 {
+    /// <summary>
+    /// 飞行实验通信Packet构造器
+    /// </summary>
     public class TeachingCommandBuilder
     {
 

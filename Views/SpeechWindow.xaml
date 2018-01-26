@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeachingPlatformApp.Views"
         mc:Ignorable="d"
-        Title="SpeechWindow" Height="350" Width="525"
+        Title="语音测试" Height="350" Width="525"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Grid>
         <ComboBox x:Name="cmbVoices"  HorizontalAlignment="Left" Margin="86,23,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="cmbVoices_SelectionChanged"/>

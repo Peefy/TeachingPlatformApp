@@ -3,6 +3,9 @@ using TeachingPlatformApp.Utils;
 
 namespace TeachingPlatformApp.WswPlatform
 {
+    /// <summary>
+    /// 航路点设置通信Packet构造器
+    /// </summary>
     public class DataPacketToWswBuilder
     {
 

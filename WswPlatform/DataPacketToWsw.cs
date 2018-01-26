@@ -2,6 +2,9 @@
 
 namespace TeachingPlatformApp.WswPlatform
 {
+    /// <summary>
+    /// 航路点设置通信Packet
+    /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct DataPacketToWsw
     {

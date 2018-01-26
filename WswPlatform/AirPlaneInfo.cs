@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace TeachingPlatformApp.WswPlatform
 {
-    public class AirPlaneInfo
+    public class WswModelInfo
     {
         [JsonProperty("initMyPointX")]
         public float InitMyPointX { get; set; }

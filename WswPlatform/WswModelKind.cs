@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace TeachingPlatformApp.WswPlatform
 {
-    public enum WswAirplane
+    /// <summary>
+    /// Wsw模型类型
+    /// </summary>
+    public enum WswModelKind
     {
         Helicopter,
-        Flighter
+        Flighter,
+        Missile
     }
 }

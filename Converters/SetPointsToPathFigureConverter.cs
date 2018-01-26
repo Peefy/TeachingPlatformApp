@@ -15,8 +15,6 @@ namespace TeachingPlatformApp.Converters
 {
     public class SetPointsToPathFigureConverter : IValueConverter
     {
-        //private static int scale = 10;
-        //private static int init = 20;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

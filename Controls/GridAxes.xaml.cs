@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -41,42 +42,71 @@ namespace TeachingPlatformApp.Controls
 
         public double DrawLeft { get; set; }
 
+        //public static DependencyProperty
+
+        public double DrawDeltaTop { get; set; } = 0;
+
+        public double DrawDeltaLeft { get; set; } = 0;
+
         public GridAxes()
         {
             InitializeComponent();
             DrawParaInit();
-            RenewBuildAxes();
-            RenewAxesLabel();
+            AddBuildAxes();
         }
 
         private void DrawParaInit()
         {
             drawPara = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
-            columnNum = (int)(drawPara.AxesHeight / YAxesInternal) + 1;
-            rowNum = (int)(drawPara.AxesWidth / XAxesInternal) + 1;
+            //columnNum = (int)(drawPara.AxesHeight / YAxesInternal) + 1;
+            //rowNum = (int)(drawPara.AxesWidth / XAxesInternal) + 1;
+            columnNum = 200;
+            rowNum = 200;
             DrawLeft = drawPara.DrawLeft;
             DrawTop = drawPara.DrawTop;
             XAxesInternal = drawPara.XAxesInternal;
             YAxesInternal = drawPara.YAxesInternal;
         }
 
-        private void RenewAxesLabel()
+        public void RenewBuildAxes()
         {
-                      
+            for(var i = -rowNum;i< rowNum ;++i)
+            {
+                var label = labelCanvas.Children[i + rowNum] as TextBlock;
+                label.Margin = new Thickness(drawPara.DrawLabelLeft + i * XAxesInternal + DrawDeltaLeft - 5,
+                        drawPara.DrawLabelTop + 5, 0, 0);
+                var path = chartCanvas.Children[i + rowNum] as Path;
+                var lineGeometry = path.Data as LineGeometry;
+                lineGeometry.StartPoint = new Point(i * XAxesInternal + DrawDeltaLeft, 0 + DrawTop);
+                lineGeometry.EndPoint = new Point(i * XAxesInternal + DrawDeltaLeft,
+                            drawPara.AxesHeight + drawPara.DrawDown);
+            }
+            for (var i = -columnNum; i < columnNum; ++i)
+            {
+                var label = labelCanvas.Children[i + rowNum * 2 + columnNum] as TextBlock;
+                label.Margin = new Thickness(drawPara.DrawLabelLeft + 5,
+                        drawPara.DrawLabelTop + i * YAxesInternal + DrawDeltaTop - 5, 0, 0);
+                var path = chartCanvas.Children[i + rowNum * 2 + columnNum] as Path;
+                var lineGeometry = path.Data as LineGeometry;
+                lineGeometry.StartPoint = new Point(0 + DrawLeft, i * YAxesInternal + DrawDeltaTop);
+                lineGeometry.EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight,
+                            i * YAxesInternal + DrawDeltaTop);
+            }
         }
 
-        private void RenewBuildAxes()
+        private void AddBuildAxes()
         {
-
-            for (var i = 0; i < rowNum; ++i)
+            labelCanvas.Children.Clear();
+            chartCanvas.Children.Clear();
+            for (var i = -rowNum; i < rowNum; ++i)
             {
                 labelCanvas.Children.Add(new TextBlock()
                 {
                     Foreground = new SolidColorBrush(Colors.Black),
                     FontSize = drawPara.LabelFontSize,
                     Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
-                    Margin = new Thickness(drawPara.DrawLabelLeft + i * XAxesInternal,
-                        drawPara.DrawLabelTop, 0, 0)
+                    Margin = new Thickness(drawPara.DrawLabelLeft + i * XAxesInternal + DrawDeltaLeft - 5,
+                        drawPara.DrawLabelTop + 5, 0, 0)
                 });
                 var path = new Path()
                 {
@@ -84,22 +114,22 @@ namespace TeachingPlatformApp.Controls
                     StrokeThickness = LineStrokeThickness,
                     Data = new LineGeometry()
                     {
-                        StartPoint = new Point(i * XAxesInternal, 0 + DrawTop),
-                        EndPoint = new Point(i * XAxesInternal, 
+                        StartPoint = new Point(i * XAxesInternal + DrawDeltaLeft, 0 + DrawTop),
+                        EndPoint = new Point(i * XAxesInternal + DrawDeltaLeft, 
                             drawPara.AxesHeight + drawPara.DrawDown)
                     }
                 };
                 chartCanvas.Children.Add(path);
             }
-            for (var i = 0; i < columnNum; ++i)
+            for (var i = -columnNum; i < columnNum; ++i)
             {
                 labelCanvas.Children.Add(new TextBlock()
                 {
                     Foreground = new SolidColorBrush(Colors.Black),
                     FontSize = drawPara.LabelFontSize,
                     Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
-                    Margin = new Thickness(drawPara.DrawLabelLeft, 
-                        drawPara.DrawLabelTop + i * YAxesInternal, 0, 0)
+                    Margin = new Thickness(drawPara.DrawLabelLeft + 5, 
+                        drawPara.DrawLabelTop + i * YAxesInternal + DrawDeltaTop - 5 , 0, 0)
                 });
                 var path = new Path()
                 {
@@ -107,14 +137,15 @@ namespace TeachingPlatformApp.Controls
                     StrokeThickness = LineStrokeThickness,
                     Data = new LineGeometry()
                     {
-                        StartPoint = new Point(0 + DrawLeft, i * YAxesInternal),
-                        EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight, 
-                            i * YAxesInternal)
+                        StartPoint = new Point(0 + DrawLeft, i * YAxesInternal + DrawDeltaTop),
+                        EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight , 
+                            i * YAxesInternal + DrawDeltaTop)
                     }
                 };
                 chartCanvas.Children.Add(path);
             }
         }
+
     }
 
     public class GridAxesDrawPara

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\obj\Debug\
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\obj\Debug\
 TeachingPlatformApp
 none
 false
 DEBUG;TRACE
-F:\_VSpro\CSharp\WPF\TeachingPlatformAppV2\App.xaml
-131894577175
+D:\_VSPros\C#\WPF\TeachingPlatformAppV2\App.xaml
+151924309792
 
-841262665966
-79-1358205957
-Controls\Flighter.xaml;Controls\GridAxes.xaml;Controls\Helicopter.xaml;UIModels\AirlineFlightView.xaml;UIModels\DiveJumpView.xaml;UIModels\HoverFligntView.xaml;UIModels\OnlyInstrumencs.xaml;UIModels\SomersaultView.xaml;UIModels\TakeOffLandingView.xaml;UIModels\ToTalFlightView.xaml;Views\FlightMapWindow.xaml;Views\MainWindow.xaml;Views\SpeechWindow.xaml;
+911593981918
+79703921730
+Controls\Flighter.xaml;Controls\GridAxes.xaml;Controls\Helicopter.xaml;Controls\Missile.xaml;UIModels\AirlineFlightView.xaml;UIModels\DiveJumpView.xaml;UIModels\HoverFligntView.xaml;UIModels\OnlyInstrumencs.xaml;UIModels\SomersaultView.xaml;UIModels\TakeOffLandingView.xaml;UIModels\ToTalFlightView.xaml;Views\ConfigWindow.xaml;Views\FlightMapWindow.xaml;Views\MainWindow.xaml;Views\SpeechWindow.xaml;
 
 False
 
