@@ -5,9 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeachingPlatformApp.Views"
         mc:Ignorable="d"
-        Title="配置" Height="350" Width="525"
+        Title="{Binding Title}" Height="350" Width="525"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0">
+            <ListBoxItem Content="{Binding ComConfigName}"/>
+            <ListBoxItem Content="123"/>
+            <ListBoxItem Content="123"/>
+            <ListBoxItem Content="123"/>
+            <ListBoxItem Content="123"/>
+            <ListBoxItem Content="123"/>
+        </ListBox>
     </Grid>
 </Window>

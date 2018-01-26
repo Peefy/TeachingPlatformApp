@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using TeachingPlatformApp.ViewModels;
+
 namespace TeachingPlatformApp.Views
 {
     /// <summary>
@@ -22,6 +24,7 @@ namespace TeachingPlatformApp.Views
         public ConfigWindow()
         {
             InitializeComponent();
+            this.DataContext = new ConfigWindowViewModel();
         }
     }
 }

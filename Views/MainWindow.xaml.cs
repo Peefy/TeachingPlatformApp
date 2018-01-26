@@ -55,15 +55,18 @@ namespace TeachingPlatformApp.Views
                 {
                     var index = consoleTextBox.GetLastVisibleLineIndex();
                     var text = consoleTextBox.GetLineText(index);
-                    if(text == "Speech")
+                    if(text.Equals("Speech", StringComparison.CurrentCultureIgnoreCase))
                     {
                         new SpeechWindow().Show();
                     }
+                    else if(text.Equals("Config", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        new ConfigWindow().Show();
+                    }
                 }
-                catch (Exception)
+                catch 
                 {
 
-                    throw;
                 }
                 
             }

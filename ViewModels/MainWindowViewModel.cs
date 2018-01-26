@@ -279,12 +279,10 @@ namespace TeachingPlatformApp.ViewModels
                     StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
                     await Task.Delay(200);
-                    if (false)
-                        StatusText += $"{DateTime.Now}:{item.Name}实验结束，不符合要求\r\n";
-                    else if (item.IsStop == true)
+                    if (item.IsStop == true)
                         StatusText += $"{DateTime.Now}:{item.Name}实验结束\r\n";
                     else
-                        StatusText += $"{DateTime.Now}:{item.Name}实验结束，时间超时\r\n";
+                        StatusText += $"{DateTime.Now}:{item.Name}实验失败，时间超时\r\n";
                     await item.EndAsync();
                 }
                 catch(Exception ex)

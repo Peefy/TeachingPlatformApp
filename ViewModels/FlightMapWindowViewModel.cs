@@ -177,9 +177,9 @@ namespace TeachingPlatformApp.ViewModels
                         var j = StructHelper.Deg2Rad(i);
                         Flighter.MyMapPosition = new Point(point1.X + 10 * Math.Sin(j), point1.Y + 10 * Math.Cos(j));
                         Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
-                        Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{NumberUtil.BoolToString(Flighter.IsOutofRoute)}" +
+                        Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{NumberUtil.BoolToString(Flighter.IsNotOutofRoute)}" +
                              $"  {Flighter.MyMapInfoToString()};";
-                        Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{NumberUtil.BoolToString(Helicopter.IsOutofRoute)}" +
+                        Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{NumberUtil.BoolToString(Helicopter.IsNotOutofRoute)}" +
                               $"  {Helicopter.MyMapInfoToString()};";
                         
                         Thread.Sleep(_mapRefreshInterval);
@@ -207,9 +207,9 @@ namespace TeachingPlatformApp.ViewModels
             if(_translateData.PlaneInfo.IsConnect == true)
             {
                 var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
-                Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{NumberUtil.BoolToString(Flighter.IsOutofRoute)}" +
+                Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{NumberUtil.BoolToString(Flighter.IsNotOutofRoute)}" +
                              $"  {Flighter.WswModelInfoToString()};";
-                Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{NumberUtil.BoolToString(Helicopter.IsOutofRoute)}" +
+                Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{NumberUtil.BoolToString(Helicopter.IsNotOutofRoute)}" +
                       $"  {Helicopter.WswModelInfoToString()};";
                 Helicopter.Angle = (float)planeInfo.Helicopter.Yaw;
                 Flighter.Angle = (float)planeInfo.Flighter.Yaw;

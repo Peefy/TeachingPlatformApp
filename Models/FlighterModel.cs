@@ -16,7 +16,7 @@ namespace TeachingPlatformApp.Models
         public FlighterModel()
         {           
             this.Angle = Config.MyFlighterInfo.InitYaw;
-            this.IsOutofRoute = false;
+            this.IsNotOutofRoute = false;
             this.MyMapPosition = new Point()
             {
                 X = Config.MyFlighterInfo.InitMyPointX,

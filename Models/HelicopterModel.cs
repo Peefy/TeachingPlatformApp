@@ -8,7 +8,7 @@ namespace TeachingPlatformApp.Models
         public HelicopterModel()
         {
             this.Angle = Config.MyHelicopterInfo.InitYaw;
-            this.IsOutofRoute = false;
+            this.IsNotOutofRoute = false;
             this.MyMapPosition = new Point()
             {
                 X = Config.MyHelicopterInfo.InitMyPointX,

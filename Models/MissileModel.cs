@@ -11,7 +11,7 @@ namespace TeachingPlatformApp.Models
         public MissileModel()
         {
             this.Angle = Config.MyMissileInfo.InitYaw;
-            this.IsOutofRoute = false;
+            this.IsNotOutofRoute = false;
             this.MyMapPosition = new Point()
             {
                 X = Config.MyMissileInfo.InitMyPointX,

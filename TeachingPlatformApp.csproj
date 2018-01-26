@@ -154,6 +154,7 @@
     <Compile Include="Utils\NumberUtil.cs" />
     <Compile Include="Utils\Test.cs" />
     <Compile Include="Utils\VectorPointHelper.cs" />
+    <Compile Include="ViewModels\ConfigWindowViewModel.cs" />
     <Compile Include="ViewModels\FlightMapWindowViewModel.cs" />
     <Compile Include="Views\ConfigWindow.xaml.cs">
       <DependentUpon>ConfigWindow.xaml</DependentUpon>

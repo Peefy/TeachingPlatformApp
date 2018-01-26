@@ -65,11 +65,11 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _trail, value);
         }
 
-        private bool _isOutofRoute = true;
-        public bool IsOutofRoute
+        private bool _isNotOutofRoute = true;
+        public bool IsNotOutofRoute
         {
-            get => _isOutofRoute;
-            set => SetProperty(ref _isOutofRoute, value);
+            get => _isNotOutofRoute;
+            set => SetProperty(ref _isNotOutofRoute, value);
         }
 
         private AngleWithLocation _wswAngleWithLocation;
@@ -160,14 +160,19 @@ namespace TeachingPlatformApp.Models
             if (setPoints == null)
                 return;
             //false代表偏离航线，true代表没有偏离航线.
-            IsOutofRoute = JudgeIsOutOfRoute(setPoints);
-            if (IsOutofRoute == false)
+            IsNotOutofRoute = JudgeIsOutOfRoute(setPoints);
+            if (IsNotOutofRoute == false)
                 this.OutOfRouteCount++;
-
+            else
+                _speeker?.StopSpeek();
             if (OutOfRouteCount >= _outOfRouteSpeechUpCount)
             {
                 OutOfRouteCount = 0;
                 _speeker?.SpeekAsync(Name + Config.SpeechConfig.SpeechTextOutofRoute);
+            }
+            else
+            {
+                _speeker?.StopSpeek();
             }
         }
 
@@ -175,12 +180,12 @@ namespace TeachingPlatformApp.Models
         {
             if(isConnect == false)
             {
-                LocationString = $"{Name}是否偏离航线：{NumberUtil.BoolToString(IsOutofRoute)}" +
+                LocationString = $"{Name}是否偏离航线：{NumberUtil.BoolToString(IsNotOutofRoute)}" +
                               $"  {MyMapInfoToString()};";
             }
             else
             {
-                LocationString = $"{Name}是否偏离航线：{NumberUtil.BoolToString(IsOutofRoute)}" +
+                LocationString = $"{Name}是否偏离航线：{NumberUtil.BoolToString(IsNotOutofRoute)}" +
                       $"  {WswModelInfoToString()};";
             }
         }
