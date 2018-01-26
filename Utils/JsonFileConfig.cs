@@ -337,10 +337,10 @@ namespace TeachingPlatformApp.Utils
         public double OutOfRouteDistance { get; set; } = 10.0;
 
         [JsonProperty("outOfRouteTestIntervalMs")]
-        public int OutOfRouteTestIntervalMs { get; set; } = 1000;
+        public int OutOfRouteTestIntervalMs { get; set; } = 500;
 
         [JsonProperty("outOfRouteSpeechUpCount")]
-        public int OutOfRouteSpeechUpCount { get; set; } = 5;
+        public int OutOfRouteSpeechUpCount { get; set; } = 2;
      
     }
 
