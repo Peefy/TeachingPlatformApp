@@ -334,10 +334,10 @@ namespace TeachingPlatformApp.Utils
         public double OutOfRouteAngle { get; set; } = 20.0;
 
         [JsonProperty("outOfRouteDistance")]
-        public double OutOfRouteDistance { get; set; } = 10.0;
+        public double OutOfRouteDistance { get; set; } = 5.0;
 
         [JsonProperty("outOfRouteTestIntervalMs")]
-        public int OutOfRouteTestIntervalMs { get; set; } = 500;
+        public int OutOfRouteTestIntervalMs { get; set; } = 300;
 
         [JsonProperty("outOfRouteSpeechUpCount")]
         public int OutOfRouteSpeechUpCount { get; set; } = 2;
