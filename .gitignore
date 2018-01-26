@@ -1,2 +1,7 @@
 
 .vs/TeachingPlatformApp/v15/.suo
+*.ide
+.vs/TeachingPlatformApp/v15/Server/sqlite3/storage.ide-shm
+.vs/TeachingPlatformApp/v15/Server/sqlite3/storage.ide-wal
+
+.vs/
