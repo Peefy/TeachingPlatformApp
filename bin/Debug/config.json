@@ -28,7 +28,7 @@
     "drawTop": -30.0,
     "drawDown": 30.0,
     "drawLeft": -30.0,
-    "drawRight": 30.0,
+    "drawRight": 60.0,
     "drawLabelTop": 5.0,
     "drawLabelLeft": 12.0,
     "labelFontSize": 24,

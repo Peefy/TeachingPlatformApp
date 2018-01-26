@@ -17,6 +17,7 @@ namespace TeachingPlatformApp.Controls
     {
         private GridAxesDrawPara drawPara;
 
+        private double marginWild = 20;
         private int columnNum;
         private int rowNum;
 
@@ -52,7 +53,7 @@ namespace TeachingPlatformApp.Controls
         {
             InitializeComponent();
             DrawParaInit();
-            AddBuildAxes();
+            RenewBuildAxes(drawPara.AxesWidth, drawPara.AxesHeight);
         }
 
         private void DrawParaInit()
@@ -66,81 +67,77 @@ namespace TeachingPlatformApp.Controls
             YAxesInternal = drawPara.YAxesInternal;
         }
 
-        public void RenewBuildAxes()
+        private bool JudgeLeftTopInRange(double left, double top, double width, double height)
         {
-            for(var i = -rowNum;i< rowNum ;++i)
-            {
-                var label = labelCanvas.Children[i + rowNum] as TextBlock;
-                label.Margin = new Thickness(drawPara.DrawLabelLeft + i * XAxesInternal + DrawDeltaLeft - 5,
-                        drawPara.DrawLabelTop + 5, 0, 0);
-                var path = chartCanvas.Children[i + rowNum] as Path;
-                var lineGeometry = path.Data as LineGeometry;
-                lineGeometry.StartPoint = new Point(i * XAxesInternal + DrawDeltaLeft, 0 + DrawTop);
-                lineGeometry.EndPoint = new Point(i * XAxesInternal + DrawDeltaLeft,
-                            drawPara.AxesHeight + drawPara.DrawDown);
-            }
-            for (var i = -columnNum; i < columnNum; ++i)
-            {
-                var label = labelCanvas.Children[i + rowNum * 2 + columnNum] as TextBlock;
-                label.Margin = new Thickness(drawPara.DrawLabelLeft + 5,
-                        drawPara.DrawLabelTop + i * YAxesInternal + DrawDeltaTop - 5, 0, 0);
-                var path = chartCanvas.Children[i + rowNum * 2 + columnNum] as Path;
-                var lineGeometry = path.Data as LineGeometry;
-                lineGeometry.StartPoint = new Point(0 + DrawLeft, i * YAxesInternal + DrawDeltaTop);
-                lineGeometry.EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight,
-                            i * YAxesInternal + DrawDeltaTop);
-            }
+            if (left >= -marginWild && left <= width + marginWild && top >= -marginWild && top <= height + marginWild)
+                return true;
+            return false;
         }
 
-        private void AddBuildAxes()
+        public void RenewBuildAxes(double width, double height)
         {
             labelCanvas.Children.Clear();
             chartCanvas.Children.Clear();
             for (var i = -rowNum; i < rowNum; ++i)
             {
-                labelCanvas.Children.Add(new TextBlock()
+                var left = drawPara.DrawLabelLeft + i * XAxesInternal + DrawDeltaLeft - 5;
+                var top = drawPara.DrawLabelTop + 5;
+                if (JudgeLeftTopInRange(left, top, width, height) == true)
                 {
-                    Foreground = new SolidColorBrush(Colors.Black),
-                    FontSize = drawPara.LabelFontSize,
-                    Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
-                    Margin = new Thickness(drawPara.DrawLabelLeft + i * XAxesInternal + DrawDeltaLeft - 5,
-                        drawPara.DrawLabelTop + 5, 0, 0)
-                });
-                var path = new Path()
-                {
-                    Stroke = new SolidColorBrush(redColor),
-                    StrokeThickness = LineStrokeThickness,
-                    Data = new LineGeometry()
+                    labelCanvas.Children.Add(new TextBlock()
                     {
-                        StartPoint = new Point(i * XAxesInternal + DrawDeltaLeft, 0 + DrawTop),
-                        EndPoint = new Point(i * XAxesInternal + DrawDeltaLeft, 
-                            drawPara.AxesHeight + drawPara.DrawDown)
-                    }
-                };
-                chartCanvas.Children.Add(path);
+                        Foreground = new SolidColorBrush(Colors.Black),
+                        FontSize = drawPara.LabelFontSize,
+                        Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
+                        Margin = new Thickness(left, top + 5, 0, 0)
+                    });
+                }
+                left = i * XAxesInternal + DrawDeltaLeft;
+                if (JudgeLeftTopInRange(left, top, width, height) == true)
+                {
+                    var path = new Path()
+                    {
+                        Stroke = new SolidColorBrush(redColor),
+                        StrokeThickness = LineStrokeThickness,
+                        Data = new LineGeometry()
+                        {
+                            StartPoint = new Point(left, 0 + DrawTop),
+                            EndPoint = new Point(left, drawPara.AxesHeight 
+                                + drawPara.DrawDown)
+                        }
+                    };
+                    chartCanvas.Children.Add(path);
+                }
             }
             for (var i = -columnNum; i < columnNum; ++i)
             {
-                labelCanvas.Children.Add(new TextBlock()
+                var left = drawPara.DrawLabelLeft + 5;
+                var top = drawPara.DrawLabelTop + i * YAxesInternal + DrawDeltaTop - 5;
+                if (JudgeLeftTopInRange(left, top, width, height) == true)
                 {
-                    Foreground = new SolidColorBrush(Colors.Black),
-                    FontSize = drawPara.LabelFontSize,
-                    Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
-                    Margin = new Thickness(drawPara.DrawLabelLeft + 5, 
-                        drawPara.DrawLabelTop + i * YAxesInternal + DrawDeltaTop - 5 , 0, 0)
-                });
-                var path = new Path()
-                {
-                    Stroke = new SolidColorBrush(redColor),
-                    StrokeThickness = LineStrokeThickness,
-                    Data = new LineGeometry()
+                    labelCanvas.Children.Add(new TextBlock()
                     {
-                        StartPoint = new Point(0 + DrawLeft, i * YAxesInternal + DrawDeltaTop),
-                        EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight , 
-                            i * YAxesInternal + DrawDeltaTop)
-                    }
-                };
-                chartCanvas.Children.Add(path);
+                        Foreground = new SolidColorBrush(Colors.Black),
+                        FontSize = drawPara.LabelFontSize,
+                        Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
+                        Margin = new Thickness(left, top, 0, 0)
+                    });
+                }
+                top = i * YAxesInternal + DrawDeltaTop;
+                if (JudgeLeftTopInRange(left, top, width, height) == true)
+                {
+                    var path = new Path()
+                    {
+                        Stroke = new SolidColorBrush(redColor),
+                        StrokeThickness = LineStrokeThickness,
+                        Data = new LineGeometry()
+                        {
+                            StartPoint = new Point(0 + DrawLeft, top),
+                            EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight, top)
+                        }
+                    };
+                    chartCanvas.Children.Add(path);
+                }
             }
         }
 
@@ -173,7 +170,7 @@ namespace TeachingPlatformApp.Controls
         public double DrawLeft { get; set; } = -30;
 
         [JsonProperty("drawRight")]
-        public double DrawRight { get; set; } = 30;
+        public double DrawRight { get; set; } = 60;
 
         [JsonProperty("drawLabelTop")]
         public double DrawLabelTop { get; set; } = 5;

@@ -25,5 +25,13 @@ namespace TeachingPlatformApp.Converters
             YInit = Math.Abs(config.DrawTop) - 10;
         }
 
+        public static void Init(double init, double scale)
+        {
+            XScale = scale;
+            YScale = scale;
+            XInit = init - 10;
+            YInit = init - 10;
+        }
+
     }
 }

@@ -8,14 +8,13 @@
     xmlns:prism="http://prismlibrary.com/"
     x:Name="Window"
     Title="{Binding Title}"
-    Width="800"
-    Height="640"
     BorderThickness="1"
     GlowBrush="Black"
+    SizeChanged="Window_SizeChanged"
+    StateChanged="Window_StateChanged"
     Keyboard.KeyDown="Window_KeyDown"
     Keyboard.KeyUp="Window_KeyUp"
     Mouse.MouseWheel="Window_MouseWheel"
-    ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowTransitionsEnabled="False">
     <!--  prism:ViewModelLocator.AutoWireViewModel="True"  -->
@@ -30,7 +29,7 @@
             <mycon:MarginLeftTopToPointXY x:Key="MarginLeftTopToPointXY"/>
         </ResourceDictionary>
     </Controls:MetroWindow.Resources>
-    <Grid x:Name="fatherGrid">
+    <Grid x:Name="fatherGrid" >
         <Grid.RenderTransform>
             <ScaleTransform/>
         </Grid.RenderTransform>
@@ -43,8 +42,8 @@
         <myctrls:GridAxes
             x:Name="gridAxes"
             Grid.Row="0"
-            Width="{Binding ElementName=Window, Path=Width}"
             Height="{Binding ElementName=Window, Path=Height}"
+            Width="{Binding ElementName=Window, Path=Width}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="Beige">
@@ -277,6 +276,7 @@
                    FontSize="{Binding LocationStringFontSize}"
                    VerticalAlignment="Center"></Label>
             <myctrls:NumuricTextBlock VerticalAlignment="Center"
+                                      x:Name="xTextBox"
                                       FontSize="{Binding LocationStringFontSize}"
                                       MinWidth="100"
                                       Text="{Binding DrawMargin.Left, Converter={StaticResource MarginLeftTopToPointXY}}">
@@ -286,6 +286,7 @@
                    FontSize="{Binding LocationStringFontSize}"
                    VerticalAlignment="Center"></Label>
             <myctrls:NumuricTextBlock VerticalAlignment="Center"
+                                      x:Name="yTextBox"
                                       FontSize="{Binding LocationStringFontSize}"
                                       MinWidth="100"
                                       Text="{Binding DrawMargin.Top, 

@@ -148,6 +148,14 @@ namespace TeachingPlatformApp.Views
                 canvasTrailHelicopter.ClearPoint();
                 canvasTrailMissile.ClearPoint();
             }
+            if (e.Key == Key.Escape)
+            {
+                this.Close();
+            }
+            if(e.Key == Key.Enter)
+            {
+                TextChanged(null, null);
+            }
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
                 enableScale = true;
             if (fatherGrid.RenderTransform is ScaleTransform scale)
@@ -194,7 +202,7 @@ namespace TeachingPlatformApp.Views
                 movePoint = e.GetPosition(null);
                 tmp.DrawDeltaLeft += (movePoint.X - pressPoint.X);
                 tmp.DrawDeltaTop += (movePoint.Y - pressPoint.Y);
-                tmp.RenewBuildAxes();
+                tmp.RenewBuildAxes(this.Width, this.Height);
                 var dx = (movePoint.X - pressPoint.X) * 1 + viewModel.DrawMargin.Left;
                 var dy = (movePoint.Y - pressPoint.Y) * 1 + viewModel.DrawMargin.Top;
                 viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
@@ -204,19 +212,29 @@ namespace TeachingPlatformApp.Views
         }
         #endregion
 
-        private void NumuricTextBlock_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextChanged(object sender, TextChangedEventArgs e)
         {
-            var textBlock = sender as NumuricTextBlock;
-            var x = textBlock.Text;
-            var left = (double)(new PointXYToMarginLeftTop().Convert(x, null, null, null));
+            var converter = new PointXYToMarginLeftTop();
+            var x = xTextBox.Text;
+            var y = yTextBox.Text;
+            var left = converter.Convert(x);
+            var top = converter.Convert(y);
             gridAxes.DrawDeltaLeft = left;
-            gridAxes.RenewBuildAxes();
-            var dx = left;
+            gridAxes.DrawDeltaTop = top;
+            gridAxes.RenewBuildAxes(this.Width, this.Height);
+            var dx = viewModel.DrawMargin.Left;
             var dy = viewModel.DrawMargin.Top;
             viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
         }
 
-        
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            gridAxes.RenewBuildAxes(this.Width, this.Height);
+        }
 
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            gridAxes.RenewBuildAxes(this.Width, this.Height);
+        }
     }
 }

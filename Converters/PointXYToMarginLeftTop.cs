@@ -19,6 +19,12 @@ namespace TeachingPlatformApp.Converters
             var data = double.Parse(value.ToString());
             return (data - XInit) / XScale;
         }
-    }
 
+        public double Convert(string value)
+        {
+            var data = double.Parse(value.ToString());
+            return data * XScale + XInit;
+        }
+
+    }
 }
