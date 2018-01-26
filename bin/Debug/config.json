@@ -20,8 +20,10 @@
     "udpClientExtraPort": 10000
   },
   "mapGridAxesDrawPara": {
-    "axesHeight": 860.0,
-    "axesWidth": 1360.0,
+    "axesHeight": 660.0,
+    "axesWidth": 1060.0,
+    "maxHeight": 900.0,
+    "maxWidth": 1900.0,
     "columnNumber": 200,
     "rowNumber": 200,
     "enableDragMove": true,
@@ -107,7 +109,7 @@
     "volume": 70.0,
     "rate": 0.0,
     "isUsingDotnetSpeech": true,
-    "speechEnable": false,
+    "speechEnable": true,
     "speechTextOutofRouteLeft": "偏离航线",
     "speechTextReserved1": "SpeechTextReserved1",
     "speechTextReserved2": "SpeechTextReserved2",

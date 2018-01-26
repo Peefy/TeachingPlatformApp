@@ -43,8 +43,6 @@ namespace TeachingPlatformApp.Controls
 
         public double DrawLeft { get; set; }
 
-        //public static DependencyProperty
-
         public double DrawDeltaTop { get; set; } = 0;
 
         public double DrawDeltaLeft { get; set; } = 0;
@@ -53,7 +51,7 @@ namespace TeachingPlatformApp.Controls
         {
             InitializeComponent();
             DrawParaInit();
-            RenewBuildAxes(drawPara.AxesWidth, drawPara.AxesHeight);
+            RenewBuildAxes(drawPara.AxesWidth, drawPara.AxesHeight, true);
         }
 
         private void DrawParaInit()
@@ -74,8 +72,13 @@ namespace TeachingPlatformApp.Controls
             return false;
         }
 
-        public void RenewBuildAxes(double width, double height)
+        public void RenewBuildAxes(double width, double height, bool isUseMax = false)
         {
+            if(isUseMax == true)
+            {
+                width = drawPara.MaxWidth;
+                height = drawPara.MaxHeight;
+            }
             labelCanvas.Children.Clear();
             chartCanvas.Children.Clear();
             for (var i = -rowNum; i < rowNum; ++i)
@@ -102,7 +105,7 @@ namespace TeachingPlatformApp.Controls
                         Data = new LineGeometry()
                         {
                             StartPoint = new Point(left, 0 + DrawTop),
-                            EndPoint = new Point(left, drawPara.AxesHeight 
+                            EndPoint = new Point(left, height
                                 + drawPara.DrawDown)
                         }
                     };
@@ -133,7 +136,7 @@ namespace TeachingPlatformApp.Controls
                         Data = new LineGeometry()
                         {
                             StartPoint = new Point(0 + DrawLeft, top),
-                            EndPoint = new Point(drawPara.AxesWidth + drawPara.DrawRight, top)
+                            EndPoint = new Point(width + drawPara.DrawRight, top)
                         }
                     };
                     chartCanvas.Children.Add(path);
@@ -150,6 +153,12 @@ namespace TeachingPlatformApp.Controls
 
         [JsonProperty("axesWidth")]
         public double AxesWidth { get; set; } = 1360;
+
+        [JsonProperty("maxHeight")]
+        public double MaxHeight { get; set; } = 1000;
+
+        [JsonProperty("maxWidth")]
+        public double MaxWidth { get; set; } = 2000;
 
         [JsonProperty("columnNumber")]
         public int ColumnNumber { get; set; } = 200;

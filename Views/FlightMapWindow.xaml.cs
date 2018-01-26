@@ -202,7 +202,7 @@ namespace TeachingPlatformApp.Views
                 movePoint = e.GetPosition(null);
                 tmp.DrawDeltaLeft += (movePoint.X - pressPoint.X);
                 tmp.DrawDeltaTop += (movePoint.Y - pressPoint.Y);
-                tmp.RenewBuildAxes(this.Width, this.Height);
+                tmp.RenewBuildAxes(this.Width, this.Height, true);
                 var dx = (movePoint.X - pressPoint.X) * 1 + viewModel.DrawMargin.Left;
                 var dy = (movePoint.Y - pressPoint.Y) * 1 + viewModel.DrawMargin.Top;
                 viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
@@ -229,12 +229,13 @@ namespace TeachingPlatformApp.Views
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            gridAxes.RenewBuildAxes(this.Width, this.Height);
+            gridAxes.RenewBuildAxes(this.Width, this.Height, true);
         }
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
-            gridAxes.RenewBuildAxes(this.Width, this.Height);
+            gridAxes.RenewBuildAxes(this.Width, this.Height, true);
+            
         }
     }
 }

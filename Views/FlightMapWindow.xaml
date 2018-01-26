@@ -42,8 +42,8 @@
         <myctrls:GridAxes
             x:Name="gridAxes"
             Grid.Row="0"
-            Height="{Binding ElementName=Window, Path=Height}"
-            Width="{Binding ElementName=Window, Path=Width}"
+            Height="2000"
+            Width="2000"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="Beige">
