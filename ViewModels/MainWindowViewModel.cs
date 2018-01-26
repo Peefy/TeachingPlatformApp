@@ -289,7 +289,8 @@ namespace TeachingPlatformApp.ViewModels
                     await Task.Delay(5);
                     await SendSetPoints(item);
                     await Task.Delay(5);
-                    StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";                  
+                    StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
+                    Speeker?.SpeekAsync($"{item.Name}实验开始");
                     //循环检测实验是否合格
                     await Task.Delay(100);
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
