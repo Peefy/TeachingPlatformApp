@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
+using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.Models;
 
 namespace TeachingPlatformApp.Converters
@@ -14,9 +15,10 @@ namespace TeachingPlatformApp.Converters
         {
             var point = (Point)value;
             var str = "";
+            var digit = JsonFileConfig.Instance.DataShowConfig.PointShowDigit;
             if (point != null)
             {
-                str = $"({point.X},{point.Y})";
+                str = $"({Math.Round(point.X, digit)},{Math.Round(point.Y, digit)})";
             }
             return str;
         }

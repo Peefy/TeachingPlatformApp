@@ -14,6 +14,7 @@ using DuGu.NetFramework.Services;
 using DuGu.NetFramework.Logs;
 
 using TeachingPlatformApp.WswPlatform;
+using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.Models;
 using TeachingPlatformApp.Views;
 using TeachingPlatformApp.Communications;
@@ -32,6 +33,8 @@ namespace TeachingPlatformApp.ViewModels
         /// Udp通信接口 (控制反转方式获得)
         /// </summary>
         public ITranslateData UdpServer => Ioc.Get<ITranslateData>();
+
+        public ISpeek Speeker => Ioc.Get<ISpeek>();
 
         /// <summary>
         /// 接收RecieveUdpPacketCount次数据刷新一次UI,春哥发太快了.....
@@ -185,9 +188,18 @@ namespace TeachingPlatformApp.ViewModels
             };
             TreeViewSelectedCommand = new DelegateCommand<TreeView>((treeView) =>
             {
-                if (treeView.SelectedItem is FlightExperiment item)
+                try
                 {
-                    SelectIndexTreeNode1 = TreeViewNodes[0].Children.IndexOf(item);
+                    if (treeView.SelectedItem is FlightExperiment item)
+                    {
+                        SelectIndexTreeNode1 = TreeViewNodes[0].Children.IndexOf(item);
+                    }
+                    AppendStatusText(JsonFileConfig.Instance.
+                        FlightExperimentIntroduction.Introductions[SelectIndexTreeNode1]);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
                 }
             });
             ComAndCommandInit();
@@ -201,6 +213,7 @@ namespace TeachingPlatformApp.ViewModels
         private void ComAndCommandInit()
         {
             ConfigInit();
+            ///UdpMain
             Task.Run(() =>
             {
                 try
@@ -221,7 +234,6 @@ namespace TeachingPlatformApp.ViewModels
                                 DealAngleWithLocationData(ip, recieveBytes);
                                 UdpServer.PlaneInfo.IsConnect = true;
                             }                      
-                            //AppendStatusText($"{ip}:{length}");
                         }
                     }
                 }
@@ -230,6 +242,7 @@ namespace TeachingPlatformApp.ViewModels
                     Logger.Error(ex);
                 }
             });
+            ///UdpExtral
             Task.Run(() => 
             {
                 var realRecieCount = 0;
@@ -276,13 +289,24 @@ namespace TeachingPlatformApp.ViewModels
                     await Task.Delay(5);
                     await SendSetPoints(item);
                     await Task.Delay(5);
-                    StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
+                    StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";                  
+                    //循环检测实验是否合格
+                    await Task.Delay(100);
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
-                    await Task.Delay(200);
+                    await Task.Delay(100);
+                    if (item.IsValid == false)
+                    {
+                        AppendStatusText($"{DateTime.Now}:{item.Name}实验失败，不符合实验要求");
+                        Speeker?.SpeekAsync($"{item.Name}实验失败，不符合实验要求");
+                    }
                     if (item.IsStop == true)
                         StatusText += $"{DateTime.Now}:{item.Name}实验结束\r\n";
                     else
+                    {
                         StatusText += $"{DateTime.Now}:{item.Name}实验失败，时间超时\r\n";
+                        Speeker?.SpeekAsync($"{item.Name}实验失败，时间超时");
+                    }
+                        
                     await item.EndAsync();
                 }
                 catch(Exception ex)

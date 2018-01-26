@@ -191,14 +191,17 @@ namespace TeachingPlatformApp.Models
         public FlightExperiment()
         {
             var resource = JsonFileConfig.Instance.StringResource;
-            _nowLocation = new Point(0.01, 0.01);
-            _sixPlatformLocation = new Point(0.01, 0.01);
-            _720roll = new AngleValidatableObject(0.01f);
-            _720yaw = new AngleValidatableObject(0.01f);
-            _720pitch = new AngleValidatableObject(0.01f);
-            _sixPlatformRoll = new AngleValidatableObject(0.01f);
-            _sixPlatformYaw = new AngleValidatableObject(0.01f);
-            _sixPlatformPitch = new AngleValidatableObject(0.01f);
+            var unRecieveduUdpDataShow = JsonFileConfig.Instance.DataShowConfig.UnRecieveduUdpDataShow;
+            unRecieveduUdpDataShow = (float)Math.Round(unRecieveduUdpDataShow, 
+                JsonFileConfig.Instance.DataShowConfig.AngleShowDigit);
+            _nowLocation = new Point(unRecieveduUdpDataShow, unRecieveduUdpDataShow);
+            _sixPlatformLocation = new Point(unRecieveduUdpDataShow, unRecieveduUdpDataShow);
+            _720roll = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _720yaw = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _720pitch = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _sixPlatformRoll = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _sixPlatformYaw = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _sixPlatformPitch = new AngleValidatableObject(unRecieveduUdpDataShow);
             _speed = new ValidatableObject<float>();
             _flighterName = resource.FlighterName;
             _helicopterName = resource.HelicopterName;

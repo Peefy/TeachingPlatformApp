@@ -86,6 +86,15 @@ namespace TeachingPlatformApp.WswPlatform
             angleNew.Yaw = Math.Round(angleNew.Yaw, digit);
             angleNew.Pitch = Math.Round(angleNew.Pitch, digit);
 
+            while(angleNew.Yaw <= - 360)
+            {
+                angleNew.Yaw += 360;
+            }
+            while(angleNew.Yaw >= 360)
+            {
+                angleNew.Yaw -= 360;
+            }
+
             return angleNew;
         }
 

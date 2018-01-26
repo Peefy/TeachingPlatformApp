@@ -36,9 +36,11 @@ namespace TeachingPlatformApp.Utils
             var deltaY = vector1.Y - vector2.Y;
 
             var wswData = JsonFileConfig.Instance.WswData;
-            var heli = new AngleWithLocation();
-            heli.X = wswData.HelicopterInitInfo.X;
-            heli.Y = wswData.HelicopterInitInfo.Y;
+            var heli = new AngleWithLocation
+            {
+                X = wswData.HelicopterInitInfo.X,
+                Y = wswData.HelicopterInitInfo.Y
+            };
             var point = WswHelper.DealWswAngleToMyMapData(heli, WswModelKind.Flighter);
             var point2 = WswHelper.DealWswAngleToMyMapData(heli, WswModelKind.Helicopter);
 

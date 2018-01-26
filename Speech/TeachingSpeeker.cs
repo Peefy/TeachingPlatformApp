@@ -72,16 +72,20 @@ namespace TeachingPlatformApp.Speech
                 return;
             if(isUsingDotnetSpeech == true)
             {
-                speech = new SpVoice();
-                speech.Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume);
-                speech.Rate = (int)NumberUtil.Clamp(config.SpeechConfig.Rate, minRate, maxRate);
+                speech = new SpVoice
+                {
+                    Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume),
+                    Rate = (int)NumberUtil.Clamp(config.SpeechConfig.Rate, minRate, maxRate)
+                };
             }
             else
             {
                 string language = "zh-CN";
-                synthesizer = new SpeechSynthesizer();
-                synthesizer.Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume);
-                synthesizer.Rate = (int)NumberUtil.Clamp(config.SpeechConfig.Rate, minRate, maxRate);
+                synthesizer = new SpeechSynthesizer
+                {
+                    Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume),
+                    Rate = (int)NumberUtil.Clamp(config.SpeechConfig.Rate, minRate, maxRate)
+                };
                 synthesizer.SetOutputToDefaultAudioDevice();  
                 synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult, 0, new CultureInfo(language));
             }
