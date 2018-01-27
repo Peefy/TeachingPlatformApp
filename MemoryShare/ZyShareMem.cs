@@ -42,25 +42,25 @@ namespace DuGu720DegreeView.ShareMemory
 
         private const int infoSize = 50;
 
-        private IntPtr m_hSharedMemoryFile = IntPtr.Zero;
+        private IntPtr _hSharedMemoryFile = IntPtr.Zero;
 
-        private IntPtr m_pwData = IntPtr.Zero;
+        private IntPtr _pwData = IntPtr.Zero;
 
-        private IntPtr m_pwDataWrite = IntPtr.Zero;
+        private IntPtr _pwDataWrite = IntPtr.Zero;
 
-        private IntPtr m_pwDataRead = IntPtr.Zero;
+        private IntPtr _pwDataRead = IntPtr.Zero;
 
-        private bool m_bInit;
+        private bool _bInit;
 
-        private int m_length;
+        private int _length;
 
-        private int m_count;
+        private int _count;
 
-        private Semaphore semRead;
+        private Semaphore _semRead;
 
-        private Semaphore semWrite;
+        private Semaphore _semWrite;
 
-        private Semaphore semWriteLength;
+        private Semaphore _semWriteLength;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
@@ -94,22 +94,22 @@ namespace DuGu720DegreeView.ShareMemory
             {
                 return 1;
             }
-            this.m_hSharedMemoryFile = ZyShareMem.OpenFileMapping(6, false, strName);
-            if (this.m_hSharedMemoryFile == IntPtr.Zero)
+            this._hSharedMemoryFile = ZyShareMem.OpenFileMapping(6, false, strName);
+            if (this._hSharedMemoryFile == IntPtr.Zero)
             {
-                this.m_bInit = false;
+                this._bInit = false;
                 return 2;
             }
-            this.m_pwData = ZyShareMem.MapViewOfFile(this.m_hSharedMemoryFile, 6u, 0u, 0u, 0u);
-            this.m_pwDataWrite = this.m_pwData;
-            this.m_pwDataRead = (IntPtr)(this.m_pwData.GetHashCode() + 50);
-            if (this.m_pwData == IntPtr.Zero)
+            this._pwData = ZyShareMem.MapViewOfFile(this._hSharedMemoryFile, 6u, 0u, 0u, 0u);
+            this._pwDataWrite = this._pwData;
+            this._pwDataRead = (IntPtr)(this._pwData.GetHashCode() + 50);
+            if (this._pwData == IntPtr.Zero)
             {
-                this.m_bInit = false;
-                ZyShareMem.CloseHandle(this.m_hSharedMemoryFile);
+                this._bInit = false;
+                ZyShareMem.CloseHandle(this._hSharedMemoryFile);
                 return 3;
             }
-            this.m_bInit = true;
+            this._bInit = true;
             this.SetSemaphore();
             return 0;
         }
@@ -118,9 +118,9 @@ namespace DuGu720DegreeView.ShareMemory
         {
             int length = this.GetLength();
             byte[] array = new byte[length];
-            if (this.m_bInit)
+            if (this._bInit)
             {
-                Marshal.Copy(this.m_pwDataRead, array, 0, this.m_length);
+                Marshal.Copy(this._pwDataRead, array, 0, this._length);
                 return array;
             }
             return null;
@@ -128,10 +128,10 @@ namespace DuGu720DegreeView.ShareMemory
 
         private void Close()
         {
-            if (this.m_bInit)
+            if (this._bInit)
             {
-                ZyShareMem.UnmapViewOfFile(this.m_pwData);
-                ZyShareMem.CloseHandle(this.m_hSharedMemoryFile);
+                UnmapViewOfFile(this._pwData);
+                CloseHandle(this._hSharedMemoryFile);
             }
         }
 
@@ -139,15 +139,15 @@ namespace DuGu720DegreeView.ShareMemory
         {
             try
             {
-                this.semRead = Semaphore.OpenExisting("ReadShareMemory");
-                this.semWrite = Semaphore.OpenExisting("WriteShareMemory");
-                this.semWriteLength = Semaphore.OpenExisting("WriteLengthShareMemory");
+                this._semRead = Semaphore.OpenExisting("ReadShareMemory");
+                this._semWrite = Semaphore.OpenExisting("WriteShareMemory");
+                this._semWriteLength = Semaphore.OpenExisting("WriteLengthShareMemory");
             }
             catch (Exception)
             {
-                this.semRead = new Semaphore(0, 1, "ReadShareMemory");
-                this.semWrite = new Semaphore(1, 1, "WriteShareMemory");
-                this.semWriteLength = new Semaphore(1, 1, "WriteLengthShareMemory");
+                this._semRead = new Semaphore(0, 1, "ReadShareMemory");
+                this._semWrite = new Semaphore(1, 1, "WriteShareMemory");
+                this._semWriteLength = new Semaphore(1, 1, "WriteLengthShareMemory");
             }
             return true;
         }
@@ -155,15 +155,15 @@ namespace DuGu720DegreeView.ShareMemory
         private int ReadLengthAndCount()
         {
             byte[] array = new byte[50];
-            if (this.m_bInit)
+            if (this._bInit)
             {
-                Marshal.Copy(this.m_pwData, array, 0, 50);
+                Marshal.Copy(this._pwData, array, 0, 50);
                 string input = Encoding.Unicode.GetString(array).Trim(new char[1]);
                 string[] array2 = Regex.Split(input, "\0");
-                if (int.TryParse(array2[0], out this.m_length))
+                if (int.TryParse(array2[0], out this._length))
                 {
                 }
-                if (int.TryParse(array2[1], out this.m_count))
+                if (int.TryParse(array2[1], out this._count))
                 {
                 }
                 return 0;
@@ -174,13 +174,13 @@ namespace DuGu720DegreeView.ShareMemory
         private int GetLength()
         {
             this.ReadLengthAndCount();
-            return this.m_length;
+            return this._length;
         }
 
         private int GetCount()
         {
             this.ReadLengthAndCount();
-            return this.m_count;
+            return this._count;
         }
     }
 

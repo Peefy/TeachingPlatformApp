@@ -34,12 +34,20 @@ namespace TeachingPlatformApp.ViewModels
         /// </summary>
         public ITranslateData UdpServer => Ioc.Get<ITranslateData>();
 
+        /// <summary>
+        /// 语音接口 (依赖注入获得)
+        /// </summary>
         public ISpeek Speeker => Ioc.Get<ISpeek>();
 
         /// <summary>
         /// 接收RecieveUdpPacketCount次数据刷新一次UI,春哥发太快了.....
         /// </summary>
         public int RecieveUdpPacketCount { get; set; } = 0;
+
+        /// <summary>
+        /// 是否检测飞行实验合格
+        /// </summary>
+        public bool IsJudgeValid { get; set; }
 
         int _milliSeconds = Convert.ToInt32(LogAndConfig.Config.
             GetProperty(ConfigKeys.UdpPort, 100_000));
@@ -57,6 +65,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private bool _isConnect;
+        /// <summary>
+        /// Udp是否连接
+        /// </summary>
         public bool IsConnect
         {
             get => _isConnect;
@@ -64,6 +75,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private int _platformRunTime;
+        /// <summary>
+        /// 平台运行时间
+        /// </summary>
         public int PlatformRunTime
         {
             get => _platformRunTime;
@@ -73,6 +87,9 @@ namespace TeachingPlatformApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// 飞行实验是否开始
+        /// </summary>
         public bool IsTotalStart
         {
             get
@@ -87,6 +104,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private string _statusText = "";
+        /// <summary>
+        /// 控制台显示文字
+        /// </summary>
         public string StatusText
         {
             get => _statusText;
@@ -142,13 +162,39 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _time, value);
         }
 
+        /// <summary>
+        /// 开始实验Command
+        /// </summary>
         public DelegateCommand StartCommand { get; set; }
+
+        /// <summary>
+        /// 停止实验Command
+        /// </summary>
         public DelegateCommand StopCommand { get; set; }
+
+        /// <summary>
+        /// 清空显示Command
+        /// </summary>
         public DelegateCommand ClearCommand { get; set; }
+
+        /// <summary>
+        /// 打开地图Command
+        /// </summary>
         public DelegateCommand OpenFlightMapCommand { get; set; }
+
+        /// <summary>
+        /// test Command
+        /// </summary>
         public DelegateCommand TestCommand { get; set; }
 
+        /// <summary>
+        /// TreeView Command
+        /// </summary>
         public DelegateCommand<TreeView> TreeViewSelectedCommand { get; set; }
+
+        /// <summary>
+        /// TreeView Nodes
+        /// </summary>
         public ObservableRangeCollection<TreeViewModelItem> TreeViewNodes { get; set; }
 
         public ObservableRangeCollection<FlightExperiment> FlightExperiments 
@@ -195,13 +241,14 @@ namespace TeachingPlatformApp.ViewModels
                         SelectIndexTreeNode1 = TreeViewNodes[0].Children.IndexOf(item);
                     }
                     AppendStatusText(JsonFileConfig.Instance.
-                        FlightExperimentIntroduction.Introductions[SelectIndexTreeNode1]);
+                        FlightExperimentConfig.Introductions[SelectIndexTreeNode1]);
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                 }
             });
+            ConfigInit();
             ComAndCommandInit();
         }
 
@@ -211,9 +258,7 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private void ComAndCommandInit()
-        {
-            ConfigInit();
-            ///UdpMain
+        {         
             Task.Run(() =>
             {
                 try
@@ -286,16 +331,14 @@ namespace TeachingPlatformApp.ViewModels
                     //发两次
                     await Task.Delay(5);
                     await SendSetPoints(item);
-                    await Task.Delay(5);
                     await SendSetPoints(item);
-                    await Task.Delay(5);
                     StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
                     Speeker?.SpeekAsync($"{item.Name}实验开始");
                     //循环检测实验是否合格
                     await Task.Delay(100);
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
                     await Task.Delay(100);
-                    if (item.IsValid == false)
+                    if (IsJudgeValid == true && item.IsValid == false)
                     {
                         AppendStatusText($"{DateTime.Now}:{item.Name}实验失败，不符合实验要求");
                         Speeker?.SpeekAsync($"{item.Name}实验失败，不符合实验要求");
@@ -379,12 +422,14 @@ namespace TeachingPlatformApp.ViewModels
                     }
                 }
             });
+            await Task.Delay(5);
         }
 
         private void ConfigInit()
         {
             var config = JsonFileConfig.Instance;
             RecieveUdpPacketCount = config.ComConfig.RenewUIRecieveCount;
+            IsJudgeValid = config.FlightExperimentConfig.IsJudgeValid;
         }
 
         private void DealAngleWithLocationData(string ip, byte[] recieveBytes)

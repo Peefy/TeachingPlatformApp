@@ -27,25 +27,25 @@ namespace TeachingPlatformApp.Views
     /// </summary>
     public partial class FlightMapWindow : MetroWindow
     {
-        FlightMapWindowViewModel viewModel;
+        FlightMapWindowViewModel _viewModel;
 
         Dispatcher _dip;
         SynchronizationContext _ds;
         Grid _girdWswModel;
-        CanvasTrail canvasTrailFlighter;
-        CanvasTrail canvasTrailHelicopter;
-        CanvasTrail canvasTrailMissile;
+        CanvasTrail _canvasTrailFlighter;
+        CanvasTrail _canvasTrailHelicopter;
+        CanvasTrail _canvasTrailMissile;
 
-        int canvasTrailFlighterIndex = 0;
-        int canvasTrailHelicopterIndex = 1;
-        int canvasTrailMissileIndex = 2;
+        int _canvasTrailFlighterIndex = 0;
+        int _canvasTrailHelicopterIndex = 1;
+        int _canvasTrailMissileIndex = 2;
 
-        bool enableScale = false;
-        bool enableDrag = false;
-        Point pressPoint = new Point();
-        Point movePoint = new Point();
+        bool _enableScale = false;
+        bool _enableDrag = false;
+        Point _pressPoint = new Point();
+        Point _movePoint = new Point();
 
-        Thread speechThread;
+        Thread _speechThread;
 
         public FlightMapWindow()
         {
@@ -53,11 +53,11 @@ namespace TeachingPlatformApp.Views
             _dip = Dispatcher.CurrentDispatcher;
             _ds = new DispatcherSynchronizationContext();
             _girdWswModel = gridAxes.Children[2] as Grid;
-            canvasTrailFlighter = _girdWswModel.Children[canvasTrailFlighterIndex] as CanvasTrail;
-            canvasTrailHelicopter = _girdWswModel.Children[canvasTrailHelicopterIndex] as CanvasTrail;
-            canvasTrailMissile = _girdWswModel.Children[canvasTrailMissileIndex] as CanvasTrail;
-            viewModel = new FlightMapWindowViewModel();
-            this.DataContext = viewModel;
+            _canvasTrailFlighter = _girdWswModel.Children[_canvasTrailFlighterIndex] as CanvasTrail;
+            _canvasTrailHelicopter = _girdWswModel.Children[_canvasTrailHelicopterIndex] as CanvasTrail;
+            _canvasTrailMissile = _girdWswModel.Children[_canvasTrailMissileIndex] as CanvasTrail;
+            _viewModel = new FlightMapWindowViewModel();
+            this.DataContext = _viewModel;
             DragMoveInit();
             RenewUI();
             TaskInit();
@@ -67,16 +67,16 @@ namespace TeachingPlatformApp.Views
         {
             if(JsonFileConfig.ReadFromFile().GridAxesDrawPara.EnableDragMove == true)
             {
-                gridAxes.MouseLeftButtonDown += gridAxes_MouseLeftButtonDown;
-                gridAxes.MouseRightButtonDown += gridAxes_MouseRightButtonDown;
-                gridAxes.MouseRightButtonUp += gridAxes_MouseRightButtonUp;
-                gridAxes.MouseMove += gridAxes_MouseMove;
+                gridAxes.MouseLeftButtonDown += GridAxes_MouseLeftButtonDown;
+                gridAxes.MouseRightButtonDown += GridAxes_MouseRightButtonDown;
+                gridAxes.MouseRightButtonUp += GridAxes_MouseRightButtonUp;
+                gridAxes.MouseMove += GridAxes_MouseMove;
             }
         }
 
         private void TaskInit()
         {
-            speechThread = new Thread(new ThreadStart(() =>
+            _speechThread = new Thread(new ThreadStart(() =>
             {
                 var config = JsonFileConfig.Instance;
                 var interval = config.TestTrailRouteConfig.OutOfRouteTestIntervalMs;
@@ -84,7 +84,7 @@ namespace TeachingPlatformApp.Views
                 {
                     try
                     {
-                        viewModel.JudgeRouteTask();
+                        _viewModel.JudgeRouteTask();
                         Thread.Sleep(interval);
                     }
                     catch (Exception ex)
@@ -94,16 +94,16 @@ namespace TeachingPlatformApp.Views
                 }
             }));
             if(JsonFileConfig.Instance.SpeechConfig.SpeechEnable == true)
-                speechThread.Start();
+                _speechThread.Start();
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            if(speechThread != null)
+            if(_speechThread != null)
             {
-                speechThread.Abort();
-                speechThread = null;
+                _speechThread.Abort();
+                _speechThread = null;
                 Ioc.Get<ISpeek>().StopSpeek();
             }
         }
@@ -127,9 +127,9 @@ namespace TeachingPlatformApp.Views
             {
                 _dip.Invoke(new Action(() =>
                 {                  
-                    canvasTrailFlighter.AddPoint(viewModel.Flighter.MyMapPosition);
-                    canvasTrailHelicopter.AddPoint(viewModel.Helicopter.MyMapPosition);
-                    canvasTrailMissile.AddPoint(viewModel.Missile.MyMapPosition);
+                    _canvasTrailFlighter.AddPoint(_viewModel.Flighter.MyMapPosition);
+                    _canvasTrailHelicopter.AddPoint(_viewModel.Helicopter.MyMapPosition);
+                    _canvasTrailMissile.AddPoint(_viewModel.Missile.MyMapPosition);
                 }));
             }
             catch
@@ -141,7 +141,7 @@ namespace TeachingPlatformApp.Views
         #region WindowKeyAndMouseWheel
         private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if(enableScale == true)
+            if(_enableScale == true)
             {
                 var delta = e.Delta;
                 if (fatherGrid.RenderTransform is ScaleTransform scale)
@@ -156,16 +156,16 @@ namespace TeachingPlatformApp.Views
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
-                enableScale = false;
+                _enableScale = false;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.C)
             {
-                canvasTrailFlighter.ClearPoint();
-                canvasTrailHelicopter.ClearPoint();
-                canvasTrailMissile.ClearPoint();
+                _canvasTrailFlighter.ClearPoint();
+                _canvasTrailHelicopter.ClearPoint();
+                _canvasTrailMissile.ClearPoint();
             }
             if (e.Key == Key.Escape)
             {
@@ -176,7 +176,7 @@ namespace TeachingPlatformApp.Views
                 TextChanged(null, null);
             }
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
-                enableScale = true;
+                _enableScale = true;
             if (fatherGrid.RenderTransform is ScaleTransform scale)
             {
                 if (e.Key == Key.PageUp || e.Key == Key.W)
@@ -202,9 +202,9 @@ namespace TeachingPlatformApp.Views
             gridAxes.DrawDeltaLeft = left;
             gridAxes.DrawDeltaTop = top;
             gridAxes.RenewBuildAxes(this.Width, this.Height);
-            var dx = viewModel.DrawMargin.Left;
-            var dy = viewModel.DrawMargin.Top;
-            viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
+            var dx = _viewModel.DrawMargin.Left;
+            var dy = _viewModel.DrawMargin.Top;
+            _viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -232,57 +232,57 @@ namespace TeachingPlatformApp.Views
             gridAxes.DrawDeltaLeft = left;
             gridAxes.DrawDeltaTop = top;
             gridAxes.RenewBuildAxes(this.Width, this.Height, true);
-            viewModel.DrawMargin = new Thickness(left, top, 0, 0);
+            _viewModel.DrawMargin = new Thickness(left, top, 0, 0);
         }
 
-        private void gridAxes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void GridAxes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var tmp = (GridAxes)sender;
             if (e.ClickCount == 2)
             {
-                SetMapDrawDeltaLeftTop(viewModel.Flighter.MyMapPosition);
+                SetMapDrawDeltaLeftTop(_viewModel.Flighter.MyMapPosition);
             }
         }
 
-        private void gridAxes_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void GridAxes_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             var tmp = (GridAxes)sender;
             if (e.ClickCount == 2)
             {
-                SetMapDrawDeltaLeftTop(viewModel.Helicopter.MyMapPosition);
+                SetMapDrawDeltaLeftTop(_viewModel.Helicopter.MyMapPosition);
             }
             else
             {
-                if (enableDrag == true)
+                if (_enableDrag == true)
                     return;
-                pressPoint = e.GetPosition(null);
+                _pressPoint = e.GetPosition(null);
                 tmp.CaptureMouse();
                 tmp.Cursor = Cursors.Hand;
-                enableDrag = true;
+                _enableDrag = true;
             }
         }
 
-        private void gridAxes_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void GridAxes_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {         
             var tmp = (GridAxes)sender;
             tmp.Cursor = Cursors.Arrow;
             tmp.ReleaseMouseCapture();
-            enableDrag = false;
+            _enableDrag = false;
         }
 
-        private void gridAxes_MouseMove(object sender, MouseEventArgs e)
+        private void GridAxes_MouseMove(object sender, MouseEventArgs e)
         {
-            if(enableDrag == true && e.RightButton == MouseButtonState.Pressed)
+            if(_enableDrag == true && e.RightButton == MouseButtonState.Pressed)
             {
                 var tmp = (GridAxes)sender;
-                movePoint = e.GetPosition(null);
-                tmp.DrawDeltaLeft += (movePoint.X - pressPoint.X);
-                tmp.DrawDeltaTop += (movePoint.Y - pressPoint.Y);
+                _movePoint = e.GetPosition(null);
+                tmp.DrawDeltaLeft += (_movePoint.X - _pressPoint.X);
+                tmp.DrawDeltaTop += (_movePoint.Y - _pressPoint.Y);
                 tmp.RenewBuildAxes(this.Width, this.Height, true);
-                var dx = (movePoint.X - pressPoint.X) * 1 + viewModel.DrawMargin.Left;
-                var dy = (movePoint.Y - pressPoint.Y) * 1 + viewModel.DrawMargin.Top;
-                viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
-                pressPoint = movePoint;
+                var dx = (_movePoint.X - _pressPoint.X) * 1 + _viewModel.DrawMargin.Left;
+                var dy = (_movePoint.Y - _pressPoint.Y) * 1 + _viewModel.DrawMargin.Top;
+                _viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
+                _pressPoint = _movePoint;
 
             }
         }

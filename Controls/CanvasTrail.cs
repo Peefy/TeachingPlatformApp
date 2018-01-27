@@ -16,15 +16,21 @@ namespace TeachingPlatformApp.Controls
     public class CanvasTrail : Canvas
     {
 
-        //private int scale = 10;
-        //private int init = 20;
-        private int pointsUpNum = 5000;
+        private int _pointsUpNum = 5000;
 
-        private Color grayColor = Colors.Gray;
+        private Color _grayColor = Colors.Gray;
 
-        private List<Point> points;
+        private List<Point> _points;
 
         public WswModelKind WswModelKind { get; set; }
+
+        public CanvasTrail()
+        {
+            this.VerticalAlignment = VerticalAlignment.Stretch;
+            this.HorizontalAlignment = HorizontalAlignment.Stretch;
+            _points = new List<Point>();
+            this._pointsUpNum = JsonFileConfig.ReadFromFile().DataShowConfig.DrawTrailPointNumUp;
+        }
 
         public Point Convert(Point point)
         {
@@ -43,30 +49,22 @@ namespace TeachingPlatformApp.Controls
             }
         }
 
-        public CanvasTrail()
-        {
-            this.VerticalAlignment = VerticalAlignment.Stretch;
-            this.HorizontalAlignment = HorizontalAlignment.Stretch;
-            points = new List<Point>();
-            this.pointsUpNum = JsonFileConfig.ReadFromFile().DataShowConfig.DrawTrailPointNumUp;
-        }
-
         public void DrawAllLines()
         {
-            if(points?.Count >= 2)
+            if(_points?.Count >= 2)
             {
-                var count = points.Count;
+                var count = _points.Count;
                 this.Children.Clear();
                 for(var i = 0;i < count - 1 ;++i)
                 {
                     var path = new Path()
                     {
-                        Stroke = new SolidColorBrush(grayColor),
+                        Stroke = new SolidColorBrush(_grayColor),
                         StrokeThickness = 2,
                         Data = new LineGeometry()
                         {
-                            StartPoint = Convert(points[0]),
-                            EndPoint = Convert(points[1])
+                            StartPoint = Convert(_points[0]),
+                            EndPoint = Convert(_points[1])
                         }
                     };
                     this.Children.Add(path);
@@ -78,19 +76,19 @@ namespace TeachingPlatformApp.Controls
         {
             if(point != null)
             {
-                points.Add(point);
-                if (points.Count > pointsUpNum)
+                _points.Add(point);
+                if (_points.Count > _pointsUpNum)
                     ClearPoint();
-                if (points.Count < 2)
+                if (_points.Count < 2)
                     return;
                 var path = new Path()
                 {
-                    Stroke = new SolidColorBrush(grayColor),
+                    Stroke = new SolidColorBrush(_grayColor),
                     StrokeThickness = 2,
                     Data = new LineGeometry()
                     {
-                        StartPoint = Convert(points[points.Count - 2]),
-                        EndPoint = Convert(points[points.Count - 1])
+                        StartPoint = Convert(_points[_points.Count - 2]),
+                        EndPoint = Convert(_points[_points.Count - 1])
                     }
                 };
                 this.Children.Add(path);
@@ -99,7 +97,7 @@ namespace TeachingPlatformApp.Controls
 
         public void ClearPoint()
         {
-            this.points.Clear();
+            this._points.Clear();
             this.Children.Clear();
         }
 

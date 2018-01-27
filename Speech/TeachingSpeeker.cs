@@ -15,79 +15,42 @@ namespace TeachingPlatformApp.Speech
     public class TeachingSpeeker : ISpeek
     {
 
-        SpeechSynthesizer synthesizer;
-        SpVoice speech;
-        JsonFileConfig config;
+        public const double MinVolume = 0;
+        public const double MaxVolume = 100;
 
-        const double minVolume = 0;
-        const double maxVolume = 100;
+        public const double MinRate = -10;
+        public const double MaxRate = 10;
 
-        const double minRate = -10;
-        const double maxRate = 10;
+        SpeechSynthesizer _synthesizer;
+        SpVoice _speech;
+        JsonFileConfig _config;
 
-        bool isUsingDotnetSpeech = true;
-
-        ///<summary>
-        /// 调用系统 语音朗读
-        /// </summary>
-        /// <param name="words">朗读的内容</param>
-        /// <param name="isAsync">是否同步朗读</param>
-        /// <param name="language">朗读语言:英语"en-US"，简体中文"zh-CN"，台湾中文"zh-TW"</param>
-        public void SpeekWords(string words, bool isAsync = true, string language = "zh-CN")
-        {
-            using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
-            {
-                synthesizer.Volume = 100;   //音量 0~100   最大只能100
-                synthesizer.Rate = 0;   //  语速 -10~10    0 中等
-                synthesizer.SetOutputToDefaultAudioDevice();
-
-                //var voices = synthesizer.GetInstalledVoices(new CultureInfo(language));
-                synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult, 0, new CultureInfo(language));
-                //synthesizer.Speak("hello word 你好");
-                if (isAsync)
-                {
-                    //异步朗读
-                    synthesizer.SpeakAsync(words);
-                }
-                else
-                {  //同步朗读
-                    synthesizer.Speak(words);
-                }
-            }
-        }
-
-        public IReadOnlyCollection<InstalledVoice> GetInstalledVoices(string language = "zh-CN")
-        {
-            using (var synthesizer = new SpeechSynthesizer())
-            {
-                return synthesizer.GetInstalledVoices(new CultureInfo(language));
-            }
-        }
+        bool _isUsingDotnetSpeech = true;
 
         public TeachingSpeeker()
         {
-            config = JsonFileConfig.Instance;
-            isUsingDotnetSpeech = config.SpeechConfig.IsUsingDotnetSpeech;
-            if (config.SpeechConfig.SpeechEnable == false)
+            _config = JsonFileConfig.Instance;
+            _isUsingDotnetSpeech = _config.SpeechConfig.IsUsingDotnetSpeech;
+            if (_config.SpeechConfig.SpeechEnable == false)
                 return;
-            if(isUsingDotnetSpeech == true)
+            if(_isUsingDotnetSpeech == true)
             {
-                speech = new SpVoice
+                _speech = new SpVoice
                 {
-                    Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume),
-                    Rate = (int)NumberUtil.Clamp(config.SpeechConfig.Rate, minRate, maxRate)
+                    Volume = (int)NumberUtil.Clamp(_config.SpeechConfig.Volume, MinVolume, MaxVolume),
+                    Rate = (int)NumberUtil.Clamp(_config.SpeechConfig.Rate, MinRate, MaxRate)
                 };
             }
             else
             {
                 string language = "zh-CN";
-                synthesizer = new SpeechSynthesizer
+                _synthesizer = new SpeechSynthesizer
                 {
-                    Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume),
-                    Rate = (int)NumberUtil.Clamp(config.SpeechConfig.Rate, minRate, maxRate)
+                    Volume = (int)NumberUtil.Clamp(_config.SpeechConfig.Volume, MinVolume, MaxVolume),
+                    Rate = (int)NumberUtil.Clamp(_config.SpeechConfig.Rate, MinRate, MaxRate)
                 };
-                synthesizer.SetOutputToDefaultAudioDevice();  
-                synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult, 0, new CultureInfo(language));
+                _synthesizer.SetOutputToDefaultAudioDevice();  
+                _synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult, 0, new CultureInfo(language));
             }
 
         }
@@ -95,49 +58,49 @@ namespace TeachingPlatformApp.Speech
         public void SpeekAsync(string text)
         {
             StopSpeek();
-            if (isUsingDotnetSpeech == true)
+            if (_isUsingDotnetSpeech == true)
             {             
-                speech.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
+                _speech.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
             }
             else
             {
-                synthesizer.SpeakAsync(text);
+                _synthesizer.SpeakAsync(text);
             }
         }
 
         public void SetSpeechRate(double rate)
         {
-            if (isUsingDotnetSpeech == true)
+            if (_isUsingDotnetSpeech == true)
             { 
-                speech.Rate = (int)NumberUtil.Clamp(rate, minRate, maxRate);
+                _speech.Rate = (int)NumberUtil.Clamp(rate, MinRate, MaxRate);
             }
             else
             {        
-                synthesizer.Rate = (int)NumberUtil.Clamp(rate, minRate, maxRate);
+                _synthesizer.Rate = (int)NumberUtil.Clamp(rate, MinRate, MaxRate);
             }
         }
 
         public void SetSpeechVolume(double volume)
         {
-            if (isUsingDotnetSpeech == true)
+            if (_isUsingDotnetSpeech == true)
             {
-                speech.Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume);
+                _speech.Volume = (int)NumberUtil.Clamp(_config.SpeechConfig.Volume, MinVolume, MaxVolume);
             }
             else
             {
-                synthesizer.Volume = (int)NumberUtil.Clamp(config.SpeechConfig.Volume, minVolume, maxVolume);
+                _synthesizer.Volume = (int)NumberUtil.Clamp(_config.SpeechConfig.Volume, MinVolume, MaxVolume);
             }
         }
 
         public void StopSpeek()
         {
-            if (isUsingDotnetSpeech == true)
+            if (_isUsingDotnetSpeech == true)
             {
-                speech?.Speak("", SpeechVoiceSpeakFlags.SVSFlagsAsync);
+                _speech?.Speak("", SpeechVoiceSpeakFlags.SVSFlagsAsync);
             }
             else
             {
-                synthesizer?.SpeakAsyncCancelAll();
+                _synthesizer?.SpeakAsyncCancelAll();
             }
         }
     }

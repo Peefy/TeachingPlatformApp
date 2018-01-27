@@ -174,7 +174,7 @@ namespace TeachingPlatformApp.ViewModels
                         Flighter.Angle -= 1;
                         if (Flighter.Angle <= 0)
                             Flighter.Angle = 360;
-                        var j = StructHelper.Deg2Rad(i);
+                        var j = NumberUtil.Deg2Rad(i);
                         Flighter.MyMapPosition = new Point(point1.X + 10 * Math.Sin(j), point1.Y + 10 * Math.Cos(j));
                         Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
                         Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{NumberUtil.BoolToString(Flighter.IsNotOutofRoute)}" +

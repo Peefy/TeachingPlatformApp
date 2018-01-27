@@ -28,10 +28,10 @@ namespace TeachingPlatformApp.Models
         bool _isValid;
         Point _nowLocation;
         Point _sixPlatformLocation;
+
         AngleValidatableObject _720pitch;
         AngleValidatableObject _720roll;
         AngleValidatableObject _720yaw;
-
         AngleValidatableObject _sixPlatformPitch;
         AngleValidatableObject _sixPlatformRoll;
         AngleValidatableObject _sixPlatformYaw;

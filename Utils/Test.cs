@@ -19,11 +19,7 @@ namespace TeachingPlatformApp.Utils
 
         public static string[] Run()
         {
-            //var bytes = new TeachingCommandBuilder(1, false).BuildCommandBytes();
-            //var ip = new IPEndPoint(IPAddress.Parse("192.168.0.134"), 11000);
-            //Ioc.Get<ITranslateData>().SendTo(bytes, ip);
-            //ip = new IPEndPoint(IPAddress.Parse("192.168.0.134"), 12000);
-            //Ioc.Get<ITranslateData>().SendTo(bytes, ip);
+
             var FlighterInitInfo =  WswHelper.MathRound(JsonFileConfig.Instance.WswData.FlighterInitInfo, 3);
             var HelicopterInitInfo = WswHelper.MathRound(JsonFileConfig.Instance.WswData.HelicopterInitInfo, 3);
             var vector1 = new Vector(FlighterInitInfo.X / 1000.0f,

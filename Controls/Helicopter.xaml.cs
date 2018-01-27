@@ -29,29 +29,4 @@ namespace TeachingPlatformApp.Controls
         }
     }
 
-    public class HelicopterViewModel : BindableBase
-    {
-
-        private float _helicopterAngle = 0;
-        public float HelicopterAngle
-        {
-            get => _helicopterAngle;
-            set => SetProperty(ref _helicopterAngle, value);
-        }
-
-        public HelicopterViewModel()
-        {
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    HelicopterAngle += 2;
-                    if (HelicopterAngle >= 360)
-                        HelicopterAngle = 0;
-                    Thread.Sleep(40);
-                }
-            });
-        }
-    }
-
 }

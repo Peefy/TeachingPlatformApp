@@ -15,13 +15,13 @@ namespace TeachingPlatformApp.Controls
     /// </summary>
     public partial class GridAxes : Grid
     {
-        private GridAxesDrawPara drawPara;
+        private GridAxesDrawPara _drawPara;
 
-        private double marginWild = 20;
-        private int columnNum;
-        private int rowNum;
+        private double _marginWild = 20;
+        private int _columnNum;
+        private int _rowNum;
 
-        private Color redColor = Color.FromRgb(222, 0, 0);
+        private Color _redColor = Color.FromRgb(222, 0, 0);
 
         private double _xAxesInternal = 100;
         public double XAxesInternal
@@ -51,23 +51,24 @@ namespace TeachingPlatformApp.Controls
         {
             InitializeComponent();
             DrawParaInit();
-            RenewBuildAxes(drawPara.AxesWidth, drawPara.AxesHeight, true);
+            RenewBuildAxes(_drawPara.AxesWidth, _drawPara.AxesHeight, true);
         }
 
         private void DrawParaInit()
         {
-            drawPara = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
-            columnNum = drawPara.ColumnNumber;
-            rowNum = drawPara.RowNumber;
-            DrawLeft = drawPara.DrawLeft;
-            DrawTop = drawPara.DrawTop;
-            XAxesInternal = drawPara.XAxesInternal;
-            YAxesInternal = drawPara.YAxesInternal;
+            _drawPara = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
+            _columnNum = _drawPara.ColumnNumber;
+            _rowNum = _drawPara.RowNumber;
+            DrawLeft = _drawPara.DrawLeft;
+            DrawTop = _drawPara.DrawTop;
+            XAxesInternal = _drawPara.XAxesInternal;
+            YAxesInternal = _drawPara.YAxesInternal;
         }
 
         private bool JudgeLeftTopInRange(double left, double top, double width, double height)
         {
-            if (left >= -marginWild && left <= width + marginWild && top >= -marginWild && top <= height + marginWild)
+            if (left >= -_marginWild && left <= width + _marginWild && 
+                top >= -_marginWild && top <= height + _marginWild)
                 return true;
             return false;
         }
@@ -76,22 +77,22 @@ namespace TeachingPlatformApp.Controls
         {
             if(isUseMax == true)
             {
-                width = drawPara.MaxWidth;
-                height = drawPara.MaxHeight;
+                width = _drawPara.MaxWidth;
+                height = _drawPara.MaxHeight;
             }
             labelCanvas.Children.Clear();
             chartCanvas.Children.Clear();
-            for (var i = -rowNum; i < rowNum; ++i)
+            for (var i = -_rowNum; i < _rowNum; ++i)
             {
-                var left = drawPara.DrawLabelLeft + i * XAxesInternal + DrawDeltaLeft - 5;
-                var top = drawPara.DrawLabelTop + 5;
+                var left = _drawPara.DrawLabelLeft + i * XAxesInternal + DrawDeltaLeft - 5;
+                var top = _drawPara.DrawLabelTop + 5;
                 if (JudgeLeftTopInRange(left, top, width, height) == true)
                 {
                     labelCanvas.Children.Add(new TextBlock()
                     {
                         Foreground = new SolidColorBrush(Colors.Black),
-                        FontSize = drawPara.LabelFontSize,
-                        Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
+                        FontSize = _drawPara.LabelFontSize,
+                        Text = (i * _drawPara.LabelAxesInterval + _drawPara.LabelAxesInit).ToString(),
                         Margin = new Thickness(left, top + 5, 0, 0)
                     });
                 }
@@ -100,29 +101,29 @@ namespace TeachingPlatformApp.Controls
                 {
                     var path = new Path()
                     {
-                        Stroke = new SolidColorBrush(redColor),
+                        Stroke = new SolidColorBrush(_redColor),
                         StrokeThickness = LineStrokeThickness,
                         Data = new LineGeometry()
                         {
                             StartPoint = new Point(left, 0 + DrawTop),
                             EndPoint = new Point(left, height
-                                + drawPara.DrawDown)
+                                + _drawPara.DrawDown)
                         }
                     };
                     chartCanvas.Children.Add(path);
                 }
             }
-            for (var i = -columnNum; i < columnNum; ++i)
+            for (var i = -_columnNum; i < _columnNum; ++i)
             {
-                var left = drawPara.DrawLabelLeft + 5;
-                var top = drawPara.DrawLabelTop + i * YAxesInternal + DrawDeltaTop - 5;
+                var left = _drawPara.DrawLabelLeft + 5;
+                var top = _drawPara.DrawLabelTop + i * YAxesInternal + DrawDeltaTop - 5;
                 if (JudgeLeftTopInRange(left, top, width, height) == true)
                 {
                     labelCanvas.Children.Add(new TextBlock()
                     {
                         Foreground = new SolidColorBrush(Colors.Black),
-                        FontSize = drawPara.LabelFontSize,
-                        Text = (i * drawPara.LabelAxesInterval + drawPara.LabelAxesInit).ToString(),
+                        FontSize = _drawPara.LabelFontSize,
+                        Text = (i * _drawPara.LabelAxesInterval + _drawPara.LabelAxesInit).ToString(),
                         Margin = new Thickness(left, top, 0, 0)
                     });
                 }
@@ -131,12 +132,12 @@ namespace TeachingPlatformApp.Controls
                 {
                     var path = new Path()
                     {
-                        Stroke = new SolidColorBrush(redColor),
+                        Stroke = new SolidColorBrush(_redColor),
                         StrokeThickness = LineStrokeThickness,
                         Data = new LineGeometry()
                         {
                             StartPoint = new Point(0 + DrawLeft, top),
-                            EndPoint = new Point(width + drawPara.DrawRight, top)
+                            EndPoint = new Point(width + _drawPara.DrawRight, top)
                         }
                     };
                     chartCanvas.Children.Add(path);

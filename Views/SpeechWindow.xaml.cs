@@ -21,75 +21,76 @@ namespace TeachingPlatformApp.Views
     /// </summary>
     public partial class SpeechWindow : Window
     {
-        SpVoice speech = new SpVoice();
-        int speechRate = 0;
-        int volume = 70;
+        SpVoice _speech = new SpVoice();
+        int _speechRate = 0;
+        int _volume = 70;
+
         public SpeechWindow()
         {
             InitializeComponent();
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
             //初始化语音引擎列表  
-            foreach (ISpeechObjectToken Token in speech.GetVoices(string.Empty, string.Empty))
+            foreach (ISpeechObjectToken Token in _speech.GetVoices(string.Empty, string.Empty))
             {
                 cmbVoices.Items.Add(Token.GetDescription(49));
             }
             //取得音频输出列表  
-            foreach (ISpeechObjectToken AudioOut in speech.GetAudioOutputs(string.Empty, string.Empty))
+            foreach (ISpeechObjectToken AudioOut in _speech.GetAudioOutputs(string.Empty, string.Empty))
             {
                 cmbAudioOut.Items.Add(AudioOut.GetDescription(49));
             }
 
             cmbVoices.SelectedIndex = 0;
             cmbAudioOut.SelectedIndex = 0;
-            tbarRate.Value = speechRate;
-            trbVolume.Value = volume;
+            tbarRate.Value = _speechRate;
+            trbVolume.Value = _volume;
 
         }
 
-        private void tbarRate_Scroll(object sender, EventArgs e)
+        private void TbarRate_Scroll(object sender, EventArgs e)
         {
-            speech.Rate = (int)tbarRate.Value;
+            _speech.Rate = (int)tbarRate.Value;
         }
 
-        private void trbVolume_Scroll(object sender, EventArgs e)
+        private void TrbVolume_Scroll(object sender, EventArgs e)
         {
-            speech.Volume = (int)trbVolume.Value;
+            _speech.Volume = (int)trbVolume.Value;
         }
 
-        private void cmbVoices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CmbVoices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            speech.Voice = speech.GetVoices(string.Empty, string.Empty).Item(cmbVoices.SelectedIndex);
+            _speech.Voice = _speech.GetVoices(string.Empty, string.Empty).Item(cmbVoices.SelectedIndex);
         }
 
-        private void cmbAudioOut_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CmbAudioOut_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            speech.AudioOutput = speech.GetAudioOutputs(string.Empty, string.Empty).Item(cmbAudioOut.SelectedIndex);
+            _speech.AudioOutput = _speech.GetAudioOutputs(string.Empty, string.Empty).Item(cmbAudioOut.SelectedIndex);
         }
 
-        private void bt_speek_Click(object sender, EventArgs e)
+        private void Bt_speek_Click(object sender, EventArgs e)
         {
             //终止先前朗读,如果有  
-            speech.Speak(" ", SpeechVoiceSpeakFlags.SVSFlagsAsync);
-            speech.Speak(tbspeech.Text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
+            _speech.Speak(" ", SpeechVoiceSpeakFlags.SVSFlagsAsync);
+            _speech.Speak(tbspeech.Text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
         }
 
-        private void bt_stop_Click(object sender, EventArgs e)
+        private void Bt_stop_Click(object sender, EventArgs e)
         {
-            speech.Speak("", SpeechVoiceSpeakFlags.SVSFlagsAsync);
+            _speech.Speak("", SpeechVoiceSpeakFlags.SVSFlagsAsync);
         }
 
-        private void tbarRate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void TbarRate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            speech.Rate = (int)e.NewValue;
+            _speech.Rate = (int)e.NewValue;
         }
 
-        private void trbVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void TrbVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            speech.Volume = (int)e.NewValue;
+            _speech.Volume = (int)e.NewValue;
         }
     }
 }

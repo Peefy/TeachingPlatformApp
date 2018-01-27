@@ -15,8 +15,7 @@ namespace TeachingPlatformApp.Views
     {
         public MainWindow()
         {
-            InitializeComponent();
-            
+            InitializeComponent();         
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

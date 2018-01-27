@@ -9,6 +9,13 @@ namespace TeachingPlatformApp.Utils
 {
     public static class VectorPointHelper
     {
+        /// <summary>
+        /// 平面内到点到线段所在直线距离
+        /// </summary>
+        /// <param name="singlePoint"></param>
+        /// <param name="linePoint1"></param>
+        /// <param name="linePoint2"></param>
+        /// <returns></returns>
         public static double GetPointToLineDistance(Point singlePoint, Point linePoint1, Point linePoint2)
         {
             if (linePoint1.X == linePoint2.X)
@@ -24,6 +31,12 @@ namespace TeachingPlatformApp.Utils
             return Math.Abs((a * x + b * y + c)) / Math.Sqrt(a * a + b * b);
         }
 
+        /// <summary>
+        /// 平面内两个坐标的距离
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <returns></returns>
         public static double GetTwoPointDistance(Point point1, Point point2)
         {
             var subX = point2.X - point1.X;
@@ -31,6 +44,12 @@ namespace TeachingPlatformApp.Utils
             return Math.Sqrt(subX * subX + subY * subY);
         }
 
+        /// <summary>
+        /// 获得当前坐标到所有航路点连线之间的距离
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="points"></param>
+        /// <returns></returns>
         public static List<double> GetPointToAllSetPointsLineDistance(Point point, IList<Point> points)
         {
             var distances = new List<double>();
@@ -46,6 +65,12 @@ namespace TeachingPlatformApp.Utils
             return distances;
         }
 
+        /// <summary>
+        /// 获得当前坐标到所有航路点的距离
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="points"></param>
+        /// <returns></returns>
         public static List<double> GetPointToAllSetPointsDistance(Point point, IList<Point> points)
         {
             var distances = new List<double>();
@@ -60,6 +85,14 @@ namespace TeachingPlatformApp.Utils
             return distances;
         }
 
+        /// <summary>
+        /// 判断点是否在多边形内
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <param name="margin"></param>
+        /// <returns></returns>
         public static bool JudgePointInParallelogram(Point point, Point point1, Point point2, double margin = 5)
         {
             bool oddNodes = false;
@@ -79,7 +112,8 @@ namespace TeachingPlatformApp.Utils
                 || polyY[j] < y && polyY[i] >= y)
                 && (polyX[i] <= x || polyX[j] <= x))
                 {
-                    oddNodes ^= (polyX[i] + (y - polyY[i]) / (polyY[j] - polyY[i]) * (polyX[j] - polyX[i]) < x);
+                    oddNodes ^= (polyX[i] + (y - polyY[i]) / (polyY[j] - polyY[i]) * 
+                        (polyX[j] - polyX[i]) < x);
                 }
                 j = i;
             }

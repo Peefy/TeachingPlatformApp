@@ -5,11 +5,11 @@ namespace TeachingPlatformApp.ZyPlatform
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct GameStateFlag
     {
-        public short m_Type;
+        public short Type;
 
-        public short m_length;
+        public short Length;
 
-        public short m_Flag;
+        public short Flag;
     }
 
 }

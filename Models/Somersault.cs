@@ -8,12 +8,10 @@ namespace TeachingPlatformApp.Models
 {
     public class Somersault : FlightExperiment
     {
-
         public Somersault()
         {
             Name = "斤斗";
             Index = 3;
         }
-
     }
 }

@@ -26,6 +26,7 @@ namespace TeachingPlatformApp.Utils
             _lazyInstance ?? (_lazyInstance = new Lazy<JsonFileConfig>(() => ReadFromFile(),
                 LazyThreadSafetyMode.PublicationOnly));
 
+        [JsonIgnore]
         public static JsonFileConfig Instance => LazyInstance.Value;
 
         [JsonIgnore]
@@ -94,8 +95,8 @@ namespace TeachingPlatformApp.Utils
         /// <summary>
         /// 飞行实验介绍 配置
         /// </summary>
-        [JsonProperty("flightExperimentIntroduction")]
-        public FlightExperimentIntroduction FlightExperimentIntroduction { get;set;}
+        [JsonProperty("flightExperimentConfig")]
+        public FlightExperimentConfig FlightExperimentConfig { get;set;}
 
         public void WriteToFile()
         {
@@ -170,7 +171,7 @@ namespace TeachingPlatformApp.Utils
             this.GridAxesDrawPara = new GridAxesDrawPara();
             this.SpeechConfig = new SpeechConfig();
             this.TestTrailRouteConfig = new TestTrailRouteConfig();
-            this.FlightExperimentIntroduction = new FlightExperimentIntroduction();
+            this.FlightExperimentConfig = new FlightExperimentConfig();
         }
 
     }
@@ -351,7 +352,7 @@ namespace TeachingPlatformApp.Utils
      
     }
 
-    public class FlightExperimentIntroduction
+    public class FlightExperimentConfig
     {
         [JsonProperty("introductions")]
         public string[] Introductions { get; set; } =
@@ -388,6 +389,9 @@ namespace TeachingPlatformApp.Utils
                 "通过教员台界面可以设置保持的坡度大小以及航路点坐标，" +
                 "且在教员台界面上可以实时显示飞机的滚转角和飞机当前飞行的坐标点。",
         };
+
+        [JsonProperty("isJudgeValid ")]
+        public bool IsJudgeValid { get; set; } = true;
 
     }
 

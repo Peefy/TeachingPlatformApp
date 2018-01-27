@@ -26,9 +26,11 @@ namespace TeachingPlatformApp.Models
         {
             Name = "盘旋";
             Index = 4;
-            _hoverAngle = new AngleValidatableObject(45);
-            _hoverAngle.Value = Convert.ToSingle(LogAndConfig.Config.
-                GetProperty(nameof(HoverAngle), 45.0f));
+            _hoverAngle = new AngleValidatableObject(45)
+            {
+                Value = Convert.ToSingle(LogAndConfig.Config.
+                GetProperty(nameof(HoverAngle), 45.0f))
+            };
         }
 
     }

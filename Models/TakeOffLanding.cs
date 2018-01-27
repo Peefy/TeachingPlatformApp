@@ -16,7 +16,6 @@ namespace TeachingPlatformApp.Models
 {
     public class TakeOffLanding : FlightExperiment
     {
-
         Point _locationT = Point.Parse(Convert.ToString(LogAndConfig.Config.
             GetProperty(nameof(PitchInRange), "10,10")));
         public Point LocationT
@@ -58,7 +57,6 @@ namespace TeachingPlatformApp.Models
 
         public override async Task StartAsync()
         {
-            //Pitch.Value = Pitch.Value + 10;
             await base.StartAsync();
         }
 

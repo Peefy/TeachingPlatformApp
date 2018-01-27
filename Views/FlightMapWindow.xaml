@@ -279,6 +279,7 @@
                                       x:Name="xTextBox"
                                       FontSize="{Binding LocationStringFontSize}"
                                       MinWidth="100"
+                                      IsEnabled="False"
                                       Text="{Binding DrawMargin.Left, Converter={StaticResource MarginLeftTopToPointXY}}">
             </myctrls:NumuricTextBlock>
             <Label Content="Y:" 
@@ -289,6 +290,7 @@
                                       x:Name="yTextBox"
                                       FontSize="{Binding LocationStringFontSize}"
                                       MinWidth="100"
+                                      IsEnabled="False"
                                       Text="{Binding DrawMargin.Top, 
                 Converter={StaticResource MarginLeftTopToPointXY}}">
             </myctrls:NumuricTextBlock>

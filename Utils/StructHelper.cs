@@ -29,7 +29,7 @@ namespace TeachingPlatformApp.Utils
             int num = Marshal.SizeOf(type);
             if (num > bytes.Length)
             {
-                return default(T);
+                return default;
             }
             IntPtr intPtr = Marshal.AllocHGlobal(num);
             Marshal.Copy(bytes, 0, intPtr, num);
@@ -54,26 +54,6 @@ namespace TeachingPlatformApp.Utils
             var type = typeof(T);
             int num = Marshal.SizeOf(type);
             return num;
-        }
-
-        public static float Rad2Deg(float rad, int digit = 2)
-        {
-            return (float)Math.Round(rad * 57.29577951 / Math.PI, digit);
-        }
-
-        public static float Rad2Deg(double rad, int digit = 2)
-        {
-            return (float)Math.Round(rad * 57.29577951 / Math.PI, digit);
-        }
-
-        public static float Deg2Rad(float deg, int digit = 2)
-        {
-            return (float)Math.Round(deg * 0.01745329, digit);
-        }
-
-        public static float Deg2Rad(double deg, int digit = 2)
-        {
-            return (float)Math.Round(deg * 0.01745329, digit);
         }
 
     }

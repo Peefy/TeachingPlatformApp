@@ -9,12 +9,12 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Grid>
-        <ComboBox x:Name="cmbVoices"  HorizontalAlignment="Left" Margin="86,23,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="cmbVoices_SelectionChanged"/>
-        <ComboBox x:Name="cmbAudioOut"  HorizontalAlignment="Left" Margin="86,69,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="cmbAudioOut_SelectionChanged"/>
+        <ComboBox x:Name="cmbVoices"  HorizontalAlignment="Left" Margin="86,23,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="CmbVoices_SelectionChanged"/>
+        <ComboBox x:Name="cmbAudioOut"  HorizontalAlignment="Left" Margin="86,69,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="CmbAudioOut_SelectionChanged"/>
         <Label Content="语音库(引擎): " HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Width="81"/>
         <Label Content="语音输出方式: " HorizontalAlignment="Left" Margin="0,65,0,0" VerticalAlignment="Top" Width="81"/>
-        <Button Content="朗读|Speek" HorizontalAlignment="Left" Margin="33,119,0,0" VerticalAlignment="Top" Width="104" Click="bt_speek_Click"/>
-        <Button Content="停止|Stop" HorizontalAlignment="Left" Margin="170,119,0,0" VerticalAlignment="Top" Width="93" RenderTransformOrigin="2.042,0.064" Click="bt_stop_Click"/>
+        <Button Content="朗读|Speek" HorizontalAlignment="Left" Margin="33,119,0,0" VerticalAlignment="Top" Width="104" Click="Bt_speek_Click"/>
+        <Button Content="停止|Stop" HorizontalAlignment="Left" Margin="170,119,0,0" VerticalAlignment="Top" Width="93" RenderTransformOrigin="2.042,0.064" Click="Bt_stop_Click"/>
         <TextBox Name="tbspeech"  HorizontalAlignment="Left" Height="125" Margin="20,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="484" BorderThickness="3" Text="Wpf语音,hello world！">
             <TextBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
@@ -33,7 +33,7 @@
                 Ticks="1, 2, 3, 4, 5, 6, 7, 8, 9,10"   
                 IsSelectionRangeEnabled="true"  
                 SelectionStart="1" SelectionEnd="9"   
-                HorizontalAlignment="Left" Margin="357,51,0,0" VerticalAlignment="Top" Height="103" ValueChanged="tbarRate_ValueChanged" Background="#FFEFEBF0"/>
+                HorizontalAlignment="Left" Margin="357,51,0,0" VerticalAlignment="Top" Height="103" ValueChanged="TbarRate_ValueChanged" Background="#FFEFEBF0"/>
         <Slider x:Name="trbVolume" Orientation="Vertical"                   
                 Minimum="0"   
                 Maximum="10"  
@@ -43,7 +43,7 @@
                 Ticks="1, 2, 3, 4, 5, 6, 7, 8, 9,10"   
                 IsSelectionRangeEnabled="true"  
                 SelectionStart="1" SelectionEnd="9"   
-                HorizontalAlignment="Left" Margin="426,51,0,0" VerticalAlignment="Top" Height="103" ValueChanged="trbVolume_ValueChanged" Background="#FFF2EFF3"/>
+                HorizontalAlignment="Left" Margin="426,51,0,0" VerticalAlignment="Top" Height="103" ValueChanged="TrbVolume_ValueChanged" Background="#FFF2EFF3"/>
         <Label Content="语速" HorizontalAlignment="Left" Margin="350,19,0,0" VerticalAlignment="Top" Width="35" />
         <Label Content="音量" HorizontalAlignment="Left" Margin="418,19,0,0" VerticalAlignment="Top" Width="35"/>
 

@@ -7,90 +7,90 @@ namespace DuGu720DegreeView.ShareMemory
 {
     public class CLMemory 
     {
-        private const int FILE_MAP_READ = 4;
+        private const int FileMapHead = 4;
 
-        private static CLMemory m_Instance;
+        private static CLMemory _instance;
 
-        private string memName = "GAME_SHARED_MEM_0000";
+        private string _memName = "GAME_SHARED_MEM_0000";
 
-        private ZyShareMem MemDB = new ZyShareMem();
+        private ZyShareMem _memDB = new ZyShareMem();
 
-        private IntPtr hMappingHandle = IntPtr.Zero;
+        private IntPtr _hMappingHandle = IntPtr.Zero;
 
-        private IntPtr hVoid = IntPtr.Zero;
+        private IntPtr _hVoid = IntPtr.Zero;
 
-        private bool inited;
+        private bool _inited;
 
-        private VectorAngExp m_vectorAngExp;
+        private VectorAngExp _vectorAngExp;
 
-        private GameSharedDef m_gameSharedDef;
+        private GameSharedDef _gameSharedDef;
 
         public static CLMemory Instance
         {
             get
             {
-                return CLMemory.m_Instance;
+                return _instance;
             }         
         }
 
         private void Awake()
         {
-            CLMemory.m_Instance = this;
-            this.m_vectorAngExp = default(VectorAngExp);
-            this.m_vectorAngExp.X = 0f;
-            this.m_vectorAngExp.Y = 0f;
-            this.m_vectorAngExp.Z = 0f;
-            this.m_gameSharedDef = default(GameSharedDef);
-            this.m_gameSharedDef.Angle = this.m_vectorAngExp;
-            this.m_gameSharedDef.GameStatus = 0;
+            _instance = this;
+            this._vectorAngExp = default;
+            this._vectorAngExp.X = 0f;
+            this._vectorAngExp.Y = 0f;
+            this._vectorAngExp.Z = 0f;
+            this._gameSharedDef = default;
+            this._gameSharedDef.Angle = _vectorAngExp;
+            this._gameSharedDef.GameStatus = 0;
         }
 
         private void Update()
         {
-            if (!this.inited)
+            if (!this._inited)
             {
-                this.hMappingHandle = ZyShareMem.OpenFileMapping(4, false, this.memName);
-                if (this.hMappingHandle == IntPtr.Zero)
+                this._hMappingHandle = ZyShareMem.OpenFileMapping(4, false, this._memName);
+                if (this._hMappingHandle == IntPtr.Zero)
                 {
                     return;
                 }
-                this.hVoid = ZyShareMem.MapViewOfFile(this.hMappingHandle, 4u, 0u, 0u, (uint)Marshal.SizeOf(this.m_gameSharedDef));
-                if (this.hVoid == IntPtr.Zero)
+                this._hVoid = ZyShareMem.MapViewOfFile(this._hMappingHandle, 4u, 0u, 0u, (uint)Marshal.SizeOf(this._gameSharedDef));
+                if (this._hVoid == IntPtr.Zero)
                 {
                     return;
                 }
                 
-                this.inited = true;
+                this._inited = true;
             }
-            if (this.inited)
+            if (this._inited)
             {
-                this.m_gameSharedDef = (GameSharedDef)this.ReadFromMemory(this.m_gameSharedDef.GetType());
-                this.m_vectorAngExp = this.m_gameSharedDef.Angle;
+                this._gameSharedDef = (GameSharedDef)this.ReadFromMemory(this._gameSharedDef.GetType());
+                this._vectorAngExp = this._gameSharedDef.Angle;
                 
             }
         }
 
         public int GetGameStatus()
         {
-            return this.m_gameSharedDef.GameStatus;
+            return this._gameSharedDef.GameStatus;
         }
 
         public object ReadFromMemory(Type type)
         {
-            return Marshal.PtrToStructure(this.hVoid, type);
+            return Marshal.PtrToStructure(this._hVoid, type);
         }
 
         private void Close()
         {
-            if (this.hVoid != IntPtr.Zero)
+            if (this._hVoid != IntPtr.Zero)
             {
-                ZyShareMem.UnmapViewOfFile(this.hVoid);
-                this.hVoid = IntPtr.Zero;
+                ZyShareMem.UnmapViewOfFile(this._hVoid);
+                this._hVoid = IntPtr.Zero;
             }
-            if (this.hMappingHandle != IntPtr.Zero)
+            if (this._hMappingHandle != IntPtr.Zero)
             {
-                ZyShareMem.CloseHandle(this.hMappingHandle);
-                this.hMappingHandle = IntPtr.Zero;
+                ZyShareMem.CloseHandle(this._hMappingHandle);
+                this._hMappingHandle = IntPtr.Zero;
             }
         }
 

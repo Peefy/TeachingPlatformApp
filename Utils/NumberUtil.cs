@@ -8,6 +8,13 @@ namespace TeachingPlatformApp.Utils
 {
     public static class NumberUtil
     {
+        /// <summary>
+        /// 判断数字是否在范围内
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="range1"></param>
+        /// <param name="range2"></param>
+        /// <returns></returns>
         public static bool JudgeNumberInRange(double number, double range1, double range2)
         {
             var max = Math.Max(range1, range2);
@@ -22,6 +29,13 @@ namespace TeachingPlatformApp.Utils
             return value == true ? "否" : "是";
         }
 
+        /// <summary>
+        /// 数字限幅
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public static double Clamp(double value, double min, double max)
         {
             if (value <= min)
@@ -29,6 +43,26 @@ namespace TeachingPlatformApp.Utils
             if (value >= max)
                 value = max;
             return value;
+        }
+
+        public static float Rad2Deg(float rad, int digit = 2)
+        {
+            return (float)Math.Round(rad * 57.29577951 / Math.PI, digit);
+        }
+
+        public static float Rad2Deg(double rad, int digit = 2)
+        {
+            return (float)Math.Round(rad * 57.29577951 / Math.PI, digit);
+        }
+
+        public static float Deg2Rad(float deg, int digit = 2)
+        {
+            return (float)Math.Round(deg * 0.01745329, digit);
+        }
+
+        public static float Deg2Rad(double deg, int digit = 2)
+        {
+            return (float)Math.Round(deg * 0.01745329, digit);
         }
 
     }
