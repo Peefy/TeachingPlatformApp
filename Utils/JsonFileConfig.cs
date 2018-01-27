@@ -30,7 +30,7 @@ namespace TeachingPlatformApp.Utils
         public static JsonFileConfig Instance => LazyInstance.Value;
 
         [JsonIgnore]
-        public static string FileName { get; set; } = 
+        public static string PathAndFileName { get; set; } = 
             Path.Combine(Environment.CurrentDirectory, "config.json");
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace TeachingPlatformApp.Utils
             try
             {
                 var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-                File.WriteAllText(FileName, str);
+                File.WriteAllText(PathAndFileName, str);
             }
             catch (Exception ex)
             {
@@ -116,7 +116,7 @@ namespace TeachingPlatformApp.Utils
         {
             try
             {
-                var str = File.ReadAllText(FileName);
+                var str = File.ReadAllText(PathAndFileName);
                 var config = JsonConvert.DeserializeObject<JsonFileConfig>(str);
                 return config;
             }
