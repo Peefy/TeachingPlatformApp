@@ -30,7 +30,8 @@ namespace TeachingPlatformApp.Utils
         public static JsonFileConfig Instance => LazyInstance.Value;
 
         [JsonIgnore]
-        public const string FileName = "config.json";
+        public static string FileName { get; set; } = 
+            Path.Combine(Environment.CurrentDirectory, "config.json");
 
         /// <summary>
         /// 显示字符串标题 配置
