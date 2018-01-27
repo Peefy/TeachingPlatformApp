@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Prism.Mvvm;
 
+using TeachingPlatformApp.Utils;
+
 namespace TeachingPlatformApp.ViewModels
 {
     public class ConfigWindowViewModel : BindableBase
@@ -16,7 +18,6 @@ namespace TeachingPlatformApp.ViewModels
             get => _title;
             set => SetProperty(ref _title, value);
         }
-
 
         private string _comConfigName = "通信配置";
         public string ComConfigName

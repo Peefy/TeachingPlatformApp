@@ -13,7 +13,6 @@ namespace TeachingPlatformApp.Models
 {
     public class AirlineFlight : FlightExperiment
     {
-
         public override string SetPointsConfigName => nameof(AirlineFlight);
 
         public AirlineFlight()
