@@ -86,7 +86,7 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _isJudgeRoute, value);
         }
 
-        private int _nowSetPointsIndex = -1;
+        private int _nowSetPointsIndex = 0;
         public int NowSetPointsIndex
         {
             get => _nowSetPointsIndex;
@@ -112,6 +112,7 @@ namespace TeachingPlatformApp.Models
             Config = JsonFileConfig.Instance;
             WswAngleWithLocation = default;
             Trail = new ObservableRangeCollection<Point>();
+            NowSetPointsIndex = Config.TestTrailRouteConfig.InitNowSetPointsIndex;
             _speeker = Ioc.Get<ISpeek>();
             _outOfRouteCount = Config.TestTrailRouteConfig.OutOfRouteSpeechUpCount;
         }
@@ -189,9 +190,8 @@ namespace TeachingPlatformApp.Models
             {
                 var count = setPoints.Count;                
                 var angle = 0.0;
-                NowSetPointsIndex = JudgeNowSetPointsIndex(setPoints);
-                var nowIndex = NowSetPointsIndex;
-                if (NowSetPointsIndex != count)
+                var nowIndex = JudgeNowSetPointsIndex(setPoints);
+                if (nowIndex != count)
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[nowIndex + 1]);
                 else
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[0]);

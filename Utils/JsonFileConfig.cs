@@ -399,7 +399,7 @@ namespace TeachingPlatformApp.Utils
         /// 航线检测偏离距离
         /// </summary>
         [JsonProperty("outOfRouteDistance")]
-        public double OutOfRouteDistance { get; set; } = 5.0;
+        public double OutOfRouteDistance { get; set; } = 6.0;
 
         /// <summary>
         /// 航线检测偏离周期
@@ -426,10 +426,13 @@ namespace TeachingPlatformApp.Utils
         public int AutoFollowingIntervalMs { get; set; } = 30;
 
         /// <summary>
-        /// 检测当前经过的航路点索引
+        /// 检测当前经过的航路点索引合理半径
         /// </summary>
         [JsonProperty("judgeNowSetPointsIndexRadius")]
-        public double JudgeNowSetPointsIndexRadius { get; set; } = 3;
+        public double JudgeNowSetPointsIndexRadius { get; set; } = 5.0;
+
+        [JsonProperty("initNowSetPointsIndex")]
+        public int InitNowSetPointsIndex { get; set; } = 0;
 
     }
 

@@ -127,7 +127,8 @@
     "outOfRouteSpeechUpCount": 2,
     "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 30,
-    "judgeNowSetPointsIndexRadius": 13.0
+    "judgeNowSetPointsIndexRadius": 5.0,
+    "initNowSetPointsIndex": 0
   },
   "flightExperimentConfig": {
     "introductions": [
