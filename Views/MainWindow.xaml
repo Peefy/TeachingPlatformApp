@@ -17,7 +17,6 @@
     Height="700"
     MinWidth="920"
     MinHeight="700"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     BorderThickness="1"
     GlowBrush="Black"
     Keyboard.KeyDown="Window_KeyDown"

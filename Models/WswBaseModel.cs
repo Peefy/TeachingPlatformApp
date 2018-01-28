@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Threading;
+using System.Windows.Threading;
 
 using Prism.Mvvm;
 
@@ -116,7 +118,8 @@ namespace TeachingPlatformApp.Models
         }
 
         public WswBaseModel()
-        {       
+        {
+
             Config = JsonFileConfig.Instance;
             WswAngleWithLocation = default;
             Trail = new ObservableRangeCollection<Point>();
@@ -193,7 +196,7 @@ namespace TeachingPlatformApp.Models
         public virtual RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints, out bool isNotOutOfRoute)
         {
             isNotOutOfRoute = JudgeIsNotOutOfRoute(setPoints);
-            var routeState = isNotOutOfRoute == true ? RouteState.Normal : RouteState.OutOfLeft;
+            var routeState = RouteState.Normal;
             if (setPoints?.Count > 1 && isNotOutOfRoute == false)
             {
                 var count = setPoints.Count;                
@@ -275,7 +278,7 @@ namespace TeachingPlatformApp.Models
                         var flightExName = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentName;
                         _speeker?.SpeekAsync($"{Name}成功完成了{flightExName}实验");
                         NowSetPointsIndex = 0;
-                        MyConsole.RunStop();
+                        Ioc.Get<ITranslateData>().TranslateInfo.IsTest = false;
                     }
                 }
             }

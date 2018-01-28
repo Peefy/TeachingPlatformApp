@@ -108,8 +108,8 @@
     "yawSign": false
   },
   "myMissileInfo": {
-    "initMyPointX": 50.0,
-    "initMyPointY": 50.0,
+    "initMyPointX": 30.0,
+    "initMyPointY": 30.0,
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.01,
     "pointScaleFactorY": 0.01,
@@ -137,7 +137,8 @@
     "autoFollowingIntervalMs": 30,
     "judgeNowSetPointsIndexRadius": 11.0,
     "initNowSetPointsIndex": 0,
-    "isShowNowSetPointsIndex": true
+    "isShowNowSetPointsIndex": true,
+    "unConnectedFlighterRotateSpeed": 0.3
   },
   "flightExperimentConfig": {
     "introductions": [

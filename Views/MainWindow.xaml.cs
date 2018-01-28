@@ -16,11 +16,14 @@ namespace TeachingPlatformApp.Views
     public partial class MainWindow : MetroWindow
     {
 
+        MainWindowViewModel _viewModel;
         bool _isCtrlKeyDown;
 
         public MainWindow()
         {
-            InitializeComponent();         
+            InitializeComponent();
+            _viewModel = new MainWindowViewModel();
+            this.DataContext = _viewModel;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -339,24 +339,24 @@ namespace TeachingPlatformApp.ViewModels
                     await Task.Delay(100);
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
                     await Task.Delay(100);
-                    if (IsJudgeValid == true && item.IsValid == false)
+                    if(UdpServer.TranslateInfo.IsTest == false)
                     {
+                        if (IsJudgeValid == true && item.IsValid == false)
+                        {
+                            AppendStatusText($"{DateTime.Now}:{item.Name}实验失败，不符合实验要求");
+                            Speeker?.SpeekAsync($"{item.Name}实验失败，不符合实验要求");
+                        }
+                        if (item.IsStop == true)
+                        {
+                            StatusText += $"{DateTime.Now}:{item.Name}实验结束\r\n";                      
+                        }
+                        else
+                        {
+                            StatusText += $"{DateTime.Now}:{item.Name}实验失败，时间超时\r\n";
+                            Speeker?.SpeekAsync($"{item.Name}实验失败，时间超时");
+                        }
                         UdpServer.TranslateInfo.IsTest = false;
-                        AppendStatusText($"{DateTime.Now}:{item.Name}实验失败，不符合实验要求");
-                        Speeker?.SpeekAsync($"{item.Name}实验失败，不符合实验要求");
-                    }
-                    if (item.IsStop == true)
-                    {
-                        StatusText += $"{DateTime.Now}:{item.Name}实验结束\r\n";
-                        UdpServer.TranslateInfo.IsTest = false;
-                    }                      
-                    else
-                    {
-                        StatusText += $"{DateTime.Now}:{item.Name}实验失败，时间超时\r\n";
-                        Speeker?.SpeekAsync($"{item.Name}实验失败，时间超时");
-                        UdpServer.TranslateInfo.IsTest = false;
-                    }
-                        
+                    }                        
                     await item.EndAsync();
                 }
                 catch(Exception ex)

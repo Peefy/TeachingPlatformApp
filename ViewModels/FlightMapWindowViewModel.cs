@@ -164,7 +164,8 @@ namespace TeachingPlatformApp.ViewModels
                     var i = 0.0f;
                     var flightCount = 0.0f;
                     var random = new Random();
-                    var flighterSpeed = 0.5f;
+                    var flighterSpeed = JsonFileConfig.Instance.
+                        TestTrailRouteConfig.UnConnectedFlighterRotateSpeed;
                     //var point1 = new Point(random.Next(80), random.Next(60));
                     var point1 = new Point(30, 30);
                     var point2 = new Point(random.Next(80), random.Next(60));

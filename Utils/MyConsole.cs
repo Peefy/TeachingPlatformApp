@@ -2,24 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 using TeachingPlatformApp.ViewModels;
 
 namespace TeachingPlatformApp.Utils
 {
-    public static class MyConsole
+    public class MyConsole
     {
+
+        protected static Dispatcher _dip = Dispatcher.CurrentDispatcher;
+        protected static SynchronizationContext _ds = new DispatcherSynchronizationContext();
+
         /// <summary>
         /// 向主窗口的控制台写入内容
         /// </summary>
         /// <param name="obj"></param>
         public static void WriteLine(object obj)
         {
-            if(App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+            _dip.Invoke(new Action(() =>
             {
-                viewModel.AppendStatusText(obj.ToString());
-            }
+                if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+                {
+                    viewModel.AppendStatusText(obj.ToString());
+                }
+            }));
+
         }
 
         /// <summary>
@@ -28,27 +38,37 @@ namespace TeachingPlatformApp.Utils
         /// <param name="str"></param>
         public static void WriteLine(string str)
         {
-            if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+            _dip.Invoke(new Action(() =>
             {
-                viewModel.AppendStatusText(str);
-            }
+                if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+                {
+                    viewModel.AppendStatusText(str);
+                }
+            }));
+
         }
 
         public static void RunStart()
         {
-            if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+            _dip.Invoke(new Action(() =>
             {
-                viewModel.StartCommand.Execute();
-            }
+                if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+                {
+                    viewModel.StartCommand.Execute();
+                }
+            }));
+
         }
 
         public static void RunStop()
         {
-            if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+            _dip.Invoke(new Action(() =>
             {
-                viewModel.StopCommand.Execute();
-            }
+                if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+                {
+                    viewModel.StopCommand.Execute();
+                }
+            }));
         }
-
     }
 }
