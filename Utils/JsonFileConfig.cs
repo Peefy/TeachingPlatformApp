@@ -29,6 +29,9 @@ namespace TeachingPlatformApp.Utils
         [JsonIgnore]
         public static JsonFileConfig Instance => LazyInstance.Value;
 
+        /// <summary>
+        /// 配置文件路径和文件名称
+        /// </summary>
         [JsonIgnore]
         public static string PathAndFileName { get; set; } = 
             Path.Combine(Environment.CurrentDirectory, "config.json");
@@ -99,6 +102,9 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("flightExperimentConfig")]
         public FlightExperimentConfig FlightExperimentConfig { get;set;}
 
+        /// <summary>
+        /// 配置写入文件
+        /// </summary>
         public void WriteToFile()
         {
             try
@@ -112,6 +118,10 @@ namespace TeachingPlatformApp.Utils
             }
         }
 
+        /// <summary>
+        /// 从文件读取配置
+        /// </summary>
+        /// <returns></returns>
         public static JsonFileConfig ReadFromFile()
         {
             try
@@ -128,6 +138,9 @@ namespace TeachingPlatformApp.Utils
             }
         }
 
+        /// <summary>
+        /// 无参构造函数
+        /// </summary>
         public JsonFileConfig()
         {
             this.StringResource = new StringResource();
@@ -177,6 +190,9 @@ namespace TeachingPlatformApp.Utils
 
     }
 
+    /// <summary>
+    /// 显示字符串 标题 配置
+    /// </summary>
     public class StringResource
     {
         [JsonProperty("windowTitle")]
@@ -263,22 +279,25 @@ namespace TeachingPlatformApp.Utils
 
     }
 
+    /// <summary>
+    /// Wsw 数据
+    /// </summary>
     public class WswData
     {
         /// <summary>
-        /// flighterInitInfo
+        /// 战斗机的初始数据(姿态，坐标)
         /// </summary>
         [JsonProperty("flighterInitInfo")]
         public AngleWithLocation FlighterInitInfo;
 
         /// <summary>
-        /// helicopterInitInfo
+        /// 直升机的初始数据(姿态，坐标)
         /// </summary>
         [JsonProperty("helicopterInitInfo")]
         public AngleWithLocation HelicopterInitInfo;
 
         /// <summary>
-        /// missileInitInfo
+        /// 导弹的初始数据(姿态，坐标)
         /// </summary>
         [JsonProperty("missileInitInfo")]
         public AngleWithLocation MissileInitInfo;
@@ -336,25 +355,58 @@ namespace TeachingPlatformApp.Utils
         /// <summary>
         /// 0 代表只检测战斗机，1代表只检测直升机，2代表du检测
         /// </summary>
-        [JsonProperty("TestSwitch")]
-        public int TestSwitch { get; set; } = 2;
+        [JsonProperty("outOfRouteTestSwitch")]
+        public int OutOfRouteTestSwitch { get; set; } = 2;
 
+        /// <summary>
+        /// 航线偏离检测角度
+        /// </summary>
         [JsonProperty("outOfRouteAngle")]
         public double OutOfRouteAngle { get; set; } = 20.0;
 
+        /// <summary>
+        /// 航线检测偏离距离
+        /// </summary>
         [JsonProperty("outOfRouteDistance")]
         public double OutOfRouteDistance { get; set; } = 5.0;
 
+        /// <summary>
+        /// 航线检测偏离周期
+        /// </summary>
         [JsonProperty("outOfRouteTestIntervalMs")]
         public int OutOfRouteTestIntervalMs { get; set; } = 300;
 
+        /// <summary>
+        /// 航线检测偏离检测次数
+        /// </summary>
         [JsonProperty("outOfRouteSpeechUpCount")]
         public int OutOfRouteSpeechUpCount { get; set; } = 2;
-     
+
+        /// <summary>
+        /// 0 代表不跟随，1 代表跟随战斗机 2代表跟随直升机
+        /// </summary>
+        [JsonProperty("isAutoFollowing")]
+        public int IsAutoFollowing { get; set; } = 1;
+
+        /// <summary>
+        /// 自动跟随周期
+        /// </summary>
+        [JsonProperty("autoFollowingIntervalMs")]
+        public int AutoFollowingIntervalMs { get; set; } = 30;
+
+        /// <summary>
+        /// 检测当前经过的航路点索引
+        /// </summary>
+        [JsonProperty("judgeNowSetPointsIndexRadius")]
+        public double JudgeNowSetPointsIndexRadius { get; set; } = 3;
+
     }
 
     public class FlightExperimentConfig
     {
+        /// <summary>
+        /// 飞行实验介绍
+        /// </summary>
         [JsonProperty("introductions")]
         public string[] Introductions { get; set; } =
         {
@@ -391,6 +443,9 @@ namespace TeachingPlatformApp.Utils
                 "且在教员台界面上可以实时显示飞机的滚转角和飞机当前飞行的坐标点。",
         };
 
+        /// <summary>
+        /// 是否检测飞行实验
+        /// </summary>
         [JsonProperty("isJudgeValid ")]
         public bool IsJudgeValid { get; set; } = true;
 

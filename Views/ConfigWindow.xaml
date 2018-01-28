@@ -27,8 +27,6 @@
             <ListBoxItem Content="{Binding ComConfigName}" />
         </ListBox>
         <GridSplitter Grid.Column="1" Width="5" />
-        <Grid Grid.Column="2" >
-            <TextBlock 
-        </Grid>
+        <Grid Grid.Column="2" />
     </Grid>
 </Window>

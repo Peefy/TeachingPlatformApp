@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Timers;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -18,7 +17,6 @@ using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.ViewModels;
 using TeachingPlatformApp.Controls;
 using TeachingPlatformApp.Converters;
-
 
 namespace TeachingPlatformApp.Views
 {
@@ -47,9 +45,20 @@ namespace TeachingPlatformApp.Views
 
         Thread _speechThread;
 
+        int _autoFollowingMouseClickCount = 2;
+        int _renewUiStartDelay = 100;
+
         public FlightMapWindow()
         {
             InitializeComponent();
+            DataInit();           
+            DragMoveInit();
+            RenewUI();
+            TaskInit();
+        }
+
+        private void DataInit()
+        {
             _dip = Dispatcher.CurrentDispatcher;
             _ds = new DispatcherSynchronizationContext();
             _girdWswModel = gridAxes.Children[2] as Grid;
@@ -57,10 +66,7 @@ namespace TeachingPlatformApp.Views
             _canvasTrailHelicopter = _girdWswModel.Children[_canvasTrailHelicopterIndex] as CanvasTrail;
             _canvasTrailMissile = _girdWswModel.Children[_canvasTrailMissileIndex] as CanvasTrail;
             _viewModel = new FlightMapWindowViewModel();
-            this.DataContext = _viewModel;
-            DragMoveInit();
-            RenewUI();
-            TaskInit();
+            DataContext = _viewModel;
         }
 
         private void DragMoveInit()
@@ -79,13 +85,13 @@ namespace TeachingPlatformApp.Views
             _speechThread = new Thread(new ThreadStart(() =>
             {
                 var config = JsonFileConfig.Instance;
-                var interval = config.TestTrailRouteConfig.OutOfRouteTestIntervalMs;
+                var outOfRouteTestInterval = config.TestTrailRouteConfig.OutOfRouteTestIntervalMs;
                 while (true)
                 {
                     try
                     {
                         _viewModel.JudgeRouteTask();
-                        Thread.Sleep(interval);
+                        Thread.Sleep(outOfRouteTestInterval);
                     }
                     catch (Exception ex)
                     {
@@ -113,12 +119,19 @@ namespace TeachingPlatformApp.Views
             var config = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
             this.Width = config.AxesWidth;
             this.Height = config.AxesHeight;
-            await Task.Delay(100);
-            var timer = new System.Timers.Timer();
-            timer.Elapsed += new ElapsedEventHandler(AddPoint);
-            timer.Interval = JsonFileConfig.Instance.DataShowConfig.MapUiRefreshMs + 120;
-            timer.AutoReset = true; 
-            timer.Enabled = true;
+            //延时一下
+            await Task.Delay(_renewUiStartDelay);
+            var timerAddPoint = new System.Timers.Timer();
+            timerAddPoint.Elapsed += new ElapsedEventHandler(AddPoint);
+            timerAddPoint.Interval = JsonFileConfig.Instance.DataShowConfig.MapUiRefreshMs + 120;
+            timerAddPoint.AutoReset = true; 
+            timerAddPoint.Enabled = true;
+
+            var timerAutoFollowing = new System.Timers.Timer();
+            timerAutoFollowing.Elapsed += new ElapsedEventHandler(AutoFollowing);
+            timerAutoFollowing.Interval = JsonFileConfig.Instance.TestTrailRouteConfig.AutoFollowingIntervalMs;
+            timerAutoFollowing.AutoReset = true;
+            timerAutoFollowing.Enabled = true;
         }
 
         private void AddPoint(object sender, ElapsedEventArgs e)
@@ -130,12 +143,37 @@ namespace TeachingPlatformApp.Views
                     _canvasTrailFlighter.AddPoint(_viewModel.Flighter.MyMapPosition);
                     _canvasTrailHelicopter.AddPoint(_viewModel.Helicopter.MyMapPosition);
                     _canvasTrailMissile.AddPoint(_viewModel.Missile.MyMapPosition);
+
                 }));
             }
-            catch
+            catch(Exception ex)
             {
-
+                LogAndConfig.Log.Error(ex);
             }
+        }
+
+        private void AutoFollowing(object sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                _dip.Invoke(new Action(() =>
+                {
+                    var isAutoFollowing = JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing;
+                    if (isAutoFollowing == 1)
+                    {
+                        SetMapDrawDeltaLeftTop(_viewModel.Flighter.MyMapPosition);
+                    }
+                    if (isAutoFollowing == 2)
+                    {
+                        SetMapDrawDeltaLeftTop(_viewModel.Helicopter.MyMapPosition);
+                    }
+                }));
+            }
+            catch(Exception ex) 
+            {
+                LogAndConfig.Log.Error(ex);
+            }
+
         }
 
         #region WindowKeyAndMouseWheel
@@ -166,6 +204,11 @@ namespace TeachingPlatformApp.Views
                 _canvasTrailFlighter.ClearPoint();
                 _canvasTrailHelicopter.ClearPoint();
                 _canvasTrailMissile.ClearPoint();
+            }
+            if(e.Key == Key.A)
+            {
+                if (++JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing > 2)
+                    JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing = 0;
             }
             if (e.Key == Key.Escape)
             {
@@ -238,7 +281,7 @@ namespace TeachingPlatformApp.Views
         private void GridAxes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var tmp = (GridAxes)sender;
-            if (e.ClickCount == 2)
+            if (e.ClickCount == _autoFollowingMouseClickCount)
             {
                 SetMapDrawDeltaLeftTop(_viewModel.Flighter.MyMapPosition);
             }
@@ -247,7 +290,7 @@ namespace TeachingPlatformApp.Views
         private void GridAxes_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             var tmp = (GridAxes)sender;
-            if (e.ClickCount == 2)
+            if (e.ClickCount == _autoFollowingMouseClickCount)
             {
                 SetMapDrawDeltaLeftTop(_viewModel.Helicopter.MyMapPosition);
             }
@@ -274,13 +317,14 @@ namespace TeachingPlatformApp.Views
         {
             if(_enableDrag == true && e.RightButton == MouseButtonState.Pressed)
             {
+                var mouseMoveScale = 1.0f;
                 var tmp = (GridAxes)sender;
                 _movePoint = e.GetPosition(null);
                 tmp.DrawDeltaLeft += (_movePoint.X - _pressPoint.X);
                 tmp.DrawDeltaTop += (_movePoint.Y - _pressPoint.Y);
                 tmp.RenewBuildAxes(this.Width, this.Height, true);
-                var dx = (_movePoint.X - _pressPoint.X) * 1 + _viewModel.DrawMargin.Left;
-                var dy = (_movePoint.Y - _pressPoint.Y) * 1 + _viewModel.DrawMargin.Top;
+                var dx = (_movePoint.X - _pressPoint.X) * mouseMoveScale + _viewModel.DrawMargin.Left;
+                var dy = (_movePoint.Y - _pressPoint.Y) * mouseMoveScale + _viewModel.DrawMargin.Top;
                 _viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
                 _pressPoint = _movePoint;
 

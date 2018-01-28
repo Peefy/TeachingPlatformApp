@@ -119,11 +119,14 @@
     "speechTextReserved3": "SpeechTextReserved3"
   },
   "testTrailRouteConfig": {
-    "TestSwitch": 2,
+    "outOfRouteTestSwitch": 2,
     "outOfRouteAngle": 20.0,
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
-    "outOfRouteSpeechUpCount": 2
+    "outOfRouteSpeechUpCount": 2,
+    "isAutoFollowing": 1,
+    "autoFollowingIntervalMs": 30,
+    "judgeNowSetPointsIndexRadius": 3.0
   },
   "flightExperimentConfig": {
     "introductions": [

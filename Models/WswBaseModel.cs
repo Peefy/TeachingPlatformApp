@@ -12,6 +12,14 @@ using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Models
 {
+
+    public enum RouteState
+    {
+        Normal,
+        OutOfLeft,
+        OutOfRight
+    }
+
     public abstract class WswBaseModel : BindableBase, IWswDataStringShow, IRouteJudge, IDisposable
     {
 
@@ -81,6 +89,27 @@ namespace TeachingPlatformApp.Models
         {
             get => _isJudgeRoute;
             set => SetProperty(ref _isJudgeRoute, value);
+        }
+
+        private int _nowSetPointsIndex = 0;
+        public int NowSetPointsIndex
+        {
+            get => _nowSetPointsIndex;
+            set => SetProperty(ref _nowSetPointsIndex, value);
+        }
+
+        private int _lastSetPointsIndex = 0;
+        public int LastSetPointsIndex
+        {
+            get => _lastSetPointsIndex;
+            set => SetProperty(ref _lastSetPointsIndex, value);
+        }
+
+        private RouteState _routeState = RouteState.Normal;
+        public RouteState RouteState
+        {
+            get => _routeState;
+            set => SetProperty(ref _routeState, value);
         }
 
         public WswBaseModel()
@@ -178,6 +207,14 @@ namespace TeachingPlatformApp.Models
             }
         }
 
+        public virtual int JudgeNowSetPointsIndex(ObservableRangeCollection<Point> setPoints)
+        {
+            if (setPoints == null)
+                return 0;
+            LastSetPointsIndex = NowSetPointsIndex;
+            return NowSetPointsIndex;
+        }
+
         public void RenewLocationInfo(bool isConnect)
         {
             if(isConnect == false)
@@ -215,6 +252,7 @@ namespace TeachingPlatformApp.Models
         {
             Dispose(true);
         }
+
         #endregion
     }
 
@@ -228,6 +266,7 @@ namespace TeachingPlatformApp.Models
     {
         void OutOfRouteSpeechControl(ObservableRangeCollection<Point> setPoints);
         bool JudgeIsOutOfRoute(ObservableRangeCollection<Point> setPoints);
+        int JudgeNowSetPointsIndex(ObservableRangeCollection<Point> setPoints);
     }
 
 }

@@ -24,8 +24,8 @@ namespace TeachingPlatformApp.Models
             };
             this.Name = Config.StringResource.FlighterName;
             this.WswAngleWithLocation = Config.WswData.FlighterInitInfo;
-            this.IsJudgeRoute = Config.TestTrailRouteConfig.TestSwitch == 0 ||
-                Config.TestTrailRouteConfig.TestSwitch >= 2;
+            this.IsJudgeRoute = Config.TestTrailRouteConfig.OutOfRouteTestSwitch == 0 ||
+                Config.TestTrailRouteConfig.OutOfRouteTestSwitch >= 2;
         }
 
     }

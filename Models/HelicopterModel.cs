@@ -16,8 +16,8 @@ namespace TeachingPlatformApp.Models
             };
             this.Name = Config.StringResource.HelicopterName;
             this.WswAngleWithLocation = Config.WswData.HelicopterInitInfo;
-            this.IsJudgeRoute = Config.TestTrailRouteConfig.TestSwitch == 1 ||
-                Config.TestTrailRouteConfig.TestSwitch >= 2;
+            this.IsJudgeRoute = Config.TestTrailRouteConfig.OutOfRouteTestSwitch == 1 ||
+                Config.TestTrailRouteConfig.OutOfRouteTestSwitch >= 2;
         }
     }
 
