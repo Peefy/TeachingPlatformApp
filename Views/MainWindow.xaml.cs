@@ -69,10 +69,12 @@ namespace TeachingPlatformApp.Views
                         if (Regex.IsMatch(text, "speech", RegexOptions.IgnoreCase))
                         {
                             new SpeechWindow().Show();
+                            break;
                         }
                         else if (Regex.IsMatch(text, "config", RegexOptions.IgnoreCase))
                         {
                             new ConfigWindow().Show();
+                            break;
                         }
                     }
                     

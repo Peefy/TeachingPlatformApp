@@ -1,3 +1,0 @@
-OnlyInstrumencsSetPoints|(10,10),(70,20),(60,45),(45,55),(10,35)
-AirlineFlightSetPoints|(10,10),(10,50),(50,50),(50,10)
-MilliSeconds|1000000

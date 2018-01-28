@@ -548,19 +548,19 @@ namespace TeachingPlatformApp.Utils
         /// 自动跟随周期
         /// </summary>
         [JsonProperty("autoFollowingIntervalMs")]
-        public int AutoFollowingIntervalMs { get; set; } = 30;
+        public int AutoFollowingIntervalMs { get; set; } = 50;
 
         /// <summary>
         /// 检测当前经过的航路点索引合理半径
         /// </summary>
         [JsonProperty("judgeNowSetPointsIndexRadius")]
-        public double JudgeNowSetPointsIndexRadius { get; set; } = 10.1;
+        public double JudgeNowSetPointsIndexRadius { get; set; } = 5.0;
 
         /// <summary>
         /// 初始的航路点索引
         /// </summary>
         [JsonProperty("initNowSetPointsIndex")]
-        public int InitNowSetPointsIndex { get; set; } = 0;
+        public int InitNowSetPointsIndex { get; set; } = -1;
 
         /// <summary>
         /// 地图界面是否显示飞机上一次经过的航路点

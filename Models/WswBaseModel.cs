@@ -197,7 +197,7 @@ namespace TeachingPlatformApp.Models
         {
             isNotOutOfRoute = JudgeIsNotOutOfRoute(setPoints);
             var routeState = RouteState.Normal;
-            if (setPoints?.Count > 1 && isNotOutOfRoute == false)
+            if (setPoints?.Count > 1)
             {
                 var count = setPoints.Count;                
                 var angle = 0.0;
