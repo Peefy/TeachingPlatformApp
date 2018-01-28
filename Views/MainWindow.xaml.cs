@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -52,16 +53,20 @@ namespace TeachingPlatformApp.Views
             {
                 try
                 {
-                    var index = consoleTextBox.GetLastVisibleLineIndex();
-                    var text = consoleTextBox.GetLineText(index);
-                    if(text.Equals("Speech", StringComparison.CurrentCultureIgnoreCase))
+                    var count = consoleTextBox.LineCount;
+                    for(var i = 0;i < count ;++i)
                     {
-                        new SpeechWindow().Show();
+                        var text = consoleTextBox.GetLineText(i);
+                        if (Regex.IsMatch(text, "speech", RegexOptions.IgnoreCase))
+                        {
+                            new SpeechWindow().Show();
+                        }
+                        else if (Regex.IsMatch(text, "config", RegexOptions.IgnoreCase))
+                        {
+                            new ConfigWindow().Show();
+                        }
                     }
-                    else if(text.Equals("Config", StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        new ConfigWindow().Show();
-                    }
+                    
                 }
                 catch 
                 {

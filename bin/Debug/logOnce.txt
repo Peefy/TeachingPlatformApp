@@ -1,11 +1,1 @@
-2018/1/28 11:04:18
-
-11:04
-0   在 TeachingPlatformApp.ViewModels.MainWindowViewModel.<.ctor>b__92_0(TreeView treeView) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\MainWindowViewModel.cs:行号 243
-索引超出了数组界限。
-
-11:05
-1   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
-   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__20_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 94
-正在中止线程。
+2018/1/28 11:12:29

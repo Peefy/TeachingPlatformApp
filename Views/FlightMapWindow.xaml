@@ -10,11 +10,11 @@
     Title="{Binding Title}"
     BorderThickness="1"
     GlowBrush="Black"
-    SizeChanged="Window_SizeChanged"
-    StateChanged="Window_StateChanged"
     Keyboard.KeyDown="Window_KeyDown"
     Keyboard.KeyUp="Window_KeyUp"
     Mouse.MouseWheel="Window_MouseWheel"
+    SizeChanged="Window_SizeChanged"
+    StateChanged="Window_StateChanged"
     WindowStartupLocation="CenterScreen"
     WindowTransitionsEnabled="False">
     <!--  prism:ViewModelLocator.AutoWireViewModel="True"  -->
@@ -26,12 +26,12 @@
             <mycon:NullToVisiblyConverter x:Key="NullToVisiblyConverter" />
             <mycon:BoolToVisiblyConverter x:Key="BoolToVisiblyConverter" />
             <mycon:TrailPointsToPathFigureConverter x:Key="TrailPointsToPathFigureConverter" />
-            <mycon:MarginLeftTopToPointXY x:Key="MarginLeftTopToPointXY"/>
+            <mycon:MarginLeftTopToPointXY x:Key="MarginLeftTopToPointXY" />
         </ResourceDictionary>
     </Controls:MetroWindow.Resources>
-    <Grid x:Name="fatherGrid" >
+    <Grid x:Name="fatherGrid">
         <Grid.RenderTransform>
-            <ScaleTransform/>
+            <ScaleTransform />
         </Grid.RenderTransform>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -42,8 +42,8 @@
         <myctrls:GridAxes
             x:Name="gridAxes"
             Grid.Row="0"
-            Height="2000"
             Width="2000"
+            Height="2000"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="Beige">
@@ -52,12 +52,12 @@
                 <myctrls:CanvasTrail />
                 <myctrls:CanvasTrail />
                 <myctrls:Helicopter
-                Width="1"
-                Height="1"
-                Margin="{Binding Helicopter.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Panel.ZIndex="0">
+                    Width="1"
+                    Height="1"
+                    Margin="{Binding Helicopter.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Panel.ZIndex="0">
                     <myctrls:Helicopter.RenderTransform>
                         <TransformGroup>
                             <RotateTransform Angle="{Binding Helicopter.Angle}" />
@@ -65,12 +65,12 @@
                     </myctrls:Helicopter.RenderTransform>
                 </myctrls:Helicopter>
                 <myctrls:Flighter
-                Width="1"
-                Height="1"
-                Margin="{Binding Flighter.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Panel.ZIndex="0">
+                    Width="1"
+                    Height="1"
+                    Margin="{Binding Flighter.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Panel.ZIndex="0">
                     <myctrls:Flighter.RenderTransform>
                         <TransformGroup>
                             <RotateTransform Angle="{Binding Flighter.Angle}" />
@@ -78,12 +78,12 @@
                     </myctrls:Flighter.RenderTransform>
                 </myctrls:Flighter>
                 <myctrls:Missile
-                Width="1"
-                Height="1"
-                Margin="{Binding Missile.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Panel.ZIndex="0">
+                    Width="1"
+                    Height="1"
+                    Margin="{Binding Missile.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Panel.ZIndex="0">
                     <myctrls:Missile.RenderTransform>
                         <TransformGroup>
                             <RotateTransform Angle="{Binding Missile.Angle}" />
@@ -220,38 +220,38 @@
         </myctrls:GridAxes>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <StackPanel
-            Grid.Column="0"
-            Margin="1"
-            Orientation="Horizontal">
+                Grid.Column="0"
+                Margin="1"
+                Orientation="Horizontal">
                 <myctrls:Flighter Margin="25,16,13,0">
                     <myctrls:Flighter.RenderTransform>
-                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                        <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
                     </myctrls:Flighter.RenderTransform>
                 </myctrls:Flighter>
                 <Label
-            VerticalAlignment="Center"
-            Content="{Binding Flighter.LocationString}"
-            FontFamily="Times New Roman"
-            FontSize="{Binding LocationStringFontSize}" />
+                    VerticalAlignment="Center"
+                    Content="{Binding Flighter.LocationString}"
+                    FontFamily="Times New Roman"
+                    FontSize="{Binding LocationStringFontSize}" />
             </StackPanel>
             <StackPanel
-            Grid.Column="1"
-            Margin="1"
-            Orientation="Horizontal">
+                Grid.Column="1"
+                Margin="1"
+                Orientation="Horizontal">
                 <myctrls:Helicopter Margin="25,15,13,0">
                     <myctrls:Helicopter.RenderTransform>
-                        <ScaleTransform ScaleX="0.5" ScaleY="0.4"/>
+                        <ScaleTransform ScaleX="0.5" ScaleY="0.4" />
                     </myctrls:Helicopter.RenderTransform>
                 </myctrls:Helicopter>
                 <Label
-            VerticalAlignment="Center"
-            Content="{Binding Helicopter.LocationString}"
-            FontFamily="Times New Roman"
-            FontSize="{Binding LocationStringFontSize}" />
+                    VerticalAlignment="Center"
+                    Content="{Binding Helicopter.LocationString}"
+                    FontFamily="Times New Roman"
+                    FontSize="{Binding LocationStringFontSize}" />
             </StackPanel>
         </Grid>
         <StackPanel
@@ -260,40 +260,40 @@
             Orientation="Horizontal">
             <myctrls:Missile Margin="25,15,13,0">
                 <myctrls:Missile.RenderTransform>
-                    <ScaleTransform ScaleY="0.7" ScaleX="0.9"/>
+                    <ScaleTransform ScaleX="0.9" ScaleY="0.7" />
                 </myctrls:Missile.RenderTransform>
             </myctrls:Missile>
             <Label
-            VerticalAlignment="Center"
-            Content="{Binding Missile.LocationString}"
-            FontFamily="Times New Roman"
-            FontSize="{Binding LocationStringFontSize}" />
+                VerticalAlignment="Center"
+                Content="{Binding Missile.LocationString}"
+                FontFamily="Times New Roman"
+                FontSize="{Binding LocationStringFontSize}" />
         </StackPanel>
-        <StackPanel Grid.Row="3"
-                    Orientation="Horizontal">
-            <Label Content="X:" 
-                   Margin="16,0,0,0"
-                   FontSize="{Binding LocationStringFontSize}"
-                   VerticalAlignment="Center"></Label>
-            <myctrls:NumuricTextBlock VerticalAlignment="Center"
-                                      x:Name="xTextBox"
-                                      FontSize="{Binding LocationStringFontSize}"
-                                      MinWidth="100"
-                                      IsEnabled="False"
-                                      Text="{Binding DrawMargin.Left, Converter={StaticResource MarginLeftTopToPointXY}}">
-            </myctrls:NumuricTextBlock>
-            <Label Content="Y:" 
-                   Margin="10,0,0,0"
-                   FontSize="{Binding LocationStringFontSize}"
-                   VerticalAlignment="Center"></Label>
-            <myctrls:NumuricTextBlock VerticalAlignment="Center"
-                                      x:Name="yTextBox"
-                                      FontSize="{Binding LocationStringFontSize}"
-                                      MinWidth="100"
-                                      IsEnabled="False"
-                                      Text="{Binding DrawMargin.Top, 
-                Converter={StaticResource MarginLeftTopToPointXY}}">
-            </myctrls:NumuricTextBlock>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Label
+                Margin="16,0,0,0"
+                VerticalAlignment="Center"
+                Content="X:"
+                FontSize="{Binding LocationStringFontSize}" />
+            <myctrls:NumuricTextBlock
+                x:Name="xTextBox"
+                MinWidth="100"
+                VerticalAlignment="Center"
+                FontSize="{Binding LocationStringFontSize}"
+                IsEnabled="False"
+                Text="{Binding DrawMargin.Left, Converter={StaticResource MarginLeftTopToPointXY}}" />
+            <Label
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Content="Y:"
+                FontSize="{Binding LocationStringFontSize}" />
+            <myctrls:NumuricTextBlock
+                x:Name="yTextBox"
+                MinWidth="100"
+                VerticalAlignment="Center"
+                FontSize="{Binding LocationStringFontSize}"
+                IsEnabled="False"
+                Text="{Binding DrawMargin.Top, Converter={StaticResource MarginLeftTopToPointXY}}" />
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

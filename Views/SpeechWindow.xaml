@@ -16,39 +16,39 @@
         <ComboBox
             x:Name="cmbVoices"
             Width="222"
-            Margin="86,23,0,0"
+            Margin="117,23,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             SelectionChanged="CmbVoices_SelectionChanged" />
         <ComboBox
             x:Name="cmbAudioOut"
             Width="222"
-            Margin="86,69,0,0"
+            Margin="116,69,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             SelectionChanged="CmbAudioOut_SelectionChanged" />
         <Label
             Width="81"
-            Margin="0,23,0,0"
+            Margin="31,23,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="语音库(引擎): " />
         <Label
             Width="81"
-            Margin="0,65,0,0"
+            Margin="30,68,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="语音输出方式: " />
         <Button
             Width="104"
-            Margin="33,119,0,0"
+            Margin="77,119,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="Bt_speek_Click"
             Content="朗读|Speek" />
         <Button
             Width="93"
-            Margin="170,119,0,0"
+            Margin="214,119,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="Bt_stop_Click"
@@ -75,7 +75,7 @@
         <Slider
             x:Name="tbarRate"
             Height="103"
-            Margin="357,51,0,0"
+            Margin="372,51,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             AutoToolTipPlacement="BottomRight"
@@ -94,7 +94,7 @@
         <Slider
             x:Name="trbVolume"
             Height="103"
-            Margin="426,51,0,0"
+            Margin="447,51,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             AutoToolTipPlacement="BottomRight"
@@ -112,13 +112,13 @@
             ValueChanged="TrbVolume_ValueChanged" />
         <Label
             Width="35"
-            Margin="350,19,0,0"
+            Margin="364,19,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="语速" />
         <Label
             Width="35"
-            Margin="418,19,0,0"
+            Margin="439,19,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="音量" />
