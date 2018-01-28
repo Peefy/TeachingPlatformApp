@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using MahApps.Metro.Controls;
+
 using DotNetSpeech;
 
 namespace TeachingPlatformApp.Views
@@ -19,7 +21,7 @@ namespace TeachingPlatformApp.Views
     /// <summary>
     /// SpeechWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SpeechWindow : Window
+    public partial class SpeechWindow : MetroWindow
     {
         SpVoice _speech = new SpVoice();
         int _speechRate = 0;

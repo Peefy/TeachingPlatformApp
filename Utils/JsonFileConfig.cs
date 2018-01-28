@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Prism.Mvvm;
 using Newtonsoft.Json;
 
 using TeachingPlatformApp.Controls;
 using TeachingPlatformApp.WswPlatform;
+
 
 namespace TeachingPlatformApp.Utils
 {
@@ -188,6 +190,35 @@ namespace TeachingPlatformApp.Utils
             this.FlightExperimentConfig = new FlightExperimentConfig();
         }
 
+        public void SetConfig(string jsonString)
+        {
+            try
+            {
+                var config = JsonConvert.DeserializeObject<JsonFileConfig>(jsonString);
+                _lazyInstance = new Lazy<JsonFileConfig>(() => 
+                    ClassObjectDeepCloneUtil.DeepCopyUsingXml(config),
+                    LazyThreadSafetyMode.PublicationOnly);
+                WriteToFile();
+            }
+            catch (Exception ex)
+            {
+                LogAndConfig.Log.Error(ex);
+            }
+        }
+
+        public override string ToString()
+        {
+            try
+            {
+                return JsonConvert.SerializeObject(this, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                return "toString() call error:" + ex.Message;
+            }
+            
+        }
+
     }
 
     /// <summary>
@@ -211,7 +242,7 @@ namespace TeachingPlatformApp.Utils
         public string MissileName { get; set; } = "导弹";
     }
 
-    public class ComConfig
+    public class ComConfig : BindableBase
     {
         [JsonProperty("selfPort")]
         public int SelfPort { get; set; } = 16000;

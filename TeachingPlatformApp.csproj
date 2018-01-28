@@ -149,6 +149,7 @@
     <Compile Include="Models\WswBaseModel.cs" />
     <Compile Include="Speech\ISpeek.cs" />
     <Compile Include="Speech\TeachingSpeeker.cs" />
+    <Compile Include="Utils\ClassObjectDeepCloneUtil.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
     <Compile Include="Utils\MyConsole.cs" />
     <Compile Include="Utils\NumberUtil.cs" />

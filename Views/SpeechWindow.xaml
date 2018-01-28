@@ -1,51 +1,127 @@
-﻿<Window x:Class="TeachingPlatformApp.Views.SpeechWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TeachingPlatformApp.Views"
-        mc:Ignorable="d"
-        Title="语音测试" Height="350" Width="525"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+﻿<Controls:MetroWindow
+    x:Class="TeachingPlatformApp.Views.SpeechWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TeachingPlatformApp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="语音测试"
+    Width="525"
+    Height="350"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Grid>
-        <ComboBox x:Name="cmbVoices"  HorizontalAlignment="Left" Margin="86,23,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="CmbVoices_SelectionChanged"/>
-        <ComboBox x:Name="cmbAudioOut"  HorizontalAlignment="Left" Margin="86,69,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="CmbAudioOut_SelectionChanged"/>
-        <Label Content="语音库(引擎): " HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Width="81"/>
-        <Label Content="语音输出方式: " HorizontalAlignment="Left" Margin="0,65,0,0" VerticalAlignment="Top" Width="81"/>
-        <Button Content="朗读|Speek" HorizontalAlignment="Left" Margin="33,119,0,0" VerticalAlignment="Top" Width="104" Click="Bt_speek_Click"/>
-        <Button Content="停止|Stop" HorizontalAlignment="Left" Margin="170,119,0,0" VerticalAlignment="Top" Width="93" RenderTransformOrigin="2.042,0.064" Click="Bt_stop_Click"/>
-        <TextBox Name="tbspeech"  HorizontalAlignment="Left" Height="125" Margin="20,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="484" BorderThickness="3" Text="Wpf语音,hello world！">
+        <ComboBox
+            x:Name="cmbVoices"
+            Width="222"
+            Margin="86,23,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="CmbVoices_SelectionChanged" />
+        <ComboBox
+            x:Name="cmbAudioOut"
+            Width="222"
+            Margin="86,69,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="CmbAudioOut_SelectionChanged" />
+        <Label
+            Width="81"
+            Margin="0,23,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="语音库(引擎): " />
+        <Label
+            Width="81"
+            Margin="0,65,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="语音输出方式: " />
+        <Button
+            Width="104"
+            Margin="33,119,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="Bt_speek_Click"
+            Content="朗读|Speek" />
+        <Button
+            Width="93"
+            Margin="170,119,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="Bt_stop_Click"
+            Content="停止|Stop"
+            RenderTransformOrigin="2.042,0.064" />
+        <TextBox
+            Name="tbspeech"
+            Width="484"
+            Height="125"
+            Margin="20,172,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            BorderThickness="3"
+            Text="Wpf语音,hello world！"
+            TextWrapping="Wrap">
             <TextBox.BorderBrush>
-                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
-                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
-                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
-                    <GradientStop Color="#FF1A72C9" Offset="1"/>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="0,0" EndPoint="0,20">
+                    <GradientStop Offset="0.05" Color="#FFABADB3" />
+                    <GradientStop Offset="0.07" Color="#FFE2E3EA" />
+                    <GradientStop Offset="1" Color="#FF1A72C9" />
                 </LinearGradientBrush>
             </TextBox.BorderBrush>
         </TextBox>
-        <Slider x:Name="tbarRate" Orientation="Vertical"   
-                Minimum="0"   
-                Maximum="10"  
-                IsMoveToPointEnabled="True"  
-                AutoToolTipPrecision="2" AutoToolTipPlacement="BottomRight"  
-                TickPlacement="BottomRight"  
-                Ticks="1, 2, 3, 4, 5, 6, 7, 8, 9,10"   
-                IsSelectionRangeEnabled="true"  
-                SelectionStart="1" SelectionEnd="9"   
-                HorizontalAlignment="Left" Margin="357,51,0,0" VerticalAlignment="Top" Height="103" ValueChanged="TbarRate_ValueChanged" Background="#FFEFEBF0"/>
-        <Slider x:Name="trbVolume" Orientation="Vertical"                   
-                Minimum="0"   
-                Maximum="10"  
-                IsMoveToPointEnabled="True"  
-                AutoToolTipPrecision="2" AutoToolTipPlacement="BottomRight"  
-                TickPlacement="BottomRight"  
-                Ticks="1, 2, 3, 4, 5, 6, 7, 8, 9,10"   
-                IsSelectionRangeEnabled="true"  
-                SelectionStart="1" SelectionEnd="9"   
-                HorizontalAlignment="Left" Margin="426,51,0,0" VerticalAlignment="Top" Height="103" ValueChanged="TrbVolume_ValueChanged" Background="#FFF2EFF3"/>
-        <Label Content="语速" HorizontalAlignment="Left" Margin="350,19,0,0" VerticalAlignment="Top" Width="35" />
-        <Label Content="音量" HorizontalAlignment="Left" Margin="418,19,0,0" VerticalAlignment="Top" Width="35"/>
+        <Slider
+            x:Name="tbarRate"
+            Height="103"
+            Margin="357,51,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            AutoToolTipPlacement="BottomRight"
+            AutoToolTipPrecision="2"
+            Background="#FFEFEBF0"
+            IsMoveToPointEnabled="True"
+            IsSelectionRangeEnabled="true"
+            Maximum="10"
+            Minimum="0"
+            Orientation="Vertical"
+            SelectionEnd="9"
+            SelectionStart="1"
+            TickPlacement="BottomRight"
+            Ticks="1, 2, 3, 4, 5, 6, 7, 8, 9,10"
+            ValueChanged="TbarRate_ValueChanged" />
+        <Slider
+            x:Name="trbVolume"
+            Height="103"
+            Margin="426,51,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            AutoToolTipPlacement="BottomRight"
+            AutoToolTipPrecision="2"
+            Background="#FFF2EFF3"
+            IsMoveToPointEnabled="True"
+            IsSelectionRangeEnabled="true"
+            Maximum="10"
+            Minimum="0"
+            Orientation="Vertical"
+            SelectionEnd="9"
+            SelectionStart="1"
+            TickPlacement="BottomRight"
+            Ticks="1, 2, 3, 4, 5, 6, 7, 8, 9,10"
+            ValueChanged="TrbVolume_ValueChanged" />
+        <Label
+            Width="35"
+            Margin="350,19,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="语速" />
+        <Label
+            Width="35"
+            Margin="418,19,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="音量" />
 
     </Grid>
-</Window>
+</Controls:MetroWindow>

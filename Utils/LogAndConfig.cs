@@ -28,6 +28,7 @@ namespace TeachingPlatformApp.Utils
         {
             Config = ConfigManager.GetConfig();
             Log = LogManager.GetCurrentLogger();
+            
         }
     }
 }

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using MahApps.Metro.Controls;
+
 using TeachingPlatformApp.ViewModels;
 
 namespace TeachingPlatformApp.Views
@@ -19,12 +21,15 @@ namespace TeachingPlatformApp.Views
     /// <summary>
     /// ConfigWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class ConfigWindow : Window
+    public partial class ConfigWindow : MetroWindow
     {
+        ConfigWindowViewModel _viewModel;
+
         public ConfigWindow()
         {
             InitializeComponent();
-            this.DataContext = new ConfigWindowViewModel();
+            _viewModel = new ConfigWindowViewModel();
+            this.DataContext = _viewModel;        
         }
     }
 }
