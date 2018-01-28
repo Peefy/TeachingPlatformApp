@@ -431,8 +431,14 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("judgeNowSetPointsIndexRadius")]
         public double JudgeNowSetPointsIndexRadius { get; set; } = 5.0;
 
+        /// <summary>
+        /// 初始的航路点索引
+        /// </summary>
         [JsonProperty("initNowSetPointsIndex")]
         public int InitNowSetPointsIndex { get; set; } = 0;
+
+        [JsonProperty("isShowNowSetPointsIndex")]
+        public bool IsShowNowSetPointsIndex { get; set; } = false;
 
     }
 

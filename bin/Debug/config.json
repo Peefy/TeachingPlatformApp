@@ -128,7 +128,8 @@
     "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 30,
     "judgeNowSetPointsIndexRadius": 5.0,
-    "initNowSetPointsIndex": 0
+    "initNowSetPointsIndex": 0,
+    "isShowNowSetPointsIndex": false
   },
   "flightExperimentConfig": {
     "introductions": [

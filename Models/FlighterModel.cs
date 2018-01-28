@@ -30,14 +30,14 @@ namespace TeachingPlatformApp.Models
 
         public override string MyMapInfoToString()
         {
-            if(IsJudgeRoute == true)
+            if(IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
                 return base.MyMapInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
             return base.MyMapInfoToString();
         }
 
         public override string WswModelInfoToString()
         {
-            if (IsJudgeRoute == true)
+            if (IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
                 return base.WswModelInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
             return base.WswModelInfoToString();
         }
