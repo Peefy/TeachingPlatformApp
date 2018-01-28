@@ -9,6 +9,7 @@
     Title="{Binding Title}"
     Width="525"
     Height="350"
+    KeyDown="MetroWindow_KeyDown"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d">

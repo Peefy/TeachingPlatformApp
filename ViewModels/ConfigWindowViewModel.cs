@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
 using Newtonsoft.Json;
 
 using Prism.Commands;
@@ -22,7 +23,7 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _title, value);
         }
 
-        private string _comConfigName = "通信配置";
+        private string _comConfigName = "所有配置";
         public string ComConfigName
         {
             get => _comConfigName;
@@ -49,10 +50,11 @@ namespace TeachingPlatformApp.ViewModels
         {
             ComConfig = JsonFileConfig.Instance.ComConfig;
             ConfigString = JsonFileConfig.Instance.ToString();
-            SaveCommand = new DelegateCommand(() =>
+            SaveCommand = new DelegateCommand(async () =>
             {
                 try
                 {
+                    Title = "部分配置重启之后生效...";
                     JsonFileConfig.Instance.SetConfig(ConfigString);
                 }
                 catch (Exception ex)
@@ -61,5 +63,6 @@ namespace TeachingPlatformApp.ViewModels
                 }
             });
         }
+
     }
 }

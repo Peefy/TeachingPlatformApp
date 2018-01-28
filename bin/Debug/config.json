@@ -1,6 +1,6 @@
 {
   "stringResource": {
-    "windowTitle": "教员台界面",
+    "windowTitle": "教研台界面",
     "flightMapTitle": "地图界面",
     "helicopterName": "直升机",
     "flighterName": "战斗机",
@@ -20,8 +20,8 @@
     "udpClientExtraPort": 10000
   },
   "mapGridAxesDrawPara": {
-    "axesHeight": 660.0,
-    "axesWidth": 1060.0,
+    "axesHeight": 760.0,
+    "axesWidth": 1360.0,
     "maxHeight": 900.0,
     "maxWidth": 1900.0,
     "columnNumber": 200,
@@ -124,7 +124,7 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 2,
+    "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 30,
     "judgeNowSetPointsIndexRadius": 3.0
   },

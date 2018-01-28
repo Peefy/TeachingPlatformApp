@@ -31,5 +31,11 @@ namespace TeachingPlatformApp.Views
             _viewModel = new ConfigWindowViewModel();
             this.DataContext = _viewModel;        
         }
+
+        private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S)
+                _viewModel?.SaveCommand?.Execute();
+        }
     }
 }
