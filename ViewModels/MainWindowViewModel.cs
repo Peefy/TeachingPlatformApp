@@ -277,7 +277,7 @@ namespace TeachingPlatformApp.ViewModels
                             if (length == StructHelper.GetStructSize<AngleWithLocation>())
                             {
                                 DealAngleWithLocationData(ip, recieveBytes);
-                                UdpServer.PlaneInfo.IsConnect = true;
+                                UdpServer.TranslateInfo.IsConnect = true;
                             }                      
                         }
                     }
@@ -306,7 +306,7 @@ namespace TeachingPlatformApp.ViewModels
                         if (length == StructHelper.GetStructSize<AngleWithLocation>())
                         {
                             DealAngleWithLocationData(ip, recieveBytes);
-                            UdpServer.PlaneInfo.IsConnect = true;
+                            UdpServer.TranslateInfo.IsConnect = true;
                         }
                     }
                 }
@@ -333,6 +333,7 @@ namespace TeachingPlatformApp.ViewModels
                     await SendSetPoints(item);
                     await SendSetPoints(item);
                     StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
+                    UdpServer.TranslateInfo.IsTest = true;
                     Speeker?.SpeekAsync($"{item.Name}实验开始");
                     //循环检测实验是否合格
                     await Task.Delay(100);
@@ -340,15 +341,20 @@ namespace TeachingPlatformApp.ViewModels
                     await Task.Delay(100);
                     if (IsJudgeValid == true && item.IsValid == false)
                     {
+                        UdpServer.TranslateInfo.IsTest = false;
                         AppendStatusText($"{DateTime.Now}:{item.Name}实验失败，不符合实验要求");
                         Speeker?.SpeekAsync($"{item.Name}实验失败，不符合实验要求");
                     }
                     if (item.IsStop == true)
+                    {
                         StatusText += $"{DateTime.Now}:{item.Name}实验结束\r\n";
+                        UdpServer.TranslateInfo.IsTest = false;
+                    }                      
                     else
                     {
                         StatusText += $"{DateTime.Now}:{item.Name}实验失败，时间超时\r\n";
                         Speeker?.SpeekAsync($"{item.Name}实验失败，时间超时");
+                        UdpServer.TranslateInfo.IsTest = false;
                     }
                         
                     await item.EndAsync();
@@ -394,7 +400,7 @@ namespace TeachingPlatformApp.ViewModels
                 if (SelectIndexTreeNode1 == -1)
                     return;
                 var item = FlightExperimentSelected;
-                UdpServer.PlaneInfo.FlightExperimentName = item.Name;
+                UdpServer.TranslateInfo.FlightExperimentName = item.Name;
                 var flightMapWindow = new FlightMapWindow();
                 if (item?.HasSetPoints == true && item.SetPoints != null &&
                     flightMapWindow.DataContext is FlightMapWindowViewModel viewModel)
@@ -446,7 +452,7 @@ namespace TeachingPlatformApp.ViewModels
                     WswModelKind.Flighter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
                 {
-                    UdpServer.PlaneInfo.Flighter = angleWithLocation;
+                    UdpServer.TranslateInfo.Flighter = angleWithLocation;
                     flight.Roll.Value = (float)angleWithLocation.Roll;
                     flight.Pitch.Value = (float)angleWithLocation.Pitch;
                     flight.Yaw.Value = (float)angleWithLocation.Yaw;
@@ -459,7 +465,7 @@ namespace TeachingPlatformApp.ViewModels
                     WswModelKind.Helicopter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
                 {
-                    UdpServer.PlaneInfo.Helicopter = angleWithLocation;
+                    UdpServer.TranslateInfo.Helicopter = angleWithLocation;
                     flight.SixPlatformRoll.Value = (float)angleWithLocation.Roll;
                     flight.SixPlatformPitch.Value = (float)angleWithLocation.Pitch;
                     flight.SixPlatformYaw.Value = (float)angleWithLocation.Yaw;

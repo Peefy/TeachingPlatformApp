@@ -157,12 +157,14 @@ namespace TeachingPlatformApp.ViewModels
                     Thread.Sleep(_mapRefreshInterval);
                 }
             });
-            if(_translateData.PlaneInfo.IsConnect == false)
+            if(_translateData.TranslateInfo.IsConnect == false)
             {
                 Task.Run(() =>
                 {
                     var i = 0.0f;
+                    var flightCount = 0.0f;
                     var random = new Random();
+                    var flighterSpeed = 0.5f;
                     //var point1 = new Point(random.Next(80), random.Next(60));
                     var point1 = new Point(30, 30);
                     var point2 = new Point(random.Next(80), random.Next(60));
@@ -173,19 +175,20 @@ namespace TeachingPlatformApp.ViewModels
                         Helicopter.Angle += 1;
                         if (Helicopter.Angle >= 360)
                             Helicopter.Angle = 0;
-                        Flighter.Angle -= 1;
+                        Flighter.Angle -= flighterSpeed;
                         if (Flighter.Angle <= 0)
                             Flighter.Angle = 360;
                         var j = NumberUtil.Deg2Rad(i);
-                        Flighter.MyMapPosition = new Point(point1.X + 28.2843 * Math.Sin(j), point1.Y + 28.2843 * Math.Cos(j));
+                        var flightRad = NumberUtil.Deg2Rad(flightCount);
+                        Flighter.MyMapPosition = new Point(point1.X + 28.2843 * Math.Sin(flightRad), point1.Y + 28.2843 * Math.Cos(flightRad));
                         Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
                         Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
                              $"  {Flighter.MyMapInfoToString()};";
                         Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
-                              $"  {Helicopter.MyMapInfoToString()};";
-                        
+                              $"  {Helicopter.MyMapInfoToString()};";               
                         Thread.Sleep(_mapRefreshInterval);
                         i += 1;
+                        flightCount += flighterSpeed;
                     }
                 });
             }
@@ -206,9 +209,9 @@ namespace TeachingPlatformApp.ViewModels
         /// </summary>
         public virtual void BuildWswModelLocationString()
         {         
-            if(_translateData.PlaneInfo.IsConnect == true)
+            if(_translateData.TranslateInfo.IsConnect == true)
             {
-                var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
+                var planeInfo = Ioc.Get<ITranslateData>().TranslateInfo;
                 Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
                              $"  {Flighter.WswModelInfoToString()};";
                 Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +

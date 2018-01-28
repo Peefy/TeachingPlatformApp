@@ -33,5 +33,22 @@ namespace TeachingPlatformApp.Utils
                 viewModel.AppendStatusText(str);
             }
         }
+
+        public static void RunStart()
+        {
+            if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+            {
+                viewModel.StartCommand.Execute();
+            }
+        }
+
+        public static void RunStop()
+        {
+            if (App.Current.MainWindow.DataContext is MainWindowViewModel viewModel)
+            {
+                viewModel.StopCommand.Execute();
+            }
+        }
+
     }
 }

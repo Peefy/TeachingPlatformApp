@@ -53,11 +53,11 @@ namespace TeachingPlatformApp.Communications
         public IPEndPoint IpEndPointGunBarrel { get; set; }
         public IPEndPoint IpEndPoint720Platform { get; set; }
 
-        public WswModelInfo PlaneInfo { get; set; }
+        public TranslateInfo TranslateInfo { get; set; }
 
         public Server()
         {
-            PlaneInfo = new WswModelInfo();
+            TranslateInfo = new TranslateInfo();
             var config = JsonFileConfig.Instance.ComConfig;
             _port = config.SelfPort;
             _udp720Port = config.Udp720Port;

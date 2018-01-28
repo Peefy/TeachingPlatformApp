@@ -488,7 +488,7 @@ namespace TeachingPlatformApp.Utils
         /// 0 代表只检测战斗机，1代表只检测直升机，2代表du检测
         /// </summary>
         [JsonProperty("outOfRouteTestSwitch")]
-        public int OutOfRouteTestSwitch { get; set; } = 2;
+        public int OutOfRouteTestSwitch { get; set; } = 0;
 
         /// <summary>
         /// 航线偏离检测角度

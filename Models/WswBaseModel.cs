@@ -271,10 +271,11 @@ namespace TeachingPlatformApp.Models
                     }
                     if(NowSetPointsIndex == count)
                     {
-                        var flightExName = Ioc.Get<ITranslateData>().PlaneInfo.FlightExperimentName;
+                        IsSuccess = true;
+                        var flightExName = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentName;
                         _speeker?.SpeekAsync($"{Name}成功完成了{flightExName}实验");
                         NowSetPointsIndex = 0;
-                        IsSuccess = true;
+                        MyConsole.RunStop();
                     }
                 }
             }

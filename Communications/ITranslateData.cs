@@ -93,7 +93,7 @@ namespace TeachingPlatformApp.Communications
         /// <summary>
         /// Wsw平台所有模型数据汇总
         /// </summary>
-        WswModelInfo PlaneInfo { get; set; }
+        TranslateInfo TranslateInfo { get; set; }
 
     }
 }

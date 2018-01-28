@@ -128,14 +128,14 @@
     "speechTextReserved3": "SpeechTextReserved3"
   },
   "testTrailRouteConfig": {
-    "outOfRouteTestSwitch": 2,
+    "outOfRouteTestSwitch": 0,
     "outOfRouteAngle": 20.0,
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
     "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 30,
-    "judgeNowSetPointsIndexRadius": 10.5,
+    "judgeNowSetPointsIndexRadius": 11.0,
     "initNowSetPointsIndex": 0,
     "isShowNowSetPointsIndex": true
   },

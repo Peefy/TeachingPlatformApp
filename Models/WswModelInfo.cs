@@ -9,7 +9,7 @@ using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Models
 {
-    public class WswModelInfo
+    public class TranslateInfo
     {
         public AngleWithLocation Flighter { get; set; }
 
@@ -19,9 +19,11 @@ namespace TeachingPlatformApp.Models
 
         public bool IsConnect { get; set; }
 
+        public bool IsTest { get; set; }
+
         public string FlightExperimentName { get; set; } = "航线飞行";
 
-        public WswModelInfo()
+        public TranslateInfo()
         {
             var flighterInfo = JsonFileConfig.Instance.MyFlighterInfo;
             var helicopterInfo = JsonFileConfig.Instance.MyHelicopterInfo;
