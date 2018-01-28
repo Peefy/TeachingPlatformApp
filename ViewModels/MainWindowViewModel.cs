@@ -339,7 +339,7 @@ namespace TeachingPlatformApp.ViewModels
                     await Task.Delay(100);
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
                     await Task.Delay(100);
-                    if(UdpServer.TranslateInfo.IsTest == false)
+                    if(UdpServer.TranslateInfo.IsTest == true)
                     {
                         if (IsJudgeValid == true && item.IsValid == false)
                         {

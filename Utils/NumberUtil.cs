@@ -128,7 +128,7 @@ namespace TeachingPlatformApp.Utils
                     str = "一";
                     break;
                 case 2:
-                    str = "二";
+                    str = "贰";
                     break;
                 case 3:
                     str = "三";
