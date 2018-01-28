@@ -6,8 +6,17 @@ using System.Xml.Serialization;
 
 namespace TeachingPlatformApp.Utils
 {
+    /// <summary>
+    /// C# 引用类型 的深拷贝操作 (引用本身是浅拷贝)
+    /// </summary>
     public static class ClassObjectDeepCloneUtil
     {
+        /// <summary>
+        /// 通过反射方式进行深拷贝
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static T DeepCopyUsingReflection<T>(T obj)
         {
             //如果是字符串或值类型则直接返回
@@ -24,7 +33,13 @@ namespace TeachingPlatformApp.Utils
             return (T)retval;
         }
 
-        public static T DeepCopyUsingXml<T>(T obj)
+        /// <summary>
+        /// 通过XML序列化方式进行深拷贝
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static T DeepCopyUsingXmlSerialize<T>(T obj)
         {
             object retval;
             using (MemoryStream ms = new MemoryStream())
@@ -38,6 +53,12 @@ namespace TeachingPlatformApp.Utils
             return (T)retval;
         }
 
+        /// <summary>
+        /// 通过二进制序列化方式进行深拷贝
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static T DeepCopyUsingBinSerialize<T>(T obj)
         {
             object retval;

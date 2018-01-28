@@ -16,7 +16,7 @@ using TeachingPlatformApp.WswPlatform;
 namespace TeachingPlatformApp.Utils
 {
     /// <summary>
-    /// config.json operate.
+    /// config.json operate. 配置文件操作
     /// </summary>
     public class JsonFileConfig
     {
@@ -196,7 +196,7 @@ namespace TeachingPlatformApp.Utils
             {
                 var config = JsonConvert.DeserializeObject<JsonFileConfig>(jsonString);
                 _lazyInstance = new Lazy<JsonFileConfig>(() => 
-                    ClassObjectDeepCloneUtil.DeepCopyUsingXml(config),
+                    ClassObjectDeepCloneUtil.DeepCopyUsingXmlSerialize(config),
                     LazyThreadSafetyMode.PublicationOnly);
                 WriteToFile();
             }

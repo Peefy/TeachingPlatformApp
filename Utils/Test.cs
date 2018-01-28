@@ -14,9 +14,10 @@ namespace TeachingPlatformApp.Utils
 {
     public static class Test
     {
-
-        static SpVoice speech = new SpVoice();
-
+        /// <summary>
+        /// 运行测试函数，在主窗口按下键盘T键可以显示出测试按钮
+        /// </summary>
+        /// <returns>返回测试字符串集合显示在MyConsole上</returns>
         public static string[] Run()
         {
 
@@ -27,7 +28,6 @@ namespace TeachingPlatformApp.Utils
             var vector2 = new Vector(HelicopterInitInfo.X  / 1000.0f, 
                 HelicopterInitInfo.Y / 1000.0f);
             var angle =  Vector.AngleBetween(vector1, vector2);
-            var distance = VectorDistance(vector1, vector2);
             var deltaX = vector1.X - vector2.X;
             var deltaY = vector1.Y - vector2.Y;
 
@@ -54,12 +54,7 @@ namespace TeachingPlatformApp.Utils
             };
         }
 
-        public static double VectorDistance(Vector vector1, Vector vector2)
-        {
-            var subX = vector1.X - vector2.X;
-            var subY = vector1.Y = vector2.Y;
-            return Math.Sqrt(subX * subX + subY * subY);
-        }
+
 
     }
 }

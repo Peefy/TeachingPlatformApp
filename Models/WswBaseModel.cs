@@ -12,14 +12,6 @@ using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Models
 {
-
-    public enum RouteState
-    {
-        Normal,
-        OutOfLeft,
-        OutOfRight
-    }
-
     public abstract class WswBaseModel : BindableBase, IWswDataStringShow, IRouteJudge, IDisposable
     {
 
@@ -121,6 +113,11 @@ namespace TeachingPlatformApp.Models
             _outOfRouteCount = Config.TestTrailRouteConfig.OutOfRouteSpeechUpCount;
         }
 
+        ~WswBaseModel()
+        {
+            Dispose(false);
+        }
+
         public virtual string WswModelInfoToString()
         {
             var digit = Config.DataShowConfig.PointShowDigit;
@@ -181,6 +178,13 @@ namespace TeachingPlatformApp.Models
             return false;
         }
 
+        public virtual RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints)
+        {
+            var isOutOfRoute = JudgeIsOutOfRoute(setPoints);
+            var routeState = isOutOfRoute ? RouteState.Normal : RouteState.OutOfLeft;
+            return routeState;
+        }
+
         public virtual void OutOfRouteSpeechControl(ObservableRangeCollection<Point> setPoints)
         {
             if (setPoints == null)
@@ -209,10 +213,30 @@ namespace TeachingPlatformApp.Models
 
         public virtual int JudgeNowSetPointsIndex(ObservableRangeCollection<Point> setPoints)
         {
+            var index = 0;
+            var radius = JsonFileConfig.Instance.TestTrailRouteConfig.JudgeNowSetPointsIndexRadius;
             if (setPoints == null)
-                return 0;
+                return index;
+            for(var i = 0;i< setPoints.Count ;++i)
+            {
+                var distance = VectorPointHelper.GetTwoPointDistance(MyMapPosition, setPoints[i]);
+                if (distance < radius)
+                {
+                    index = i;
+                    if (index - NowSetPointsIndex == 1)
+                        NowSetPointsIndex = index;
+                    if(NowSetPointsIndex != LastSetPointsIndex)
+                    {
+                        _speeker.SpeekAsync($"{Name}已经成功通过第{NowSetPointsIndex}个航路点");
+                    }
+                    else
+                    {
+                        _speeker.StopSpeek();
+                    }
+                }
+            }
             LastSetPointsIndex = NowSetPointsIndex;
-            return NowSetPointsIndex;
+            return index;
         }
 
         public void RenewLocationInfo(bool isConnect)
@@ -238,11 +262,12 @@ namespace TeachingPlatformApp.Models
             {
                 if (disposing)
                 {
-                    if(Trail != null)
-                    {
-                        Trail.Clear();
-                        Trail = null;
-                    }
+                   
+                }
+                if (Trail != null)
+                {
+                    Trail.Clear();
+                    Trail = null;
                 }
                 disposedValue = true;
             }
@@ -266,6 +291,7 @@ namespace TeachingPlatformApp.Models
     {
         void OutOfRouteSpeechControl(ObservableRangeCollection<Point> setPoints);
         bool JudgeIsOutOfRoute(ObservableRangeCollection<Point> setPoints);
+        RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints);
         int JudgeNowSetPointsIndex(ObservableRangeCollection<Point> setPoints);
     }
 

@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace TeachingPlatformApp.Utils
 {
     public static class VectorPointHelper
     {
+        /// <summary>
+        /// 获得两个向量顶端坐标的距离
+        /// </summary>
+        /// <param name="vector1"></param>
+        /// <param name="vector2"></param>
+        /// <returns></returns>
+        public static double VectorDistance(Vector vector1, Vector vector2)
+        {
+            var subX = vector1.X - vector2.X;
+            var subY = vector1.Y - vector2.Y;
+            return Math.Sqrt(subX * subX + subY * subY);
+        }
         /// <summary>
         /// 平面内到点到线段所在直线距离
         /// </summary>
@@ -66,6 +75,39 @@ namespace TeachingPlatformApp.Utils
         }
 
         /// <summary>
+        /// 平面两点所连线段与X轴夹角
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <returns></returns>
+        public static double GetTwoPointLineAngle(Point point1, Point point2)
+        {
+            var vector1 = new Vector(point1.X, point1.Y);
+            var vector2 = new Vector(point2.X, point2.Y);
+            return Vector.AngleBetween(new Vector(1, 0), Vector.Subtract(vector2, vector1));
+        }
+
+        /// <summary>
+        /// 获得一系列点两两连成的线段与X轴夹角的集合
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public static List<double> GetPointsLineVectorAngle(IList<Point> points)
+        {
+            var angles = new List<double>();
+            if (points?.Count > 1)
+            {
+                var count = points.Count;
+                for (var i = 0; i < count - 1; ++i)
+                {
+                    angles.Add(GetTwoPointLineAngle(points[i], points[i + 1]));
+                }
+                angles.Add(GetTwoPointLineAngle(points[count - 1], points[0]));
+            }
+            return angles;
+        }
+
+        /// <summary>
         /// 获得当前坐标到所有航路点的距离
         /// </summary>
         /// <param name="point"></param>
@@ -119,7 +161,6 @@ namespace TeachingPlatformApp.Utils
             }
             return oddNodes;
         }
-
 
     }
 }
