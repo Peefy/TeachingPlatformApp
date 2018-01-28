@@ -94,7 +94,7 @@ namespace TeachingPlatformApp.Utils
             return (float)Math.Round(deg * 0.01745329, digit);
         }
 
-        public static double PutAngleIn360(float angle, int digit = 2, double minAngle = 0, double maxAngle = 360)
+        public static double PutAngleIn(float angle, double minAngle = 0, double maxAngle = 360, int digit = 2)
         {
             while(angle <= minAngle)
                 angle += 360;

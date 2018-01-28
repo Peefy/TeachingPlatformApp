@@ -48,7 +48,7 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _angle, value);
         }
 
-        public float AngleWithXAxes => Angle - 180;
+        public double AngleWithXAxes => NumberUtil.PutAngleIn(Angle - 90, minAngle: -180, maxAngle: 180);
 
         private Point _myMapPosition = default;
         public Point MyMapPosition
@@ -184,21 +184,19 @@ namespace TeachingPlatformApp.Models
         {
             isNotOutOfRoute = JudgeIsNotOutOfRoute(setPoints);
             var routeState = isNotOutOfRoute == true ? RouteState.Normal : RouteState.OutOfLeft;
-            if (setPoints?.Count > 1)
+            if (setPoints?.Count > 1 && isNotOutOfRoute == false)
             {
                 var count = setPoints.Count;               
                 var nowIndex = JudgeNowSetPointsIndex(setPoints);
                 var angle = 0.0;
                 if (NowSetPointsIndex != count)
-                    angle = VectorPointHelper.GetTwoPointLineAngle(setPoints[nowIndex], setPoints[nowIndex + 1]);
+                    angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[nowIndex + 1]);
                 else
-                    angle = VectorPointHelper.GetTwoPointLineAngle(setPoints[nowIndex], setPoints[0]);
-                Angle = (float)NumberUtil.PutAngleIn360(Angle);
-                var subAngle = AngleWithXAxes - angle;
-                if (subAngle >= 0 && subAngle <= 180)
-                    routeState = RouteState.OutOfRight;
-                if (subAngle <= 0 && subAngle >= -180)
+                    angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[0]);
+                if (angle >= 0 && angle <= 180)
                     routeState = RouteState.OutOfLeft;
+                if (angle <= 0 && angle >= -180)
+                    routeState = RouteState.OutOfRight;
             }
             return routeState;
         }

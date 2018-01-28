@@ -291,7 +291,7 @@ namespace TeachingPlatformApp.Utils
         public int MapUiRefreshMs { get; set; } = 30;
 
         [JsonProperty("drawTrailPointNumUp")]
-        public int DrawTrailPointNumUp { get; set; } = 10000;
+        public int DrawTrailPointNumUp { get; set; } = 5000;
 
         [JsonProperty("setPointsFontSize")]
         public double SetPointsFontSize { get; set; } = 24;

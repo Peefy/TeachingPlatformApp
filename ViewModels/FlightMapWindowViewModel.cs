@@ -222,7 +222,7 @@ namespace TeachingPlatformApp.ViewModels
         public void RunTest()
         {
             Title = VectorPointHelper.GetPointsLineVectorAngle(SetPoints).ToListString()
-                + "  " + Flighter.RouteState.ToLeftRightString();
+                + "  " + Flighter.RouteState.ToLeftRightString() + "  " + Flighter.AngleWithXAxes;
         }
 
     }

@@ -1,17 +1,61 @@
-2018/1/28 14:34:52
+2018/1/28 15:11:42
 
-14:35
+15:11
 0   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
    在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
    在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
 正在中止线程。
 
-14:35
-1   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+15:12
+1   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
+正在中止线程。
+
+15:12
+2   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
+正在中止线程。
+
+15:13
+3   在 DotNetSpeech.ISpeechVoice.Speak(String Text, SpeechVoiceSpeakFlags Flags)
+   在 TeachingPlatformApp.Speech.TeachingSpeeker.StopSpeek() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Speech\TeachingSpeeker.cs:行号 99
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 231
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 199
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 94
+正在中止线程。
+
+15:13
+4   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
+正在中止线程。
+
+15:13
+5   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
+正在中止线程。
+
+15:13
+6   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
+正在中止线程。
+
+15:13
+7   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
+正在中止线程。
+
+15:13
+8   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    在 System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
    在 System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
    在 System.Windows.Threading.Dispatcher.Invoke(Action callback, DispatcherPriority priority, CancellationToken cancellationToken, TimeSpan timeout)
    在 System.Windows.Threading.Dispatcher.Invoke(Action callback)
-   在 TeachingPlatformApp.Views.FlightMapWindow.AutoFollowing(Object sender, ElapsedEventArgs e)
+   在 TeachingPlatformApp.Views.FlightMapWindow.AutoFollowing(Object sender, ElapsedEventArgs e) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 160
 已取消一个任务。

@@ -71,7 +71,7 @@
     "angleShowDigit": 1,
     "pointShowDigit": 1,
     "mapUiRefreshMs": 30,
-    "drawTrailPointNumUp": 10000,
+    "drawTrailPointNumUp": 5000,
     "setPointsFontSize": 24.0,
     "setPointsEllipseRadius": 6.0,
     "locationStringFontSize": 22.0,

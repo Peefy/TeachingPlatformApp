@@ -88,6 +88,23 @@ namespace TeachingPlatformApp.Utils
         }
 
         /// <summary>
+        /// 获得三个点中其中一个点与另外两个点连线夹角
+        /// </summary>
+        /// <param name="singlePoint"></param>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <returns></returns>
+        public static double GetThreePointsTwoLineAngle(Point singlePoint, Point point1, Point point2)
+        {
+            var vectorSinglePoint = new Vector(singlePoint.X, singlePoint.Y);
+            var vectorPoint1 = new Vector(point1.X, point1.Y);
+            var vectorPoint2 = new Vector(point2.X, point2.Y);
+            var vector1 = Vector.Subtract(vectorPoint1, vectorSinglePoint);
+            var vector2 = Vector.Subtract(vectorPoint2, vectorSinglePoint);
+            return Vector.AngleBetween(vector1, vector2);
+        }
+
+        /// <summary>
         /// 获得一系列点两两连成的线段与X轴夹角的集合
         /// </summary>
         /// <param name="points"></param>

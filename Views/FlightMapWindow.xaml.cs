@@ -198,7 +198,7 @@ namespace TeachingPlatformApp.Views
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
             {
                 _enableScale = false;
-                _isCtrlDown = true;
+                _isCtrlDown = false;
             }
                
         }
