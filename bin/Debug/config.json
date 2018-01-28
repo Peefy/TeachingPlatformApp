@@ -125,9 +125,9 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 2,
+    "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 30,
-    "judgeNowSetPointsIndexRadius": 3.0
+    "judgeNowSetPointsIndexRadius": 13.0
   },
   "flightExperimentConfig": {
     "introductions": [

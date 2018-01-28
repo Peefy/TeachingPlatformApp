@@ -86,7 +86,7 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _isJudgeRoute, value);
         }
 
-        private int _nowSetPointsIndex = 0;
+        private int _nowSetPointsIndex = -1;
         public int NowSetPointsIndex
         {
             get => _nowSetPointsIndex;
@@ -250,7 +250,7 @@ namespace TeachingPlatformApp.Models
                         NowSetPointsIndex = index;
                     if(NowSetPointsIndex != LastSetPointsIndex)
                     {
-                        _speeker.SpeekAsync($"{Name}已经成功通过第{NowSetPointsIndex}个航路点");
+                        _speeker.SpeekAsync($"{Name}已经成功通过第{NowSetPointsIndex + 1}个航路点");
                     }
                     else
                     {
@@ -259,7 +259,7 @@ namespace TeachingPlatformApp.Models
                 }
             }
             LastSetPointsIndex = NowSetPointsIndex;
-            return index;
+            return NowSetPointsIndex;
         }
 
         public void RenewLocationInfo(bool isConnect)
