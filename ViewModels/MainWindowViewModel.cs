@@ -239,9 +239,9 @@ namespace TeachingPlatformApp.ViewModels
                     if (treeView.SelectedItem is FlightExperiment item)
                     {
                         SelectIndexTreeNode1 = TreeViewNodes[0].Children.IndexOf(item);
+                        AppendStatusText(JsonFileConfig.Instance.
+                            FlightExperimentConfig.Introductions[SelectIndexTreeNode1]);
                     }
-                    AppendStatusText(JsonFileConfig.Instance.
-                        FlightExperimentConfig.Introductions[SelectIndexTreeNode1]);
                 }
                 catch (Exception ex)
                 {

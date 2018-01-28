@@ -6,6 +6,7 @@ using Prism.Mvvm;
 
 using DuGu.NetFramework.Services;
 
+using TeachingPlatformApp.Communications;
 using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.WswPlatform;
@@ -107,6 +108,13 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _routeState, value);
         }
 
+        private bool _isSuccess = false;
+        public bool IsSuccess
+        {
+            get => _isSuccess;
+            set => SetProperty(ref _isSuccess, value);
+        }
+
         public WswBaseModel()
         {       
             Config = JsonFileConfig.Instance;
@@ -205,7 +213,7 @@ namespace TeachingPlatformApp.Models
 
         public virtual void OutOfRouteSpeechControl(ObservableRangeCollection<Point> setPoints)
         {
-            if (setPoints == null)
+            if (setPoints == null || IsSuccess == true)
                 return;
             //false代表偏离航线，true代表没有偏离航线.
             RouteState =  JudgeRouteState(setPoints, out var isNotOutofRoute);
@@ -240,7 +248,8 @@ namespace TeachingPlatformApp.Models
             var radius = JsonFileConfig.Instance.TestTrailRouteConfig.JudgeNowSetPointsIndexRadius;
             if (setPoints == null)
                 return index;
-            for(var i = 0;i < setPoints.Count ;++i)
+            var count = setPoints.Count;
+            for (var i = 0;i < count ;++i)
             {
                 var distance = VectorPointHelper.GetTwoPointDistance(MyMapPosition, setPoints[i]);
                 if (distance < radius)
@@ -248,6 +257,10 @@ namespace TeachingPlatformApp.Models
                     index = i;
                     if (index - NowSetPointsIndex == 1)
                         NowSetPointsIndex = index;
+                    else if(NowSetPointsIndex == count - 1 && index == 0)
+                    {
+                        NowSetPointsIndex += 1;
+                    }
                     if(NowSetPointsIndex != LastSetPointsIndex)
                     {
                         _speeker?.SpeekAsync($"{Name}已经成功通过第{NowSetPointsIndex + 1}个航路点");
@@ -256,9 +269,12 @@ namespace TeachingPlatformApp.Models
                     {
                         _speeker?.StopSpeek();
                     }
-                    if(NowSetPointsIndex == setPoints.Count - 1)
+                    if(NowSetPointsIndex == count)
                     {
-                        _speeker?.SpeekAsync($"{Name}成功完成航路点");
+                        var flightExName = Ioc.Get<ITranslateData>().PlaneInfo.FlightExperimentName;
+                        _speeker?.SpeekAsync($"{Name}成功完成了{flightExName}实验");
+                        NowSetPointsIndex = 0;
+                        IsSuccess = true;
                     }
                 }
             }
