@@ -391,7 +391,10 @@ namespace TeachingPlatformApp.ViewModels
             });
             OpenFlightMapCommand = new DelegateCommand(() =>
             {
+                if (SelectIndexTreeNode1 == -1)
+                    return;
                 var item = FlightExperimentSelected;
+                UdpServer.PlaneInfo.FlightExperimentName = item.Name;
                 var flightMapWindow = new FlightMapWindow();
                 if (item?.HasSetPoints == true && item.SetPoints != null &&
                     flightMapWindow.DataContext is FlightMapWindowViewModel viewModel)

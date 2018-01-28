@@ -163,7 +163,8 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     var i = 0.0f;
                     var random = new Random();
-                    var point1 = new Point(random.Next(80), random.Next(60));
+                    //var point1 = new Point(random.Next(80), random.Next(60));
+                    var point1 = new Point(30, 30);
                     var point2 = new Point(random.Next(80), random.Next(60));
                     Flighter.Angle -= 180;
                     while (true)
@@ -176,7 +177,7 @@ namespace TeachingPlatformApp.ViewModels
                         if (Flighter.Angle <= 0)
                             Flighter.Angle = 360;
                         var j = NumberUtil.Deg2Rad(i);
-                        Flighter.MyMapPosition = new Point(point1.X + 10 * Math.Sin(j), point1.Y + 10 * Math.Cos(j));
+                        Flighter.MyMapPosition = new Point(point1.X + 28.2843 * Math.Sin(j), point1.Y + 28.2843 * Math.Cos(j));
                         Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
                         Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
                              $"  {Flighter.MyMapInfoToString()};";

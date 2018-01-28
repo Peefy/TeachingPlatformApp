@@ -4,7 +4,15 @@
     "flightMapTitle": "地图界面",
     "helicopterName": "直升机",
     "flighterName": "战斗机",
-    "missileName": "导弹"
+    "missileName": "导弹",
+    "flightExperimentNames": [
+      "起落航线",
+      "航线飞行",
+      "斤斗",
+      "盘旋",
+      "俯冲跃升",
+      "仪表飞行"
+    ]
   },
   "comConfig": {
     "selfPort": 16000,
@@ -127,9 +135,9 @@
     "outOfRouteSpeechUpCount": 2,
     "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 30,
-    "judgeNowSetPointsIndexRadius": 5.0,
+    "judgeNowSetPointsIndexRadius": 13.0,
     "initNowSetPointsIndex": 0,
-    "isShowNowSetPointsIndex": false
+    "isShowNowSetPointsIndex": true
   },
   "flightExperimentConfig": {
     "introductions": [

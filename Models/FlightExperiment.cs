@@ -159,8 +159,6 @@ namespace TeachingPlatformApp.Models
                 while (IsStart == true)
                 {
                     var isValid = this.IsValid;
-                    LogManager.GetCurrentLogger().
-                        Info($"{DateTime.Now}:{Name}实验检测结果:{isValid}\r\n");
                     await Task.Delay(300);
                     if (isValid == false)
                     {

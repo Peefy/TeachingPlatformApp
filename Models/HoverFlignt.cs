@@ -24,13 +24,8 @@ namespace TeachingPlatformApp.Models
 
         public HoverFlignt()
         {
-            Name = "盘旋";
             Index = 4;
-            _hoverAngle = new AngleValidatableObject(45)
-            {
-                Value = Convert.ToSingle(LogAndConfig.Config.
-                GetProperty(nameof(HoverAngle), 45.0f))
-            };
+            Name = JsonFileConfig.Instance.StringResource.FlightExperimentNames[Index - 1];
         }
 
     }

@@ -29,8 +29,8 @@ namespace TeachingPlatformApp.Models
 
         public OnlyInstrumencs()
         {
-            Name = "仪表飞行";
             Index = 6;
+            Name = JsonFileConfig.Instance.StringResource.FlightExperimentNames[Index - 1];
             HasSetPoints = true;
             _setPoints = new ObservableRangeCollection<Point>();
             pointsConverter = new SetPointsToStringConverter();

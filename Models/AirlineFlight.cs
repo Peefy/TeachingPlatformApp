@@ -16,9 +16,9 @@ namespace TeachingPlatformApp.Models
         public override string SetPointsConfigName => nameof(AirlineFlight);
 
         public AirlineFlight()
-        {
-            Name = "航线飞行";
+        {         
             Index = 2;
+            Name = JsonFileConfig.Instance.StringResource.FlightExperimentNames[Index - 1];
             HasSetPoints = true;
             _setPoints = new ObservableRangeCollection<Point>();
             pointsConverter = new SetPointsToStringConverter();

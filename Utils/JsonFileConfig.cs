@@ -28,6 +28,9 @@ namespace TeachingPlatformApp.Utils
             _lazyInstance ?? (_lazyInstance = new Lazy<JsonFileConfig>(() => ReadFromFile(),
                 LazyThreadSafetyMode.PublicationOnly));
 
+        /// <summary>
+        /// 配置文件静态实例
+        /// </summary>
         [JsonIgnore]
         public static JsonFileConfig Instance => LazyInstance.Value;
 
@@ -190,6 +193,10 @@ namespace TeachingPlatformApp.Utils
             this.FlightExperimentConfig = new FlightExperimentConfig();
         }
 
+        /// <summary>
+        /// 用json字符串更改配置
+        /// </summary>
+        /// <param name="jsonString"></param>
         public void SetConfig(string jsonString)
         {
             try
@@ -206,6 +213,10 @@ namespace TeachingPlatformApp.Utils
             }
         }
 
+        /// <summary>
+        /// 返回配置文件的json字符串
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             try
@@ -226,54 +237,117 @@ namespace TeachingPlatformApp.Utils
     /// </summary>
     public class StringResource
     {
+        /// <summary>
+        /// 主窗口标题
+        /// </summary>
         [JsonProperty("windowTitle")]
         public string WindowTitle { get; set; } = "教员台界面";
 
+        /// <summary>
+        /// 地图窗口标题
+        /// </summary>
         [JsonProperty("flightMapTitle")]
         public string FlightMapTitle { get; set; } = "地图界面";
 
+        /// <summary>
+        /// 直升机名称
+        /// </summary>
         [JsonProperty("helicopterName")]
         public string HelicopterName { get; set; } = "直升机";
 
+        /// <summary>
+        /// 战斗机名称
+        /// </summary>
         [JsonProperty("flighterName")]
         public string FlighterName { get; set; } = "战斗机";
 
+        /// <summary>
+        /// 导弹名称
+        /// </summary>
         [JsonProperty("missileName")]
         public string MissileName { get; set; } = "导弹";
+
+        /// <summary>
+        /// 飞行实验名称集合
+        /// </summary>
+        [JsonProperty("flightExperimentNames")]
+        public string[] FlightExperimentNames { get; set; } =
+        {
+            "起落航线",
+            "航线飞行",
+            "斤斗",
+            "盘旋",
+            "俯冲跃升",
+            "仪表飞行"
+        };
+
     }
 
     public class ComConfig : BindableBase
     {
+        /// <summary>
+        /// 自己PC设备Udp的监听端口号
+        /// </summary>
         [JsonProperty("selfPort")]
         public int SelfPort { get; set; } = 16000;
 
+        /// <summary>
+        /// 720度平台Unity控制软件监听端口号
+        /// </summary>
         [JsonProperty("udp720Port")]
         public int Udp720Port { get; set; } = 15000;
 
+        /// <summary>
+        /// 自己PC设备Udp的Ip地址
+        /// </summary>
         [JsonProperty("ipSelf")]
         public string IpSelf { get; set; } = "192.168.0.135";
 
+        /// <summary>
+        /// 720度平台PC的Ip地址
+        /// </summary>
         [JsonProperty("ip720Platform")]
         public string Ip720Platform { get; set; } = "192.168.0.134";
 
+        /// <summary>
+        /// Wsw视景软件UdpServer(六自由度平台)PC的Ip地址
+        /// </summary>
         [JsonProperty("ipWswUdpServer")]
         public string IpWswUdpServer { get; set; } = "192.168.0.131";
 
+        /// <summary>
+        /// 单兵平台PC的Ip地址
+        /// </summary>
         [JsonProperty("ipGunBarrel")]
         public string IpGunBarrel { get; set; } = "192.168.0.133";
 
+        /// <summary>
+        /// 所有Wsw视景软件Udp的监听端口号
+        /// </summary>
         [JsonProperty("wswUdpPort")]
         public int WswUdpPort { get; set; } = 14000;
 
+        /// <summary>
+        /// 720度平台Unity控制软件接收实验指令Udp监听的端口号
+        /// </summary>
         [JsonProperty("udp720TechingPort")]
         public int Udp720TechingPort { get; set; } = 12000;
 
+        /// <summary>
+        /// 720度平台Console测试软件Udp监听的端口号
+        /// </summary>
         [JsonProperty("udp720TestConsolePort")]
         public int Udp720TestConsolePort { get; set; } = 11000;
 
+        /// <summary>
+        /// 收到Wsw软件RenewUIRecieveCount次数据后更新一次UI，防止更新太快UI太卡
+        /// </summary>
         [JsonProperty("renewUIRecieveCount")]
         public int RenewUIRecieveCount { get; set; } = 10;
 
+        /// <summary>
+        /// 教研台软件额外Udp监听的端口号，用于测试集成和扩展Api
+        /// </summary>
         [JsonProperty("udpClientExtraPort")]
         public int UdpClientExtraPort { get; set; } = 10000;
 
@@ -281,30 +355,57 @@ namespace TeachingPlatformApp.Utils
 
     public class DataShowConfig
     {
+        /// <summary>
+        /// 角度显示数据保留几位小数位数
+        /// </summary>
         [JsonProperty("angleShowDigit")]
         public int AngleShowDigit { get; set; } = 1;
 
+        /// <summary>
+        /// 坐标显示数据保留几位小数位数
+        /// </summary>
         [JsonProperty("pointShowDigit")]
         public int PointShowDigit { get; set; } = 1;
 
+        /// <summary>
+        /// 地图界面刷新周期
+        /// </summary>
         [JsonProperty("mapUiRefreshMs")]
         public int MapUiRefreshMs { get; set; } = 30;
 
+        /// <summary>
+        /// 灰色航迹记录点数上限，超过后自动清空
+        /// </summary>
         [JsonProperty("drawTrailPointNumUp")]
         public int DrawTrailPointNumUp { get; set; } = 5000;
 
+        /// <summary>
+        /// 航路点汉字字体大小
+        /// </summary>
         [JsonProperty("setPointsFontSize")]
         public double SetPointsFontSize { get; set; } = 24;
 
+        /// <summary>
+        /// 航路点紫色圆圈半径
+        /// </summary>
         [JsonProperty("setPointsEllipseRadius")]
         public double SetPointsEllipseRadius { get; set; } = 6;
 
+        /// <summary>
+        /// 位置信息字体大小
+        /// </summary>
         [JsonProperty("locationStringFontSize")]
         public double LocationStringFontSize { get; set; } = 22;
 
+        /// <summary>
+        /// 航路点连线粗细
+        /// </summary>
         [JsonProperty("setPointsLineWidth")]
         public double SetPointsLineWidth { get; set; } = 3;
 
+        /// <summary>
+        /// 没有接收到Wsw软件的Udp数据时，角度和坐标显示的初始值
+        /// </summary>
         [JsonProperty("unRecieveduUdpDataShow")]
         public float UnRecieveduUdpDataShow { get; set; } = 0.0f;
 
@@ -437,6 +538,9 @@ namespace TeachingPlatformApp.Utils
         [JsonProperty("initNowSetPointsIndex")]
         public int InitNowSetPointsIndex { get; set; } = 0;
 
+        /// <summary>
+        /// 地图界面是否显示飞机上一次经过的航路点
+        /// </summary>
         [JsonProperty("isShowNowSetPointsIndex")]
         public bool IsShowNowSetPointsIndex { get; set; } = false;
 

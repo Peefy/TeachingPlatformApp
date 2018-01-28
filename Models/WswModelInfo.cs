@@ -19,6 +19,8 @@ namespace TeachingPlatformApp.Models
 
         public bool IsConnect { get; set; }
 
+        public string FlightExperimentName { get; set; } = "航线飞行";
+
         public WswModelInfo()
         {
             var flighterInfo = JsonFileConfig.Instance.MyFlighterInfo;

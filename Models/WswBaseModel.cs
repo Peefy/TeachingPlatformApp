@@ -191,7 +191,7 @@ namespace TeachingPlatformApp.Models
                 var count = setPoints.Count;                
                 var angle = 0.0;
                 var nowIndex = JudgeNowSetPointsIndex(setPoints);
-                if (nowIndex != count)
+                if (nowIndex != count - 1)
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[nowIndex + 1]);
                 else
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[0]);
@@ -250,11 +250,15 @@ namespace TeachingPlatformApp.Models
                         NowSetPointsIndex = index;
                     if(NowSetPointsIndex != LastSetPointsIndex)
                     {
-                        _speeker.SpeekAsync($"{Name}已经成功通过第{NowSetPointsIndex + 1}个航路点");
+                        _speeker?.SpeekAsync($"{Name}已经成功通过第{NowSetPointsIndex + 1}个航路点");
                     }
                     else
                     {
-                        _speeker.StopSpeek();
+                        _speeker?.StopSpeek();
+                    }
+                    if(NowSetPointsIndex == setPoints.Count - 1)
+                    {
+                        _speeker?.SpeekAsync($"{Name}成功完成航路点");
                     }
                 }
             }

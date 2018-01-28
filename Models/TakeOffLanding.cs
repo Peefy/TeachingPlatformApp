@@ -49,10 +49,8 @@ namespace TeachingPlatformApp.Models
 
         public TakeOffLanding()
         {
-            Name = "起落航线";
             Index = 1;
-            this.Pitch.Validations.Add(
-                new AngleValidationRule(PitchInRange, -PitchInRange));
+            Name = JsonFileConfig.Instance.StringResource.FlightExperimentNames[Index - 1];
         }
 
         public override async Task StartAsync()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.Validations;
 
 namespace TeachingPlatformApp.Models
@@ -12,9 +13,9 @@ namespace TeachingPlatformApp.Models
     {
 
         public DiveJump()
-        {
-            Name = "俯冲跃升";
+        {          
             Index = 5;
+            Name = JsonFileConfig.Instance.StringResource.FlightExperimentNames[Index - 1];
             Pitch.Validations.Add(new AngleValidationRule(60, -60));
         }
 

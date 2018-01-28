@@ -46,15 +46,7 @@ namespace TeachingPlatformApp.Utils
             {
                 WswHelper.AngleWithLocationToString(point),
                 WswHelper.AngleWithLocationToString(point2),
-//                 $"{vector1} and {vector2}",
-//                 angle.ToString(),
-//                 distance.ToString(),
-//                 deltaX.ToString(),
-//                 deltaY.ToString(),
             };
         }
-
-
-
     }
 }
