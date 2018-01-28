@@ -197,11 +197,11 @@ namespace TeachingPlatformApp.Models
         {
             isNotOutOfRoute = JudgeIsNotOutOfRoute(setPoints);
             var routeState = RouteState.Normal;
-            if (setPoints?.Count > 1)
+            var nowIndex = JudgeNowSetPointsIndex(setPoints);
+            if (setPoints?.Count > 1 && isNotOutOfRoute == false)
             {
                 var count = setPoints.Count;                
-                var angle = 0.0;
-                var nowIndex = JudgeNowSetPointsIndex(setPoints);
+                var angle = 0.0;               
                 if (nowIndex != count - 1)
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[nowIndex + 1]);
                 else
