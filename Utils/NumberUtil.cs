@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeachingPlatformApp.Utils
 {
@@ -94,13 +90,26 @@ namespace TeachingPlatformApp.Utils
             return (float)Math.Round(deg * 0.01745329, digit);
         }
 
-        public static double PutAngleIn(float angle, double minAngle = 0, double maxAngle = 360, int digit = 2)
+        /// <summary>
+        /// 将角度范围限制在一个2*pi周期内
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="minAngle"></param>
+        /// <param name="maxAngle"></param>
+        /// <param name="digit"></param>
+        /// <returns></returns>
+        public static double PutAngleIn(double angle, double minAngle = 0, double maxAngle = 360, int digit = 2)
         {
-            while(angle <= minAngle)
+            if (Math.Round(maxAngle - minAngle) != 360)
+            {
+                throw new ArgumentException("parameter 'maxAngle' sub parameter 'minAngle' must be 360 deg");
+            }
+            while (angle <= minAngle)
                 angle += 360;
             while (angle >= maxAngle)
                 angle -= 360;
             return Math.Round(angle, digit);
         }
+
     }
 }

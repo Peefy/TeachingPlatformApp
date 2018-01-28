@@ -60,8 +60,7 @@ namespace TeachingPlatformApp.WswPlatform
                 angleNew.Z = (angle.Z - wswInitData.FlighterInitInfo.Z) *
                     myFlighterInfo.PointScaleFactorZ + myFlighterInfo.InitMyPointZ;
                 angleNew.Roll = angle.Roll;
-                angleNew.Pitch = angle.Pitch;
-                
+                angleNew.Pitch = angle.Pitch;              
                 angleNew.Yaw = angle.Yaw * yawSign - myFlighterInfo.InitYaw;
 
             };
@@ -86,14 +85,7 @@ namespace TeachingPlatformApp.WswPlatform
             angleNew.Yaw = Math.Round(angleNew.Yaw, digit);
             angleNew.Pitch = Math.Round(angleNew.Pitch, digit);
 
-            while(angleNew.Yaw <= - 360)
-            {
-                angleNew.Yaw += 360;
-            }
-            while(angleNew.Yaw >= 360)
-            {
-                angleNew.Yaw -= 360;
-            }
+            angleNew.Yaw = NumberUtil.PutAngleIn(angleNew.Yaw);
 
             return angleNew;
         }

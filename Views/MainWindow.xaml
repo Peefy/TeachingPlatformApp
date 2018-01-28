@@ -21,6 +21,7 @@
     BorderThickness="1"
     GlowBrush="Black"
     Keyboard.KeyDown="Window_KeyDown"
+    Keyboard.KeyUp="Window_KeyUp"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     WindowTransitionsEnabled="False">

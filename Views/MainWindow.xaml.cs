@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using MahApps.Metro.Controls;
@@ -14,6 +15,9 @@ namespace TeachingPlatformApp.Views
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+
+        bool _isCtrlKeyDown;
+
         public MainWindow()
         {
             InitializeComponent();         
@@ -25,31 +29,33 @@ namespace TeachingPlatformApp.Views
             textBox.ScrollToEnd();
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == System.Windows.Input.Key.C)
+            if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+                _isCtrlKeyDown = true;
+            if (e.Key == Key.C && _isCtrlKeyDown == true)
             {
                 if(DataContext is MainWindowViewModel viewModel)
                 {
                     viewModel.ClearCommand.Execute();                 
                 }
             }
-            else if(e.Key == System.Windows.Input.Key.S)
+            else if(e.Key == Key.S && _isCtrlKeyDown == true)
             {
                 consoleTextBox.FontSize -= 2;
             }
-            else if(e.Key == System.Windows.Input.Key.W)
+            else if(e.Key == Key.W && _isCtrlKeyDown == true)
             {
                 consoleTextBox.FontSize += 2;
             }
-            else if(e.Key == System.Windows.Input.Key.T)
+            else if(e.Key == Key.T && _isCtrlKeyDown == true)
             {
                 if (testButton.Visibility == Visibility.Collapsed)
                     testButton.Visibility = Visibility.Visible;
                 else
                     testButton.Visibility = Visibility.Collapsed;
             }
-            else if(e.Key == System.Windows.Input.Key.Enter)
+            else if(e.Key == Key.Enter)
             {
                 try
                 {
@@ -76,14 +82,10 @@ namespace TeachingPlatformApp.Views
             }
         }
 
-        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            this.DragMove();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
+            if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+                _isCtrlKeyDown = false;
         }
     }
 }

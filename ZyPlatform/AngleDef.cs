@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace TeachingPlatformApp.ZyPlatform
 {
+    /// <summary>
+    /// 驱动720度平台运动旋转的数据格式
+    /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct AngleDef
     {

@@ -33,6 +33,5 @@ namespace TeachingPlatformApp.Utils
                 viewModel.AppendStatusText(str);
             }
         }
-
     }
 }

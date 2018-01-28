@@ -25,32 +25,56 @@
                 x:Name="path1"
                 Stroke="{Binding ElementName=cllipse, Path=Fill}"
                 StrokeThickness="5">
+                <Path.RenderTransformOrigin>
+                    <Point X="0.363636" Y="0.416667" />
+                </Path.RenderTransformOrigin>
+                <Path.RenderTransform>
+                    <RotateTransform Angle="{Binding Angle}" />
+                </Path.RenderTransform>
                 <Path.Data>
-                    <LineGeometry StartPoint="20,25" EndPoint="55,70" />
+                    <LineGeometry StartPoint="20,25" EndPoint="55,60" />
                 </Path.Data>
             </Path>
             <Path
                 x:Name="path2"
                 Stroke="{Binding ElementName=cllipse, Path=Fill}"
                 StrokeThickness="5">
+                <Path.RenderTransformOrigin>
+                    <Point X="0.363636" Y="1" />
+                </Path.RenderTransformOrigin>
+                <Path.RenderTransform>
+                    <RotateTransform Angle="{Binding Angle}" />
+                </Path.RenderTransform>
                 <Path.Data>
-                    <LineGeometry StartPoint="20,25" EndPoint="55,-20" />
+                    <LineGeometry StartPoint="20,25" EndPoint="55,-10" />
                 </Path.Data>
             </Path>
             <Path
                 x:Name="path3"
                 Stroke="{Binding ElementName=cllipse, Path=Fill}"
                 StrokeThickness="5">
+                <Path.RenderTransformOrigin>
+                    <Point X="1" Y="0.92" />
+                </Path.RenderTransformOrigin>
+                <Path.RenderTransform>
+                    <RotateTransform Angle="{Binding Angle}" />
+                </Path.RenderTransform>
                 <Path.Data>
-                    <LineGeometry StartPoint="20,25" EndPoint="-15,-20" />
+                    <LineGeometry StartPoint="20,25" EndPoint="-15,-10" />
                 </Path.Data>
             </Path>
             <Path
                 x:Name="path4"
                 Stroke="{Binding ElementName=cllipse, Path=Fill}"
                 StrokeThickness="5">
+                <Path.RenderTransformOrigin>
+                    <Point X="1" Y="0.416667" />
+                </Path.RenderTransformOrigin>
+                <Path.RenderTransform>
+                    <RotateTransform Angle="{Binding Angle}" />
+                </Path.RenderTransform>
                 <Path.Data>
-                    <LineGeometry StartPoint="20,25" EndPoint="-15,70" />
+                    <LineGeometry StartPoint="20,25" EndPoint="-15,60" />
                 </Path.Data>
             </Path>
             <Path Stroke="{Binding ElementName=cllipse, Path=Fill}" StrokeThickness="5">

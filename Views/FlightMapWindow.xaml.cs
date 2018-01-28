@@ -37,6 +37,9 @@ namespace TeachingPlatformApp.Views
         int _canvasTrailFlighterIndex = 0;
         int _canvasTrailHelicopterIndex = 1;
         int _canvasTrailMissileIndex = 2;
+        int _helicopterIndex = 3;
+        int _flighterIndex = 4;
+        int _missileIndex = 5;
 
         bool _enableScale = false;
         bool _enableDrag = false;
@@ -66,6 +69,7 @@ namespace TeachingPlatformApp.Views
             _canvasTrailFlighter = _girdWswModel.Children[_canvasTrailFlighterIndex] as CanvasTrail;
             _canvasTrailHelicopter = _girdWswModel.Children[_canvasTrailHelicopterIndex] as CanvasTrail;
             _canvasTrailMissile = _girdWswModel.Children[_canvasTrailMissileIndex] as CanvasTrail;
+            (_girdWswModel.Children[_helicopterIndex] as Helicopter).BuildTimer();
             _viewModel = new FlightMapWindowViewModel();
             DataContext = _viewModel;
         }

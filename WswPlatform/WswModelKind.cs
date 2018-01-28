@@ -11,8 +11,17 @@ namespace TeachingPlatformApp.WswPlatform
     /// </summary>
     public enum WswModelKind
     {
+        /// <summary>
+        /// 直升机
+        /// </summary>
         Helicopter,
+        /// <summary>
+        /// 战斗机
+        /// </summary>
         Flighter,
+        /// <summary>
+        /// 导弹
+        /// </summary>
         Missile
     }
 }

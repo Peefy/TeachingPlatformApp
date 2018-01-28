@@ -48,7 +48,8 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _angle, value);
         }
 
-        public double AngleWithXAxes => NumberUtil.PutAngleIn(Angle - 90, minAngle: -180, maxAngle: 180);
+        public double AngleWithXAxes => 
+            NumberUtil.PutAngleIn(Angle - 90, minAngle: -180, maxAngle: 180);
 
         private Point _myMapPosition = default;
         public Point MyMapPosition
@@ -186,9 +187,10 @@ namespace TeachingPlatformApp.Models
             var routeState = isNotOutOfRoute == true ? RouteState.Normal : RouteState.OutOfLeft;
             if (setPoints?.Count > 1 && isNotOutOfRoute == false)
             {
-                var count = setPoints.Count;               
-                var nowIndex = JudgeNowSetPointsIndex(setPoints);
+                var count = setPoints.Count;                
                 var angle = 0.0;
+                NowSetPointsIndex = JudgeNowSetPointsIndex(setPoints);
+                var nowIndex = NowSetPointsIndex;
                 if (NowSetPointsIndex != count)
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[nowIndex + 1]);
                 else

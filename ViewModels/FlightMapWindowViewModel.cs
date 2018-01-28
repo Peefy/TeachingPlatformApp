@@ -178,9 +178,9 @@ namespace TeachingPlatformApp.ViewModels
                         var j = NumberUtil.Deg2Rad(i);
                         Flighter.MyMapPosition = new Point(point1.X + 10 * Math.Sin(j), point1.Y + 10 * Math.Cos(j));
                         Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
-                        Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{NumberUtil.BoolToString(Flighter.IsNotOutofRoute)}" +
+                        Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
                              $"  {Flighter.MyMapInfoToString()};";
-                        Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{NumberUtil.BoolToString(Helicopter.IsNotOutofRoute)}" +
+                        Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
                               $"  {Helicopter.MyMapInfoToString()};";
                         
                         Thread.Sleep(_mapRefreshInterval);
@@ -208,9 +208,9 @@ namespace TeachingPlatformApp.ViewModels
             if(_translateData.PlaneInfo.IsConnect == true)
             {
                 var planeInfo = Ioc.Get<ITranslateData>().PlaneInfo;
-                Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{NumberUtil.BoolToString(Flighter.IsNotOutofRoute)}" +
+                Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
                              $"  {Flighter.WswModelInfoToString()};";
-                Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{NumberUtil.BoolToString(Helicopter.IsNotOutofRoute)}" +
+                Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
                       $"  {Helicopter.WswModelInfoToString()};";
                 Helicopter.Angle = (float)planeInfo.Helicopter.Yaw;
                 Flighter.Angle = (float)planeInfo.Flighter.Yaw;
@@ -222,7 +222,8 @@ namespace TeachingPlatformApp.ViewModels
         public void RunTest()
         {
             Title = VectorPointHelper.GetPointsLineVectorAngle(SetPoints).ToListString()
-                + "  " + Flighter.RouteState.ToLeftRightString() + "  " + Flighter.AngleWithXAxes;
+                + "  " + Flighter.RouteState.ToLeftRightString() + "  " + Flighter.AngleWithXAxes
+                + $"nowIndex:{Flighter.NowSetPointsIndex}";
         }
 
     }

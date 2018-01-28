@@ -15,13 +15,13 @@
             switch(routeState)
             {
                 case RouteState.Normal:
-                    str = "航线正常";
+                    str = "正常";
                     break;
                 case RouteState.OutOfLeft:
-                    str = "航线偏左";
+                    str = "偏左";
                     break;
                 case RouteState.OutOfRight:
-                    str = "航线偏右";
+                    str = "偏右";
                     break;
             }
             return str;

@@ -39,7 +39,8 @@
     "xAxesInternal": 100.0,
     "yAxesInternal": 100.0,
     "mouseDoubleClickShowPointX": 50.0,
-    "mouseDoubleClickShowPointY": 30.0
+    "mouseDoubleClickShowPointY": 30.0,
+    "helicopterPaddleRotateSpeed": 6.0
   },
   "wswData": {
     "flighterInitInfo": {
@@ -124,7 +125,7 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 1,
+    "isAutoFollowing": 2,
     "autoFollowingIntervalMs": 30,
     "judgeNowSetPointsIndexRadius": 3.0
   },

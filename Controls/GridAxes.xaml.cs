@@ -209,6 +209,8 @@ namespace TeachingPlatformApp.Controls
         [JsonProperty("mouseDoubleClickShowPointY")]
         public double MouseDoubleClickShowPointY { get; set; } = 30;
 
+        [JsonProperty("helicopterPaddleRotateSpeed")]
+        public float HelicopterPaddleRotateSpeed { get; set; } = 4.0f;
     }
 
 }
