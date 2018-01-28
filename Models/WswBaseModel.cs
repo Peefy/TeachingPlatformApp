@@ -206,10 +206,12 @@ namespace TeachingPlatformApp.Models
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[nowIndex + 1]);
                 else
                     angle = VectorPointHelper.GetThreePointsTwoLineAngle(setPoints[nowIndex], MyMapPosition, setPoints[0]);
-                if (angle >= 0 && angle <= 180)
+                if (angle > 0 && angle <= 180)
                     routeState = RouteState.OutOfLeft;
-                if (angle <= 0 && angle >= -180)
+                if (angle < 0 && angle >= -180)
                     routeState = RouteState.OutOfRight;
+                if (angle == 0)
+                    routeState = RouteState.Normal;
             }
             return routeState;
         }
@@ -266,20 +268,21 @@ namespace TeachingPlatformApp.Models
                     }
                     if(NowSetPointsIndex != LastSetPointsIndex)
                     {
+                        if (NowSetPointsIndex == count)
+                        {
+                            IsSuccess = true;
+                            var flightExName = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentName;
+                            _speeker?.SpeekAsync($"{Name}成功完成了{flightExName}实验");
+                            NowSetPointsIndex = 0;
+                            Ioc.Get<ITranslateData>().TranslateInfo.IsTest = false;
+                            break;
+                        }
                         _speeker?.SpeekAsync($"{Name}已经成功通过第{NumberUtil.IntNumberToChineseString(NowSetPointsIndex + 1)}个航路点");
                     }
                     else
                     {
                         _speeker?.StopSpeek();
-                    }
-                    if(NowSetPointsIndex == count)
-                    {
-                        IsSuccess = true;
-                        var flightExName = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentName;
-                        _speeker?.SpeekAsync($"{Name}成功完成了{flightExName}实验");
-                        NowSetPointsIndex = 0;
-                        Ioc.Get<ITranslateData>().TranslateInfo.IsTest = false;
-                    }
+                    }                   
                 }
             }
             LastSetPointsIndex = NowSetPointsIndex;
