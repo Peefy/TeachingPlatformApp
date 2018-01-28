@@ -213,7 +213,7 @@ namespace TeachingPlatformApp.Models
 
         public virtual void OutOfRouteSpeechControl(ObservableRangeCollection<Point> setPoints)
         {
-            if (setPoints == null || IsSuccess == true)
+            if (setPoints == null || IsSuccess == true || IsJudgeRoute == false)
                 return;
             //false代表偏离航线，true代表没有偏离航线.
             RouteState =  JudgeRouteState(setPoints, out var isNotOutofRoute);

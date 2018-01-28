@@ -1,18 +1,1 @@
-2018/1/28 20:46:22
-
-20:47
-0   在 System.Windows.Threading.Dispatcher.VerifyAccess()
-   在 System.Windows.Application.get_MainWindow()
-   在 TeachingPlatformApp.Utils.MyConsole.RunStop() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Utils\MyConsole.cs:行号 47
-   在 TeachingPlatformApp.Models.WswBaseModel.JudgeNowSetPointsIndex(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 278
-   在 TeachingPlatformApp.Models.WswBaseModel.JudgeRouteState(ObservableRangeCollection`1 setPoints, Boolean& isNotOutOfRoute) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 201
-   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Models\WswBaseModel.cs:行号 219
-   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\FlightMapWindowViewModel.cs:行号 203
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__24_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 98
-调用线程无法访问此对象，因为另一个线程拥有该对象。
-
-20:47
-1   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
-   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__24_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 99
-正在中止线程。
+2018/1/28 20:53:50
