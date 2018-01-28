@@ -1,23 +1,13 @@
-2018/1/28 13:43:50
+2018/1/28 14:34:52
 
-13:44
+14:35
 0   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
    在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__20_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 94
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__21_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 95
 正在中止线程。
 
-13:44
+14:35
 1   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   在 System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
-   在 System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
-   在 System.Windows.Threading.Dispatcher.Invoke(Action callback, DispatcherPriority priority, CancellationToken cancellationToken, TimeSpan timeout)
-   在 System.Windows.Threading.Dispatcher.Invoke(Action callback)
-   在 TeachingPlatformApp.Views.FlightMapWindow.AutoFollowing(Object sender, ElapsedEventArgs e)
-已取消一个任务。
-
-13:44
-2   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    在 System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
    在 System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)

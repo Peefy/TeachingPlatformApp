@@ -139,6 +139,7 @@
     <Compile Include="Converters\SetPointsToPathFigureConverter.cs" />
     <Compile Include="Converters\SetPointToRealMarginPointConverter.cs" />
     <Compile Include="Converters\TrailPointsToPathFigureConverter.cs" />
+    <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="MemoryShare\CLMemory.cs" />
     <Compile Include="MemoryShare\CLStartCamera.cs" />
     <Compile Include="MemoryShare\ZyShareMem.cs" />
@@ -151,7 +152,6 @@
     <Compile Include="Speech\ISpeek.cs" />
     <Compile Include="Speech\TeachingSpeeker.cs" />
     <Compile Include="Utils\ClassObjectDeepCloneUtil.cs" />
-    <Compile Include="Utils\CollectionToStringUtil.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
     <Compile Include="Utils\MyConsole.cs" />
     <Compile Include="Utils\NumberUtil.cs" />

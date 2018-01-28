@@ -16,7 +16,7 @@ using TeachingPlatformApp.WswPlatform;
 namespace TeachingPlatformApp.Utils
 {
     /// <summary>
-    /// config.json operate. 配置文件操作
+    /// config.json 配置文件操作
     /// </summary>
     public class JsonFileConfig
     {

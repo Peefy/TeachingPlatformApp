@@ -13,6 +13,7 @@ using DuGu.NetFramework.Services;
 
 using TeachingPlatformApp.Speech;
 using TeachingPlatformApp.WswPlatform;
+using TeachingPlatformApp.Extensions;
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.Models;
 using TeachingPlatformApp.Communications;
@@ -216,6 +217,12 @@ namespace TeachingPlatformApp.ViewModels
                 Flighter.MyMapPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
                 Helicopter.MyMapPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
             }
+        }
+
+        public void RunTest()
+        {
+            Title = VectorPointHelper.GetPointsLineVectorAngle(SetPoints).ToListString()
+                + "  " + Flighter.RouteState.ToLeftRightString();
         }
 
     }

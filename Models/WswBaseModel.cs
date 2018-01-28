@@ -48,6 +48,8 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _angle, value);
         }
 
+        public float AngleWithXAxes => Angle - 180;
+
         private Point _myMapPosition = default;
         public Point MyMapPosition
         {
@@ -135,7 +137,7 @@ namespace TeachingPlatformApp.Models
             return $"坐标:({x},{y})";
         }
 
-        public virtual bool JudgeIsOutOfRoute(ObservableRangeCollection<Point> setPoints)
+        public virtual bool JudgeIsNotOutOfRoute(ObservableRangeCollection<Point> setPoints)
         {
 
             var point = this.MyMapPosition;
@@ -178,10 +180,26 @@ namespace TeachingPlatformApp.Models
             return false;
         }
 
-        public virtual RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints)
+        public virtual RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints, out bool isNotOutOfRoute)
         {
-            var isOutOfRoute = JudgeIsOutOfRoute(setPoints);
-            var routeState = isOutOfRoute ? RouteState.Normal : RouteState.OutOfLeft;
+            isNotOutOfRoute = JudgeIsNotOutOfRoute(setPoints);
+            var routeState = isNotOutOfRoute == true ? RouteState.Normal : RouteState.OutOfLeft;
+            if (setPoints?.Count > 1)
+            {
+                var count = setPoints.Count;               
+                var nowIndex = JudgeNowSetPointsIndex(setPoints);
+                var angle = 0.0;
+                if (NowSetPointsIndex != count)
+                    angle = VectorPointHelper.GetTwoPointLineAngle(setPoints[nowIndex], setPoints[nowIndex + 1]);
+                else
+                    angle = VectorPointHelper.GetTwoPointLineAngle(setPoints[nowIndex], setPoints[0]);
+                Angle = (float)NumberUtil.PutAngleIn360(Angle);
+                var subAngle = AngleWithXAxes - angle;
+                if (subAngle >= 0 && subAngle <= 180)
+                    routeState = RouteState.OutOfRight;
+                if (subAngle <= 0 && subAngle >= -180)
+                    routeState = RouteState.OutOfLeft;
+            }
             return routeState;
         }
 
@@ -190,7 +208,8 @@ namespace TeachingPlatformApp.Models
             if (setPoints == null)
                 return;
             //false代表偏离航线，true代表没有偏离航线.
-            IsNotOutofRoute = JudgeIsOutOfRoute(setPoints);
+            RouteState =  JudgeRouteState(setPoints, out var isNotOutofRoute);
+            IsNotOutofRoute = isNotOutofRoute;
             if (IsNotOutofRoute == false)
             {
                 this.OutOfRouteCount++;
@@ -203,7 +222,11 @@ namespace TeachingPlatformApp.Models
             if (OutOfRouteCount >= _outOfRouteSpeechUpCount)
             {
                 OutOfRouteCount = 0;
-                _speeker?.SpeekAsync(Name + Config.SpeechConfig.SpeechTextOutofRoute);
+                if(RouteState != RouteState.Normal)
+                {
+                    var leftRightStr = RouteState == RouteState.OutOfLeft ? "向左" : "向右";
+                    _speeker?.SpeekAsync(Name + leftRightStr + Config.SpeechConfig.SpeechTextOutofRoute);
+                }
             }
             else
             {
@@ -217,7 +240,7 @@ namespace TeachingPlatformApp.Models
             var radius = JsonFileConfig.Instance.TestTrailRouteConfig.JudgeNowSetPointsIndexRadius;
             if (setPoints == null)
                 return index;
-            for(var i = 0;i< setPoints.Count ;++i)
+            for(var i = 0;i < setPoints.Count ;++i)
             {
                 var distance = VectorPointHelper.GetTwoPointDistance(MyMapPosition, setPoints[i]);
                 if (distance < radius)
@@ -290,9 +313,9 @@ namespace TeachingPlatformApp.Models
     public interface IRouteJudge
     {
         void OutOfRouteSpeechControl(ObservableRangeCollection<Point> setPoints);
-        bool JudgeIsOutOfRoute(ObservableRangeCollection<Point> setPoints);
-        RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints);
+        bool JudgeIsNotOutOfRoute(ObservableRangeCollection<Point> setPoints);      
         int JudgeNowSetPointsIndex(ObservableRangeCollection<Point> setPoints);
+        RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints, out bool isNotOutOfRoute);
     }
 
 }

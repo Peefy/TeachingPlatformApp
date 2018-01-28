@@ -40,6 +40,7 @@ namespace TeachingPlatformApp.Views
 
         bool _enableScale = false;
         bool _enableDrag = false;
+        bool _isCtrlDown = false;
         Point _pressPoint = new Point();
         Point _movePoint = new Point();
 
@@ -177,6 +178,7 @@ namespace TeachingPlatformApp.Views
         }
 
         #region WindowKeyAndMouseWheel
+
         private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             if(_enableScale == true)
@@ -194,7 +196,11 @@ namespace TeachingPlatformApp.Views
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+            {
                 _enableScale = false;
+                _isCtrlDown = true;
+            }
+               
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -219,7 +225,14 @@ namespace TeachingPlatformApp.Views
                 TextChanged(null, null);
             }
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+            {
                 _enableScale = true;
+                _isCtrlDown = true;
+            }
+            if(e.Key == Key.T && _isCtrlDown == true)
+            {
+                _viewModel.RunTest();
+            }
             if (fatherGrid.RenderTransform is ScaleTransform scale)
             {
                 if (e.Key == Key.PageUp || e.Key == Key.W)
