@@ -119,7 +119,7 @@
   },
   "speechConfig": {
     "volume": 70.0,
-    "rate": 0.0,
+    "rate": 2.0,
     "isUsingDotnetSpeech": true,
     "speechEnable": true,
     "speechTextOutofRouteLeft": "偏离航线",

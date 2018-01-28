@@ -467,7 +467,7 @@ namespace TeachingPlatformApp.Utils
         /// 语速
         /// </summary>
         [JsonProperty("rate")]
-        public double Rate { get; set; } = 0;
+        public double Rate { get; set; } = 2.0;
 
         /// <summary>
         /// 是否采用DotNetSpeech.dll产生语音
@@ -554,7 +554,7 @@ namespace TeachingPlatformApp.Utils
         /// 检测当前经过的航路点索引合理半径
         /// </summary>
         [JsonProperty("judgeNowSetPointsIndexRadius")]
-        public double JudgeNowSetPointsIndexRadius { get; set; } = 5.0;
+        public double JudgeNowSetPointsIndexRadius { get; set; } = 10.1;
 
         /// <summary>
         /// 初始的航路点索引

@@ -266,7 +266,7 @@ namespace TeachingPlatformApp.Models
                     }
                     if(NowSetPointsIndex != LastSetPointsIndex)
                     {
-                        _speeker?.SpeekAsync($"{Name}已经成功通过第{NowSetPointsIndex + 1}个航路点");
+                        _speeker?.SpeekAsync($"{Name}已经成功通过第{NumberUtil.IntNumberToChineseString(NowSetPointsIndex + 1)}个航路点");
                     }
                     else
                     {
