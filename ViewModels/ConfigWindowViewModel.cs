@@ -11,6 +11,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 
 using TeachingPlatformApp.Utils;
+using TeachingPlatformApp.Utils.JsonModels;
 
 namespace TeachingPlatformApp.ViewModels
 {
@@ -50,7 +51,7 @@ namespace TeachingPlatformApp.ViewModels
         {
             ComConfig = JsonFileConfig.Instance.ComConfig;
             ConfigString = JsonFileConfig.Instance.ToString();
-            SaveCommand = new DelegateCommand(async () =>
+            SaveCommand = new DelegateCommand(() =>
             {
                 try
                 {

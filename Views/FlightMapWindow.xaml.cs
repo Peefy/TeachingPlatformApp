@@ -38,8 +38,8 @@ namespace TeachingPlatformApp.Views
         int _canvasTrailHelicopterIndex = 1;
         int _canvasTrailMissileIndex = 2;
         int _helicopterIndex = 3;
-        int _flighterIndex = 4;
-        int _missileIndex = 5;
+        //int _flighterIndex = 4;
+        //int _missileIndex = 5;
 
         bool _enableScale = false;
         bool _enableDrag = false;
