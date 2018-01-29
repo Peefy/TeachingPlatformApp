@@ -152,11 +152,18 @@
     <Compile Include="Speech\ISpeek.cs" />
     <Compile Include="Speech\TeachingSpeeker.cs" />
     <Compile Include="Utils\ClassObjectDeepCloneUtil.cs" />
+    <Compile Include="Utils\JsonModels\ComConfig.cs" />
+    <Compile Include="Utils\JsonModels\DataShowConfig.cs" />
+    <Compile Include="Utils\JsonModels\FlightExperimentConfig.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
     <Compile Include="Utils\MyConsole.cs" />
     <Compile Include="Utils\NumberUtil.cs" />
+    <Compile Include="Utils\JsonModels\SpeechConfig.cs" />
+    <Compile Include="Utils\JsonModels\StringResource.cs" />
     <Compile Include="Utils\Test.cs" />
+    <Compile Include="Utils\JsonModels\TestTrailRouteConfig.cs" />
     <Compile Include="Utils\VectorPointHelper.cs" />
+    <Compile Include="Utils\JsonModels\WswData.cs" />
     <Compile Include="ViewModels\ConfigWindowViewModel.cs" />
     <Compile Include="ViewModels\FlightMapWindowViewModel.cs" />
     <Compile Include="Views\ConfigWindow.xaml.cs">
@@ -168,7 +175,7 @@
     <Compile Include="Views\SpeechWindow.xaml.cs">
       <DependentUpon>SpeechWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WswPlatform\AirPlaneInfo.cs" />
+    <Compile Include="Utils\JsonModels\AirPlaneInfo.cs" />
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\DataPacketToWsw.cs" />
     <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />

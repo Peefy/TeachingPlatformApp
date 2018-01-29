@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace TeachingPlatformApp.WswPlatform
+namespace TeachingPlatformApp.Utils.JsonModels
 {
     public class WswModelInfo
     {

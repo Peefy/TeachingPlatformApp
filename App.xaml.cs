@@ -25,8 +25,7 @@ namespace TeachingPlatformApp
         {
             base.OnStartup(e);
             AppInit();
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+            new Bootstrapper().Run();
         }
 
         void AppInit()
