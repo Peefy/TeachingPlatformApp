@@ -174,6 +174,8 @@ namespace TeachingPlatformApp.ViewModels
                         Flighter.Angle -= 180;
                         Helicopter.Angle -= 90;
                         await Task.Delay(100);
+                        Ioc.Get<ISpeek>()?.
+                                    SpeekAsync($"{_flightTaskName}实验开始飞行第一边");
                         while (true)
                         {
                             if (Helicopter.MyMapPosition.X >= 45)
@@ -190,7 +192,9 @@ namespace TeachingPlatformApp.ViewModels
                         Helicopter.Angle += 45;
                         Flighter.Angle += 45;
                         speed /= 1.4142;
-                        while(true)
+                        Ioc.Get<ISpeek>()?.
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第二边");
+                        while (true)
                         {
                             if (Helicopter.MyMapPosition.Y >= 30)
                                 break;
@@ -203,6 +207,8 @@ namespace TeachingPlatformApp.ViewModels
                             Thread.Sleep(_mapRefreshInterval);
                         }
                         Helicopter.Angle += 90;
+                        Ioc.Get<ISpeek>()?.
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第三边");
                         while (true)
                         {
                             if (Helicopter.MyMapPosition.X <= 45)
@@ -217,6 +223,8 @@ namespace TeachingPlatformApp.ViewModels
                         }
                         Helicopter.Angle += 45;
                         speed *= 1.4142;
+                        Ioc.Get<ISpeek>()?.
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第四边");
                         while (true)
                         {
                             if (Helicopter.MyMapPosition.X <= 15)
@@ -230,6 +238,8 @@ namespace TeachingPlatformApp.ViewModels
                             Thread.Sleep(_mapRefreshInterval);
                         }
                         Helicopter.Angle += 90;
+                        Ioc.Get<ISpeek>()?.
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第五边");
                         while (true)
                         {
                             if (Helicopter.MyMapPosition.Y <= 10)
