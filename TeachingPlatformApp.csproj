@@ -139,7 +139,7 @@
     <Compile Include="Converters\SetPointsToPathFigureConverter.cs" />
     <Compile Include="Converters\SetPointToRealMarginPointConverter.cs" />
     <Compile Include="Converters\TrailPointsToPathFigureConverter.cs" />
-    <Compile Include="Extensions\IListExtension.cs" />
+    <Compile Include="Extensions\ICollectionExtension.cs" />
     <Compile Include="MemoryShare\CLMemory.cs" />
     <Compile Include="MemoryShare\CLStartCamera.cs" />
     <Compile Include="MemoryShare\ZyShareMem.cs" />

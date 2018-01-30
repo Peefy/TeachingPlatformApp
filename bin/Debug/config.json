@@ -79,7 +79,7 @@
   "dataShowConfig": {
     "angleShowDigit": 1,
     "pointShowDigit": 1,
-    "mapUiRefreshMs": 30,
+    "mapUiRefreshMs": 50,
     "drawTrailPointNumUp": 5000,
     "setPointsFontSize": 24.0,
     "setPointsEllipseRadius": 6.0,
@@ -138,7 +138,7 @@
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": -1,
     "isShowNowSetPointsIndex": true,
-    "unConnectedFlighterRotateSpeed": 0.3
+    "unConnectedFlighterRotateSpeed": 0.5
   },
   "flightExperimentConfig": {
     "introductions": [

@@ -1,0 +1,2 @@
+HoverAngle|30
+MilliSeconds|150000

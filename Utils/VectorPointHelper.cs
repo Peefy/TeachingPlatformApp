@@ -6,6 +6,19 @@ namespace TeachingPlatformApp.Utils
 {
     public static class VectorPointHelper
     {
+
+        /// <summary>
+        /// 将平面内一个点平移x和y
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static Point PointOffset(Point point , double x, double y)
+        {
+            return new Point(point.X + x, point.Y + y);
+        }
+
         /// <summary>
         /// 获得两个向量顶端坐标的距离
         /// </summary>

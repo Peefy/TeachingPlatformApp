@@ -69,7 +69,7 @@ namespace TeachingPlatformApp.Views
             _canvasTrailFlighter = _girdWswModel.Children[_canvasTrailFlighterIndex] as CanvasTrail;
             _canvasTrailHelicopter = _girdWswModel.Children[_canvasTrailHelicopterIndex] as CanvasTrail;
             _canvasTrailMissile = _girdWswModel.Children[_canvasTrailMissileIndex] as CanvasTrail;
-            (_girdWswModel.Children[_helicopterIndex] as Helicopter).BuildTimer();
+            (_girdWswModel.Children[_helicopterIndex] as Helicopter).BuildPaddleRotateTimer();
             _viewModel = new FlightMapWindowViewModel();
             DataContext = _viewModel;
         }
@@ -124,6 +124,7 @@ namespace TeachingPlatformApp.Views
             var config = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
             this.Width = config.AxesWidth;
             this.Height = config.AxesHeight;
+            myHelicopeter.BuildPaddleRotateTimer();
             //延时一下
             await Task.Delay(_renewUiStartDelay);
             var timerAddPoint = new System.Timers.Timer();

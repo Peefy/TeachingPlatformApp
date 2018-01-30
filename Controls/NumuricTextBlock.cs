@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace TeachingPlatformApp.Controls
 {
+    /// <summary>
+    /// Only 数字 的TextBox
+    /// </summary>
     public class NumuricTextBlock : TextBox
     {
         public NumuricTextBlock()

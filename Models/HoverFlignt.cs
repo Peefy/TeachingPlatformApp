@@ -26,6 +26,7 @@ namespace TeachingPlatformApp.Models
         {
             Index = 4;
             Name = JsonFileConfig.Instance.StringResource.FlightExperimentNames[Index - 1];
+            HoverAngle = new AngleValidatableObject(30);
         }
 
     }

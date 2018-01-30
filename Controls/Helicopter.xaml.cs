@@ -44,11 +44,11 @@ namespace TeachingPlatformApp.Controls
             _ds = new DispatcherSynchronizationContext();
             if(IsEnablePaddleRotate == true)
             {
-                BuildTimer();
+                BuildPaddleRotateTimer();
             }
         }
 
-        public void BuildTimer()
+        public void BuildPaddleRotateTimer()
         {
             if(timerRotate == null)
             {

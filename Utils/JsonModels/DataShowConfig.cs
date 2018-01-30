@@ -23,7 +23,7 @@ namespace TeachingPlatformApp.Utils.JsonModels
         /// 地图界面刷新周期
         /// </summary>
         [JsonProperty("mapUiRefreshMs")]
-        public int MapUiRefreshMs { get; set; } = 30;
+        public int MapUiRefreshMs { get; set; } = 50;
 
         /// <summary>
         /// 灰色航迹记录点数上限，超过后自动清空

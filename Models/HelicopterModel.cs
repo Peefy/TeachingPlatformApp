@@ -22,6 +22,8 @@ namespace TeachingPlatformApp.Models
 
         public override string MyMapInfoToString()
         {
+            if (HasSetPoints == false)
+                return base.MyMapInfoToString();
             if (IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
                 return base.MyMapInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
             return base.MyMapInfoToString();
@@ -29,6 +31,8 @@ namespace TeachingPlatformApp.Models
 
         public override string WswModelInfoToString()
         {
+            if (HasSetPoints == false)
+                return base.WswModelInfoToString();
             if (IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
                 return base.WswModelInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
             return base.WswModelInfoToString();

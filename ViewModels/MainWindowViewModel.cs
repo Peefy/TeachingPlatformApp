@@ -401,6 +401,7 @@ namespace TeachingPlatformApp.ViewModels
                     return;
                 var item = FlightExperimentSelected;
                 UdpServer.TranslateInfo.FlightExperimentName = item.Name;
+                UdpServer.TranslateInfo.FlightExperimentIndex = SelectIndexTreeNode1;
                 var flightMapWindow = new FlightMapWindow();
                 if (item?.HasSetPoints == true && item.SetPoints != null &&
                     flightMapWindow.DataContext is FlightMapWindowViewModel viewModel)

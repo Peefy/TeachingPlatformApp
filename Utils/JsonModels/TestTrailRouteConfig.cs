@@ -68,7 +68,7 @@ namespace TeachingPlatformApp.Utils.JsonModels
         public bool IsShowNowSetPointsIndex { get; set; } = false;
 
         [JsonProperty("unConnectedFlighterRotateSpeed")]
-        public float UnConnectedFlighterRotateSpeed { get; set; } = 0.3f;
+        public float UnConnectedFlighterRotateSpeed { get; set; } = 0.5f;
 
     }
 

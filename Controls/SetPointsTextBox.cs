@@ -6,6 +6,9 @@ using System.Windows.Media;
 
 namespace TeachingPlatformApp.Controls
 {
+    /// <summary>
+    /// 航路点输入控件
+    /// </summary>
     public class SetPointsTextBox : NumuricTextBlock
     {
 

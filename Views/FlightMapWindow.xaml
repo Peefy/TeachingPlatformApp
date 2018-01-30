@@ -16,6 +16,7 @@
     SizeChanged="Window_SizeChanged"
     StateChanged="Window_StateChanged"
     WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
     WindowTransitionsEnabled="False">
     <!--  prism:ViewModelLocator.AutoWireViewModel="True"  -->
     <Controls:MetroWindow.Resources>
@@ -242,7 +243,7 @@
                 Grid.Column="1"
                 Margin="1"
                 Orientation="Horizontal">
-                <myctrls:Helicopter Margin="25,15,13,0">
+                <myctrls:Helicopter x:Name="myHelicopeter" Margin="25,15,13,0">
                     <myctrls:Helicopter.RenderTransform>
                         <ScaleTransform ScaleX="0.5" ScaleY="0.4" />
                     </myctrls:Helicopter.RenderTransform>

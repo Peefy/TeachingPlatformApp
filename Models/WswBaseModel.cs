@@ -117,6 +117,20 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _isSuccess, value);
         }
 
+        public int? FlightExperimentIndex => 
+            Ioc.Get<ITranslateData>()?.TranslateInfo.FlightExperimentIndex;
+
+        public bool HasSetPoints
+        {
+            get 
+            {
+                var index = FlightExperimentIndex ?? 0;
+                if (index == 1 || index == 5)
+                    return true;
+                return false;
+            }
+        }
+
         public WswBaseModel()
         {
 

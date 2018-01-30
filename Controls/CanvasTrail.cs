@@ -13,6 +13,9 @@ using static TeachingPlatformApp.Converters.ConverterPara;
 
 namespace TeachingPlatformApp.Controls
 {
+    /// <summary>
+    /// 航迹记录显示控件
+    /// </summary>
     public class CanvasTrail : Canvas
     {
 

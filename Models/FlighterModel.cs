@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Windows;
 
+using DuGu.NetFramework.Services;
+
+using TeachingPlatformApp.Communications;
 using TeachingPlatformApp.Models;
 using TeachingPlatformApp.Utils;
 
@@ -30,13 +32,17 @@ namespace TeachingPlatformApp.Models
 
         public override string MyMapInfoToString()
         {
-            if(IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
+            if(HasSetPoints == false)
+                return base.MyMapInfoToString();
+            if (IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
                 return base.MyMapInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
             return base.MyMapInfoToString();
         }
 
         public override string WswModelInfoToString()
         {
+            if (HasSetPoints == false)
+                return base.WswModelInfoToString();
             if (IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
                 return base.WswModelInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
             return base.WswModelInfoToString();

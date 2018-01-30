@@ -19,21 +19,59 @@ namespace TeachingPlatformApp.Communications
         /// </summary>
         public const int DefaultPort = 16000;
 
+        /// <summary>
+        /// C# UDP UdpClient
+        /// </summary>
         UdpClient _server;
         
+        /// <summary>
+        /// 720PC Udp监听端口号
+        /// </summary>
         int _udp720Port = 15000;
+
+        /// <summary>
+        /// Wsw视景软件监听端口号
+        /// </summary>
         int _wswUdpPort = 14000;
 
+        /// <summary>
+        /// 720Unity控制软件实验接收数据监听端口
+        /// </summary>
         int _udp720TechingPort = 12000;
+
+        /// <summary>
+        /// 720控制台测试软件实验接收数据监听端口
+        /// </summary>
         int _udp720TestConsolePort = 11000;
 
+        /// <summary>
+        /// 自身监听的端口号
+        /// </summary>
         int _port = DefaultPort;
-        string _ip = "192.168.0.132"; //本机Ip;
 
+        /// <summary>
+        /// 自身ip，通过配置文件可修改
+        /// </summary>
+        string _ip = "192.168.0.135"; //本机Ip;
+
+        /// <summary>
+        /// 六自由度平台Ip
+        /// </summary>
         string _ipSixPlatform = "192.168.0.131";
+
+        /// <summary>
+        /// 单兵炮筒平台Ip
+        /// </summary>
         string _ipGunBarrel = "192.168.0.133";
+
+        /// <summary>
+        /// 720度平台Ip
+        /// </summary>
         string _ip720Platform = "192.168.0.134";
 
+        /// <summary>
+        /// 发送一次数据后的延时
+        /// </summary>
         int _sendAfterDelay = 10;
 
         /// <summary>
@@ -73,6 +111,9 @@ namespace TeachingPlatformApp.Communications
         /// </summary>
         public TranslateInfo TranslateInfo { get; set; }
 
+        /// <summary>
+        /// 构造函数，数据初始化，Udp开始监听端口号
+        /// </summary>
         public Server()
         {
             TranslateInfo = new TranslateInfo();
@@ -92,6 +133,11 @@ namespace TeachingPlatformApp.Communications
             IpEndPointGunBarrel = new IPEndPoint(IpAddressGunBarrel, _wswUdpPort);
         }
 
+        /// <summary>
+        /// 向六自由度平台PC WswTHUSim 发送消息(异步)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public async Task<int> SendToSixPlatformAsync(byte[] data)
         {
             var result = await _server.SendAsync(data, data.Length,
@@ -100,6 +146,11 @@ namespace TeachingPlatformApp.Communications
             return result;
         }
 
+        /// <summary>
+        /// 向单兵平台PC WswTHUSim 发送消息(异步)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public async Task<int> SendToGunBarrelAsync(byte[] data)
         {
             var result = await _server.SendAsync(data, data.Length,
@@ -108,6 +159,11 @@ namespace TeachingPlatformApp.Communications
             return result;
         }
 
+        /// <summary>
+        /// 向720平台PC WswTHUSim 发送消息(异步)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public async Task<int> SendTo720PlatformAsync(byte[] data)
         {
             var result = await _server.SendAsync(data, data.Length,
@@ -115,7 +171,13 @@ namespace TeachingPlatformApp.Communications
             await Task.Delay(_sendAfterDelay);
             return result;
         }
-        
+
+        /// <summary>
+        /// 向索引号为num的电脑PC WswTHUSim 发送消息(异步) 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public async Task<int> SendStringToAsync(string str,int num)
         {
             var bytes = Encoding.Default.GetBytes(str);
@@ -133,28 +195,10 @@ namespace TeachingPlatformApp.Communications
             }
         }
 
-        public void SendToUnity720View(byte[] bytes)
-        {
-            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TechingPort));
-            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TestConsolePort));
-        }
-
-        public void SendToGunBarrelWsw(byte[] bytes)
-        {
-            _server.Send(bytes, bytes.Length, IpEndPointGunBarrel);
-        }
-
-        public void SendToSixPlatformWsw(byte[] bytes)
-        {
-            _server.Send(bytes, bytes.Length, IpEndPointSixPlatform);
-        }
-
-
-        public void SendTo720PlatformWsw(byte[] bytes)
-        {
-            _server.Send(bytes, bytes.Length, IpEndPoint720Platform);
-        }
-
+        /// <summary>
+        /// 接收数据(不含IP数据)
+        /// </summary>
+        /// <returns></returns>
         public async Task<byte[]> RecieveDataAsync()
         {
             return await Task.Run(() =>
@@ -164,16 +208,67 @@ namespace TeachingPlatformApp.Communications
             });
         }
 
+        /// <summary>
+        /// 从任意IP接收数据
+        /// </summary>
+        /// <returns></returns>
         public async Task<UdpReceiveResult> RecieveAsync()
         {
             return await _server.ReceiveAsync();
         }
 
+        /// <summary>
+        /// 向720度平台PC Unity软件发送数据(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        public void SendToUnity720View(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TechingPort));
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TestConsolePort));
+        }
+
+        /// <summary>
+        /// 向单兵平台PC WswTHUSim 发送消息(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        public void SendToGunBarrelWsw(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, IpEndPointGunBarrel);
+        }
+
+        /// <summary>
+        /// 向六自由度平台PC WswTHUSim 发送消息(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        public void SendToSixPlatformWsw(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, IpEndPointSixPlatform);
+        }
+
+        /// <summary>
+        /// 向720平台PC WswTHUSim 发送消息(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        public void SendTo720PlatformWsw(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, IpEndPoint720Platform);
+        }
+
+        /// <summary>
+        /// 通用Udp接收数据(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="iPEndPoint"></param>
         public byte[] Recieve(ref IPEndPoint iPEndPoint)
         {
             return _server.Receive(ref iPEndPoint);
         }
 
+        /// <summary>
+        /// 通用Udp发送数据(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="iPEndPoint"></param>
         public void SendTo(byte[] bytes, IPEndPoint iPEndPoint)
         {
             if(bytes != null && iPEndPoint != null)
@@ -182,9 +277,12 @@ namespace TeachingPlatformApp.Communications
             }
         }
 
+        /// <summary>
+        /// 析构函数，释放资源
+        /// </summary>
         ~Server()
         {
-            Dispose();
+            Dispose(false);
         }
 
         #region IDisposable Support
@@ -198,16 +296,19 @@ namespace TeachingPlatformApp.Communications
                 {
                     
                 }
+                //释放Udp监听资源
                 if(_server != null)
                 {
                     _server.Close();
                     _server = null;
                 }
-
                 disposedValue = true;
             }
         }
 
+        /// <summary>
+        /// 释放Udp资源
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

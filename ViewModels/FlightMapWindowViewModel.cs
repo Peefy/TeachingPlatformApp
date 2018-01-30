@@ -27,6 +27,8 @@ namespace TeachingPlatformApp.ViewModels
         protected JsonFileConfig _config;
 
         int _mapRefreshInterval = 30;
+        int _flightTaskIndex = 0;
+        string _flightTaskName = "";
 
         private string _title = "地图";
         public string Title
@@ -115,6 +117,8 @@ namespace TeachingPlatformApp.ViewModels
         public FlightMapWindowViewModel()
         {
             _config = JsonFileConfig.ReadFromFile();
+            _flightTaskIndex = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentIndex;
+            _flightTaskName = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentName;
             Flighter = new FlighterModel();
             Helicopter = new HelicopterModel();
             Missile = new MissileModel();
@@ -159,39 +163,292 @@ namespace TeachingPlatformApp.ViewModels
             });
             if(_translateData.TranslateInfo.IsConnect == false)
             {
-                Task.Run(() =>
+                var index = _flightTaskIndex;
+                if(index == 0)
                 {
-                    var i = 0.0f;
-                    var flightCount = 0.0f;
-                    var random = new Random();
-                    var flighterSpeed = JsonFileConfig.Instance.
-                        TestTrailRouteConfig.UnConnectedFlighterRotateSpeed;
-                    //var point1 = new Point(random.Next(80), random.Next(60));
-                    var point1 = new Point(30, 30);
-                    var point2 = new Point(random.Next(80), random.Next(60));
-                    Flighter.Angle -= 180;
-                    while (true)
+                    Task.Run(async () =>
                     {
-                        var ram = new Random();
-                        Helicopter.Angle += 1;
-                        if (Helicopter.Angle >= 360)
-                            Helicopter.Angle = 0;
-                        Flighter.Angle -= flighterSpeed;
-                        if (Flighter.Angle <= 0)
-                            Flighter.Angle = 360;
-                        var j = NumberUtil.Deg2Rad(i);
-                        var flightRad = NumberUtil.Deg2Rad(flightCount);
-                        Flighter.MyMapPosition = new Point(point1.X + 28.2843 * Math.Sin(flightRad), point1.Y + 28.2843 * Math.Cos(flightRad));
-                        Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
-                        Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
-                             $"  {Flighter.MyMapInfoToString()};";
-                        Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
-                              $"  {Helicopter.MyMapInfoToString()};";               
-                        Thread.Sleep(_mapRefreshInterval);
-                        i += 1;
-                        flightCount += flighterSpeed;
-                    }
-                });
+                        var speed = 0.2;
+                        Helicopter.MyMapPosition = new Point(10, 15);
+                        Flighter.MyMapPosition = new Point(0, 0);
+                        Flighter.Angle -= 180;
+                        Helicopter.Angle -= 90;
+                        await Task.Delay(100);
+                        while (true)
+                        {
+                            if (Helicopter.MyMapPosition.X >= 45)
+                                break;
+                            Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
+                                speed, 0);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+                            Missile.MyMapPosition = new Point(30, 30);
+                            Thread.Sleep(_mapRefreshInterval);
+                        }
+                        Helicopter.Angle += 45;
+                        Flighter.Angle += 45;
+                        speed /= 1.4142;
+                        while(true)
+                        {
+                            if (Helicopter.MyMapPosition.Y >= 30)
+                                break;
+                            Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
+                                speed, speed);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+                            Thread.Sleep(_mapRefreshInterval);
+                        }
+                        Helicopter.Angle += 90;
+                        while (true)
+                        {
+                            if (Helicopter.MyMapPosition.X <= 45)
+                                break;
+                            Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
+                                -speed, speed);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+                            Thread.Sleep(_mapRefreshInterval);
+                        }
+                        Helicopter.Angle += 45;
+                        speed *= 1.4142;
+                        while (true)
+                        {
+                            if (Helicopter.MyMapPosition.X <= 15)
+                                break;
+                            Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
+                                -speed, 0);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+                            Thread.Sleep(_mapRefreshInterval);
+                        }
+                        Helicopter.Angle += 90;
+                        while (true)
+                        {
+                            if (Helicopter.MyMapPosition.Y <= 10)
+                            {
+                                Ioc.Get<ISpeek>()?.
+                                    SpeekAsync($"{_helicopter.Name}成功完成{_flightTaskName}实验");
+                                Ioc.Get<ITranslateData>().TranslateInfo.IsTest = false;
+                                break;
+                            }
+                            Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
+                                0, -speed);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+                            Thread.Sleep(_mapRefreshInterval);
+                        }
+                    });
+                }
+                if(index == 1)
+                {
+                    Task.Run(async () =>
+                    {
+                        var i = 0.0f;
+                        var flightCount = 0.0f;
+                        var flighterSpeed = JsonFileConfig.Instance.
+                            TestTrailRouteConfig.UnConnectedFlighterRotateSpeed;
+                        var point1 = new Point(30, 30);
+                        var point2 = new Point(25, 30);
+                        Flighter.Angle -= 180;
+                        await Task.Delay(100);
+                        while (true)
+                        {
+                            Helicopter.Angle += 1;
+                            if (Helicopter.Angle >= 360)
+                                Helicopter.Angle = 0;
+                            Flighter.Angle -= flighterSpeed;
+                            if (Flighter.Angle <= 0)
+                                Flighter.Angle = 360;
+                            var j = NumberUtil.Deg2Rad(i);
+                            var flightRad = NumberUtil.Deg2Rad(flightCount);
+
+                            Flighter.MyMapPosition = new Point(point1.X + 28.2843 * Math.Sin(flightRad), point1.Y + 28.2843 * Math.Cos(flightRad));
+                            Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
+                            Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+
+                            Missile.MyMapPosition = new Point(-100, -100);
+                            //Missile.LocationString = $"{Missile.Name}" +
+                            //      $"  {Missile.MyMapInfoToString()};";
+
+                            Thread.Sleep(_mapRefreshInterval);
+                            i += 1;
+                            flightCount += flighterSpeed;
+                        }
+                    });
+                }
+                if(index == 2)
+                {
+                    Task.Run(async () =>
+                    {
+                        var i = 0.0;
+                        var point1 = new Point(30, 30);
+                        var point2 = new Point(10, 10);
+                        Flighter.MyMapPosition = point1;
+                        Helicopter.MyMapPosition = point2;
+                        Missile.MyMapPosition = new Point(0, 0);
+                        Flighter.Angle += 225;
+                        var deltax = 0.0;
+                        var deltay = 0.0;
+                        await Task.Delay(100);
+                        while (true)
+                        {
+                            if (Flighter.MyMapPosition.X >= 69.8)
+                            {
+                                Ioc.Get<ISpeek>()?.
+                                    SpeekAsync($"{_flighter.Name}成功完成{_flightTaskName}实验");
+                                break;
+                            }
+                            else if (Flighter.MyMapPosition.X >= 49.9)
+                            {
+                                deltax =  40 - 20 * Math.Sin(i);
+                                deltay = deltax;
+                            }
+                            else
+                            {
+                                deltax = 20 * Math.Sin(i);
+                                deltay = deltax;
+                            }
+                            Flighter.MyMapPosition = new Point(point1.X + deltax, point1.Y + deltay);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";      
+                            Thread.Sleep(_mapRefreshInterval);
+                            i += 0.02;
+                            
+                        }
+                    });
+                }
+                if(index == 3)
+                {
+                    Task.Run(() =>
+                    {
+                        var i = 0.0f;
+                        var point1 = new Point(35, 35);
+                        var point2 = new Point(15, 15);
+                        Flighter.Angle -= 90;
+                        while (true)
+                        {
+                            Helicopter.Angle += 1;
+                            if (Helicopter.Angle >= 360)
+                                Helicopter.Angle = 0;
+                            Flighter.Angle += 1;
+                            if (Flighter.Angle >= 360)
+                                Flighter.Angle = 0;
+                            var j = NumberUtil.Deg2Rad(i);
+                            if(i > 500)
+                            {
+                                Ioc.Get<ISpeek>()?.
+                                    SpeekAsync($"{_flighter.Name}成功完成{_flightTaskName}实验");
+                                break;
+                            }
+                            Flighter.MyMapPosition = new Point(point1.X + 10 * Math.Cos(j), point1.Y + 10 * Math.Sin(j));
+                            Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+
+                            Missile.MyMapPosition = new Point(50, 50);
+                            Thread.Sleep(_mapRefreshInterval);
+                            i += 1;
+                        }
+                    });
+                }
+                if(index == 4)
+                {
+                    Task.Run(async () =>
+                    {
+                        var i = 0.0;
+                        var point1 = new Point(30, 50);
+                        var point2 = new Point(10, 10);
+                        Flighter.MyMapPosition = point1;
+                        Helicopter.MyMapPosition = point2;
+                        Missile.MyMapPosition = new Point(0, 0);
+                        Flighter.Angle += 135;
+                        var deltax = 0.0;
+                        var deltay = 0.0;
+                        await Task.Delay(100);
+                        while (true)
+                        {
+                            if (Flighter.MyMapPosition.X >= 69.8)
+                            {
+                                Ioc.Get<ISpeek>()?.
+                                    SpeekAsync($"{_flighter.Name}成功完成{_flightTaskName}实验");
+                                break;
+                            }
+                            else
+                            {
+                                deltax = Math.Exp(i);
+                                deltay = -deltax;
+                            }
+                            Flighter.MyMapPosition = new Point(point1.X + deltax, point1.Y + deltay);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+                            Thread.Sleep(_mapRefreshInterval);
+                            i += 0.02;
+
+                        }
+                    });
+                }
+                if(index == 5)
+                {
+                    Task.Run(() =>
+                    {
+                        var i = 0.0f;
+                        var flightCount = 0.0f;
+                        var flighterSpeed = JsonFileConfig.Instance.
+                            TestTrailRouteConfig.UnConnectedFlighterRotateSpeed;
+                        var point1 = new Point(30, 30);
+                        var point2 = new Point(25, 30);
+                        Flighter.Angle -= 180;
+                        while (true)
+                        {
+                            Helicopter.Angle += 1;
+                            if (Helicopter.Angle >= 360)
+                                Helicopter.Angle = 0;
+                            Flighter.Angle -= flighterSpeed;
+                            if (Flighter.Angle <= 0)
+                                Flighter.Angle = 360;
+                            var j = NumberUtil.Deg2Rad(i);
+                            var flightRad = NumberUtil.Deg2Rad(flightCount);
+
+                            Flighter.MyMapPosition = new Point(point1.X + 28.2843 * Math.Sin(flightRad), point1.Y + 28.2843 * Math.Cos(flightRad));
+                            Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
+                            Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+
+                            Missile.MyMapPosition = new Point(-100, -100);
+                            //Missile.LocationString = $"{Missile.Name}" +
+                            //      $"  {Missile.MyMapInfoToString()};";
+
+                            Thread.Sleep(_mapRefreshInterval);
+                            i += 1;
+                            flightCount += flighterSpeed;
+                        }
+                    });
+                }
+                if(index == 6)
+                {
+
+                }
             }
                     
         }
@@ -201,8 +458,11 @@ namespace TeachingPlatformApp.ViewModels
         /// </summary>
         public virtual void JudgeRouteTask()
         {
-            Flighter.OutOfRouteSpeechControl(SetPoints);
-            Helicopter.OutOfRouteSpeechControl(SetPoints);
+            if(_flightTaskIndex == 1 || _flightTaskIndex == 5)
+            {
+                Flighter.OutOfRouteSpeechControl(SetPoints);
+                Helicopter.OutOfRouteSpeechControl(SetPoints);
+            }
         }
 
         /// <summary>
@@ -213,10 +473,21 @@ namespace TeachingPlatformApp.ViewModels
             if(_translateData.TranslateInfo.IsConnect == true)
             {
                 var planeInfo = Ioc.Get<ITranslateData>().TranslateInfo;
-                Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
-                             $"  {Flighter.WswModelInfoToString()};";
-                Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
-                      $"  {Helicopter.WswModelInfoToString()};";
+                var index = planeInfo.FlightExperimentIndex;
+                if(index == 5 || index == 1)
+                {
+                    Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
+                            $"  {Flighter.WswModelInfoToString()};";
+                    Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
+                          $"  {Helicopter.WswModelInfoToString()};";
+                }
+                else
+                {
+                    Flighter.LocationString = $"{Flighter.Name}" +
+                            $"  {Flighter.WswModelInfoToString()};";
+                    Helicopter.LocationString = $"{Helicopter.Name}" +
+                          $"  {Helicopter.WswModelInfoToString()};";
+                }
                 Helicopter.Angle = (float)planeInfo.Helicopter.Yaw;
                 Flighter.Angle = (float)planeInfo.Flighter.Yaw;
                 Flighter.MyMapPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
