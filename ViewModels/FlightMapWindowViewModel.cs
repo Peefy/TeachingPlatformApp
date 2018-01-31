@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Windows.Controls;
 using System.Windows;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
-
-using Prism.Commands;
 using Prism.Mvvm;
 
 using DuGu.NetFramework.Services;
 
 using TeachingPlatformApp.Speech;
-using TeachingPlatformApp.WswPlatform;
 using TeachingPlatformApp.Extensions;
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.Models;
