@@ -1,19 +1,5 @@
-2018/1/31 15:37:49
+2018/1/31 15:46:01
 
-15:38
-0   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
-   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__22_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 99
-正在中止线程。
-
-15:38
-1   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
-   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__22_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 99
-正在中止线程。
-
-15:39
-2   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
-   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__22_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\Views\FlightMapWindow.xaml.cs:行号 99
-正在中止线程。
+15:46
+0   在 TeachingPlatformApp.ViewModels.MainWindowViewModel.<.ctor>b__100_0(TreeView treeView) 位置 D:\_VSPros\C#\WPF\TeachingPlatformAppV2\ViewModels\MainWindowViewModel.cs:行号 252
+索引超出了数组界限。
