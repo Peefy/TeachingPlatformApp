@@ -4,7 +4,7 @@ TeachingPlatformApp is a C# WPF App using to teach flighterman to study flying.
 
 ## Dependence
 
-# *.Net Framework4.5*
+* *.Net Framework4.5*
 
 ##  Nuget
 
