@@ -61,7 +61,7 @@ namespace TeachingPlatformApp.ViewModels
             {
                 SetProperty(ref _milliSeconds, value);
                 LogAndConfig.Config.SetProperty(ConfigKeys.MilliSeconds, value);
-            } 
+            }
         }
 
         private bool _isConnect;
@@ -95,7 +95,7 @@ namespace TeachingPlatformApp.ViewModels
             get
             {
                 var isStart = false;
-                foreach(var item in FlightExperiments)
+                foreach (var item in FlightExperiments)
                 {
                     isStart = isStart | item.IsStart;
                 }
@@ -181,6 +181,16 @@ namespace TeachingPlatformApp.ViewModels
         /// 打开地图Command
         /// </summary>
         public DelegateCommand OpenFlightMapCommand { get; set; }
+
+        /// <summary>
+        /// 打开配置窗口
+        /// </summary>
+        public DelegateCommand OpenConfigWindowCommand { get; set; }
+
+        /// <summary>
+        /// 打开语音窗口
+        /// </summary>
+        public DelegateCommand OpenSpeechWindowCommand {get;set;}
 
         /// <summary>
         /// test Command
@@ -409,7 +419,16 @@ namespace TeachingPlatformApp.ViewModels
                     viewModel.SetPoints = item.SetPoints;
                     viewModel.DealHasSetPoints();
                 }
+                AppendStatusText($"打开了{item.Name}实验的地图界面");
                 flightMapWindow.Show();
+            });
+            OpenConfigWindowCommand = new DelegateCommand(() => 
+            {
+                new ConfigWindow().Show();
+            });
+            OpenSpeechWindowCommand = new DelegateCommand(() =>
+            {
+                new SpeechWindow().Show();
             });
             TestCommand = new DelegateCommand(() =>
             {

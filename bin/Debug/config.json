@@ -133,7 +133,7 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 1,
+    "isAutoFollowing": 2,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": -1,

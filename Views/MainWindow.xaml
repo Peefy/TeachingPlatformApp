@@ -344,13 +344,34 @@
                     FontSize="24"
                     Foreground="White" />
                 <Button
+                    x:Name="btnShow"
+                    Height="42"
+                    Margin="13,5,13,0"
+                    VerticalAlignment="Bottom"
+                    Background="Orange"
+                    Command="{Binding OpenConfigWindowCommand}"
+                    Content="查 看 配 置"
+                    FontSize="24"
+                    Foreground="White"
+                    Visibility="Collapsed" />
+                <Button
+                    Height="42"
+                    Margin="13,5,13,0"
+                    VerticalAlignment="Bottom"
+                    Background="Purple"
+                    Command="{Binding OpenSpeechWindowCommand}"
+                    Content="语 音 助 手"
+                    FontSize="24"
+                    Foreground="White"
+                    Visibility="{Binding ElementName=btnShow, Path=Visibility}" />
+                <Button
                     x:Name="testButton"
-                    Height="32"
+                    Height="42"
                     Margin="13,5,13,0"
                     VerticalAlignment="Bottom"
                     Background="DarkBlue"
                     Command="{Binding TestCommand}"
-                    Content="TEST"
+                    Content="实 验 测 试"
                     FontSize="24"
                     Foreground="White"
                     Visibility="Collapsed" />
@@ -408,7 +429,7 @@
                 VerticalAlignment="Stretch"
                 Background="Black"
                 FontFamily="楷体"
-                FontSize="23"
+                FontSize="21"
                 Foreground="White"
                 ScrollViewer.CanContentScroll="True"
                 Text="{Binding StatusText}"
