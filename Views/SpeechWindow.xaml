@@ -102,7 +102,7 @@
             Background="#FFF2EFF3"
             IsMoveToPointEnabled="True"
             IsSelectionRangeEnabled="true"
-            Maximum="10"
+            Maximum="100"
             Minimum="0"
             Orientation="Vertical"
             SelectionEnd="9"

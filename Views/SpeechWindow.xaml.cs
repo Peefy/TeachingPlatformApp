@@ -16,6 +16,8 @@ using MahApps.Metro.Controls;
 
 using DotNetSpeech;
 
+using TeachingPlatformApp.Speech;
+
 namespace TeachingPlatformApp.Views
 {
     /// <summary>
@@ -30,6 +32,13 @@ namespace TeachingPlatformApp.Views
         public SpeechWindow()
         {
             InitializeComponent();
+            Init();
+        }
+
+        public SpeechWindow(TeachingSpeeker spVoice)
+        {
+            InitializeComponent();
+            _speech = spVoice.DotnetSpeech;
             Init();
         }
 

@@ -4,10 +4,16 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+
 using MahApps.Metro.Controls;
 
+using DuGu.NetFramework;
+using DuGu.NetFramework.Services;
+
+using TeachingPlatformApp.Models;
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.ViewModels;
+using TeachingPlatformApp.Speech;
 
 namespace TeachingPlatformApp.Views
 {
@@ -71,6 +77,13 @@ namespace TeachingPlatformApp.Views
                         if (Regex.IsMatch(text, "speech", RegexOptions.IgnoreCase))
                         {
                             _viewModel.OpenSpeechWindowCommand.Execute();
+                            _viewModel.AppendStatusText("打开语音助手界面");
+                            isFind = true;
+                        }
+                        if (Regex.IsMatch(text, "speeker", RegexOptions.IgnoreCase))
+                        {
+                            var speeker = Ioc.Get<ISpeek>() as TeachingSpeeker;
+                            new SpeechWindow(speeker).Show();
                             _viewModel.AppendStatusText("打开语音助手界面");
                             isFind = true;
                         }

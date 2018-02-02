@@ -1,2 +1,2 @@
 HoverAngle|30
-MilliSeconds|150000
+MilliSeconds|1500

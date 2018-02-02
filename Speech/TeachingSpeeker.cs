@@ -27,6 +27,8 @@ namespace TeachingPlatformApp.Speech
 
         bool _isUsingDotnetSpeech = true;
 
+        public SpVoice DotnetSpeech => _speech;
+
         public TeachingSpeeker()
         {
             _config = JsonFileConfig.Instance;
