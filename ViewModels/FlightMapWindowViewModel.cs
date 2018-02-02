@@ -168,8 +168,7 @@ namespace TeachingPlatformApp.ViewModels
                         Flighter.Angle -= 180;
                         Helicopter.Angle -= 90;
                         await Task.Delay(100);
-                        Ioc.Get<ISpeek>()?.
-                                    SpeekAsync($"{_flightTaskName}实验开始飞行第一边");
+                        Ioc.Get<ISpeek>()?.SpeekAsync($"{_flightTaskName}实验开始飞行第一阶段");
                         while (true)
                         {
                             if (Helicopter.MyMapPosition.X >= 45)
@@ -183,17 +182,15 @@ namespace TeachingPlatformApp.ViewModels
                             Missile.MyMapPosition = new Point(30, 30);
                             Thread.Sleep(_mapRefreshInterval);
                         }
-                        Helicopter.Angle += 45;
-                        Flighter.Angle += 45;
-                        speed /= 1.4142;
+                        Helicopter.Angle += 90;
                         Ioc.Get<ISpeek>()?.
-                                     SpeekAsync($"{_flightTaskName}实验开始飞行第二边");
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第二阶段");
                         while (true)
                         {
-                            if (Helicopter.MyMapPosition.Y >= 30)
+                            if (Helicopter.MyMapPosition.Y >= 45)
                                 break;
                             Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
-                                speed, speed);
+                                0, speed);
                             Flighter.LocationString = $"{Flighter.Name}" +
                                  $"  {Flighter.MyMapInfoToString()};";
                             Helicopter.LocationString = $"{Helicopter.Name}" +
@@ -202,26 +199,10 @@ namespace TeachingPlatformApp.ViewModels
                         }
                         Helicopter.Angle += 90;
                         Ioc.Get<ISpeek>()?.
-                                     SpeekAsync($"{_flightTaskName}实验开始飞行第三边");
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第三阶段");
                         while (true)
                         {
-                            if (Helicopter.MyMapPosition.X <= 45)
-                                break;
-                            Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
-                                -speed, speed);
-                            Flighter.LocationString = $"{Flighter.Name}" +
-                                 $"  {Flighter.MyMapInfoToString()};";
-                            Helicopter.LocationString = $"{Helicopter.Name}" +
-                                  $"  {Helicopter.MyMapInfoToString()};";
-                            Thread.Sleep(_mapRefreshInterval);
-                        }
-                        Helicopter.Angle += 45;
-                        speed *= 1.4142;
-                        Ioc.Get<ISpeek>()?.
-                                     SpeekAsync($"{_flightTaskName}实验开始飞行第四边");
-                        while (true)
-                        {
-                            if (Helicopter.MyMapPosition.X <= 15)
+                            if (Helicopter.MyMapPosition.X <= 10)
                                 break;
                             Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
                                 -speed, 0);
@@ -233,10 +214,25 @@ namespace TeachingPlatformApp.ViewModels
                         }
                         Helicopter.Angle += 90;
                         Ioc.Get<ISpeek>()?.
-                                     SpeekAsync($"{_flightTaskName}实验开始飞行第五边");
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第四阶段");
                         while (true)
                         {
-                            if (Helicopter.MyMapPosition.Y <= 10)
+                            if (Helicopter.MyMapPosition.Y <= 18)
+                                break;
+                            Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
+                                0, -speed);
+                            Flighter.LocationString = $"{Flighter.Name}" +
+                                 $"  {Flighter.MyMapInfoToString()};";
+                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                                  $"  {Helicopter.MyMapInfoToString()};";
+                            Thread.Sleep(_mapRefreshInterval);
+                        }
+                        Helicopter.Angle += 90;
+                        Ioc.Get<ISpeek>()?.
+                                     SpeekAsync($"{_flightTaskName}实验开始飞行第五阶段");
+                        while (true)
+                        {
+                            if (Helicopter.MyMapPosition.X >= 50)
                             {
                                 Ioc.Get<ISpeek>()?.
                                     SpeekAsync($"{_helicopter.Name}成功完成{_flightTaskName}实验");
@@ -244,7 +240,7 @@ namespace TeachingPlatformApp.ViewModels
                                 break;
                             }
                             Helicopter.MyMapPosition = VectorPointHelper.PointOffset(Helicopter.MyMapPosition,
-                                0, -speed);
+                                speed, 0);
                             Flighter.LocationString = $"{Flighter.Name}" +
                                  $"  {Flighter.MyMapInfoToString()};";
                             Helicopter.LocationString = $"{Helicopter.Name}" +
