@@ -1,4 +1,4 @@
-# TeachingPlatformAppV2
+# TeachingPlatformApp
 
 TeachingPlatformApp is a C# WPF App using to teach flighterman to study flying.
 
