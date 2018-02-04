@@ -17,13 +17,34 @@ namespace TeachingPlatformApp.ViewModels
     public class FlightMapWindowViewModel : BindableBase
     {
 
-        protected ITranslateData _translateData;      
+        /// <summary>
+        /// 传递数据和Udp通信接口
+        /// </summary>
+        protected ITranslateData _translateData;    
+        
+        /// <summary>
+        /// 配置
+        /// </summary>
         protected JsonFileConfig _config;
 
+        /// <summary>
+        /// 地图刷新周期(单位毫秒)
+        /// </summary>
         int _mapRefreshInterval = 30;
+
+        /// <summary>
+        /// 选择的飞行实验的索引
+        /// </summary>
         int _flightTaskIndex = 0;
+
+        /// <summary>
+        /// 选择的飞行实验的名称
+        /// </summary>
         string _flightTaskName = "";
 
+        /// <summary>
+        /// 地图界面标题
+        /// </summary>
         private string _title = "地图";
         public string Title
         {
@@ -31,6 +52,9 @@ namespace TeachingPlatformApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
+        /// <summary>
+        /// 战斗机
+        /// </summary>
         private FlighterModel _flighter;
         public FlighterModel Flighter
         {
@@ -38,6 +62,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _flighter, value);
         }
 
+        /// <summary>
+        /// 直升机
+        /// </summary>
         private HelicopterModel _helicopter;
         public HelicopterModel Helicopter
         {
@@ -45,6 +72,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _helicopter, value);
         }
 
+        /// <summary>
+        /// 导弹
+        /// </summary>
         private MissileModel _missile;
         public MissileModel Missile
         {
@@ -52,6 +82,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _missile, value);
         }
 
+        /// <summary>
+        /// 设置航路点
+        /// </summary>
         protected ObservableRangeCollection<Point> _setPoints;
         public ObservableRangeCollection<Point> SetPoints
         {
@@ -59,6 +92,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _setPoints, value);
         }
 
+        /// <summary>
+        /// 是否有第几个航路点
+        /// </summary>
         protected ObservableRangeCollection<bool> _hasSetPoints;
         public ObservableRangeCollection<bool> HasSetPoints
         {
@@ -66,6 +102,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _hasSetPoints, value);
         }
 
+        /// <summary>
+        /// 轨迹坐标连线
+        /// </summary>
         protected string _figurePathString = "M 20,20 L 120,120 320,420";
         public string FigurePathString
         {
@@ -73,6 +112,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _figurePathString, value);
         }
 
+        /// <summary>
+        /// 航路点字符大小
+        /// </summary>
         private double _setPointsFontSize = 20;
         public double SetPointsFontSize
         {
@@ -80,6 +122,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _setPointsFontSize, value);
         }
 
+        /// <summary>
+        /// 航路点圆半径
+        /// </summary>
         private double _setPointsEllipseRadius = 6;
         public double SetPointsEllipseRadius
         {
@@ -87,6 +132,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _setPointsEllipseRadius, value);
         }
 
+        /// <summary>
+        /// 位置字符串的字体大小
+        /// </summary>
         private double _locationStringFontSize = 22;
         public double LocationStringFontSize
         {
@@ -94,6 +142,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _locationStringFontSize, value);
         }
 
+        /// <summary>
+        /// 航路点连线线段粗细
+        /// </summary>
         private double _setPointsLineWidth = 3;
         public double SetPointsLineWidth
         {
@@ -101,6 +152,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _setPointsLineWidth, value);
         }
 
+        /// <summary>
+        /// 地图绘制页变距
+        /// </summary>
         private Thickness _drawMargin = new Thickness(0);
         public Thickness DrawMargin
         {
@@ -108,6 +162,9 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _drawMargin, value);
         }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public FlightMapWindowViewModel()
         {
             _config = JsonFileConfig.ReadFromFile();
@@ -130,6 +187,9 @@ namespace TeachingPlatformApp.ViewModels
             InfoRenewInit();
         }
 
+        /// <summary>
+        /// 处理是否具有航路点
+        /// </summary>
         public void DealHasSetPoints()
         {
             for (var i = 0; i < _hasSetPoints.Count; ++i)
@@ -145,6 +205,9 @@ namespace TeachingPlatformApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// 坐标更新函数
+        /// </summary>
         protected virtual void InfoRenewInit()
         {
             Task.Run(() =>
@@ -155,6 +218,7 @@ namespace TeachingPlatformApp.ViewModels
                     Thread.Sleep(_mapRefreshInterval);
                 }
             });
+            //如果UDP没有接收到来自六自由度和720度平台的姿态坐标数据，就展示示例动作
             if(_translateData.TranslateInfo.IsConnect == false)
             {
                 var index = _flightTaskIndex;
@@ -495,6 +559,9 @@ namespace TeachingPlatformApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
         public void RunTest()
         {
             Title = VectorPointHelper.GetPointsLineVectorAngle(SetPoints).ToListString()

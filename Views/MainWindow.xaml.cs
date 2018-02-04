@@ -3,14 +3,11 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 
 using MahApps.Metro.Controls;
 
-using DuGu.NetFramework;
 using DuGu.NetFramework.Services;
 
-using TeachingPlatformApp.Models;
 using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.ViewModels;
 using TeachingPlatformApp.Speech;
@@ -18,27 +15,47 @@ using TeachingPlatformApp.Speech;
 namespace TeachingPlatformApp.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// 软件主窗体
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-
+        /// <summary>
+        /// 绑定的ViewModel
+        /// </summary>
         MainWindowViewModel _viewModel;
+
+        /// <summary>
+        /// 键盘的Ctrl按键是否按下
+        /// </summary>
         bool _isCtrlKeyDown;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             _viewModel = new MainWindowViewModel();
+            // 绑定ViewModel
             this.DataContext = _viewModel;
         }
 
+        /// <summary>
+        /// 控制台软件显示字符发生变化就将滚动条滚到最底
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = sender as TextBox;
             textBox.ScrollToEnd();
         }
 
+        /// <summary>
+        /// 按键按下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Speech;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Controls;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Prism.Mvvm;
@@ -114,6 +112,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private string _recieveText = "角度大小";
+        /// <summary>
+        /// 接收数据显示字符
+        /// </summary>
         public string RecieveText
         {
             get => _recieveText;
@@ -121,6 +122,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private string _title = "教研员平台";
+        /// <summary>
+        /// 主窗口标题默认显示字符
+        /// </summary>
         public string Title
         {
             get { return _title; }
@@ -128,6 +132,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private bool _isViewVisible = true;
+        /// <summary>
+        /// 按钮是否显示
+        /// </summary>
         public bool IsViewVisible
         {
             get { return _isViewVisible; }
@@ -135,6 +142,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private int _selectIndexTreeNode1 = -1;
+        /// <summary>
+        /// 飞行实验选择索引
+        /// </summary>
         public int SelectIndexTreeNode1
         {
             get => _selectIndexTreeNode1;
@@ -142,6 +152,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private int _selectIndexTreeNode2 = -1;
+        /// <summary>
+        /// 其他实验选择索引
+        /// </summary>
         public int SelectIndexTreeNode2
         {
             get => _selectIndexTreeNode2;
@@ -149,6 +162,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private int _selectIndexTreeNode3 = -1;
+        /// <summary>
+        /// 预留
+        /// </summary>
         public int SelectIndexTreeNode3
         {
             get => _selectIndexTreeNode3;
@@ -156,6 +172,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         public float _time;
+        /// <summary>
+        /// 软件运行时间
+        /// </summary>
         public float Time
         {
             get => _time;
@@ -207,14 +226,24 @@ namespace TeachingPlatformApp.ViewModels
         /// </summary>
         public ObservableRangeCollection<TreeViewModelItem> TreeViewNodes { get; set; }
 
+        /// <summary>
+        /// 飞行实验集合用于显示数据并且显示UI绑定
+        /// </summary>
         public ObservableRangeCollection<FlightExperiment> FlightExperiments 
             => TreeViewNodes[0].Children;
 
+        /// <summary>
+        /// 选择的飞行实验
+        /// </summary>
         public FlightExperiment FlightExperimentSelected => 
             SelectIndexTreeNode1 == -1 ? null : FlightExperiments[SelectIndexTreeNode1];
 
+        /// <summary>
+        /// 主窗口绑定的ViewModel构造函数
+        /// </summary>
         public MainWindowViewModel()
         {          
+            //TreeView添加显示节点
             TreeViewNodes = new ObservableRangeCollection<TreeViewModelItem>
             {
                 new TreeViewModelItem()
@@ -242,6 +271,7 @@ namespace TeachingPlatformApp.ViewModels
                     }
                 },
             };
+            //TreeView选择时发生的指令
             TreeViewSelectedCommand = new DelegateCommand<TreeView>((treeView) =>
             {
                 try
@@ -262,11 +292,18 @@ namespace TeachingPlatformApp.ViewModels
             ComAndCommandInit();
         }
 
+        /// <summary>
+        /// 向控制台添加字符和换行
+        /// </summary>
+        /// <param name="str"></param>
         public void AppendStatusText(string str)
         {
             StatusText += str + Environment.NewLine;
         }
 
+        /// <summary>
+        /// 通信Task和Command初始化
+        /// </summary>
         private void ComAndCommandInit()
         {         
             Task.Run(() =>
@@ -276,6 +313,7 @@ namespace TeachingPlatformApp.ViewModels
                     var realRecieCount = 0;
                     while (true)
                     {
+                        //从WswTHUSim接收六自由度和720度的姿态和经纬度坐标
                         var ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
                         var recieveBytes = UdpServer.Recieve(ref ipEndPoint);
                         var ip = ipEndPoint.ToString();
@@ -321,6 +359,7 @@ namespace TeachingPlatformApp.ViewModels
                     }
                 }
             });
+            //开始实验按钮
             StartCommand = new DelegateCommand(async () =>
             {
                 if (SelectIndexTreeNode1 == -1)
@@ -333,22 +372,31 @@ namespace TeachingPlatformApp.ViewModels
                 try
                 {
                     var item = FlightExperimentSelected;
+                    //向720度软件发送教研台使能数据，开始实验或停止实验
                     UdpServer?.SendToUnity720View(new TeachingCommandBuilder(SelectIndexTreeNode1, true).
                         BuildCommandBytes());
+                    //延时
                     await Task.Delay(5);
+                    //向720度软件发送教研台使能数据，开始实验或停止实验
                     UdpServer?.SendToUnity720View(new TeachingCommandBuilder(SelectIndexTreeNode1, true).
                         BuildCommandBytes());
                     //发两次
                     await Task.Delay(5);
+                    //给Wsw视图软件发送航路点
                     await SendSetPoints(item);
+                    //给Wsw视图软件发送航路点
                     await SendSetPoints(item);
                     StatusText += $"{DateTime.Now}:您开始了{item.Name}实验\r\n";
+                    //开始检测飞行实验是否合格
                     UdpServer.TranslateInfo.IsTest = true;
+                    //语音提示时间开始
                     Speeker?.SpeekAsync($"{item.Name}实验开始");
                     //循环检测实验是否合格
                     await Task.Delay(100);
+                    //检测实验是否合格或者是否超时(点击按钮后程序会停在这里)
                     await Task.WhenAny(item.StartAsync(), Task.Delay(MilliSeconds));
                     await Task.Delay(100);
+                    //如果检测实验是否合格
                     if(UdpServer.TranslateInfo.IsTest == true)
                     {
                         if (IsJudgeValid == true && item.IsValid == false)
@@ -366,15 +414,17 @@ namespace TeachingPlatformApp.ViewModels
                             Speeker?.SpeekAsync($"{item.Name}实验失败，时间超时");
                         }
                         UdpServer.TranslateInfo.IsTest = false;
-                    }                        
+                    }    
+                    //停止实验
                     await item.EndAsync();
                 }
                 catch(Exception ex)
                 {
-                    StatusText += ex.Message;
+                    StatusText += ex.Message + Environment.NewLine;
                     Logger.Error(ex);
                 }            
             });
+            //停止实验按钮
             StopCommand = new DelegateCommand(async () =>
             {
                 try
@@ -383,6 +433,7 @@ namespace TeachingPlatformApp.ViewModels
                     {
                         if(item.IsStart == true)
                         {
+                            //发送实验停止信号
                             UdpServer?.SendToUnity720View(new TeachingCommandBuilder(0, false).
                                 BuildCommandBytes());
                             await Task.Delay(10);
@@ -401,18 +452,23 @@ namespace TeachingPlatformApp.ViewModels
                     Logger.Error(ex);
                 }
             });
+            //清空显示按钮
             ClearCommand = new DelegateCommand(() =>
             {
                 StatusText = "";
             });
+            //打开地图按钮
             OpenFlightMapCommand = new DelegateCommand(() =>
             {
                 if (SelectIndexTreeNode1 == -1)
                     return;
                 var item = FlightExperimentSelected;
+                //传递飞行实验名称
                 UdpServer.TranslateInfo.FlightExperimentName = item.Name;
+                //传递飞行实验索引
                 UdpServer.TranslateInfo.FlightExperimentIndex = SelectIndexTreeNode1;
                 var flightMapWindow = new FlightMapWindow();
+                //如果实验具有航路点就设置地图界面的航路点，否则不设置
                 if (item?.HasSetPoints == true && item.SetPoints != null &&
                     flightMapWindow.DataContext is FlightMapWindowViewModel viewModel)
                 {
@@ -422,14 +478,17 @@ namespace TeachingPlatformApp.ViewModels
                 AppendStatusText($"打开了{item.Name}实验的地图界面");
                 flightMapWindow.Show();
             });
+            //打开配置界面
             OpenConfigWindowCommand = new DelegateCommand(() => 
             {
                 new ConfigWindow().Show();
             });
+            //打开语音助手界面
             OpenSpeechWindowCommand = new DelegateCommand(() =>
             {
                 new SpeechWindow().Show();
             });
+            //测试按钮
             TestCommand = new DelegateCommand(() =>
             {
                 var strs = Test.Run();
@@ -437,7 +496,11 @@ namespace TeachingPlatformApp.ViewModels
                     AppendStatusText(str);
             });
         }
-
+        /// <summary>
+        /// 向720度平台ThuSim软件发送航路点坐标
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private async Task SendSetPoints(FlightExperiment item)
         {
             await Task.Run(() =>
@@ -446,7 +509,7 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     for (var i = 0; i < item.SetPoints.Count; ++i)
                     {
-                        UdpServer.SendTo720PlatformWsw(new DataPacketToWswBuilder(i,
+                        UdpServer?.SendTo720PlatformWsw(new DataPacketToWswBuilder(i,
                             item.SetPoints[i].X, item.SetPoints[i].Y).BuildBytes());
                     }
                 }
@@ -454,6 +517,9 @@ namespace TeachingPlatformApp.ViewModels
             await Task.Delay(5);
         }
 
+        /// <summary>
+        /// 配置初始化
+        /// </summary>
         private void ConfigInit()
         {
             var config = JsonFileConfig.Instance;
@@ -461,6 +527,12 @@ namespace TeachingPlatformApp.ViewModels
             IsJudgeValid = config.FlightExperimentConfig.IsJudgeValid;
         }
 
+        /// <summary>
+        /// 将Udp接收的Wsw数据进行处理，变成合适软件和地图显示的角度和坐标；
+        /// 同时包括数据的四舍五入等
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="recieveBytes"></param>
         private void DealAngleWithLocationData(string ip, byte[] recieveBytes)
         {
             var config = JsonFileConfig.Instance;
