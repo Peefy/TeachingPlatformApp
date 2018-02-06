@@ -1,5 +1,8 @@
 ﻿
+using DuGu.NetFramework.Services;
+using System;
 using System.Windows;
+using TeachingPlatformApp.Communications;
 
 namespace TeachingPlatformApp.Models
 {
@@ -31,11 +34,19 @@ namespace TeachingPlatformApp.Models
 
         public override string WswModelInfoToString()
         {
+            var str = "";
+            var heli = Ioc.Get<ITranslateData>().TranslateInfo.Helicopter;
+            var digit = Config.DataShowConfig.PointShowDigit;
+            var x = Math.Round(heli.X, digit);
+            var y = Math.Round(heli.Y, digit);
+            var z = Math.Round(heli.Z, digit);
+            str = $"坐标:({x},{y},{z})";
+
             if (HasSetPoints == false)
-                return base.WswModelInfoToString();
+                return str;
             if (IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
-                return base.WswModelInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
-            return base.WswModelInfoToString();
+                return str + $";航路点: {NowSetPointsIndex + 1}";
+            return str;
         }
 
     }

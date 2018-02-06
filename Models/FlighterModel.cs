@@ -41,11 +41,19 @@ namespace TeachingPlatformApp.Models
 
         public override string WswModelInfoToString()
         {
+            var str = "";
+            var flighter = Ioc.Get<ITranslateData>().TranslateInfo.Flighter;
+            var digit = Config.DataShowConfig.PointShowDigit;
+            var x = Math.Round(flighter.X, digit);
+            var y = Math.Round(flighter.Y, digit);
+            var z = Math.Round(flighter.Z, digit);
+            str =  $"坐标:({x},{y},{z})";
+
             if (HasSetPoints == false)
-                return base.WswModelInfoToString();
+                return str;
             if (IsJudgeRoute == true && Config.TestTrailRouteConfig.IsShowNowSetPointsIndex == true)
-                return base.WswModelInfoToString() + $";航路点: {NowSetPointsIndex + 1}";
-            return base.WswModelInfoToString();
+                return str + $";航路点: {NowSetPointsIndex + 1}";
+            return str;
         }
 
     }
