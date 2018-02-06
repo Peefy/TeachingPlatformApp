@@ -74,7 +74,7 @@ namespace TeachingPlatformApp.Utils
         /// <summary>
         /// 我的战斗机 配置
         /// </summary>
-        [JsonProperty("wswModelInfo")]
+        [JsonProperty("myFlighertInfo")]
         public WswModelInfo MyFlighterInfo { get; set; }
 
         /// <summary>
@@ -155,18 +155,18 @@ namespace TeachingPlatformApp.Utils
                 PointScaleFactorX = -0.01f,
                 PointScaleFactorY = 0.01f,
                 PointScaleFactorZ = 0.01f,
-                InitYaw = -180,
+                InitYaw = -153.435f,
                 YawSign = true
             };
             this.MyFlighterInfo = new WswModelInfo()
             {
                 InitMyPointX = 10,
                 InitMyPointY = 10,
-                InitMyPointZ = 50,            
+                InitMyPointZ = 50,
                 PointScaleFactorX = -0.01f,
                 PointScaleFactorY = 0.01f,
                 PointScaleFactorZ = 0.01f,
-                InitYaw = 270,
+                InitYaw = 206.435f,
                 YawSign = false,
             };
             this.MyMissileInfo = new WswModelInfo()

@@ -62,16 +62,18 @@ namespace TeachingPlatformApp.Speech
             StopSpeek();
             if (_isUsingDotnetSpeech == true)
             {             
-                _speech.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
+                _speech?.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
             }
             else
             {
-                _synthesizer.SpeakAsync(text);
+                _synthesizer?.SpeakAsync(text);
             }
         }
 
         public void SetSpeechRate(double rate)
         {
+            if (_speech == null && _synthesizer == null)
+                return;
             if (_isUsingDotnetSpeech == true)
             { 
                 _speech.Rate = (int)NumberUtil.Clamp(rate, MinRate, MaxRate);
@@ -84,6 +86,8 @@ namespace TeachingPlatformApp.Speech
 
         public void SetSpeechVolume(double volume)
         {
+            if (_speech == null && _synthesizer == null)
+                return;
             if (_isUsingDotnetSpeech == true)
             {
                 _speech.Volume = (int)NumberUtil.Clamp(_config.SpeechConfig.Volume, MinVolume, MaxVolume);
@@ -96,6 +100,8 @@ namespace TeachingPlatformApp.Speech
 
         public void StopSpeek()
         {
+            if (_speech == null && _synthesizer == null)
+                return;
             if (_isUsingDotnetSpeech == true)
             {
                 _speech?.Speak("", SpeechVoiceSpeakFlags.SVSFlagsAsync);

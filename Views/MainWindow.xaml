@@ -428,7 +428,7 @@
                 VerticalAlignment="Stretch"
                 Background="Black"
                 FontFamily="楷体"
-                FontSize="21"
+                FontSize="24"
                 Foreground="White"
                 ScrollViewer.CanContentScroll="True"
                 Text="{Binding StatusText}"
