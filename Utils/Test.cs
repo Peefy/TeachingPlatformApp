@@ -44,6 +44,7 @@ namespace TeachingPlatformApp.Utils
 
             return new string[]
             {
+                (Math.Asin(1 / Math.Sqrt(5)) * 180.0 / Math.PI).ToString(),
                 WswHelper.AngleWithLocationToString(point),
                 WswHelper.AngleWithLocationToString(point2),
             };

@@ -48,7 +48,7 @@ namespace TeachingPlatformApp.ViewModels
         public bool IsJudgeValid { get; set; }
 
         int _milliSeconds = Convert.ToInt32(LogAndConfig.Config.
-            GetProperty(ConfigKeys.UdpPort, 150_000));
+            GetProperty(ConfigKeys.UdpPort, 500_000));
         /// <summary>
         /// 飞行实验时间：100s
         /// </summary>

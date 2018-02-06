@@ -35,7 +35,7 @@ namespace TeachingPlatformApp.Models
             _setPoints = new ObservableRangeCollection<Point>();
             pointsConverter = new SetPointsToStringConverter();
             var pointsStr = LogAndConfig.Config.GetProperty(SetPointsConfigName + nameof(SetPoints),
-                "(10,10),(60,10),(50,45),(45,55),(10,35)").ToString();
+                "(10,10),(30,50),(50,50),(50,30),(50,10),(30,10)").ToString();
             _setPoints = pointsConverter.ConvertBack(pointsStr, null, null, null)
                 as ObservableRangeCollection<Point>;
             

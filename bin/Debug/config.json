@@ -1,4 +1,4 @@
-{
+﻿{
   "stringResource": {
     "windowTitle": "教研台界面",
     "flightMapTitle": "地图界面",
@@ -94,17 +94,17 @@
     "pointScaleFactorX": -0.01,
     "pointScaleFactorY": 0.01,
     "pointScaleFactorZ": 0.01,
-    "initYaw": -180.0,
+    "initYaw": -153.435,
     "yawSign": true
   },
-  "wswModelInfo": {
+  "myFlighertInfo": {
     "initMyPointX": 10.0,
     "initMyPointY": 10.0,
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.01,
     "pointScaleFactorY": 0.01,
     "pointScaleFactorZ": 0.01,
-    "initYaw": 270.0,
+    "initYaw": 206.435,
     "yawSign": false
   },
   "myMissileInfo": {
@@ -133,7 +133,11 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
+<<<<<<< HEAD
     "isAutoFollowing": 1,
+=======
+    "isAutoFollowing": 2,
+>>>>>>> bf7e08ebe8e6bfaae0772acf3e7a1f1e1acd19ed
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": -1,
