@@ -1,4 +1,4 @@
-﻿{
+{
   "stringResource": {
     "windowTitle": "教研台界面",
     "flightMapTitle": "地图界面",
@@ -133,14 +133,10 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-<<<<<<< HEAD
-    "isAutoFollowing": 1,
-=======
-    "isAutoFollowing": 2,
->>>>>>> bf7e08ebe8e6bfaae0772acf3e7a1f1e1acd19ed
+    "isAutoFollowing": 0,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
-    "initNowSetPointsIndex": -1,
+    "initNowSetPointsIndex": 0,
     "isShowNowSetPointsIndex": true,
     "unConnectedFlighterRotateSpeed": 0.5
   },

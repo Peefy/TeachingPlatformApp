@@ -230,8 +230,8 @@ namespace TeachingPlatformApp.ViewModels
                         var speed = 0.2;
                         Helicopter.MyMapPosition = new Point(10, 15);
                         Flighter.MyMapPosition = new Point(0, 0);
-                        Flighter.Angle -= 180;
-                        Helicopter.Angle -= 90;
+                        Flighter.Angle = 0;
+                        Helicopter.Angle = 90;
                         await Task.Delay(100);
                         Ioc.Get<ISpeek>()?.SpeekAsync($"{_flightTaskName}实验开始飞行第一阶段");
                         while (true)
@@ -324,7 +324,8 @@ namespace TeachingPlatformApp.ViewModels
                             TestTrailRouteConfig.UnConnectedFlighterRotateSpeed;
                         var point1 = new Point(30, 30);
                         var point2 = new Point(25, 30);
-                        Flighter.Angle -= 180;
+                        Helicopter.Angle = 180;
+                        Flighter.Angle = 90;
                         await Task.Delay(100);
                         while (true)
                         {
