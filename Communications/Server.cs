@@ -40,6 +40,11 @@ namespace TeachingPlatformApp.Communications
         int _udp720TechingPort = 12000;
 
         /// <summary>
+        /// 720Unity控制软件实验接收数据监听端口
+        /// </summary>
+        int _udp720Teching2Port = 13000;
+
+        /// <summary>
         /// 720控制台测试软件实验接收数据监听端口
         /// </summary>
         int _udp720TestConsolePort = 11000;
@@ -292,6 +297,25 @@ namespace TeachingPlatformApp.Communications
             {
                 _server.Send(bytes, bytes.Length, iPEndPoint);
             }
+        }
+
+        public async Task<int> SendTo720Platform2Async(byte[] data)
+        {
+            var result = await _server.SendAsync(data, data.Length,
+                new IPEndPoint(IpAddress720Platform2, _wswUdpPort));
+            await Task.Delay(_sendAfterDelay);
+            return result;
+        }
+
+        public void SendToUnity720View2(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720Teching2Port));
+            _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TestConsolePort));
+        }
+
+        public void SendTo720PlatformWsw2(byte[] bytes)
+        {
+            _server.Send(bytes, bytes.Length, IpEndPoint720Platform2);
         }
 
         /// <summary>

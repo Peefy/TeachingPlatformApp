@@ -33,6 +33,13 @@ namespace TeachingPlatformApp.Communications
         Task<int> SendTo720PlatformAsync(byte[] data);
 
         /// <summary>
+        /// 向720平台PC WswTHUSim 发送消息(异步)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        Task<int> SendTo720Platform2Async(byte[] data);
+
+        /// <summary>
         /// 向索引号为num的电脑PC WswTHUSim 发送消息(异步) 
         /// </summary>
         /// <param name="str"></param>
@@ -59,6 +66,12 @@ namespace TeachingPlatformApp.Communications
         void SendToUnity720View(byte[] bytes);
 
         /// <summary>
+        /// 向第2个720度平台PC Unity软件发送数据(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        void SendToUnity720View2(byte[] bytes);
+
+        /// <summary>
         /// 向六自由度平台PC WswTHUSim 发送消息(同步)
         /// </summary>
         /// <param name="bytes"></param>
@@ -75,6 +88,12 @@ namespace TeachingPlatformApp.Communications
         /// </summary>
         /// <param name="bytes"></param>
         void SendTo720PlatformWsw(byte[] bytes);
+
+        /// <summary>
+        /// 向第2个720平台PC WswTHUSim 发送消息(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
+        void SendTo720PlatformWsw2(byte[] bytes);
 
         /// <summary>
         /// 通用Udp发送数据(同步)

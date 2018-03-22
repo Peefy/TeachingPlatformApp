@@ -64,6 +64,12 @@ namespace TeachingPlatformApp.Utils.JsonModels
         public int Udp720TechingPort { get; set; } = 12000;
 
         /// <summary>
+        /// 第2个720度平台Unity控制软件接收实验指令Udp监听的端口号
+        /// </summary>
+        [JsonProperty("udp720Teching2Port")]
+        public int Udp720Teching2Port { get; set; } = 13000;
+
+        /// <summary>
         /// 720度平台Console测试软件Udp监听的端口号
         /// </summary>
         [JsonProperty("udp720TestConsolePort")]

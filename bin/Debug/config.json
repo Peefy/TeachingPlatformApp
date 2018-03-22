@@ -24,6 +24,7 @@
     "ipGunBarrel": "192.168.0.133",
     "wswUdpPort": 14000,
     "udp720TechingPort": 12000,
+    "udp720Teching2Port": 13000,
     "udp720TestConsolePort": 11000,
     "renewUIRecieveCount": 10,
     "udpClientExtraPort": 10000
