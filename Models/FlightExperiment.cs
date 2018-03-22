@@ -32,6 +32,9 @@ namespace TeachingPlatformApp.Models
         AngleValidatableObject _720pitch;
         AngleValidatableObject _720roll;
         AngleValidatableObject _720yaw;
+        AngleValidatableObject _720pitch2;
+        AngleValidatableObject _720roll2;
+        AngleValidatableObject _720yaw2;
         AngleValidatableObject _sixPlatformPitch;
         AngleValidatableObject _sixPlatformRoll;
         AngleValidatableObject _sixPlatformYaw;
@@ -78,6 +81,24 @@ namespace TeachingPlatformApp.Models
         {
             get => _720yaw;
             set => SetProperty(ref _720yaw, value);
+        }
+
+        public AngleValidatableObject Pitch2
+        {
+            get => _720pitch2;
+            set => SetProperty(ref _720pitch2, value);
+        }
+
+        public AngleValidatableObject Roll2
+        {
+            get => _720roll2;
+            set => SetProperty(ref _720roll2, value);
+        }
+
+        public AngleValidatableObject Yaw2
+        {
+            get => _720yaw2;
+            set => SetProperty(ref _720yaw2, value);
         }
 
         public AngleValidatableObject SixPlatformPitch
@@ -197,6 +218,9 @@ namespace TeachingPlatformApp.Models
             _720roll = new AngleValidatableObject(unRecieveduUdpDataShow);
             _720yaw = new AngleValidatableObject(unRecieveduUdpDataShow);
             _720pitch = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _720roll2 = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _720yaw2 = new AngleValidatableObject(unRecieveduUdpDataShow);
+            _720pitch2 = new AngleValidatableObject(unRecieveduUdpDataShow);
             _sixPlatformRoll = new AngleValidatableObject(unRecieveduUdpDataShow);
             _sixPlatformYaw = new AngleValidatableObject(unRecieveduUdpDataShow);
             _sixPlatformPitch = new AngleValidatableObject(unRecieveduUdpDataShow);

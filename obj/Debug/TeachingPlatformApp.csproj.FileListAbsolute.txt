@@ -373,3 +373,5 @@ F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csproj.Ge
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csproj.CoreCompileInputs.cache
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.exe
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.pdb
+D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.g.cs
+D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.baml

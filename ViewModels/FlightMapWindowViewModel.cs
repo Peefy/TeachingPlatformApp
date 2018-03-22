@@ -64,6 +64,16 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         /// <summary>
+        /// 第2个战斗机
+        /// </summary>
+        private FlighterModel _flighter2;
+        public FlighterModel Flighter2
+        {
+            get => _flighter2;
+            set => SetProperty(ref _flighter2, value);
+        }
+
+        /// <summary>
         /// 直升机
         /// </summary>
         private HelicopterModel _helicopter;
@@ -172,6 +182,7 @@ namespace TeachingPlatformApp.ViewModels
             _flightTaskIndex = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentIndex;
             _flightTaskName = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentName;
             Flighter = new FlighterModel();
+            Flighter2 = new FlighterModel();
             Helicopter = new HelicopterModel();
             Missile = new MissileModel();
             Title = _config.StringResource.FlightMapTitle;
@@ -436,39 +447,80 @@ namespace TeachingPlatformApp.ViewModels
                 }
                 if(index == 4)
                 {
-                    Task.Run(async () =>
+                    //                     Task.Run(async () =>
+                    //                     {
+                    //                         var i = 0.0;
+                    //                         var point1 = new Point(30, 50);
+                    //                         var point2 = new Point(10, 10);
+                    //                         Flighter.MyMapPosition = point1;
+                    //                         Helicopter.MyMapPosition = point2;
+                    //                         Missile.MyMapPosition = new Point(0, 0);
+                    //                         Flighter.Angle += 135;
+                    //                         var deltax = 0.0;
+                    //                         var deltay = 0.0;
+                    //                         await Task.Delay(100);
+                    //                         while (true)
+                    //                         {
+                    //                             if (Flighter.MyMapPosition.X >= 69.8)
+                    //                             {
+                    //                                 Ioc.Get<ISpeek>()?.
+                    //                                     SpeekAsync($"{_flighter.Name}成功完成{_flightTaskName}实验");
+                    //                                 break;
+                    //                             }
+                    //                             else
+                    //                             {
+                    //                                 deltax = Math.Exp(i);
+                    //                                 deltay = -deltax;
+                    //                             }
+                    //                             Flighter.MyMapPosition = new Point(point1.X + deltax, point1.Y + deltay);
+                    //                             Flighter.LocationString = $"{Flighter.Name}" +
+                    //                                  $"  {Flighter.MyMapInfoToString()};";
+                    //                             Helicopter.LocationString = $"{Helicopter.Name}" +
+                    //                                   $"  {Helicopter.MyMapInfoToString()};";
+                    //                             Thread.Sleep(_mapRefreshInterval);
+                    //                             i += 0.02;
+                    // 
+                    //                         }
+                    //                     });
+                    Task.Run(() =>
                     {
-                        var i = 0.0;
-                        var point1 = new Point(30, 50);
-                        var point2 = new Point(10, 10);
+                        var i = 0.0f;
+                        var flightCount = 0.0f;
+                        var flighterSpeed = JsonFileConfig.Instance.
+                            TestTrailRouteConfig.UnConnectedFlighterRotateSpeed;
+                        var point1 = new Point(20, 20);
+                        var point2 = new Point(60, 20);
+                        Missile.MyMapPosition = new Point(-30, -30);
+                        Missile.Angle = 90;
+                        Helicopter.MyMapPosition = new Point(60, 30);
                         Flighter.MyMapPosition = point1;
-                        Helicopter.MyMapPosition = point2;
-                        Missile.MyMapPosition = new Point(0, 0);
-                        Flighter.Angle += 135;
-                        var deltax = 0.0;
-                        var deltay = 0.0;
-                        await Task.Delay(100);
+                        Flighter.Angle = 90;
+                        Helicopter.Angle = -90;
+                        Thread.Sleep(5000);              
+                        var x = 20.0;
+                        var y = 20.0;
                         while (true)
                         {
-                            if (Flighter.MyMapPosition.X >= 69.8)
-                            {
-                                Ioc.Get<ISpeek>()?.
-                                    SpeekAsync($"{_flighter.Name}成功完成{_flightTaskName}实验");
-                                break;
-                            }
-                            else
-                            {
-                                deltax = Math.Exp(i);
-                                deltay = -deltax;
-                            }
-                            Flighter.MyMapPosition = new Point(point1.X + deltax, point1.Y + deltay);
-                            Flighter.LocationString = $"{Flighter.Name}" +
-                                 $"  {Flighter.MyMapInfoToString()};";
-                            Helicopter.LocationString = $"{Helicopter.Name}" +
+                            
+                            Helicopter.Angle += 1;
+                            if (Helicopter.Angle >= 360)
+                                Helicopter.Angle = 0;
+                            var j = NumberUtil.Deg2Rad(i);
+                            var flightRad = NumberUtil.Deg2Rad(flightCount);
+                            Missile.MyMapPosition = new Point(x, y);
+                            x += 0.33f;
+                            Helicopter.MyMapPosition = new Point(point2.X - 10 * Math.Sin(j), point2.Y + 10 * Math.Cos(j));
+                            Helicopter.LocationString = $"" +
                                   $"  {Helicopter.MyMapInfoToString()};";
+                            Flighter.LocationString = $"" +
+                                  $"  {Flighter.MyMapInfoToString()};";
+                            Missile.LocationString = $"{Missile.Name}" +
+                                  $"  {Missile.MyMapInfoToString()};";
+                            if (Helicopter.MyMapPosition.Y <= 20)
+                                break;
                             Thread.Sleep(_mapRefreshInterval);
-                            i += 0.02;
-
+                            i += 1;
+                            flightCount += flighterSpeed;
                         }
                     });
                 }
@@ -502,14 +554,15 @@ namespace TeachingPlatformApp.ViewModels
                                   $"  {Helicopter.MyMapInfoToString()};";
 
                             Missile.MyMapPosition = new Point(-100, -100);
-                            //Missile.LocationString = $"{Missile.Name}" +
-                            //      $"  {Missile.MyMapInfoToString()};";
+                                                 //Missile.LocationString = $"{Missile.Name}" +
+                                                 //      $"  {Missile.MyMapInfoToString()};";
 
-                            Thread.Sleep(_mapRefreshInterval);
+                                                 Thread.Sleep(_mapRefreshInterval);
                             i += 1;
                             flightCount += flighterSpeed;
                         }
                     });
+
                 }
                 if(index == 6)
                 {

@@ -22,6 +22,10 @@ namespace TeachingPlatformApp.WswPlatform
         /// <summary>
         /// 导弹
         /// </summary>
-        Missile
+        Missile,
+        /// <summary>
+        /// 第2个战斗机
+        /// </summary>
+        Flighter2
     }
 }

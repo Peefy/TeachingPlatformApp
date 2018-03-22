@@ -60,6 +60,11 @@ namespace TeachingPlatformApp.Communications
         string _ipSixPlatform = "192.168.0.131";
 
         /// <summary>
+        /// 第2个720度平台Ip
+        /// </summary>
+        string _ip720Platform2 = "192.168.0.132";
+
+        /// <summary>
         /// 单兵炮筒平台Ip
         /// </summary>
         string _ipGunBarrel = "192.168.0.133";
@@ -92,6 +97,11 @@ namespace TeachingPlatformApp.Communications
         public IPAddress IpAddress720Platform => IPAddress.Parse(_ip720Platform);
 
         /// <summary>
+        /// 第二个720度电脑Ip
+        /// </summary>
+        public IPAddress IpAddress720Platform2 => IPAddress.Parse(_ip720Platform2);
+
+        /// <summary>
         /// 六自由度平台Ip And Port
         /// </summary>
         public IPEndPoint IpEndPointSixPlatform { get; set; }
@@ -105,6 +115,11 @@ namespace TeachingPlatformApp.Communications
         /// 720度电脑Ip And Port
         /// </summary>
         public IPEndPoint IpEndPoint720Platform { get; set; }
+
+        /// <summary>
+        /// 第二个720度电脑Ip And Port
+        /// </summary>
+        public IPEndPoint IpEndPoint720Platform2 { get; set; }
 
         /// <summary>
         /// 传输信息公用接口
@@ -125,12 +140,14 @@ namespace TeachingPlatformApp.Communications
             _ipSixPlatform = config.IpWswUdpServer;
             _ipGunBarrel = config.IpGunBarrel;
             _ip720Platform = config.Ip720Platform;
+            _ip720Platform2 = config.Ip720Platform2;
             _udp720TechingPort = config.Udp720TechingPort;
-            _udp720TestConsolePort = config.Udp720TestConsolePort;
+            _udp720TestConsolePort = config.Udp720TestConsolePort;           
             _server = new UdpClient(_port);
             IpEndPoint720Platform = new IPEndPoint(IpAddress720Platform, _udp720Port);
             IpEndPointSixPlatform = new IPEndPoint(IpAddressSixPlatform, _wswUdpPort);
             IpEndPointGunBarrel = new IPEndPoint(IpAddressGunBarrel, _wswUdpPort);
+            IpEndPoint720Platform2 = new IPEndPoint(IpAddress720Platform2, _wswUdpPort);
         }
 
         /// <summary>

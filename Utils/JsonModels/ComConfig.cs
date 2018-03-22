@@ -34,6 +34,12 @@ namespace TeachingPlatformApp.Utils.JsonModels
         public string Ip720Platform { get; set; } = "192.168.0.134";
 
         /// <summary>
+        /// 第二个720度平台PC的Ip地址
+        /// </summary>
+        [JsonProperty("ip720Platform2")]
+        public string Ip720Platform2 { get; set; } = "192.168.0.132";
+
+        /// <summary>
         /// Wsw视景软件UdpServer(六自由度平台)PC的Ip地址
         /// </summary>
         [JsonProperty("ipWswUdpServer")]

@@ -84,7 +84,7 @@
             IsMoveToPointEnabled="True"
             IsSelectionRangeEnabled="true"
             Maximum="10"
-            Minimum="0"
+            Minimum="-10"
             Orientation="Vertical"
             SelectionEnd="9"
             SelectionStart="1"

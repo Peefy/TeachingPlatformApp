@@ -78,6 +78,14 @@ namespace TeachingPlatformApp.WswPlatform
                 angleNew.Pitch = angle.Pitch;
                 angleNew.Yaw = angle.Yaw * yawSign - myHelicopterInfo.InitYaw;
             }
+            if(wswAirplane == WswModelKind.Flighter2)
+            {
+
+            }
+            if(wswAirplane == WswModelKind.Missile)
+            {
+
+            }
             angleNew.X = Math.Round(angleNew.X, digit);
             angleNew.Y = Math.Round(angleNew.Y, digit);
             angleNew.Z = Math.Round(angleNew.Z, digit);

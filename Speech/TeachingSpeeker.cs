@@ -52,7 +52,7 @@ namespace TeachingPlatformApp.Speech
                     Rate = (int)NumberUtil.Clamp(_config.SpeechConfig.Rate, MinRate, MaxRate)
                 };
                 _synthesizer.SetOutputToDefaultAudioDevice();  
-                _synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult, 0, new CultureInfo(language));
+                _synthesizer.SelectVoiceByHints(VoiceGender.Male, VoiceAge.Teen, 0, new CultureInfo(language));
             }
 
         }

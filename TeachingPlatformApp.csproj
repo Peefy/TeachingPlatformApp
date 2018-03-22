@@ -172,6 +172,9 @@
     <Compile Include="Views\FlightMapWindow.xaml.cs">
       <DependentUpon>FlightMapWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OptionWindow.xaml.cs">
+      <DependentUpon>OptionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpeechWindow.xaml.cs">
       <DependentUpon>SpeechWindow.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,7 @@
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\DataPacketToWsw.cs" />
     <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />
+    <Compile Include="WswPlatform\PositionCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
     <Compile Include="WswPlatform\WswModelKind.cs" />
@@ -305,6 +309,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\OptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SpeechWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,6 +1,6 @@
 {
   "stringResource": {
-    "windowTitle": "教研台界面",
+    "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
     "helicopterName": "直升机",
     "flighterName": "战斗机",
@@ -29,10 +29,10 @@
     "udpClientExtraPort": 10000
   },
   "mapGridAxesDrawPara": {
-    "axesHeight": 760.0,
+    "axesHeight": 860.0,
     "axesWidth": 1360.0,
-    "maxHeight": 900.0,
-    "maxWidth": 1900.0,
+    "maxHeight": 1000.0,
+    "maxWidth": 2000.0,
     "columnNumber": 200,
     "rowNumber": 200,
     "enableDragMove": true,
@@ -49,7 +49,7 @@
     "yAxesInternal": 100.0,
     "mouseDoubleClickShowPointX": 50.0,
     "mouseDoubleClickShowPointY": 30.0,
-    "helicopterPaddleRotateSpeed": 6.0
+    "helicopterPaddleRotateSpeed": 4.0
   },
   "wswData": {
     "flighterInitInfo": {
@@ -77,12 +77,12 @@
       "Roll": 0.00139873
     },
     "missileInitInfo": {
-      "X": -2165844.6698,
-      "Y": 4379369.0368,
-      "Z": 4104669.0426,
-      "Yaw": -0.5154596,
-      "Pitch": 0.0011189,
-      "Roll": 0.00139873
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0,
+      "Yaw": 0.0,
+      "Pitch": 0.0,
+      "Roll": 0.0
     }
   },
   "dataShowConfig": {
@@ -130,7 +130,7 @@
     "volume": 70.0,
     "rate": 2.0,
     "isUsingDotnetSpeech": true,
-    "speechEnable": true,
+    "speechEnable": false,
     "speechTextOutofRouteLeft": "偏离航线",
     "speechTextReserved1": "SpeechTextReserved1",
     "speechTextReserved2": "SpeechTextReserved2",
@@ -139,14 +139,14 @@
   "testTrailRouteConfig": {
     "outOfRouteTestSwitch": 0,
     "outOfRouteAngle": 20.0,
-    "outOfRouteDistance": 5.0,
+    "outOfRouteDistance": 6.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 0,
+    "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
-    "initNowSetPointsIndex": 0,
-    "isShowNowSetPointsIndex": true,
+    "initNowSetPointsIndex": -1,
+    "isShowNowSetPointsIndex": false,
     "unConnectedFlighterRotateSpeed": 0.5
   },
   "flightExperimentConfig": {

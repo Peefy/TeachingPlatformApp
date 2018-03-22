@@ -148,7 +148,7 @@ namespace TeachingPlatformApp.Views
                 {                  
                     _canvasTrailFlighter.AddPoint(_viewModel.Flighter.MyMapPosition);
                     _canvasTrailHelicopter.AddPoint(_viewModel.Helicopter.MyMapPosition);
-                    _canvasTrailMissile.AddPoint(_viewModel.Missile.MyMapPosition);
+                    //_canvasTrailMissile.AddPoint(_viewModel.Missile.MyMapPosition);
 
                 }));
             }

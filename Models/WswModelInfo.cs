@@ -17,6 +17,11 @@ namespace TeachingPlatformApp.Models
         public AngleWithLocation Flighter { get; set; }
 
         /// <summary>
+        /// 第2个战斗机的数据
+        /// </summary>
+        public AngleWithLocation Flighter2 { get; set; }
+
+        /// <summary>
         /// 直升机的数据
         /// </summary>
         public AngleWithLocation Helicopter { get; set; }

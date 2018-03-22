@@ -21,9 +21,12 @@ namespace TeachingPlatformApp.Models
         static protected private ISpeek _speeker;
         static protected private int _outOfRouteSpeechUpCount = 10;
 
-        public JsonFileConfig Config { get; set; }
+        protected JsonFileConfig Config { get; set; }
 
         private string _name = "";
+        /// <summary>
+        /// 威视微通道模型名称
+        /// </summary>
         public string Name
         {
             get => _name;
@@ -31,6 +34,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private int _outOfRouteCount = 0;
+        /// <summary>
+        /// 检测是否偏离航路点次数
+        /// </summary>
         public int OutOfRouteCount
         {
             get => _outOfRouteCount;
@@ -38,6 +44,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private string _locationString = "";
+        /// <summary>
+        /// 坐标显示字符串
+        /// </summary>
         public string LocationString
         {
             get => _locationString;
@@ -45,16 +54,25 @@ namespace TeachingPlatformApp.Models
         }
 
         private float _angle = 0;
+        /// <summary>
+        /// 偏航角
+        /// </summary>
         public float Angle
         {
             get => _angle;
             set => SetProperty(ref _angle, value);
         }
 
+        /// <summary>
+        /// 偏航角(与地图x轴的夹角)
+        /// </summary>
         public double AngleWithXAxes => 
             NumberUtil.PutAngleIn(Angle - 90, minAngle: -180, maxAngle: 180);
 
         private Point _myMapPosition = default;
+        /// <summary>
+        /// 地图坐标
+        /// </summary>
         public Point MyMapPosition
         {
             get => _myMapPosition;
@@ -62,6 +80,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private ObservableRangeCollection<Point> _trail;
+        /// <summary>
+        /// 轨迹
+        /// </summary>
         public ObservableRangeCollection<Point> Trail
         {
             get => _trail;
@@ -69,6 +90,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private bool _isNotOutofRoute = true;
+        /// <summary>
+        /// 检测是否偏离航路点
+        /// </summary>
         public bool IsNotOutofRoute
         {
             get => _isNotOutofRoute;
@@ -76,6 +100,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private AngleWithLocation _wswAngleWithLocation;
+        /// <summary>
+        /// 视景中模型真实的经纬度坐标
+        /// </summary>
         public AngleWithLocation WswAngleWithLocation
         {
             get => _wswAngleWithLocation;
@@ -83,6 +110,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private bool _isJudgeRoute = true;
+        /// <summary>
+        /// 是否检测偏离航路点
+        /// </summary>
         public bool IsJudgeRoute
         {
             get => _isJudgeRoute;
@@ -90,6 +120,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private int _nowSetPointsIndex = 0;
+        /// <summary>
+        /// 当前经过航路点索引
+        /// </summary>
         public int NowSetPointsIndex
         {
             get => _nowSetPointsIndex;
@@ -97,6 +130,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private int _lastSetPointsIndex = 0;
+        /// <summary>
+        /// 上一次经过航路点索引
+        /// </summary>
         public int LastSetPointsIndex
         {
             get => _lastSetPointsIndex;
@@ -104,6 +140,9 @@ namespace TeachingPlatformApp.Models
         }
 
         private RouteState _routeState = RouteState.Normal;
+        /// <summary>
+        /// 偏离航线的状态
+        /// </summary>
         public RouteState RouteState
         {
             get => _routeState;
@@ -111,15 +150,24 @@ namespace TeachingPlatformApp.Models
         }
 
         private bool _isSuccess = false;
+        /// <summary>
+        /// 是否完成飞行实验
+        /// </summary>
         public bool IsSuccess
         {
             get => _isSuccess;
             set => SetProperty(ref _isSuccess, value);
         }
 
+        /// <summary>
+        /// 飞行实验索引
+        /// </summary>
         public int? FlightExperimentIndex => 
             Ioc.Get<ITranslateData>()?.TranslateInfo.FlightExperimentIndex;
 
+        /// <summary>
+        /// 是否具有航路点
+        /// </summary>
         public bool HasSetPoints
         {
             get 
@@ -147,6 +195,10 @@ namespace TeachingPlatformApp.Models
             Dispose(false);
         }
 
+        /// <summary>
+        /// 真实坐标显示字符串
+        /// </summary>
+        /// <returns></returns>
         public virtual string WswModelInfoToString()
         {
             var digit = Config.DataShowConfig.PointShowDigit;
@@ -156,6 +208,10 @@ namespace TeachingPlatformApp.Models
             return $"坐标:({x},{y},{z})";
         }
 
+        /// <summary>
+        /// 地图坐标显示字符串
+        /// </summary>
+        /// <returns></returns>
         public virtual string MyMapInfoToString()
         {
             var digit = Config.DataShowConfig.PointShowDigit;
@@ -164,6 +220,11 @@ namespace TeachingPlatformApp.Models
             return $"坐标:({x},{y})";
         }
 
+        /// <summary>
+        /// 检测是否偏离航路点过程函数
+        /// </summary>
+        /// <param name="setPoints"></param>
+        /// <returns></returns>
         public virtual bool JudgeIsNotOutOfRoute(ObservableRangeCollection<Point> setPoints)
         {
 
@@ -207,6 +268,12 @@ namespace TeachingPlatformApp.Models
             return false;
         }
 
+        /// <summary>
+        /// 检测航线状态过程函数
+        /// </summary>
+        /// <param name="setPoints"></param>
+        /// <param name="isNotOutOfRoute"></param>
+        /// <returns></returns>
         public virtual RouteState JudgeRouteState(ObservableRangeCollection<Point> setPoints, out bool isNotOutOfRoute)
         {
             isNotOutOfRoute = JudgeIsNotOutOfRoute(setPoints);
@@ -230,6 +297,10 @@ namespace TeachingPlatformApp.Models
             return routeState;
         }
 
+        /// <summary>
+        /// 航路点语音提示过程
+        /// </summary>
+        /// <param name="setPoints"></param>
         public virtual void OutOfRouteSpeechControl(ObservableRangeCollection<Point> setPoints)
         {
             if (setPoints == null || IsSuccess == true || IsJudgeRoute == false)
@@ -261,6 +332,11 @@ namespace TeachingPlatformApp.Models
             }
         }
 
+        /// <summary>
+        /// 检测正在经过的航路点过程
+        /// </summary>
+        /// <param name="setPoints"></param>
+        /// <returns></returns>
         public virtual int JudgeNowSetPointsIndex(ObservableRangeCollection<Point> setPoints)
         {
             var index = 0;
@@ -303,6 +379,10 @@ namespace TeachingPlatformApp.Models
             return NowSetPointsIndex;
         }
 
+        /// <summary>
+        /// 更新坐标信息
+        /// </summary>
+        /// <param name="isConnect"></param>
         public void RenewLocationInfo(bool isConnect)
         {
             if(isConnect == false)

@@ -565,7 +565,20 @@ namespace TeachingPlatformApp.ViewModels
                     flight.SixPlatformNowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
-            WswDataDebuger.Record(ip, angleWithLocation);
+            else if(ip.StartsWith(config.ComConfig.Ip720Platform2) == true)
+            {
+                angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation,
+                    WswModelKind.Flighter2, angleDataDigit);
+                foreach (var flight in FlightExperiments)
+                {
+                    UdpServer.TranslateInfo.Flighter2 = angleWithLocation;
+                }
+            }
+            else if(ip.StartsWith(config.ComConfig.IpGunBarrel) == true)
+            {
+
+            }
+            //WswDataDebuger.Record(ip, angleWithLocation);
         }
     }
 }

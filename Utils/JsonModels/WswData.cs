@@ -15,6 +15,12 @@ namespace TeachingPlatformApp.Utils.JsonModels
         public AngleWithLocation FlighterInitInfo;
 
         /// <summary>
+        /// 第2个战斗机的初始数据(姿态，坐标)
+        /// </summary>
+        [JsonProperty("flighterInitInfo2")]
+        public AngleWithLocation FlighterInitInfo2;
+
+        /// <summary>
         /// 直升机的初始数据(姿态，坐标)
         /// </summary>
         [JsonProperty("helicopterInitInfo")]
@@ -43,6 +49,13 @@ namespace TeachingPlatformApp.Utils.JsonModels
             HelicopterInitInfo.Pitch = 0.0011189;
             HelicopterInitInfo.Roll = 0.00139873;
             MissileInitInfo = default;
+            FlighterInitInfo2 = default;
+            FlighterInitInfo2.X = -2185907.3768;
+            FlighterInitInfo2.Y = 4365171.6876;
+            FlighterInitInfo2.Z = 4104669.1241;
+            FlighterInitInfo2.Yaw = 0.1873927;
+            FlighterInitInfo2.Pitch = 0.0011897;
+            FlighterInitInfo2.Roll = 0.0013987;
         }
 
     }
