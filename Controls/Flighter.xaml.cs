@@ -20,6 +20,7 @@ namespace TeachingPlatformApp.Controls
     /// </summary>
     public partial class Flighter : UserControl
     {
+
         public Flighter()
         {
             InitializeComponent();

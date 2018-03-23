@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Threading;
 using System.Threading.Tasks;
@@ -578,6 +579,21 @@ namespace TeachingPlatformApp.ViewModels
                 }
             }
                     
+        }
+
+        public void RefreshSetPoints()
+        {
+            if (SetPoints == null)
+                return;
+            var points = SetPoints.ToArray();
+            SetPoints = new ObservableRangeCollection<Point>(points);
+            var point = Flighter.MyMapPosition;
+            Flighter.MyMapPosition = new Point(point.X, point.Y);
+            point = Flighter2.MyMapPosition;
+            Flighter2.MyMapPosition = new Point(point.X, point.Y);
+            point = Helicopter.MyMapPosition;
+            Helicopter.MyMapPosition = new Point(point.X, point.Y);
+            
         }
 
         /// <summary>

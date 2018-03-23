@@ -61,6 +61,12 @@ namespace TeachingPlatformApp.Utils.JsonModels
         [JsonProperty("unRecieveduUdpDataShow")]
         public float UnRecieveduUdpDataShow { get; set; } = 0.0f;
 
+        /// <summary>
+        /// 地图上飞机模型的缩放系数
+        /// </summary>
+        [JsonProperty("wswModelScaleFactor")]
+        public double WswModelScaleFactor { get; set; } = 1.0;
+
     }
 
 }

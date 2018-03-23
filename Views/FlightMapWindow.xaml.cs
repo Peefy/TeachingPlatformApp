@@ -34,7 +34,10 @@ namespace TeachingPlatformApp.Views
         CanvasTrail _canvasTrailFlighter2;
         CanvasTrail _canvasTrailHelicopter;
         CanvasTrail _canvasTrailMissile;
-
+        Helicopter helicopter;
+        Flighter flighter;
+        Flighter2 flighter2;
+        Missile missile;
         int _canvasTrailFlighterIndex = 0;
         int _canvasTrailFlighter2Index = 1;
         int _canvasTrailHelicopterIndex = 2;
@@ -57,11 +60,14 @@ namespace TeachingPlatformApp.Views
         int _autoFollowingMouseClickCount = 2;
         int _renewUiStartDelay = 100;
 
+        double _scaleFactor = 0.01;
+
         public FlightMapWindow()
         {
             InitializeComponent();
             DataInit();           
             DragMoveInit();
+            ChangeWswModelScale(JsonFileConfig.Instance.DataShowConfig.WswModelScaleFactor);
             RenewUI();
             TaskInit();
         }
@@ -75,7 +81,11 @@ namespace TeachingPlatformApp.Views
             _canvasTrailFlighter2 = _girdWswModel.Children[_canvasTrailFlighter2Index] as CanvasTrail;
             _canvasTrailHelicopter = _girdWswModel.Children[_canvasTrailHelicopterIndex] as CanvasTrail;
             _canvasTrailMissile = _girdWswModel.Children[_canvasTrailMissileIndex] as CanvasTrail;
-            (_girdWswModel.Children[_helicopterIndex] as Helicopter).BuildPaddleRotateTimer();
+            helicopter = _girdWswModel.Children[_helicopterIndex] as Helicopter;
+            flighter = _girdWswModel.Children[_flighterIndex] as Flighter;
+            flighter2 = _girdWswModel.Children[_flighter2Index] as Flighter2;
+            missile = _girdWswModel.Children[_missileIndex] as Missile;
+            helicopter.BuildPaddleRotateTimer();
             _viewModel = new FlightMapWindowViewModel();
             DataContext = _viewModel;
         }
@@ -197,16 +207,49 @@ namespace TeachingPlatformApp.Views
 
         private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            var config = JsonFileConfig.Instance.GridAxesDrawPara;
             if(_enableScale == true)
             {
                 var delta = e.Delta;
                 if (fatherGrid.RenderTransform is ScaleTransform scale)
                 {
-                    scale.ScaleX += delta * 0.001;
-                    scale.ScaleY += delta * 0.001;
+                    _canvasTrailFlighter.ClearPoint();
+                    _canvasTrailHelicopter.ClearPoint();
+                    _canvasTrailFlighter2.ClearPoint();
+                    _canvasTrailMissile.ClearPoint();
+                    config.XAxesInternal += delta * _scaleFactor;
+                    config.YAxesInternal += delta * _scaleFactor;
+                    var scaleFactor = config.XAxesInternal;
+                    config.LabelFontSize = NumberUtil.Clamp(scaleFactor * 0.24, 12, 30);
+                    config.AxexLineWidth = config.XAxesInternal * 0.02;
+                    ChangeWswModelScale(config.XAxesInternal / 100.0);
+                    ConverterPara.Init();
+                    gridAxes.DrawParaInit();
+                    gridAxes.RenewBuildAxes(this.Width, this.Height, true);
+                    _viewModel.RefreshSetPoints();
+                    _viewModel.SetPointsLineWidth = config.XAxesInternal * 0.03;
+                    _viewModel.SetPointsFontSize = NumberUtil.Clamp(scaleFactor * 0.24, 12, 30);
+                    _viewModel.SetPointsEllipseRadius = scaleFactor * 0.06;
                 }
             }
 
+        }
+
+        private void ChangeWswModelScale(double scale)
+        {
+            JsonFileConfig.Instance.DataShowConfig.WswModelScaleFactor = scale;
+            var tran = (flighter.RenderTransform as TransformGroup).Children[0] as ScaleTransform;
+            tran.ScaleX = scale;
+            tran.ScaleY = scale;
+            tran = (flighter2.RenderTransform as TransformGroup).Children[0] as ScaleTransform;
+            tran.ScaleX = scale;
+            tran.ScaleY = scale;
+            tran = (helicopter.RenderTransform as TransformGroup).Children[0] as ScaleTransform;
+            tran.ScaleX = scale;
+            tran.ScaleY = scale;
+            tran = (missile.RenderTransform as TransformGroup).Children[0] as ScaleTransform;
+            tran.ScaleX = scale;
+            tran.ScaleY = scale;
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
@@ -225,6 +268,7 @@ namespace TeachingPlatformApp.Views
             {
                 _canvasTrailFlighter.ClearPoint();
                 _canvasTrailHelicopter.ClearPoint();
+                _canvasTrailFlighter2.ClearPoint();
                 _canvasTrailMissile.ClearPoint();
             }
             if(e.Key == Key.A)
@@ -296,11 +340,12 @@ namespace TeachingPlatformApp.Views
 
         public void SetMapDrawDeltaLeftTop(Point point)
         {
-            var x = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointX;
-            var y = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointY;
+            var scale = JsonFileConfig.Instance.GridAxesDrawPara.XAxesInternal;
+            var x = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointX / scale * 100;
+            var y = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointY / scale * 100;
             var convert = new PointXYToMarginLeftTop();
             var left = convert.Convert((x - point.X ).ToString());
-            var top = convert.Convert((y - point.Y).ToString()) ;
+            var top = convert.Convert((y - point.Y).ToString());
             gridAxes.DrawDeltaLeft = left;
             gridAxes.DrawDeltaTop = top;
             gridAxes.RenewBuildAxes(this.Width, this.Height, true);

@@ -153,6 +153,12 @@ namespace TeachingPlatformApp.Views
                             _viewModel.OpenFlightMapCommand.Execute();
                             isFind = true;
                         }
+                        if (Regex.IsMatch(text, "option", RegexOptions.IgnoreCase))
+                        {
+                            _viewModel.OpenOptionWindowCommand.Execute();
+                            _viewModel.AppendStatusText("打开参数设置");
+                            isFind = true;
+                        }
                         if (isFind == true)
                             break;                          
                     }

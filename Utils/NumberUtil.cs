@@ -47,6 +47,22 @@ namespace TeachingPlatformApp.Utils
         }
 
         /// <summary>
+        /// 数字限幅
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public static int Clamp(double value, int min, int max)
+        {
+            if (value <= min)
+                value = min;
+            if (value >= max)
+                value = max;
+            return (int)value;
+        }
+
+        /// <summary>
         /// 弧度转变为角度 单精度浮点
         /// </summary>
         /// <param name="rad">输入弧度大小</param>

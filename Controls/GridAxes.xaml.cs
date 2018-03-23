@@ -37,7 +37,7 @@ namespace TeachingPlatformApp.Controls
             set => _yAxesInternal = value;
         }
 
-        public int LineStrokeThickness { get; set; } = 2;
+        public double LineStrokeThickness { get; set; } = 2;
 
         public double DrawTop { get; set; }
 
@@ -54,15 +54,16 @@ namespace TeachingPlatformApp.Controls
             RenewBuildAxes(_drawPara.AxesWidth, _drawPara.AxesHeight, true);
         }
 
-        private void DrawParaInit()
+        public void DrawParaInit()
         {
-            _drawPara = JsonFileConfig.ReadFromFile().GridAxesDrawPara;
+            _drawPara = JsonFileConfig.Instance.GridAxesDrawPara;
             _columnNum = _drawPara.ColumnNumber;
             _rowNum = _drawPara.RowNumber;
             DrawLeft = _drawPara.DrawLeft;
             DrawTop = _drawPara.DrawTop;
             XAxesInternal = _drawPara.XAxesInternal;
             YAxesInternal = _drawPara.YAxesInternal;
+            LineStrokeThickness = _drawPara.AxexLineWidth;
         }
 
         private bool JudgeLeftTopInRange(double left, double top, double width, double height)
@@ -108,7 +109,8 @@ namespace TeachingPlatformApp.Controls
                             StartPoint = new Point(left, 0 + DrawTop),
                             EndPoint = new Point(left, height
                                 + _drawPara.DrawDown)
-                        }
+                        },
+                        //Width = AxexLineWidth
                     };
                     chartCanvas.Children.Add(path);
                 }
@@ -138,7 +140,8 @@ namespace TeachingPlatformApp.Controls
                         {
                             StartPoint = new Point(0 + DrawLeft, top),
                             EndPoint = new Point(width + _drawPara.DrawRight, top)
-                        }
+                        },
+                        //Width = AxexLineWidth
                     };
                     chartCanvas.Children.Add(path);
                 }
@@ -211,6 +214,10 @@ namespace TeachingPlatformApp.Controls
 
         [JsonProperty("helicopterPaddleRotateSpeed")]
         public float HelicopterPaddleRotateSpeed { get; set; } = 4.0f;
+
+        [JsonProperty("axexLineWidth")]
+        public double AxexLineWidth { get; set; } = 3;
+
     }
 
 }
