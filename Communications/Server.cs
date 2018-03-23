@@ -299,6 +299,11 @@ namespace TeachingPlatformApp.Communications
             }
         }
 
+        /// <summary>
+        /// 向第2个720度平台计算机发送字节(异步)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public async Task<int> SendTo720Platform2Async(byte[] data)
         {
             var result = await _server.SendAsync(data, data.Length,
@@ -307,12 +312,20 @@ namespace TeachingPlatformApp.Communications
             return result;
         }
 
+        /// <summary>
+        /// 向第2个720度平台计算机的Unity控制软件发送字节(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
         public void SendToUnity720View2(byte[] bytes)
         {
             _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720Teching2Port));
             _server.Send(bytes, bytes.Length, new IPEndPoint(IpAddress720Platform, _udp720TestConsolePort));
         }
 
+        /// <summary>
+        /// 向第2个720度平台计算机的Wsw控制软件发送字节(同步)
+        /// </summary>
+        /// <param name="bytes"></param>
         public void SendTo720PlatformWsw2(byte[] bytes)
         {
             _server.Send(bytes, bytes.Length, IpEndPoint720Platform2);
