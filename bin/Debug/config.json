@@ -44,15 +44,15 @@
     "drawRight": 60.0,
     "drawLabelTop": 5.0,
     "drawLabelLeft": 12.0,
-    "labelFontSize": 13,
+    "labelFontSize": 12,
     "labelAxesInterval": 10,
     "labelAxesInit": 0,
-    "xAxesInternal": 56.15999999999903,
-    "yAxesInternal": 56.15999999999903,
+    "xAxesInternal": 22.559999999998944,
+    "yAxesInternal": 22.559999999998944,
     "mouseDoubleClickShowPointX": 50.0,
     "mouseDoubleClickShowPointY": 30.0,
     "helicopterPaddleRotateSpeed": 6.0,
-    "axexLineWidth": 1.1231999999999807
+    "axexLineWidth": 0.4511999999999789
   },
   "wswData": {
     "flighterInitInfo": {
@@ -93,12 +93,12 @@
     "pointShowDigit": 1,
     "mapUiRefreshMs": 50,
     "drawTrailPointNumUp": 5000,
-    "setPointsFontSize": 13.0,
-    "setPointsEllipseRadius": 3.3695999999999415,
+    "setPointsFontSize": 12.0,
+    "setPointsEllipseRadius": 1.3535999999999366,
     "locationStringFontSize": 24.0,
-    "setPointsLineWidth": 1.6847999999999708,
+    "setPointsLineWidth": 0.67679999999996832,
     "unRecieveduUdpDataShow": 0.0,
-    "wswModelScaleFactor": 0.56159999999999033
+    "wswModelScaleFactor": 0.22559999999998945
   },
   "myHelicopterInfo": {
     "initMyPointX": 15.0,

@@ -7,6 +7,7 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 
 using TeachingPlatformApp.Utils;
+using System;
 
 namespace TeachingPlatformApp.Controls
 {
@@ -47,6 +48,10 @@ namespace TeachingPlatformApp.Controls
 
         public double DrawDeltaLeft { get; set; } = 0;
 
+        public const double MaxInterval = 200;
+
+        public const double MinInterval = 24;
+
         public GridAxes()
         {
             InitializeComponent();
@@ -57,6 +62,8 @@ namespace TeachingPlatformApp.Controls
         public void DrawParaInit()
         {
             _drawPara = JsonFileConfig.Instance.GridAxesDrawPara;
+            _drawPara.XAxesInternal = NumberUtil.Clamp(_drawPara.XAxesInternal, MinInterval, MaxInterval);
+            _drawPara.YAxesInternal = NumberUtil.Clamp(_drawPara.YAxesInternal, MinInterval, MaxInterval);
             _columnNum = _drawPara.ColumnNumber;
             _rowNum = _drawPara.RowNumber;
             DrawLeft = _drawPara.DrawLeft;
