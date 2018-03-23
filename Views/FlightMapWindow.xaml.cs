@@ -219,17 +219,21 @@ namespace TeachingPlatformApp.Views
                     _canvasTrailMissile.ClearPoint();
                     config.XAxesInternal += delta * _scaleFactor;
                     config.YAxesInternal += delta * _scaleFactor;
-                    var scaleFactor = config.XAxesInternal;
-                    config.LabelFontSize = NumberUtil.Clamp(scaleFactor * 0.24, 12, 30);
+                    var scaleHundred = config.XAxesInternal;
+                    config.LabelFontSize = NumberUtil.Clamp(scaleHundred * 0.24, 12, 30);
                     config.AxexLineWidth = config.XAxesInternal * 0.02;
                     ChangeWswModelScale(config.XAxesInternal / 100.0);
                     ConverterPara.Init();
                     gridAxes.DrawParaInit();
                     gridAxes.RenewBuildAxes(this.Width, this.Height, true);
                     _viewModel.RefreshSetPoints();
-                    _viewModel.SetPointsLineWidth = config.XAxesInternal * 0.03;
-                    _viewModel.SetPointsFontSize = NumberUtil.Clamp(scaleFactor * 0.24, 12, 30);
-                    _viewModel.SetPointsEllipseRadius = scaleFactor * 0.06;
+                    JsonFileConfig.Instance.DataShowConfig.SetPointsLineWidth
+                        = scaleHundred * 0.03;
+                    JsonFileConfig.Instance.DataShowConfig.SetPointsFontSize
+                        = NumberUtil.Clamp(scaleHundred * 0.24, 12, 30);
+                    JsonFileConfig.Instance.DataShowConfig.SetPointsEllipseRadius
+                        = scaleHundred * 0.06;
+                    _viewModel.SetDrawPara();
                 }
             }
 

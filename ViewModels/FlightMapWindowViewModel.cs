@@ -193,11 +193,17 @@ namespace TeachingPlatformApp.ViewModels
             {
                 false,false,false,false,false,false,false
             };
-            SetPointsFontSize = _config.DataShowConfig.SetPointsFontSize;
-            LocationStringFontSize = _config.DataShowConfig.LocationStringFontSize;
-            SetPointsLineWidth = _config.DataShowConfig.SetPointsLineWidth;
+            SetDrawPara();
             BuildWswModelLocationString();
             InfoRenewInit();
+        }
+
+        public void SetDrawPara()
+        {
+            SetPointsEllipseRadius = JsonFileConfig.Instance.DataShowConfig.SetPointsEllipseRadius;
+            SetPointsFontSize = JsonFileConfig.Instance.DataShowConfig.SetPointsFontSize;
+            LocationStringFontSize = JsonFileConfig.Instance.DataShowConfig.LocationStringFontSize;
+            SetPointsLineWidth = JsonFileConfig.Instance.DataShowConfig.SetPointsLineWidth;
         }
 
         /// <summary>
