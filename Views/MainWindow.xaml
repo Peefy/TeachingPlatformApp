@@ -13,9 +13,9 @@
     xmlns:ui="clr-namespace:TeachingPlatformApp.UIModels"
     x:Name="Window"
     Title="{Binding Title}"
-    Width="920"
+    Width="1000"
     Height="700"
-    MinWidth="920"
+    MinWidth="1000"
     MinHeight="700"
     BorderThickness="1"
     GlowBrush="Black"
@@ -23,6 +23,7 @@
     Keyboard.KeyUp="Window_KeyUp"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
+    SizeChanged="Window_SizeChanged"
     WindowTransitionsEnabled="False">
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>
@@ -361,6 +362,16 @@
                     Background="Purple"
                     Command="{Binding OpenSpeechWindowCommand}"
                     Content="语 音 助 手"
+                    FontSize="24"
+                    Foreground="White"
+                    Visibility="{Binding ElementName=btnShow, Path=Visibility}" />
+                <Button
+                    Height="42"
+                    Margin="13,5,13,0"
+                    VerticalAlignment="Bottom"
+                    Background="DodgerBlue"
+                    Command="{Binding OpenOptionWindowCommand}"
+                    Content="参 数 设 置"
                     FontSize="24"
                     Foreground="White"
                     Visibility="{Binding ElementName=btnShow, Path=Visibility}" />

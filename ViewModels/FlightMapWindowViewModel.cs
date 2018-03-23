@@ -66,8 +66,8 @@ namespace TeachingPlatformApp.ViewModels
         /// <summary>
         /// 第2个战斗机
         /// </summary>
-        private FlighterModel _flighter2;
-        public FlighterModel Flighter2
+        private Flighter2Model _flighter2;
+        public Flighter2Model Flighter2
         {
             get => _flighter2;
             set => SetProperty(ref _flighter2, value);
@@ -182,7 +182,7 @@ namespace TeachingPlatformApp.ViewModels
             _flightTaskIndex = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentIndex;
             _flightTaskName = Ioc.Get<ITranslateData>().TranslateInfo.FlightExperimentName;
             Flighter = new FlighterModel();
-            Flighter2 = new FlighterModel();
+            Flighter2 = new Flighter2Model();
             Helicopter = new HelicopterModel();
             Missile = new MissileModel();
             Title = _config.StringResource.FlightMapTitle;
@@ -353,6 +353,8 @@ namespace TeachingPlatformApp.ViewModels
                             Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
                             Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
                                  $"  {Flighter.MyMapInfoToString()};";
+                            Flighter2.LocationString = $"{Flighter2.Name} " +
+                                 $"  {Flighter2.MyMapInfoToString()};";
                             Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
                                   $"  {Helicopter.MyMapInfoToString()};";
 
@@ -425,6 +427,9 @@ namespace TeachingPlatformApp.ViewModels
                             Flighter.Angle += 1;
                             if (Flighter.Angle >= 360)
                                 Flighter.Angle = 0;
+                            Flighter2.Angle += 1;
+                            if (Flighter2.Angle >= 360)
+                                Flighter2.Angle = 0;
                             var j = NumberUtil.Deg2Rad(i);
                             if(i > 500)
                             {
@@ -433,9 +438,12 @@ namespace TeachingPlatformApp.ViewModels
                                 break;
                             }
                             Flighter.MyMapPosition = new Point(point1.X + 10 * Math.Cos(j), point1.Y + 10 * Math.Sin(j));
+                            Flighter2.MyMapPosition = new Point(point1.X + 10 + 10 * Math.Cos(j), point1.Y + 10 + 10 * Math.Sin(j));
                             Helicopter.MyMapPosition = new Point(point2.X + 10 * Math.Cos(j), point2.Y + 10 * Math.Sin(j));
                             Flighter.LocationString = $"{Flighter.Name}" +
                                  $"  {Flighter.MyMapInfoToString()};";
+                            Flighter2.LocationString = $"{Flighter2.Name}" +
+                                 $"  {Flighter2.MyMapInfoToString()};";
                             Helicopter.LocationString = $"{Helicopter.Name}" +
                                   $"  {Helicopter.MyMapInfoToString()};";
 
@@ -597,6 +605,8 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     Flighter.LocationString = $"{Flighter.Name}是否偏离航线：{Flighter.RouteState.ToLeftRightString()}" +
                             $"  {Flighter.WswModelInfoToString()};";
+                    Flighter2.LocationString = $"{Flighter2.Name}是否偏离航线：{Flighter2.RouteState.ToLeftRightString()}" +
+                            $"  {Flighter2.WswModelInfoToString()};";
                     Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
                           $"  {Helicopter.WswModelInfoToString()};";
                 }
@@ -604,13 +614,18 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     Flighter.LocationString = $"{Flighter.Name}" +
                             $"  {Flighter.WswModelInfoToString()};";
+                    Flighter2.LocationString = $"{Flighter2.Name}是否偏离航线：{Flighter2.RouteState.ToLeftRightString()}" +
+                            $"  {Flighter2.WswModelInfoToString()};";
                     Helicopter.LocationString = $"{Helicopter.Name}" +
                           $"  {Helicopter.WswModelInfoToString()};";
                 }
                 Helicopter.Angle = (float)planeInfo.Helicopter.Yaw;
+                Helicopter.MyMapPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
                 Flighter.Angle = (float)planeInfo.Flighter.Yaw;
                 Flighter.MyMapPosition = new Point(planeInfo.Flighter.X, planeInfo.Flighter.Y);
-                Helicopter.MyMapPosition = new Point(planeInfo.Helicopter.X, planeInfo.Helicopter.Y);
+                Flighter2.Angle = (float)planeInfo.Flighter2.Yaw;
+                Flighter2.MyMapPosition = new Point(planeInfo.Flighter2.X, planeInfo.Flighter2.Y);
+
             }
         }
 

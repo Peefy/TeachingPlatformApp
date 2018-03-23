@@ -3,7 +3,8 @@
     "windowTitle": "教研台界面",
     "flightMapTitle": "地图界面",
     "helicopterName": "直升机",
-    "flighterName": "战斗机",
+    "flighterName": "战斗机1",
+    "flighter2Name": "战斗机2",
     "missileName": "导弹",
     "flightExperimentNames": [
       "起落航线",
@@ -117,6 +118,16 @@
     "initYaw": 206.435,
     "yawSign": false
   },
+  "myFlighert2Info": {
+    "initMyPointX": 0.0,
+    "initMyPointY": 0.0,
+    "initMyPointZ": 50.0,
+    "pointScaleFactorX": -0.01,
+    "pointScaleFactorY": 0.01,
+    "pointScaleFactorZ": 0.01,
+    "initYaw": 206.435,
+    "yawSign": false
+  },
   "myMissileInfo": {
     "initMyPointX": 30.0,
     "initMyPointY": 30.0,
@@ -143,7 +154,7 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 0,
+    "isAutoFollowing": 3,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": 0,
@@ -160,5 +171,8 @@
       "    6.仪表飞行实验：飞行学员驾驶飞行模拟器在夜景下只通过仪表显示的内容并保持预设的坡度且根据预设的航路点进行飞行。考核指标是是否按照既定的航线和保持坡度进行飞行。通过教员台界面可以设置保持的坡度大小以及航路点坐标，且在教员台界面上可以实时显示飞机的滚转角和飞机当前飞行的坐标点。"
     ],
     "isJudgeValid ": true
+  },
+  "windowUiConfig": {
+    "isInitShowOn": true
   }
 }

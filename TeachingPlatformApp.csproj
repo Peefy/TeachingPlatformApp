@@ -121,6 +121,7 @@
     <Compile Include="Controls\Flighter.xaml.cs">
       <DependentUpon>Flighter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Flighter2.cs" />
     <Compile Include="Controls\GridAxes.xaml.cs">
       <DependentUpon>GridAxes.xaml</DependentUpon>
     </Compile>
@@ -143,6 +144,7 @@
     <Compile Include="MemoryShare\CLMemory.cs" />
     <Compile Include="MemoryShare\CLStartCamera.cs" />
     <Compile Include="MemoryShare\ZyShareMem.cs" />
+    <Compile Include="Models\Flighter2Model.cs" />
     <Compile Include="Models\FlighterModel.cs" />
     <Compile Include="Models\HelicopterModel.cs" />
     <Compile Include="Models\MissileModel.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Utils\JsonModels\DataShowConfig.cs" />
     <Compile Include="Utils\JsonModels\FlightExperimentConfig.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
+    <Compile Include="Utils\JsonModels\WindowUiConfig.cs" />
     <Compile Include="Utils\MyConsole.cs" />
     <Compile Include="Utils\NumberUtil.cs" />
     <Compile Include="Utils\JsonModels\SpeechConfig.cs" />

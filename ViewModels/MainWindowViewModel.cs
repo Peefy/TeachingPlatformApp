@@ -209,7 +209,12 @@ namespace TeachingPlatformApp.ViewModels
         /// <summary>
         /// 打开语音窗口
         /// </summary>
-        public DelegateCommand OpenSpeechWindowCommand {get;set;}
+        public DelegateCommand OpenSpeechWindowCommand { get; set; }
+
+        /// <summary>
+        /// 打开参数设置窗口
+        /// </summary>
+        public DelegateCommand OpenOptionWindowCommand { get; set; }
 
         /// <summary>
         /// test Command
@@ -489,6 +494,11 @@ namespace TeachingPlatformApp.ViewModels
             {
                 new SpeechWindow().Show();
             });
+            //打开参数设置界面
+            OpenOptionWindowCommand = new DelegateCommand(() =>
+            {
+                new OptionWindow().Show();
+            });
             //测试按钮
             TestCommand = new DelegateCommand(() =>
             {
@@ -572,6 +582,10 @@ namespace TeachingPlatformApp.ViewModels
                 foreach (var flight in FlightExperiments)
                 {
                     UdpServer.TranslateInfo.Flighter2 = angleWithLocation;
+                    flight.Roll2.Value = (float)angleWithLocation.Roll;
+                    flight.Pitch2.Value = (float)angleWithLocation.Pitch;
+                    flight.Yaw2.Value = (float)angleWithLocation.Yaw;
+                    flight.Flighter2NowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
             else if(ip.StartsWith(config.ComConfig.IpGunBarrel) == true)

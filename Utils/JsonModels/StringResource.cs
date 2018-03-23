@@ -29,7 +29,13 @@ namespace TeachingPlatformApp.Utils.JsonModels
         /// 战斗机名称
         /// </summary>
         [JsonProperty("flighterName")]
-        public string FlighterName { get; set; } = "战斗机";
+        public string FlighterName { get; set; } = "战斗机1";
+
+        /// <summary>
+        /// 战斗机名称
+        /// </summary>
+        [JsonProperty("flighter2Name")]
+        public string Flighter2Name { get; set; } = "战斗机2";
 
         /// <summary>
         /// 导弹名称

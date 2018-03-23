@@ -35,9 +35,20 @@ namespace TeachingPlatformApp.Views
         public MainWindow()
         {
             InitializeComponent();
+            UIInit();
             _viewModel = new MainWindowViewModel();
             // 绑定ViewModel
             this.DataContext = _viewModel;
+            
+        }
+
+        /// <summary>
+        /// UI 初始化
+        /// </summary>
+        private void UIInit()
+        {
+            btnShow.Visibility = JsonFileConfig.Instance.WindowUiConfig.IsInitShowOn == true ?
+                Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>
@@ -159,6 +170,14 @@ namespace TeachingPlatformApp.Views
         {
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
                 _isCtrlKeyDown = false;
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Height <= 850)
+                btnShow.Visibility = Visibility.Collapsed;
+            else
+                btnShow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -24,6 +24,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
@@ -54,6 +55,26 @@
         </StackPanel>
         <StackPanel
             Grid.Row="2"
+            Margin="1"
+            Orientation="Horizontal">
+            <myctrls:Flighter2 Margin="25,22,13,0">
+                <myctrls:Flighter2.RenderTransform>
+                    <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
+                </myctrls:Flighter2.RenderTransform>
+            </myctrls:Flighter2>
+            <Label Content="{Binding Flighter2Name}" />
+            <Label Content=":" />
+            <Label Content="坐标:" />
+            <Label Content="{Binding Flighter2NowLocation, Converter={StaticResource PointToStringConverter}}" />
+            <Label Content="滚转角:" />
+            <Label Content="{Binding Roll2.Value}" />
+            <Label Content="俯仰角:" />
+            <Label Content="{Binding Pitch2.Value}" />
+            <Label Content="偏航角:" />
+            <Label Content="{Binding Yaw2.Value}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="3"
             Margin="1"
             Orientation="Horizontal">
             <myctrls:Helicopter Margin="25,20,13,0">

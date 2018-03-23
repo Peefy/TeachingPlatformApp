@@ -26,6 +26,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
@@ -45,18 +46,37 @@
             </myctrls:Flighter>
             <Label Content="{Binding FlighterName}" />
             <Label Content=":" />
-            <Label Content="经纬:" />
-            <Label Content="N39.82,E115.7" />
+            <Label Content="坐标:" />
+            <Label Content="{Binding NowLocation, Converter={StaticResource PointToStringConverter}}" />
             <Label Content="滚转角:" />
-            <Label Content="1.2" />
+            <Label Content="{Binding Roll.Value}" />
             <Label Content="俯仰角:" />
-            <Label Content="2.1" />
+            <Label Content="{Binding Pitch.Value}" />
             <Label Content="偏航角:" />
-            <Label Content="176.23" />
-            <Label Content="高度: 671.2m" />
+            <Label Content="{Binding Yaw.Value}" />
         </StackPanel>
         <StackPanel
             Grid.Row="2"
+            Margin="1"
+            Orientation="Horizontal">
+            <myctrls:Flighter2 Margin="25,22,13,0">
+                <myctrls:Flighter2.RenderTransform>
+                    <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
+                </myctrls:Flighter2.RenderTransform>
+            </myctrls:Flighter2>
+            <Label Content="{Binding Flighter2Name}" />
+            <Label Content=":" />
+            <Label Content="坐标:" />
+            <Label Content="{Binding Flighter2NowLocation, Converter={StaticResource PointToStringConverter}}" />
+            <Label Content="滚转角:" />
+            <Label Content="{Binding Roll2.Value}" />
+            <Label Content="俯仰角:" />
+            <Label Content="{Binding Pitch2.Value}" />
+            <Label Content="偏航角:" />
+            <Label Content="{Binding Yaw2.Value}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="3"
             Margin="1"
             Orientation="Horizontal">
             <myctrls:Helicopter Margin="25,20,13,0">
@@ -66,18 +86,17 @@
             </myctrls:Helicopter>
             <Label Content="{Binding HelicopterName}" />
             <Label Content=":" />
-            <Label Content="经纬:" />
-            <Label Content="N40.14,E116.4" />
+            <Label Content="坐标:" />
+            <Label Content="{Binding SixPlatformNowLocation, Converter={StaticResource PointToStringConverter}}" />
             <Label Content="滚转角:" />
-            <Label Content="6.7" />
+            <Label Content="{Binding SixPlatformRoll.Value}" />
             <Label Content="俯仰角:" />
-            <Label Content="34.2" />
+            <Label Content="{Binding SixPlatformPitch.Value}" />
             <Label Content="偏航角:" />
-            <Label Content="-123.2" />
-            <Label Content="高度: 714.5m" />
+            <Label Content="{Binding SixPlatformYaw.Value}" />
         </StackPanel>
         <StackPanel
-            Grid.Row="3"
+            Grid.Row="4"
             Margin="1"
             Orientation="Horizontal">
             <Label Content="飞行环境-" />

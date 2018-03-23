@@ -21,12 +21,14 @@ namespace TeachingPlatformApp.Models
     {
         string _helicopterName = "";
         string _flighterName = "";
+        string _flighter2Name = "";
         string _name = "";
         int _index = 0;
         bool _isStart;
         bool _isStop;
         bool _isValid;
         Point _nowLocation;
+        Point _flighter2NowLocation;
         Point _sixPlatformLocation;
 
         AngleValidatableObject _720pitch;
@@ -51,6 +53,12 @@ namespace TeachingPlatformApp.Models
         {
             get => _flighterName;
             set => SetProperty(ref _flighterName, value);
+        }
+
+        public string Flighter2Name
+        {
+            get => _flighter2Name;
+            set => SetProperty(ref _flighter2Name, value);
         }
 
         public string Name
@@ -149,6 +157,12 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _nowLocation, value);
         }
 
+        public Point Flighter2NowLocation
+        {
+            get => _flighter2NowLocation;
+            set => SetProperty(ref _flighter2NowLocation, value);
+        }
+
         public Point SixPlatformNowLocation
         {
             get => _sixPlatformLocation;
@@ -214,6 +228,7 @@ namespace TeachingPlatformApp.Models
             unRecieveduUdpDataShow = (float)Math.Round(unRecieveduUdpDataShow, 
                 JsonFileConfig.Instance.DataShowConfig.AngleShowDigit);
             _nowLocation = new Point(unRecieveduUdpDataShow, unRecieveduUdpDataShow);
+            _flighter2NowLocation = new Point(unRecieveduUdpDataShow, unRecieveduUdpDataShow);
             _sixPlatformLocation = new Point(unRecieveduUdpDataShow, unRecieveduUdpDataShow);
             _720roll = new AngleValidatableObject(unRecieveduUdpDataShow);
             _720yaw = new AngleValidatableObject(unRecieveduUdpDataShow);
@@ -226,6 +241,7 @@ namespace TeachingPlatformApp.Models
             _sixPlatformPitch = new AngleValidatableObject(unRecieveduUdpDataShow);
             _speed = new ValidatableObject<float>();
             _flighterName = resource.FlighterName;
+            _flighter2Name = resource.Flighter2Name;
             _helicopterName = resource.HelicopterName;
         }
 

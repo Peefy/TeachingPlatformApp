@@ -31,15 +31,20 @@ namespace TeachingPlatformApp.Views
         SynchronizationContext _ds;
         Grid _girdWswModel;
         CanvasTrail _canvasTrailFlighter;
+        CanvasTrail _canvasTrailFlighter2;
         CanvasTrail _canvasTrailHelicopter;
         CanvasTrail _canvasTrailMissile;
 
         int _canvasTrailFlighterIndex = 0;
-        int _canvasTrailHelicopterIndex = 1;
-        int _canvasTrailMissileIndex = 2;
-        int _helicopterIndex = 3;
-        //int _flighterIndex = 4;
-        //int _missileIndex = 5;
+        int _canvasTrailFlighter2Index = 1;
+        int _canvasTrailHelicopterIndex = 2;
+        int _canvasTrailMissileIndex = 3;
+        int _helicopterIndex = 4;
+        int _flighterIndex = 5;
+        int _flighter2Index = 6;
+        int _missileIndex = 7;
+
+        int _wswModelCount = 3;
 
         bool _enableScale = false;
         bool _enableDrag = false;
@@ -67,6 +72,7 @@ namespace TeachingPlatformApp.Views
             _ds = new DispatcherSynchronizationContext();
             _girdWswModel = gridAxes.Children[2] as Grid;
             _canvasTrailFlighter = _girdWswModel.Children[_canvasTrailFlighterIndex] as CanvasTrail;
+            _canvasTrailFlighter2 = _girdWswModel.Children[_canvasTrailFlighter2Index] as CanvasTrail;
             _canvasTrailHelicopter = _girdWswModel.Children[_canvasTrailHelicopterIndex] as CanvasTrail;
             _canvasTrailMissile = _girdWswModel.Children[_canvasTrailMissileIndex] as CanvasTrail;
             (_girdWswModel.Children[_helicopterIndex] as Helicopter).BuildPaddleRotateTimer();
@@ -147,6 +153,7 @@ namespace TeachingPlatformApp.Views
                 _dip.Invoke(new Action(() =>
                 {                  
                     _canvasTrailFlighter.AddPoint(_viewModel.Flighter.MyMapPosition);
+                    _canvasTrailFlighter2.AddPoint(_viewModel.Flighter2.MyMapPosition);
                     _canvasTrailHelicopter.AddPoint(_viewModel.Helicopter.MyMapPosition);
                     //_canvasTrailMissile.AddPoint(_viewModel.Missile.MyMapPosition);
 
@@ -172,6 +179,10 @@ namespace TeachingPlatformApp.Views
                     if (isAutoFollowing == 2)
                     {
                         SetMapDrawDeltaLeftTop(_viewModel.Helicopter.MyMapPosition);
+                    }
+                    if (isAutoFollowing == 3)
+                    {
+                        SetMapDrawDeltaLeftTop(_viewModel.Flighter2.MyMapPosition);
                     }
                 }));
             }
@@ -218,7 +229,7 @@ namespace TeachingPlatformApp.Views
             }
             if(e.Key == Key.A)
             {
-                if (++JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing > 2)
+                if (++JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing > _wswModelCount)
                     JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing = 0;
             }
             if (e.Key == Key.Escape)

@@ -78,6 +78,12 @@ namespace TeachingPlatformApp.Utils
         public WswModelInfo MyFlighterInfo { get; set; }
 
         /// <summary>
+        /// 我的战斗机 配置
+        /// </summary>
+        [JsonProperty("myFlighert2Info")]
+        public WswModelInfo MyFlighter2Info { get; set; }
+
+        /// <summary>
         /// 我的导弹 配置
         /// </summary>
         [JsonProperty("myMissileInfo")]
@@ -100,6 +106,12 @@ namespace TeachingPlatformApp.Utils
         /// </summary>
         [JsonProperty("flightExperimentConfig")]
         public FlightExperimentConfig FlightExperimentConfig { get;set;}
+
+        /// <summary>
+        /// 窗体UI 配置
+        /// </summary>
+        [JsonProperty("windowUiConfig")]
+        public WindowUiConfig WindowUiConfig { get; set; }
 
         /// <summary>
         /// 配置写入文件
@@ -169,6 +181,17 @@ namespace TeachingPlatformApp.Utils
                 InitYaw = 206.435f,
                 YawSign = false,
             };
+            this.MyFlighter2Info = new WswModelInfo()
+            {
+                InitMyPointX = 0,
+                InitMyPointY = 0,
+                InitMyPointZ = 50,
+                PointScaleFactorX = -0.01f,
+                PointScaleFactorY = 0.01f,
+                PointScaleFactorZ = 0.01f,
+                InitYaw = 206.435f,
+                YawSign = false,
+            };
             this.MyMissileInfo = new WswModelInfo()
             {
                 InitMyPointX = 30,
@@ -185,6 +208,7 @@ namespace TeachingPlatformApp.Utils
             this.SpeechConfig = new SpeechConfig();
             this.TestTrailRouteConfig = new TestTrailRouteConfig();
             this.FlightExperimentConfig = new FlightExperimentConfig();
+            this.WindowUiConfig = new WindowUiConfig();
         }
 
         /// <summary>

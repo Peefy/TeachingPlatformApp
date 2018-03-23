@@ -9,7 +9,7 @@
     d:DesignWidth="1"
     mc:Ignorable="d">
     <Grid>
-        <Canvas Margin="0,-26,0,0">
+        <Canvas x:Name="canvas" Margin="0,-26,0,0">
             <Path
                 Fill="DodgerBlue"
                 Stroke="DodgerBlue"

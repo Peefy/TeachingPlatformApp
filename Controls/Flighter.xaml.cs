@@ -20,10 +20,23 @@ namespace TeachingPlatformApp.Controls
     /// </summary>
     public partial class Flighter : UserControl
     {
-
         public Flighter()
         {
             InitializeComponent();
         }
+
+        public void UpdateColor(Color color)
+        {
+            foreach(var children in canvas.Children)
+            {
+                if(children is Path path)
+                {
+                    path.Fill = new SolidColorBrush(color);
+                    path.Stroke = new SolidColorBrush(color);
+                }
+            }
+        }
+
     }
+
 }

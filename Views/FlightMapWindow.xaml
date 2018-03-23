@@ -52,6 +52,7 @@
                 <myctrls:CanvasTrail />
                 <myctrls:CanvasTrail />
                 <myctrls:CanvasTrail />
+                <myctrls:CanvasTrail />
                 <myctrls:Helicopter
                     Width="1"
                     Height="1"
@@ -78,6 +79,19 @@
                         </TransformGroup>
                     </myctrls:Flighter.RenderTransform>
                 </myctrls:Flighter>
+                <myctrls:Flighter2
+                    Width="1"
+                    Height="1"
+                    Margin="{Binding Flighter2.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Panel.ZIndex="0">
+                    <myctrls:Flighter.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="{Binding Flighter2.Angle}" />
+                        </TransformGroup>
+                    </myctrls:Flighter.RenderTransform>
+                </myctrls:Flighter2>
                 <myctrls:Missile
                     Width="1"
                     Height="1"
@@ -259,14 +273,14 @@
             Grid.Row="2"
             Margin="1"
             Orientation="Horizontal">
-            <myctrls:Missile Margin="25,15,13,0">
-                <myctrls:Missile.RenderTransform>
-                    <ScaleTransform ScaleX="0.9" ScaleY="0.7" />
-                </myctrls:Missile.RenderTransform>
-            </myctrls:Missile>
+            <myctrls:Flighter2 Margin="25,16,13,0">
+                <myctrls:Flighter2.RenderTransform>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
+                </myctrls:Flighter2.RenderTransform>
+            </myctrls:Flighter2>
             <Label
                 VerticalAlignment="Center"
-                Content="{Binding Missile.LocationString}"
+                Content="{Binding Flighter2.LocationString}"
                 FontFamily="Times New Roman"
                 FontSize="{Binding LocationStringFontSize}" />
         </StackPanel>

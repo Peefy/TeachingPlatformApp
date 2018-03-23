@@ -21,8 +21,7 @@ namespace TeachingPlatformApp.UIModels
     {
         public AirlineFlightView()
         {
-            InitializeComponent();
-            
+            InitializeComponent();         
         }
     }
 }
