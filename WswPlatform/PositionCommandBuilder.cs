@@ -1,7 +1,7 @@
 ﻿
 using System;
 using System.Net;
-
+using System.Windows;
 using DuGu.NetFramework.Services;
 
 using TeachingPlatformApp.Communications;
@@ -20,19 +20,7 @@ namespace TeachingPlatformApp.WswPlatform
 
         private IPEndPoint KindToIp()
         {
-            var comConfig = JsonFileConfig.Instance.ComConfig;
-            switch(_kind)
-            {
-                case WswModelKind.Flighter:
-                    return new IPEndPoint(IPAddress.Parse(comConfig.Ip720Platform), _port);
-                case WswModelKind.Flighter2:
-                    return new IPEndPoint(IPAddress.Parse(comConfig.Ip720Platform), _port);
-                case WswModelKind.Helicopter:
-                    return new IPEndPoint(IPAddress.Parse(comConfig.IpWswUdpServer), _port);
-                case WswModelKind.Missile:
-                    return new IPEndPoint(IPAddress.Broadcast, _port);
-            }
-            return new IPEndPoint(IPAddress.Broadcast, _port);
+            return new IPEndPoint(WswHelper.WswModelKindToIp(_kind), _port);
         }
 
         private void CommonConstrctor()
@@ -76,6 +64,21 @@ namespace TeachingPlatformApp.WswPlatform
         public PositionCommand Build() => _command;
 
         public byte[] BuildCommandBytes() => StructHelper.StructToBytes(_command);
+
+        public static void SendPositionTo(WswModelKind kind, Point point)
+        {
+            if (kind == WswModelKind.Missile || point == null)
+                return;
+            new PositionCommandBuilder().
+                SetWswModelKind(kind).
+                SetInitialPosition(point.X, point.Y, 0).
+                Send();
+        }
+
+        public static void SendPositionTo(WswModelKind kind, double x, double y)
+        {
+            SendPositionTo(kind, new Point(x, y));
+        }
 
     }
 }
