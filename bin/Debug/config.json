@@ -47,12 +47,12 @@
     "labelFontSize": 12,
     "labelAxesInterval": 10,
     "labelAxesInit": 0,
-    "xAxesInternal": 52.400000000000389,
-    "yAxesInternal": 52.400000000000389,
+    "xAxesInternal": 33.6,
+    "yAxesInternal": 33.6,
     "mouseDoubleClickShowPointX": 50.0,
     "mouseDoubleClickShowPointY": 30.0,
     "helicopterPaddleRotateSpeed": 6.0,
-    "axexLineWidth": 1.0480000000000078
+    "axexLineWidth": 0.672
   },
   "wswData": {
     "flighterInitInfo": {
@@ -94,11 +94,11 @@
     "mapUiRefreshMs": 50,
     "drawTrailPointNumUp": 5000,
     "setPointsFontSize": 12.0,
-    "setPointsEllipseRadius": 3.1440000000000232,
+    "setPointsEllipseRadius": 2.016,
     "locationStringFontSize": 24.0,
-    "setPointsLineWidth": 1.5720000000000116,
+    "setPointsLineWidth": 1.008,
     "unRecieveduUdpDataShow": 0.0,
-    "wswModelScaleFactor": 0.52400000000000391
+    "wswModelScaleFactor": 0.336
   },
   "myHelicopterInfo": {
     "initMyPointX": 15.0,
@@ -156,7 +156,7 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 0,
+    "isAutoFollowing": 1,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": 0,

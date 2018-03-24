@@ -87,6 +87,12 @@ namespace TeachingPlatformApp.Utils.JsonModels
         [JsonProperty("udpClientExtraPort")]
         public int UdpClientExtraPort { get; set; } = 10000;
 
+        /// <summary>
+        /// 设置wsw模型的坐标的Udp端口号
+        /// </summary>
+        [JsonProperty("wswModelPositionUdpPort")]
+        public int WswModelPositionUdpPort { get; set; } = 8634;
+
     }
 
 }

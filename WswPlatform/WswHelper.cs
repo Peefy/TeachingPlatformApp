@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,13 +39,13 @@ namespace TeachingPlatformApp.WswPlatform
         }
 
         /// <summary>
-        /// 将Wsw坐标变换为
+        /// 将Wsw坐标变换为地图坐标
         /// </summary>
         /// <param name="angle"></param>
         /// <param name="wswAirplane"></param>
         /// <param name="digit"></param>
         /// <returns></returns>
-        public static AngleWithLocation DealWswAngleToMyMapData(AngleWithLocation angle,WswModelKind wswAirplane, int digit = 2)
+        public static AngleWithLocation DealWswAngleToMyMapData(AngleWithLocation angle, WswModelKind wswAirplane, int digit = 2)
         {
             var config = JsonFileConfig.Instance;
             var wswInitData = config.WswData;
@@ -80,7 +81,17 @@ namespace TeachingPlatformApp.WswPlatform
             }
             if(wswAirplane == WswModelKind.Flighter2)
             {
-
+                var myFlighter2Info = config.MyFlighter2Info;
+                var yawSign = (myFlighter2Info.YawSign == true) ? 1 : -1;
+                angleNew.X = (angle.X - wswInitData.Flighter2InitInfo.X) *
+                    myFlighter2Info.PointScaleFactorX + myFlighter2Info.InitMyPointX;
+                angleNew.Y = (angle.Y - wswInitData.Flighter2InitInfo.Y) *
+                    myFlighter2Info.PointScaleFactorY + myFlighter2Info.InitMyPointY;
+                angleNew.Z = (angle.Z - wswInitData.Flighter2InitInfo.Z) *
+                    myFlighter2Info.PointScaleFactorZ + myFlighter2Info.InitMyPointZ;
+                angleNew.Roll = angle.Roll;
+                angleNew.Pitch = angle.Pitch;
+                angleNew.Yaw = angle.Yaw * yawSign - myFlighter2Info.InitYaw;
             }
             if(wswAirplane == WswModelKind.Missile)
             {
@@ -95,6 +106,61 @@ namespace TeachingPlatformApp.WswPlatform
 
             angleNew.Yaw = NumberUtil.PutAngleIn(angleNew.Yaw);
 
+            return angleNew;
+        }
+
+        /// <summary>
+        /// 将地图坐标变换为Wsw坐标
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="wswAirplane"></param>
+        /// <param name="digit"></param>
+        /// <returns></returns>
+        public static AngleWithLocation DealMyMapDataToWswAngle(double x, double y, double z, WswModelKind wswAirplane, int digit = 2)
+        {
+            var config = JsonFileConfig.Instance;
+            var wswInitData = config.WswData;
+            var angleNew = new AngleWithLocation();
+            if (wswAirplane == WswModelKind.Flighter)
+            {
+                var myInfo = config.MyFlighterInfo;
+                var wswInfo = wswInitData.FlighterInitInfo;
+                angleNew.X = (x - myInfo.InitMyPointX) / myInfo.PointScaleFactorX
+                    + wswInfo.X;
+                angleNew.Y = (y - myInfo.InitMyPointY) / myInfo.PointScaleFactorY
+                    + wswInfo.Y;
+                angleNew.Z = (z - myInfo.InitMyPointZ) / myInfo.PointScaleFactorZ
+                    + wswInfo.Z;
+            };
+            if (wswAirplane == WswModelKind.Helicopter)
+            {
+                var myInfo = config.MyHelicopterInfo;
+                var wswInfo = wswInitData.HelicopterInitInfo;
+                angleNew.X = (x - myInfo.InitMyPointX) / myInfo.PointScaleFactorX
+                    + wswInfo.X;
+                angleNew.Y = (y - myInfo.InitMyPointY) / myInfo.PointScaleFactorY
+                    + wswInfo.Y;
+                angleNew.Z = (z - myInfo.InitMyPointZ) / myInfo.PointScaleFactorZ
+                    + wswInfo.Z;
+            }
+            if (wswAirplane == WswModelKind.Flighter2)
+            {
+                var myInfo = config.MyFlighter2Info;
+                var wswInfo = wswInitData.Flighter2InitInfo;
+                angleNew.X = (x - myInfo.InitMyPointX) / myInfo.PointScaleFactorX
+                    + wswInfo.X;
+                angleNew.Y = (y - myInfo.InitMyPointY) / myInfo.PointScaleFactorY
+                    + wswInfo.Y;
+                angleNew.Z = (z - myInfo.InitMyPointZ) / myInfo.PointScaleFactorZ
+                    + wswInfo.Z;
+            }
+            if (wswAirplane == WswModelKind.Missile)
+            {
+
+            }
+            angleNew.X = Math.Round(angleNew.X, digit);
+            angleNew.Y = Math.Round(angleNew.Y, digit);
+            angleNew.Z = Math.Round(angleNew.Z, digit);
             return angleNew;
         }
 
@@ -120,6 +186,28 @@ namespace TeachingPlatformApp.WswPlatform
                 deltaY = angleWithLocation.Y - config.WswData.HelicopterInitInfo.Y;
             }
             return $"deltaX:{deltaX}; deltaY:{deltaY}";
+        }
+
+        /// <summary>
+        /// 获取Wsw模型对应PC的局域网IP地址
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <returns></returns>
+        public static IPAddress WswModelKindToIp(WswModelKind kind)
+        {
+            var comConfig = JsonFileConfig.Instance.ComConfig;
+            switch (kind)
+            {
+                case WswModelKind.Flighter:
+                    return IPAddress.Parse(comConfig.Ip720Platform);
+                case WswModelKind.Flighter2:
+                    return IPAddress.Parse(comConfig.Ip720Platform2);
+                case WswModelKind.Helicopter:
+                    return IPAddress.Parse(comConfig.IpWswUdpServer);
+                case WswModelKind.Missile:
+                    return null;
+            }
+            return null;
         }
 
     }

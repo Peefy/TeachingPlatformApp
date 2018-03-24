@@ -186,6 +186,7 @@
     <Compile Include="WswPlatform\DataPacketToWsw.cs" />
     <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />
     <Compile Include="WswPlatform\PositionCommand.cs" />
+    <Compile Include="WswPlatform\PositionCommandBuilder.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
     <Compile Include="WswPlatform\WswModelKind.cs" />
