@@ -122,8 +122,8 @@
     "yawSign": false
   },
   "myFlighert2Info": {
-    "initMyPointX": 0.0,
-    "initMyPointY": 0.0,
+    "initMyPointX": 12.0,
+    "initMyPointY": 12.0,
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.03,
     "pointScaleFactorY": 0.03,
@@ -157,7 +157,7 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 1,
+    "isAutoFollowing": 0,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": 0,

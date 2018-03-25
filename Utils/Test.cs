@@ -21,6 +21,8 @@ namespace TeachingPlatformApp.Utils
         public static string[] Run()
         {
 
+            PositionCommandBuilder.SendPositionTo(WswModelKind.Flighter, 20, 20);
+            PositionCommandBuilder.SendPositionTo(WswModelKind.Flighter, 20, 20);
             var FlighterInitInfo =  WswHelper.MathRound(JsonFileConfig.Instance.WswData.FlighterInitInfo, 3);
             var HelicopterInitInfo = WswHelper.MathRound(JsonFileConfig.Instance.WswData.HelicopterInitInfo, 3);
             var vector1 = new Vector(FlighterInitInfo.X / 1000.0f,

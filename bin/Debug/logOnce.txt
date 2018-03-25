@@ -1,19 +1,31 @@
-2018/3/24 17:47:33
+2018/3/25 9:46:18
 
-17:47
+9:46
 0   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
    在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
    在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__33_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 115
 正在中止线程。
 
-17:48
+9:46
 1   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
    在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
    在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__33_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 115
 正在中止线程。
 
-17:48
+9:47
 2   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__33_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 115
+正在中止线程。
+
+9:47
+3   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__33_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 115
+正在中止线程。
+
+9:48
+4   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
    在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
    在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__33_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 115
 正在中止线程。

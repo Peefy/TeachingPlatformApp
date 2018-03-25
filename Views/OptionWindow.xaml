@@ -10,66 +10,70 @@
     Title="参数设置"
     Width="525"
     Height="350"
+    Keyboard.KeyDown="MetroWindow_KeyDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-        <Button
-            Width="75"
-            Margin="357,222,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Click="Button_Click"
-            Content="TEST" />
-        <ComboBox
-            x:Name="wswModelComboBox"
-            Width="120"
-            Margin="83,49,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" SelectionChanged="wswModelComboBox_SelectionChanged" />
-        <Label
+
+        <GroupBox
+            Width="499"
+            Height="68"
             Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="初始坐标设置" />
-        <Label
-            Margin="13,49,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="模型选择" />
-        <ctrls:NumuricTextBlock
-            x:Name="xBlock"
-            Width="75"
-            Height="24"
-            Margin="231,51,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="10"
-            TextWrapping="Wrap" />
-        <ctrls:NumuricTextBlock
-            x:Name="yBlock"
-            Width="70"
-            Height="23"
-            Margin="346,51,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="10"
-            TextWrapping="Wrap" />
-        <Button
-            Width="75"
-            Margin="97,9,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Set" Click="Button_Click_1" />
-        <Label
-            Margin="208,49,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="X" />
-        <Label
-            Margin="317,49,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Y" RenderTransformOrigin="0.588,-0.859" />
+            Header="模型初始坐标设置">
+            <Grid>
+                <ComboBox
+                    x:Name="wswModelComboBox"
+                    Width="120"
+                    Margin="63,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    SelectionChanged="WswModelComboBox_SelectionChanged" />
+                <Label
+                    Margin="0,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="模型选择" />
+                <ctrls:NumuricTextBlock
+                    x:Name="xBlock"
+                    Width="50"
+                    Height="24"
+                    Margin="217,2,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Text="10"
+                    TextWrapping="Wrap" />
+                <ctrls:NumuricTextBlock
+                    x:Name="yBlock"
+                    Width="49"
+                    Height="22"
+                    Margin="303,2,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Text="10"
+                    TextWrapping="Wrap" />
+                <Button
+                    x:Name="btnSetPosition"
+                    Width="75"
+                    Margin="367,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="ButtonSetPositionClick"
+                    Content="设置"
+                    ToolTip="Enter设置初始坐标" />
+                <Label
+                    Margin="194,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="X" />
+                <Label
+                    Margin="281,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="Y" />
+            </Grid>
+        </GroupBox>
     </Grid>
 </Controls:MetroWindow>

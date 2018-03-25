@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using TeachingPlatformApp.Utils.JsonModels;
 using TeachingPlatformApp.Utils;
 
 namespace TeachingPlatformApp.WswPlatform
@@ -121,43 +122,34 @@ namespace TeachingPlatformApp.WswPlatform
             var config = JsonFileConfig.Instance;
             var wswInitData = config.WswData;
             var angleNew = new AngleWithLocation();
+            WswModelInfo myInfo = default;
+            AngleWithLocation wswInfo = default;
             if (wswAirplane == WswModelKind.Flighter)
             {
-                var myInfo = config.MyFlighterInfo;
-                var wswInfo = wswInitData.FlighterInitInfo;
-                angleNew.X = (x - myInfo.InitMyPointX) / myInfo.PointScaleFactorX
-                    + wswInfo.X;
-                angleNew.Y = (y - myInfo.InitMyPointY) / myInfo.PointScaleFactorY
-                    + wswInfo.Y;
-                angleNew.Z = (z - myInfo.InitMyPointZ) / myInfo.PointScaleFactorZ
-                    + wswInfo.Z;
+                myInfo = config.MyFlighterInfo;
+                wswInfo = wswInitData.FlighterInitInfo;
             };
             if (wswAirplane == WswModelKind.Helicopter)
             {
-                var myInfo = config.MyHelicopterInfo;
-                var wswInfo = wswInitData.HelicopterInitInfo;
-                angleNew.X = (x - myInfo.InitMyPointX) / myInfo.PointScaleFactorX
-                    + wswInfo.X;
-                angleNew.Y = (y - myInfo.InitMyPointY) / myInfo.PointScaleFactorY
-                    + wswInfo.Y;
-                angleNew.Z = (z - myInfo.InitMyPointZ) / myInfo.PointScaleFactorZ
-                    + wswInfo.Z;
+                myInfo = config.MyHelicopterInfo;
+                wswInfo = wswInitData.HelicopterInitInfo;
             }
             if (wswAirplane == WswModelKind.Flighter2)
             {
-                var myInfo = config.MyFlighter2Info;
-                var wswInfo = wswInitData.Flighter2InitInfo;
-                angleNew.X = (x - myInfo.InitMyPointX) / myInfo.PointScaleFactorX
-                    + wswInfo.X;
-                angleNew.Y = (y - myInfo.InitMyPointY) / myInfo.PointScaleFactorY
-                    + wswInfo.Y;
-                angleNew.Z = (z - myInfo.InitMyPointZ) / myInfo.PointScaleFactorZ
-                    + wswInfo.Z;
+                myInfo = config.MyFlighter2Info;
+                wswInfo = wswInitData.Flighter2InitInfo;               
             }
             if (wswAirplane == WswModelKind.Missile)
             {
-
+                myInfo = config.MyMissileInfo;
+                wswInfo = wswInitData.MissileInitInfo;
             }
+            angleNew.X = (x - myInfo.InitMyPointX) / myInfo.PointScaleFactorX
+                    + wswInfo.X;
+            angleNew.Y = (y - myInfo.InitMyPointY) / myInfo.PointScaleFactorY
+                + wswInfo.Y;
+            angleNew.Z = (z - myInfo.InitMyPointZ) / myInfo.PointScaleFactorZ
+                + wswInfo.Z;
             angleNew.X = Math.Round(angleNew.X, digit);
             angleNew.Y = Math.Round(angleNew.Y, digit);
             angleNew.Z = Math.Round(angleNew.Z, digit);

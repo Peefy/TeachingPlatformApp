@@ -47,7 +47,7 @@ namespace TeachingPlatformApp.Views
             xBlock.Text = info.InitMyPointX.ToString();
             yBlock.Text = info.InitMyPointY.ToString();
         }
-
+        
         private WswModelInfo KindToinfo(WswModelKind kind)
         {
             WswModelInfo info = default;
@@ -62,13 +62,7 @@ namespace TeachingPlatformApp.Views
             return info;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PositionCommandBuilder.SendPositionTo(WswModelKind.Flighter, 20, 20);
-            PositionCommandBuilder.SendPositionTo(WswModelKind.Flighter, 20, 20);         
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonSetPositionClick(object sender, RoutedEventArgs e)
         {
             var x = Convert.ToSingle(xBlock.Text);
             var y = Convert.ToSingle(yBlock.Text);
@@ -91,11 +85,20 @@ namespace TeachingPlatformApp.Views
             return WswModelKind.Missile;
         }
 
-        private void wswModelComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void WswModelComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var combo = sender as ComboBox;
             var kind = IndexToModelKind(combo.SelectedIndex);
             SetXYBlockPositionText(kind);
+            
+        }
+
+        private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                ButtonSetPositionClick(btnSetPosition, null);
+            }
         }
     }
 }
