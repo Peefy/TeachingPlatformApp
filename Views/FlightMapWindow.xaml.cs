@@ -54,6 +54,8 @@ namespace TeachingPlatformApp.Views
         bool _isCtrlDown = false;
         Point _pressPoint = new Point();
         Point _movePoint = new Point();
+        Point _pressScalePoint = new Point();
+        Point _moveScalePoint = new Point();
 
         Thread _speechThread;
 
@@ -97,6 +99,8 @@ namespace TeachingPlatformApp.Views
                 gridAxes.MouseLeftButtonDown += GridAxes_MouseLeftButtonDown;
                 gridAxes.MouseRightButtonDown += GridAxes_MouseRightButtonDown;
                 gridAxes.MouseRightButtonUp += GridAxes_MouseRightButtonUp;
+                gridAxes.MouseDown += GridAxes_MouseDown;
+                gridAxes.MouseUp += GridAxes_MouseUp;
                 gridAxes.MouseMove += GridAxes_MouseMove;
             }
         }
@@ -205,36 +209,49 @@ namespace TeachingPlatformApp.Views
 
         #region WindowKeyAndMouseWheel
 
+        private void MapChangeScale(double delta, bool isAcc = true)
+        {
+            var config = JsonFileConfig.Instance.GridAxesDrawPara;
+            if (fatherGrid.RenderTransform is ScaleTransform scale)
+            {
+                _canvasTrailFlighter.ClearPoint();
+                _canvasTrailHelicopter.ClearPoint();
+                _canvasTrailFlighter2.ClearPoint();
+                _canvasTrailMissile.ClearPoint();
+                if(isAcc == true)
+                {
+                    config.XAxesInternal += delta * _scaleFactor;
+                    config.YAxesInternal += delta * _scaleFactor;
+                }
+                else
+                {
+                    config.XAxesInternal += delta * _scaleFactor;
+                    config.YAxesInternal += delta * _scaleFactor;
+                }
+                var scaleHundred = config.XAxesInternal;
+                config.LabelFontSize = NumberUtil.Clamp(scaleHundred * 0.24, 12, 30);
+                config.AxexLineWidth = config.XAxesInternal * 0.02;
+                ChangeWswModelScale(config.XAxesInternal / 100.0);
+                ConverterPara.Init();
+                gridAxes.DrawParaInit();
+                gridAxes.RenewBuildAxes(this.Width, this.Height, true);
+                _viewModel.RefreshSetPoints();
+                JsonFileConfig.Instance.DataShowConfig.SetPointsLineWidth
+                    = scaleHundred * 0.03;
+                JsonFileConfig.Instance.DataShowConfig.SetPointsFontSize
+                    = NumberUtil.Clamp(scaleHundred * 0.24, 12, 30);
+                JsonFileConfig.Instance.DataShowConfig.SetPointsEllipseRadius
+                    = scaleHundred * 0.06;
+                _viewModel.SetDrawPara();
+            }
+        }
+        
         private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             var config = JsonFileConfig.Instance.GridAxesDrawPara;
             if(_enableScale == true)
             {
-                var delta = e.Delta;
-                if (fatherGrid.RenderTransform is ScaleTransform scale)
-                {
-                    _canvasTrailFlighter.ClearPoint();
-                    _canvasTrailHelicopter.ClearPoint();
-                    _canvasTrailFlighter2.ClearPoint();
-                    _canvasTrailMissile.ClearPoint();
-                    config.XAxesInternal += delta * _scaleFactor;
-                    config.YAxesInternal += delta * _scaleFactor;
-                    var scaleHundred = config.XAxesInternal;
-                    config.LabelFontSize = NumberUtil.Clamp(scaleHundred * 0.24, 12, 30);
-                    config.AxexLineWidth = config.XAxesInternal * 0.02;
-                    ChangeWswModelScale(config.XAxesInternal / 100.0);
-                    ConverterPara.Init();
-                    gridAxes.DrawParaInit();
-                    gridAxes.RenewBuildAxes(this.Width, this.Height, true);
-                    _viewModel.RefreshSetPoints();
-                    JsonFileConfig.Instance.DataShowConfig.SetPointsLineWidth
-                        = scaleHundred * 0.03;
-                    JsonFileConfig.Instance.DataShowConfig.SetPointsFontSize
-                        = NumberUtil.Clamp(scaleHundred * 0.24, 12, 30);
-                    JsonFileConfig.Instance.DataShowConfig.SetPointsEllipseRadius
-                        = scaleHundred * 0.06;
-                    _viewModel.SetDrawPara();
-                }
+                MapChangeScale(e.Delta);
             }
 
         }
@@ -266,6 +283,7 @@ namespace TeachingPlatformApp.Views
                
         }
 
+        int _setMapLeftTopKindCount = 0;
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.C)
@@ -279,6 +297,17 @@ namespace TeachingPlatformApp.Views
             {
                 if (++JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing > _wswModelCount)
                     JsonFileConfig.Instance.TestTrailRouteConfig.IsAutoFollowing = 0;
+            }
+            if(e.Key == Key.Q)
+            {
+                if(_setMapLeftTopKindCount == 0)
+                    SetMapDrawDeltaLeftTop(_viewModel.Flighter.MyMapPosition);
+                else if(_setMapLeftTopKindCount == 1)
+                    SetMapDrawDeltaLeftTop(_viewModel.Helicopter.MyMapPosition);
+                else if(_setMapLeftTopKindCount == 2)
+                    SetMapDrawDeltaLeftTop(_viewModel.Flighter2.MyMapPosition);
+                if (++_setMapLeftTopKindCount >= 3)
+                    _setMapLeftTopKindCount = 0;
             }
             if (e.Key == Key.Escape)
             {
@@ -391,6 +420,28 @@ namespace TeachingPlatformApp.Views
             _enableDrag = false;
         }
 
+
+        private void GridAxes_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var tmp = (GridAxes)sender;
+            if (e.MiddleButton == MouseButtonState.Released)
+            {
+                tmp.ReleaseMouseCapture();
+                _enableScale = false;
+            }
+        }
+
+        private void GridAxes_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var tmp = (GridAxes)sender;
+            if (e.MiddleButton == MouseButtonState.Pressed)
+            {
+                _pressScalePoint = e.GetPosition(null);
+                tmp.CaptureMouse();
+                _enableScale = true;
+            }
+        }
+
         private void GridAxes_MouseMove(object sender, MouseEventArgs e)
         {
             if(_enableDrag == true && e.RightButton == MouseButtonState.Pressed)
@@ -405,6 +456,14 @@ namespace TeachingPlatformApp.Views
                 var dy = (_movePoint.Y - _pressPoint.Y) * mouseMoveScale + _viewModel.DrawMargin.Top;
                 _viewModel.DrawMargin = new Thickness(dx, dy, 0, 0);
                 _pressPoint = _movePoint;
+            }
+            if(_enableScale == true && e.MiddleButton == MouseButtonState.Pressed)
+            {
+                _moveScalePoint = e.GetPosition(null);
+                var scale = 2;
+                var delta = ( _pressScalePoint.Y - _moveScalePoint.Y) * scale;
+                MapChangeScale(delta);
+                _pressScalePoint = _moveScalePoint;
 
             }
         }
