@@ -259,7 +259,6 @@ namespace TeachingPlatformApp.Views
             {
                 MapChangeScale(e.Delta);
             }
-
         }
 
         private void ChangeWswModelScale(double scale)
