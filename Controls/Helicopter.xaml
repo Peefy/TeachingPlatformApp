@@ -9,7 +9,7 @@
     d:DesignWidth="1"
     mc:Ignorable="d">
     <Grid>
-        <Canvas Grid.RowSpan="2" Margin="-10,-20,0,0">
+        <Canvas Grid.RowSpan="2" Margin="-10,-20,0,0" x:Name="canvas">
             <Canvas.RenderTransform>
                 <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
             </Canvas.RenderTransform>

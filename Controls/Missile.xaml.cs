@@ -24,5 +24,8 @@ namespace TeachingPlatformApp.Controls
         {
             InitializeComponent();
         }
+
+        public WswPlatform.WswModelKind Kind => WswPlatform.WswModelKind.Missile;
+
     }
 }

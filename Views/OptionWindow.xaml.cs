@@ -43,32 +43,17 @@ namespace TeachingPlatformApp.Views
 
         private void SetXYBlockPositionText(WswModelKind kind)
         {
-            var info = KindToinfo(kind);
+            var info = WswHelper.KindToinfo(kind);
             xBlock.Text = info.InitMyPointX.ToString();
             yBlock.Text = info.InitMyPointY.ToString();
         }
         
-        private WswModelInfo KindToinfo(WswModelKind kind)
-        {
-            WswModelInfo info = default;
-            if (kind == WswModelKind.Flighter)
-                info = JsonFileConfig.Instance.MyFlighterInfo;
-            else if (kind == WswModelKind.Flighter2)
-                info = JsonFileConfig.Instance.MyFlighter2Info;
-            else if (kind == WswModelKind.Helicopter)
-                info = JsonFileConfig.Instance.MyHelicopterInfo;
-            else
-                info = JsonFileConfig.Instance.MyMissileInfo;
-            return info;
-        }
-
         private void ButtonSetPositionClick(object sender, RoutedEventArgs e)
         {
             var x = Convert.ToSingle(xBlock.Text);
             var y = Convert.ToSingle(yBlock.Text);
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
-            var info = KindToinfo(kind);
-            PositionCommandBuilder.SendPositionTo(kind, x, y);
+            var info = WswHelper.KindToinfo(kind);
             PositionCommandBuilder.SendPositionTo(kind, x, y);
             info.InitMyPointX = x;
             info.InitMyPointY = y;
@@ -89,8 +74,7 @@ namespace TeachingPlatformApp.Views
         {
             var combo = sender as ComboBox;
             var kind = IndexToModelKind(combo.SelectedIndex);
-            SetXYBlockPositionText(kind);
-            
+            SetXYBlockPositionText(kind);            
         }
 
         private void MetroWindow_KeyDown(object sender, KeyEventArgs e)

@@ -59,6 +59,7 @@ namespace TeachingPlatformApp.WswPlatform
         public void Send()
         {
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
+            Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
         }
 
         public PositionCommand Build() => _command;

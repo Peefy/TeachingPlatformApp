@@ -202,5 +202,24 @@ namespace TeachingPlatformApp.WswPlatform
             return null;
         }
 
+        /// <summary>
+        /// 获取wsw模型的配置文件
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <returns></returns>
+        public static WswModelInfo KindToinfo(WswModelKind kind)
+        {
+            WswModelInfo info = default;
+            if (kind == WswModelKind.Flighter)
+                info = JsonFileConfig.Instance.MyFlighterInfo;
+            else if (kind == WswModelKind.Flighter2)
+                info = JsonFileConfig.Instance.MyFlighter2Info;
+            else if (kind == WswModelKind.Helicopter)
+                info = JsonFileConfig.Instance.MyHelicopterInfo;
+            else
+                info = JsonFileConfig.Instance.MyMissileInfo;
+            return info;
+        }
+
     }
 }

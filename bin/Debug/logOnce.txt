@@ -1,7 +1,17 @@
-2018/3/28 21:12:04
+2018/3/29 11:14:08
 
-21:12
+11:14
 0   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
    在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__35_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 119
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__39_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 126
 正在中止线程。
+
+11:14
+1   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
+   在 System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
+   在 System.Windows.Threading.Dispatcher.Invoke(Action callback, DispatcherPriority priority, CancellationToken cancellationToken, TimeSpan timeout)
+   在 System.Windows.Threading.Dispatcher.Invoke(Action callback)
+   在 TeachingPlatformApp.Views.FlightMapWindow.AutoFollowing(Object sender, ElapsedEventArgs e)
+已取消一个任务。

@@ -345,8 +345,13 @@ namespace TeachingPlatformApp.ViewModels
                         Helicopter.Angle = 180;
                         Flighter.Angle = 90;
                         await Task.Delay(100);
+                        var config = JsonFileConfig.Instance;
                         while (true)
                         {
+                            point1.X = config.MyFlighterInfo.InitMyPointX;
+                            point1.Y = config.MyFlighterInfo.InitMyPointY;
+                            point2.X = config.MyHelicopterInfo.InitMyPointX;
+                            point2.Y = config.MyHelicopterInfo.InitMyPointY;
                             Helicopter.Angle += 1;
                             if (Helicopter.Angle >= 360)
                                 Helicopter.Angle = 0;
@@ -589,17 +594,21 @@ namespace TeachingPlatformApp.ViewModels
 
         public void RefreshSetPoints()
         {
-            if (SetPoints == null)
-                return;
-            var points = SetPoints.ToArray();
-            SetPoints = new ObservableRangeCollection<Point>(points);
+            var random = new Random();
+            var randx = random.Next(2) / 100.0f;
+            var randy = random.Next(2) / 100.0f;
             var point = Flighter.MyMapPosition;
+            var info = JsonFileConfig.Instance.MyFlighter2Info;
             Flighter.MyMapPosition = new Point(point.X, point.Y);
             point = Flighter2.MyMapPosition;
-            Flighter2.MyMapPosition = new Point(point.X, point.Y);
+            Flighter2.MyMapPosition = new Point(randx + info.InitMyPointX, 
+                randy + info.InitMyPointY);
             point = Helicopter.MyMapPosition;
             Helicopter.MyMapPosition = new Point(point.X, point.Y);
-            
+            if (SetPoints == null)
+                return;          
+            var points = SetPoints.ToArray();
+            SetPoints = new ObservableRangeCollection<Point>(points);               
         }
 
         /// <summary>

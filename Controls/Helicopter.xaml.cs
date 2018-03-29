@@ -48,6 +48,19 @@ namespace TeachingPlatformApp.Controls
             }
         }
 
+        Color color;
+        public Color Color => color;
+        public void UpdateColor(Color color)
+        {
+            if (canvas.Children[0] is Ellipse eliipse)
+            {
+                this.color = color;
+                eliipse.Fill = new SolidColorBrush(color);
+            }
+        }
+
+        public bool IsChangeColor => color == Colors.Purple;
+
         public void BuildPaddleRotateTimer()
         {
             if(timerRotate == null)
@@ -89,6 +102,8 @@ namespace TeachingPlatformApp.Controls
                 rotate.Angle = angle;
             }
         }
+
+        public WswPlatform.WswModelKind Kind => WswPlatform.WswModelKind.Helicopter;
 
     }
 

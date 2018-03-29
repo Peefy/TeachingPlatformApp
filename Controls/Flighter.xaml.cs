@@ -26,8 +26,11 @@ namespace TeachingPlatformApp.Controls
             InitializeComponent();
         }
 
+        Color color;
+        public Color Color => color;
         public void UpdateColor(Color color)
         {
+            this.color = color;
             foreach(var children in canvas.Children)
             {
                 if(children is Path path)
@@ -37,6 +40,10 @@ namespace TeachingPlatformApp.Controls
                 }
             }
         }
+
+        public bool IsChangeColor => color == Colors.Purple;
+
+        public virtual WswPlatform.WswModelKind Kind => WswPlatform.WswModelKind.Flighter;
 
     }
 

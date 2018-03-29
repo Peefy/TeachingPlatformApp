@@ -17,6 +17,7 @@ using TeachingPlatformApp.Utils;
 using TeachingPlatformApp.ViewModels;
 using TeachingPlatformApp.Controls;
 using TeachingPlatformApp.Converters;
+using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Views
 {
@@ -49,9 +50,13 @@ namespace TeachingPlatformApp.Views
 
         int _wswModelCount = 3;
 
+        bool _enableMoveModel = false;
+        WswModelKind _willMoveKind = WswModelKind.Missile;
+
         bool _enableScale = false;
         bool _enableDrag = false;
         bool _isCtrlDown = false;
+        Point _pressMoveModelPoint = new Point();
         Point _pressPoint = new Point();
         Point _movePoint = new Point();
         Point _pressScalePoint = new Point();
@@ -63,6 +68,7 @@ namespace TeachingPlatformApp.Views
         int _renewUiStartDelay = 100;
 
         double _scaleFactor = 0.01;
+        double _isHoverOnMinDistance = 2.5;
 
         public FlightMapWindow()
         {
@@ -95,8 +101,9 @@ namespace TeachingPlatformApp.Views
         private void DragMoveInit()
         {
             if(JsonFileConfig.ReadFromFile().GridAxesDrawPara.EnableDragMove == true)
-            {
+            {              
                 gridAxes.MouseLeftButtonDown += GridAxes_MouseLeftButtonDown;
+                gridAxes.MouseLeftButtonUp += GridAxes_MouseLeftButtonUp;
                 gridAxes.MouseRightButtonDown += GridAxes_MouseRightButtonDown;
                 gridAxes.MouseRightButtonUp += GridAxes_MouseRightButtonUp;
                 gridAxes.MouseDown += GridAxes_MouseDown;
@@ -204,7 +211,6 @@ namespace TeachingPlatformApp.Views
             {
                 LogAndConfig.Log.Error(ex);
             }
-
         }
 
         #region WindowKeyAndMouseWheel
@@ -225,8 +231,8 @@ namespace TeachingPlatformApp.Views
                 }
                 else
                 {
-                    config.XAxesInternal += delta * _scaleFactor;
-                    config.YAxesInternal += delta * _scaleFactor;
+                    config.XAxesInternal = delta * _scaleFactor;
+                    config.YAxesInternal = delta * _scaleFactor;
                 }
                 var scaleHundred = config.XAxesInternal;
                 config.LabelFontSize = NumberUtil.Clamp(scaleHundred * 0.24, 12, 30);
@@ -326,14 +332,22 @@ namespace TeachingPlatformApp.Views
             {
                 _viewModel.RunTest();
             }
+            if(e.Key == Key.W)
+            {
+                MapChangeScale(30);
+            }
+            if(e.Key == Key.S)
+            {
+                MapChangeScale(-30);
+            }
             if (fatherGrid.RenderTransform is ScaleTransform scale)
             {
-                if (e.Key == Key.PageUp || e.Key == Key.W)
+                if (e.Key == Key.PageUp)
                 {
                     scale.ScaleX += 0.1;
                     scale.ScaleY += 0.1;
                 }
-                else if (e.Key == Key.PageDown || e.Key == Key.S)
+                else if (e.Key == Key.PageDown)
                 {
                     scale.ScaleX -= 0.1;
                     scale.ScaleY -= 0.1;
@@ -385,12 +399,53 @@ namespace TeachingPlatformApp.Views
             _viewModel.DrawMargin = new Thickness(left, top, 0, 0);
         }
 
+
+        private void GridAxes_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var tmp = (GridAxes)sender;
+            if (_enableMoveModel == true && 
+                   _willMoveKind != WswModelKind.Missile)
+            {
+                tmp.Cursor = Cursors.Arrow;
+                tmp.ReleaseMouseCapture();
+                var mouseMapPoint = MarginPointToMapPointConverter.
+                    To(e.GetPosition(null), _viewModel.DrawMargin);             
+                var info = WswHelper.KindToinfo(_willMoveKind);
+                PositionCommandBuilder.SendPositionTo(_willMoveKind, mouseMapPoint);
+                info.InitMyPointX = (float)mouseMapPoint.X;
+                info.InitMyPointY = (float)mouseMapPoint.Y;
+                _enableMoveModel = false;
+                _viewModel.RefreshSetPoints();
+                ClearTrail(_willMoveKind);
+                ClearTrail(_willMoveKind);
+            }  
+        }
+
+        public void ClearTrail(WswModelKind kind)
+        {
+            if (kind == WswModelKind.Flighter)
+                _canvasTrailFlighter.ClearPoint();
+            if (kind == WswModelKind.Flighter2)
+                _canvasTrailFlighter2.ClearPoint();
+            if (kind == WswModelKind.Helicopter)
+                _canvasTrailHelicopter.ClearPoint();
+        }
+
         private void GridAxes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var tmp = (GridAxes)sender;
             if (e.ClickCount == _autoFollowingMouseClickCount)
             {
                 SetMapDrawDeltaLeftTop(_viewModel.Flighter.MyMapPosition);
+            }
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (_enableMoveModel == true)
+                    return;
+                _pressMoveModelPoint = e.GetPosition(null);
+                tmp.CaptureMouse();
+                tmp.Cursor = Cursors.Hand;
+                _enableMoveModel = true;
             }
         }
 
@@ -442,9 +497,53 @@ namespace TeachingPlatformApp.Views
             }
         }
 
+        public bool JudgeMouseIsHoverOnWswModel(WswModelKind kind, Point mouseMapPoint)
+        {
+            Point point = default;
+            if (kind == WswModelKind.Flighter)
+            {
+                point = _viewModel.Flighter.MyMapPosition;
+            }
+            else if (kind == WswModelKind.Flighter2)
+            {
+                point = _viewModel.Flighter2.MyMapPosition;
+            }
+            else if (kind == WswModelKind.Helicopter)
+            {
+                point = _viewModel.Helicopter.MyMapPosition;
+            }
+            else
+                return false;
+            var distance = VectorPointHelper.GetTwoPointDistance(point, mouseMapPoint);
+            return distance < _isHoverOnMinDistance;
+        }
+
+        public void UpdateWswModelFillColor(Point mouseMapPoint)
+        {
+            if (_enableMoveModel == true)
+                return;
+            var result = JudgeMouseIsHoverOnWswModel(WswModelKind.Flighter, mouseMapPoint);
+            flighter.UpdateColor(result == true ? Colors.Purple : Colors.DodgerBlue);
+            result = JudgeMouseIsHoverOnWswModel(WswModelKind.Flighter2, mouseMapPoint);
+            flighter2.UpdateColor(result == true ? Colors.Purple : Colors.DarkBlue);
+            result = JudgeMouseIsHoverOnWswModel(WswModelKind.Helicopter, mouseMapPoint);
+            helicopter.UpdateColor(result == true ? Colors.Purple : Colors.DodgerBlue);
+            if (flighter.IsChangeColor == true)
+                _willMoveKind = WswModelKind.Flighter;
+            else if (flighter2.IsChangeColor == true)
+                _willMoveKind = WswModelKind.Flighter2;
+            else if (helicopter.IsChangeColor == true)
+                _willMoveKind = WswModelKind.Helicopter;
+            else
+                _willMoveKind = WswModelKind.Missile;
+        }
+
         private void GridAxes_MouseMove(object sender, MouseEventArgs e)
         {
-            if(_enableDrag == true && e.RightButton == MouseButtonState.Pressed)
+            var mouseMapPoint = MarginPointToMapPointConverter.
+                To(e.GetPosition(null), _viewModel.DrawMargin);
+            UpdateWswModelFillColor(mouseMapPoint);
+            if (_enableDrag == true && e.RightButton == MouseButtonState.Pressed)
             {
                 var mouseMoveScale = 1.0f;
                 var tmp = (GridAxes)sender;
@@ -466,6 +565,7 @@ namespace TeachingPlatformApp.Views
                 _pressScalePoint = _moveScalePoint;
 
             }
+
         }
         #endregion
 

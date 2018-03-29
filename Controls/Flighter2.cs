@@ -8,6 +8,9 @@ namespace TeachingPlatformApp.Controls
         {
             this.UpdateColor(Colors.DarkBlue);
         }
+
+        public override WswPlatform.WswModelKind Kind => WswPlatform.WswModelKind.Flighter2;
+
     }
 
 }
