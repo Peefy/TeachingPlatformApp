@@ -61,11 +61,6 @@ namespace TeachingPlatformApp.WswPlatform
 
         public void Send()
         {
-            var a = sizeof(int);
-            a = sizeof(double);
-            a = StructHelper.GetStructSize<Glmdvec3>();
-            var size = StructHelper.GetStructSize<PositionCommand>();
-            var length = BuildCommandBytes().Length;
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
         }
