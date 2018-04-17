@@ -339,6 +339,10 @@ namespace TeachingPlatformApp.Views
             {
                 MapChangeScale(-30);
             }
+            if(e.Key == Key.Z)
+            {
+                MapChangeScale(this.Width * 0.1f, false);
+            }
             if (fatherGrid.RenderTransform is ScaleTransform scale)
             {
                 if (e.Key == Key.PageUp)

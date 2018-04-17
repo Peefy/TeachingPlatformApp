@@ -1,7 +1,1 @@
-2018/4/17 20:31:03
-
-20:32
-0   在 System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
-   在 System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
-   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__39_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 126
-正在中止线程。
+2018/4/17 21:00:13

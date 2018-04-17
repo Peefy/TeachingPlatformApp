@@ -161,12 +161,12 @@ namespace TeachingPlatformApp.Utils
             
             this.MyHelicopterInfo = new WswModelInfo()
             {
-                InitMyPointX = 15,
-                InitMyPointY = 15,
+                InitMyPointX = 10,
+                InitMyPointY = 10,
                 InitMyPointZ = 50,          
-                PointScaleFactorX = -0.01f,
-                PointScaleFactorY = 0.01f,
-                PointScaleFactorZ = 0.01f,
+                PointScaleFactorX = -0.003f,
+                PointScaleFactorY = 0.003f,
+                PointScaleFactorZ = 0.003f,
                 InitYaw = -153.435f,
                 YawSign = true
             };
@@ -175,20 +175,20 @@ namespace TeachingPlatformApp.Utils
                 InitMyPointX = 10,
                 InitMyPointY = 10,
                 InitMyPointZ = 50,
-                PointScaleFactorX = -0.01f,
-                PointScaleFactorY = 0.01f,
-                PointScaleFactorZ = 0.01f,
+                PointScaleFactorX = -0.003f,
+                PointScaleFactorY = 0.003f,
+                PointScaleFactorZ = 0.003f,
                 InitYaw = 206.435f,
                 YawSign = false,
             };
             this.MyFlighter2Info = new WswModelInfo()
             {
-                InitMyPointX = 0,
-                InitMyPointY = 0,
+                InitMyPointX = 10,
+                InitMyPointY = 10,
                 InitMyPointZ = 50,
-                PointScaleFactorX = -0.01f,
-                PointScaleFactorY = 0.01f,
-                PointScaleFactorZ = 0.01f,
+                PointScaleFactorX = -0.003f,
+                PointScaleFactorY = 0.003f,
+                PointScaleFactorZ = 0.003f,
                 InitYaw = 206.435f,
                 YawSign = false,
             };
@@ -197,9 +197,9 @@ namespace TeachingPlatformApp.Utils
                 InitMyPointX = 30,
                 InitMyPointY = 30,
                 InitMyPointZ = 50,
-                PointScaleFactorX = -0.01f,
-                PointScaleFactorY = 0.01f,
-                PointScaleFactorZ = 0.01f,
+                PointScaleFactorX = -0.003f,
+                PointScaleFactorY = 0.003f,
+                PointScaleFactorZ = 0.003f,
                 InitYaw = 180,
                 YawSign = false,
             };

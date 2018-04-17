@@ -8,6 +8,13 @@ namespace TeachingPlatformApp.Utils.JsonModels
     /// </summary>
     public class WswData
     {
+
+        /// <summary>
+        /// 坐标原点数据
+        /// </summary>
+        [JsonProperty("zeroPointInitInfo")]
+        public AngleWithLocation ZeroPointInitInfo;
+
         /// <summary>
         /// 战斗机的初始数据(姿态，坐标)
         /// </summary>
@@ -34,6 +41,10 @@ namespace TeachingPlatformApp.Utils.JsonModels
 
         public WswData()
         {
+            ZeroPointInitInfo = default;
+            ZeroPointInitInfo.X = -2165844.6698;
+            ZeroPointInitInfo.Y = 4379369.0368;
+            ZeroPointInitInfo.Z = 4104669.0426;
             FlighterInitInfo = default;
             FlighterInitInfo.X = -2185907.3768;
             FlighterInitInfo.Y = 4365171.6876;

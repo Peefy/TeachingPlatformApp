@@ -94,6 +94,8 @@ namespace TeachingPlatformApp.WswPlatform
 
         public static void SetDefaultPositionTo(WswModelKind kind)
         {
+            if (kind == WswModelKind.Missile)
+                return;
             var config = JsonFileConfig.Instance;
             var data = WswHelper.KindToWswInitData(kind);
             new PositionCommandBuilder().
