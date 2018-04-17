@@ -10,7 +10,6 @@ namespace TeachingPlatformApp.WswPlatform
     /// <summary>
     /// 战斗机，直升机初始坐标设置通信Packet
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct PositionCommand
     {
         public int MessageType;
@@ -29,25 +28,40 @@ namespace TeachingPlatformApp.WswPlatform
         public Glmdvec3 AngularAccleration;
 
         public Glmdvec3 EyePos;
+
         public double EngineRpm;
         public double Lon;
         public double Lat;
 
-        public double[,] Engines;
+        public double Engines01;
+        public double Engines02;
+        public double Engines11;
+        public double Engines12;
+        public double Engines21;
+        public double Engines22;
+        public double Engines31;
+        public double Engines32;
 
         public int Locked;
 
-        public Glmdvec3[] Position;
+        public Glmdvec3 Position0;
+        public Glmdvec3 Position1;
 
-        public double[] Yaw;
-        public double[] Pitch;
-        public double[] Roll;
+        public double Yaw0;
+        public double Yaw1;
+
+        public double Pitch0;
+        public double Pitch1;
+
+        public double Roll0;
+        public double Roll1;
 
         public int Hit;
-        public int[] Fire;
+
+        public int Fire0;
+        public int Fire1;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct Glmdvec3
     {
         public double X;

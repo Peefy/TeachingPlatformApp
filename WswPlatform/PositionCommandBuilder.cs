@@ -28,12 +28,7 @@ namespace TeachingPlatformApp.WswPlatform
             _command = new PositionCommand
             {
                 MessageType = (int)WswMessageType.DataGlovePosture,
-                Engines = new double[4, 2],
-                Position = new Glmdvec3[2],
-                Yaw = new double[2],
-                Pitch = new double[2],
-                Roll = new double[2],
-                Fire = new int[2]
+                Position0 = default
             };
             _port = JsonFileConfig.Instance.ComConfig.WswModelPositionUdpPort;
         }
@@ -58,9 +53,9 @@ namespace TeachingPlatformApp.WswPlatform
         public PositionCommandBuilder SetInitialPosition(double x, double y, double z)
         {
             var anglePosition = WswHelper.DealMyMapDataToWswAngle(x, y, z, _kind);
-            _command.Position[0].X = anglePosition.X;
-            _command.Position[0].Y = anglePosition.Y;
-            _command.Position[0].Z = anglePosition.Z;
+            _command.Position0.X = anglePosition.X;
+            _command.Position0.Y = anglePosition.Y;
+            _command.Position0.Z = anglePosition.Z;
             return this;
         }
 
