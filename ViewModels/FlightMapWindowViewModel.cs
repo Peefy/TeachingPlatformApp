@@ -43,121 +43,121 @@ namespace TeachingPlatformApp.ViewModels
         /// 选择的飞行实验的名称
         /// </summary>
         string _flightTaskName = "";
-
+   
+        private string _title = "地图";
         /// <summary>
         /// 地图界面标题
         /// </summary>
-        private string _title = "地图";
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
 
+        private FlighterModel _flighter;
         /// <summary>
         /// 战斗机
         /// </summary>
-        private FlighterModel _flighter;
         public FlighterModel Flighter
         {
             get => _flighter;
             set => SetProperty(ref _flighter, value);
         }
 
+        private Flighter2Model _flighter2;
         /// <summary>
         /// 第2个战斗机
         /// </summary>
-        private Flighter2Model _flighter2;
         public Flighter2Model Flighter2
         {
             get => _flighter2;
             set => SetProperty(ref _flighter2, value);
         }
 
+        private HelicopterModel _helicopter;
         /// <summary>
         /// 直升机
         /// </summary>
-        private HelicopterModel _helicopter;
         public HelicopterModel Helicopter
         {
             get => _helicopter;
             set => SetProperty(ref _helicopter, value);
         }
 
+        private MissileModel _missile;
         /// <summary>
         /// 导弹
         /// </summary>
-        private MissileModel _missile;
         public MissileModel Missile
         {
             get => _missile;
             set => SetProperty(ref _missile, value);
         }
 
+        protected ObservableRangeCollection<Point> _setPoints;
         /// <summary>
         /// 设置航路点
         /// </summary>
-        protected ObservableRangeCollection<Point> _setPoints;
         public ObservableRangeCollection<Point> SetPoints
         {
             get => _setPoints;
             set => SetProperty(ref _setPoints, value);
         }
 
+        protected ObservableRangeCollection<bool> _hasSetPoints;
         /// <summary>
         /// 是否有第几个航路点
         /// </summary>
-        protected ObservableRangeCollection<bool> _hasSetPoints;
         public ObservableRangeCollection<bool> HasSetPoints
         {
             get => _hasSetPoints;
             set => SetProperty(ref _hasSetPoints, value);
         }
 
+        protected string _figurePathString = "M 20,20 L 120,120 320,420";
         /// <summary>
         /// 轨迹坐标连线
         /// </summary>
-        protected string _figurePathString = "M 20,20 L 120,120 320,420";
         public string FigurePathString
         {
             get => _figurePathString;
             set => SetProperty(ref _figurePathString, value);
         }
 
+        private double _setPointsFontSize = 20;
         /// <summary>
         /// 航路点字符大小
         /// </summary>
-        private double _setPointsFontSize = 20;
         public double SetPointsFontSize
         {
             get => _setPointsFontSize;
             set => SetProperty(ref _setPointsFontSize, value);
         }
 
+        private double _setPointsEllipseRadius = 6;
         /// <summary>
         /// 航路点圆半径
         /// </summary>
-        private double _setPointsEllipseRadius = 6;
         public double SetPointsEllipseRadius
         {
             get => _setPointsEllipseRadius;
             set => SetProperty(ref _setPointsEllipseRadius, value);
         }
 
+        private double _locationStringFontSize = 22;
         /// <summary>
         /// 位置字符串的字体大小
         /// </summary>
-        private double _locationStringFontSize = 22;
         public double LocationStringFontSize
         {
             get => _locationStringFontSize;
             set => SetProperty(ref _locationStringFontSize, value);
         }
 
+        private double _setPointsLineWidth = 3;
         /// <summary>
         /// 航路点连线线段粗细
         /// </summary>
-        private double _setPointsLineWidth = 3;
         public double SetPointsLineWidth
         {
             get => _setPointsLineWidth;
@@ -342,6 +342,7 @@ namespace TeachingPlatformApp.ViewModels
                             TestTrailRouteConfig.UnConnectedFlighterRotateSpeed;
                         var point1 = new Point(30, 30);
                         var point2 = new Point(25, 30);
+                        var point3 = new Point(0, 0);
                         Helicopter.Angle = 180;
                         Flighter.Angle = 90;
                         await Task.Delay(100);
@@ -352,6 +353,8 @@ namespace TeachingPlatformApp.ViewModels
                             point1.Y = config.MyFlighterInfo.InitMyPointY;
                             point2.X = config.MyHelicopterInfo.InitMyPointX;
                             point2.Y = config.MyHelicopterInfo.InitMyPointY;
+                            point3.X = config.MyFlighter2Info.InitMyPointX;
+                            point3.Y = config.MyFlighter2Info.InitMyPointY;
                             Helicopter.Angle += 1;
                             if (Helicopter.Angle >= 360)
                                 Helicopter.Angle = 0;
@@ -369,7 +372,7 @@ namespace TeachingPlatformApp.ViewModels
                                  $"  {Flighter2.MyMapInfoToString()};";
                             Helicopter.LocationString = $"{Helicopter.Name}是否偏离航线：{Helicopter.RouteState.ToLeftRightString()}" +
                                   $"  {Helicopter.MyMapInfoToString()};";
-
+                            Flighter2.MyMapPosition = point3;
                             Missile.MyMapPosition = new Point(-100, -100);
                             //Missile.LocationString = $"{Missile.Name}" +
                             //      $"  {Missile.MyMapInfoToString()};";
@@ -592,19 +595,20 @@ namespace TeachingPlatformApp.ViewModels
                     
         }
 
+        private float GenerateRandomSmallNumber() => (new Random().Next(3) - 1) / 100.0f;
+
         public void RefreshSetPoints()
         {
-            var random = new Random();
-            var randx = random.Next(2) / 100.0f;
-            var randy = random.Next(2) / 100.0f;
+            var randx = GenerateRandomSmallNumber();
+            var randy = GenerateRandomSmallNumber();
             var point = Flighter.MyMapPosition;
             var info = JsonFileConfig.Instance.MyFlighter2Info;
-            Flighter.MyMapPosition = new Point(point.X, point.Y);
+            Flighter.MyMapPosition = new Point(point.X + randx, point.Y + randy);
             point = Flighter2.MyMapPosition;
-            Flighter2.MyMapPosition = new Point(randx + info.InitMyPointX, 
-                randy + info.InitMyPointY);
+            Flighter2.MyMapPosition = new Point(randx + point.X, 
+                randy + point.Y);
             point = Helicopter.MyMapPosition;
-            Helicopter.MyMapPosition = new Point(point.X, point.Y);
+            Helicopter.MyMapPosition = new Point(point.X + randx, point.Y + randy);
             if (SetPoints == null)
                 return;          
             var points = SetPoints.ToArray();

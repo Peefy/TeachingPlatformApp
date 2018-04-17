@@ -18,6 +18,7 @@ namespace TeachingPlatformApp.Models
             this.Name = Config.StringResource.MissileName;
             this.WswAngleWithLocation = Config.WswData.MissileInitInfo;
             this.IsJudgeRoute = false;
+            this.IsVisible = false;
         }
     }
 

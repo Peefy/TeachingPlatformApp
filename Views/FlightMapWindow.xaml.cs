@@ -409,7 +409,7 @@ namespace TeachingPlatformApp.Views
                 tmp.ReleaseMouseCapture();
                 var mouseMapPoint = MarginPointToMapPointConverter.
                     To(e.GetPosition(null), _viewModel.DrawMargin);             
-                var info = WswHelper.KindToinfo(_willMoveKind);
+                var info = WswHelper.KindToMyInfo(_willMoveKind);
                 PositionCommandBuilder.SendPositionTo(_willMoveKind, mouseMapPoint);
                 info.InitMyPointX = (float)mouseMapPoint.X;
                 info.InitMyPointY = (float)mouseMapPoint.Y;
@@ -567,7 +567,6 @@ namespace TeachingPlatformApp.Views
 
         }
         #endregion
-
 
     }
 }

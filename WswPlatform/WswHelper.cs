@@ -203,11 +203,11 @@ namespace TeachingPlatformApp.WswPlatform
         }
 
         /// <summary>
-        /// 获取wsw模型的配置文件
+        /// 获取wsw模型在教研台地图上的配置文件
         /// </summary>
         /// <param name="kind"></param>
         /// <returns></returns>
-        public static WswModelInfo KindToinfo(WswModelKind kind)
+        public static WswModelInfo KindToMyInfo(WswModelKind kind)
         {
             WswModelInfo info = default;
             if (kind == WswModelKind.Flighter)
@@ -218,6 +218,25 @@ namespace TeachingPlatformApp.WswPlatform
                 info = JsonFileConfig.Instance.MyHelicopterInfo;
             else
                 info = JsonFileConfig.Instance.MyMissileInfo;
+            return info;
+        }
+
+        /// <summary>
+        /// 获取wsw模型在Wsw平台上的原始配置信息
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <returns></returns>
+        public static AngleWithLocation KindToWswInitData(WswModelKind kind)
+        {
+            AngleWithLocation info = default;
+            if (kind == WswModelKind.Flighter)
+                info = JsonFileConfig.Instance.WswData.FlighterInitInfo;
+            else if (kind == WswModelKind.Flighter2)
+                info = JsonFileConfig.Instance.WswData.Flighter2InitInfo;
+            else if (kind == WswModelKind.Helicopter)
+                info = JsonFileConfig.Instance.WswData.HelicopterInitInfo;
+            else
+                info = JsonFileConfig.Instance.WswData.MissileInitInfo;
             return info;
         }
 

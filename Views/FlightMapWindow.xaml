@@ -62,7 +62,7 @@
                     Panel.ZIndex="0">
                     <myctrls:Helicopter.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
                             <RotateTransform Angle="{Binding Helicopter.Angle}" />
                         </TransformGroup>
                     </myctrls:Helicopter.RenderTransform>
@@ -76,7 +76,7 @@
                     Panel.ZIndex="0">
                     <myctrls:Flighter.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
                             <RotateTransform Angle="{Binding Flighter.Angle}" />
                         </TransformGroup>
                     </myctrls:Flighter.RenderTransform>
@@ -90,7 +90,7 @@
                     Panel.ZIndex="0">
                     <myctrls:Flighter.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
                             <RotateTransform Angle="{Binding Flighter2.Angle}" />
                         </TransformGroup>
                     </myctrls:Flighter.RenderTransform>
@@ -101,10 +101,11 @@
                     Margin="{Binding Missile.MyMapPosition, Converter={StaticResource PositionToMarginConverter}}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Panel.ZIndex="0">
+                    Panel.ZIndex="0"
+                    Visibility="{Binding Missile.IsVisible, Converter={StaticResource BoolToVisiblyConverter}}">
                     <myctrls:Missile.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
                             <RotateTransform Angle="{Binding Missile.Angle}" />
                         </TransformGroup>
                     </myctrls:Missile.RenderTransform>

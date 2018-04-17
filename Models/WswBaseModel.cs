@@ -159,6 +159,16 @@ namespace TeachingPlatformApp.Models
             set => SetProperty(ref _isSuccess, value);
         }
 
+        private bool _isVisible = true;
+        /// <summary>
+        /// 是否可见
+        /// </summary>
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => SetProperty(ref _isVisible, value);
+        }
+
         /// <summary>
         /// 飞行实验索引
         /// </summary>

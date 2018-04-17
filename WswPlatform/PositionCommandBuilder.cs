@@ -59,6 +59,14 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
+        public PositionCommandBuilder SetAngleWithLocation(AngleWithLocation angleWithLocation)
+        {
+            _command.Position0.X = angleWithLocation.X;
+            _command.Position0.Y = angleWithLocation.Y;
+            _command.Position0.Z = angleWithLocation.Z;
+            return this;
+        }
+
         public void Send()
         {
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
@@ -82,6 +90,16 @@ namespace TeachingPlatformApp.WswPlatform
         public static void SendPositionTo(WswModelKind kind, double x, double y)
         {
             SendPositionTo(kind, new Point(x, y));
+        }
+
+        public static void SetDefaultPositionTo(WswModelKind kind)
+        {
+            var config = JsonFileConfig.Instance;
+            var data = WswHelper.KindToWswInitData(kind);
+            new PositionCommandBuilder().
+                SetWswModelKind(kind).
+                SetAngleWithLocation(data).
+                Send();
         }
 
     }

@@ -43,7 +43,7 @@ namespace TeachingPlatformApp.Views
 
         private void SetXYBlockPositionText(WswModelKind kind)
         {
-            var info = WswHelper.KindToinfo(kind);
+            var info = WswHelper.KindToMyInfo(kind);
             xBlock.Text = info.InitMyPointX.ToString();
             yBlock.Text = info.InitMyPointY.ToString();
         }
@@ -53,10 +53,10 @@ namespace TeachingPlatformApp.Views
             var x = Convert.ToSingle(xBlock.Text);
             var y = Convert.ToSingle(yBlock.Text);
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
-            var info = WswHelper.KindToinfo(kind);
+            var info = WswHelper.KindToMyInfo(kind);
             PositionCommandBuilder.SendPositionTo(kind, x, y);
             info.InitMyPointX = x;
-            info.InitMyPointY = y;
+            info.InitMyPointY = y;      
         }
 
         private WswModelKind IndexToModelKind(int index)
@@ -83,6 +83,12 @@ namespace TeachingPlatformApp.Views
             {
                 ButtonSetPositionClick(btnSetPosition, null);
             }
+        }
+
+        private void ButtonInitPositionClick(object sender, RoutedEventArgs e)
+        {
+            var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
+            PositionCommandBuilder.SetDefaultPositionTo(kind);
         }
     }
 }

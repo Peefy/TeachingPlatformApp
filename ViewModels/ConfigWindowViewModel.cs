@@ -18,6 +18,9 @@ namespace TeachingPlatformApp.ViewModels
     public class ConfigWindowViewModel : BindableBase
     {
         private string _title = "配置";
+        /// <summary>
+        /// 配置窗口标题
+        /// </summary>
         public string Title
         {
             get => _title;
@@ -25,6 +28,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private string _comConfigName = "所有配置";
+        /// <summary>
+        /// 配置名称
+        /// </summary>
         public string ComConfigName
         {
             get => _comConfigName;
@@ -32,6 +38,9 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private ComConfig _comConfig;
+        /// <summary>
+        /// 通信配置
+        /// </summary>
         public ComConfig ComConfig
         {
             get => _comConfig;
@@ -39,12 +48,18 @@ namespace TeachingPlatformApp.ViewModels
         }
 
         private string _configString = "";
+        /// <summary>
+        /// 配置字符串
+        /// </summary>
         public string ConfigString
         {
             get => _configString;
             set => SetProperty(ref _configString, value);
         }
 
+        /// <summary>
+        /// 保存命令
+        /// </summary>
         public DelegateCommand SaveCommand { get; set; }
 
         public ConfigWindowViewModel()
