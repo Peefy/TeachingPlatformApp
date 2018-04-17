@@ -78,6 +78,7 @@ namespace TeachingPlatformApp.Views
             ChangeWswModelScale(JsonFileConfig.Instance.DataShowConfig.WswModelScaleFactor);
             RenewUI();
             TaskInit();
+            MapChangeScale(this.Width * 8, false);
         }
 
         private void DataInit()
@@ -96,6 +97,8 @@ namespace TeachingPlatformApp.Views
             helicopter.BuildPaddleRotateTimer();
             _viewModel = new FlightMapWindowViewModel();
             DataContext = _viewModel;
+            this.Width = JsonFileConfig.Instance.GridAxesDrawPara.WindowWidth;
+            this.Height = JsonFileConfig.Instance.GridAxesDrawPara.WindowHeight;
         }
 
         private void DragMoveInit()
@@ -333,15 +336,15 @@ namespace TeachingPlatformApp.Views
             }
             if(e.Key == Key.W)
             {
-                MapChangeScale(30);
+                MapChangeScale(60);
             }
             if(e.Key == Key.S)
             {
-                MapChangeScale(-30);
+                MapChangeScale(-60);
             }
             if(e.Key == Key.Z)
             {
-                MapChangeScale(this.Width * 0.1f, false);
+                MapChangeScale(this.Width * 8, false);
             }
             if (fatherGrid.RenderTransform is ScaleTransform scale)
             {
@@ -390,9 +393,12 @@ namespace TeachingPlatformApp.Views
 
         public void SetMapDrawDeltaLeftTop(Point point)
         {
+            var width = Width;
             var scale = JsonFileConfig.Instance.GridAxesDrawPara.XAxesInternal;
             var x = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointX / scale * 100;
             var y = JsonFileConfig.Instance.GridAxesDrawPara.MouseDoubleClickShowPointY / scale * 100;
+            x *= width / 1360.0f;
+            y *= width / 1360.0f;
             var convert = new PointXYToMarginLeftTop();
             var left = convert.Convert((x - point.X ).ToString());
             var top = convert.Convert((y - point.Y).ToString());

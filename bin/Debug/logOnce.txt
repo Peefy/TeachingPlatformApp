@@ -1,1 +1,14 @@
-2018/4/17 21:00:13
+2018/4/17 21:10:17
+
+21:12
+0   在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 System.Collections.ObjectModel.Collection`1.CopyTo(T[] array, Int32 index)
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 TeachingPlatformApp.Models.WswBaseModel.JudgeIsNotOutOfRoute(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Models\WswBaseModel.cs:行号 243
+   在 TeachingPlatformApp.Models.WswBaseModel.JudgeRouteState(ObservableRangeCollection`1 setPoints, Boolean& isNotOutOfRoute) 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Models\WswBaseModel.cs:行号 289
+   在 TeachingPlatformApp.Models.WswBaseModel.OutOfRouteSpeechControl(ObservableRangeCollection`1 setPoints) 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Models\WswBaseModel.cs:行号 319
+   在 TeachingPlatformApp.ViewModels.FlightMapWindowViewModel.JudgeRouteTask() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\ViewModels\FlightMapWindowViewModel.cs:行号 625
+   在 TeachingPlatformApp.Views.FlightMapWindow.<TaskInit>b__39_0() 位置 D:\_VSPros\C#\WPF\TeachingPlatformApp\Views\FlightMapWindow.xaml.cs:行号 128
+正在中止线程。

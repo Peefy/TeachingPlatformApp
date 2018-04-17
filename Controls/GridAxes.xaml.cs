@@ -83,7 +83,9 @@ namespace TeachingPlatformApp.Controls
 
         public void RenewBuildAxes(double width, double height, bool isUseMax = false)
         {
-            if(isUseMax == true)
+            JsonFileConfig.Instance.GridAxesDrawPara.WindowWidth = width;
+            JsonFileConfig.Instance.GridAxesDrawPara.WindowHeight = height;
+            if (isUseMax == true)
             {
                 width = _drawPara.MaxWidth;
                 height = _drawPara.MaxHeight;
@@ -170,6 +172,12 @@ namespace TeachingPlatformApp.Controls
 
         [JsonProperty("maxWidth")]
         public double MaxWidth { get; set; } = 2000;
+
+        [JsonProperty("windowHeight")]
+        public double WindowHeight { get; set; } = 760;
+
+        [JsonProperty("windowWidth")]
+        public double WindowWidth { get; set; } = 1360;
 
         [JsonProperty("columnNumber")]
         public int ColumnNumber { get; set; } = 200;
