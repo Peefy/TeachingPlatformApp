@@ -189,6 +189,7 @@
     <Compile Include="WswPlatform\PositionCommandBuilder.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
+    <Compile Include="WswPlatform\WswMessageType.cs" />
     <Compile Include="WswPlatform\WswModelKind.cs" />
     <Compile Include="WswPlatform\WswDataDebuger.cs" />
     <Compile Include="WswPlatform\WswHelper.cs" />

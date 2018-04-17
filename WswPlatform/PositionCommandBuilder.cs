@@ -25,7 +25,16 @@ namespace TeachingPlatformApp.WswPlatform
 
         private void CommonConstrctor()
         {
-            _command = new PositionCommand();
+            _command = new PositionCommand
+            {
+                MessageType = (int)WswMessageType.DataGlovePosture,
+                Engines = new double[4, 2],
+                Position = new Glmdvec3[2],
+                Yaw = new double[2],
+                Pitch = new double[2],
+                Roll = new double[2],
+                Fire = new int[2]
+            };
             _port = JsonFileConfig.Instance.ComConfig.WswModelPositionUdpPort;
         }
 
@@ -49,15 +58,19 @@ namespace TeachingPlatformApp.WswPlatform
         public PositionCommandBuilder SetInitialPosition(double x, double y, double z)
         {
             var anglePosition = WswHelper.DealMyMapDataToWswAngle(x, y, z, _kind);
-            _command.MsgType = 0xAA;
-            _command.X = anglePosition.X;
-            _command.Y = anglePosition.Y;
-            _command.Z = anglePosition.Z;
+            _command.Position[0].X = anglePosition.X;
+            _command.Position[0].Y = anglePosition.Y;
+            _command.Position[0].Z = anglePosition.Z;
             return this;
         }
 
         public void Send()
         {
+            var a = sizeof(int);
+            a = sizeof(double);
+            a = StructHelper.GetStructSize<Glmdvec3>();
+            var size = StructHelper.GetStructSize<PositionCommand>();
+            var length = BuildCommandBytes().Length;
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
         }
