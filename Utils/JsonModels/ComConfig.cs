@@ -25,19 +25,19 @@ namespace TeachingPlatformApp.Utils.JsonModels
         /// 自己PC设备Udp的Ip地址
         /// </summary>
         [JsonProperty("ipSelf")]
-        public string IpSelf { get; set; } = "192.168.0.135";
+        public string IpSelf { get; set; } = "192.168.0.140";
 
         /// <summary>
         /// 720度平台PC的Ip地址
         /// </summary>
         [JsonProperty("ip720Platform")]
-        public string Ip720Platform { get; set; } = "192.168.0.134";
+        public string Ip720Platform { get; set; } = "192.168.0.136";
 
         /// <summary>
         /// 第二个720度平台PC的Ip地址
         /// </summary>
         [JsonProperty("ip720Platform2")]
-        public string Ip720Platform2 { get; set; } = "192.168.0.132";
+        public string Ip720Platform2 { get; set; } = "192.168.0.137";
 
         /// <summary>
         /// Wsw视景软件UdpServer(六自由度平台)PC的Ip地址

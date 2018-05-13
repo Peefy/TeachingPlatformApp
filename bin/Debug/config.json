@@ -1,4 +1,4 @@
-﻿{
+{
   "stringResource": {
     "windowTitle": "教研台界面",
     "flightMapTitle": "地图界面",
@@ -167,7 +167,7 @@
     "outOfRouteDistance": 5.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 3,
+    "isAutoFollowing": 0,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": 0,
