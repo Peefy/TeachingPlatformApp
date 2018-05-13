@@ -18,7 +18,7 @@
   "comConfig": {
     "selfPort": 16000,
     "udp720Port": 15000,
-    "ipSelf": "192.168.0.135",
+    "ipSelf": "192.168.0.140",
     "ip720Platform": "192.168.0.136",
     "ip720Platform2": "192.168.0.137",
     "ipWswUdpServer": "192.168.0.131",
