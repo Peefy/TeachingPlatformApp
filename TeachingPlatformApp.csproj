@@ -185,8 +185,9 @@
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\DataPacketToWsw.cs" />
     <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />
-    <Compile Include="WswPlatform\PositionCommand.cs" />
+    <Compile Include="WswPlatform\VSPFlightVisualCommand.cs" />
     <Compile Include="WswPlatform\PositionCommandBuilder.cs" />
+    <Compile Include="WswPlatform\ShowTextCommandBuilder.cs" />
     <Compile Include="WswPlatform\TeachingCommand.cs" />
     <Compile Include="WswPlatform\TeachingCommandBuilder.cs" />
     <Compile Include="WswPlatform\WswMessageType.cs" />

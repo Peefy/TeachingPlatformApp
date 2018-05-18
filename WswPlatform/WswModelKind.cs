@@ -14,11 +14,11 @@ namespace TeachingPlatformApp.WswPlatform
         /// <summary>
         /// 直升机
         /// </summary>
-        Helicopter,
+        Helicopter = 0,
         /// <summary>
         /// 战斗机
         /// </summary>
-        Flighter,
+        Flighter = 1,
         /// <summary>
         /// 导弹
         /// </summary>
@@ -26,6 +26,6 @@ namespace TeachingPlatformApp.WswPlatform
         /// <summary>
         /// 第2个战斗机
         /// </summary>
-        Flighter2
+        Flighter2 = 3
     }
 }

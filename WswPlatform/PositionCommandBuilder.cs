@@ -14,7 +14,7 @@ namespace TeachingPlatformApp.WswPlatform
     /// </summary>
     public class PositionCommandBuilder
     {
-        PositionCommand _command;
+        VSPFlightVisualCommand _command;
         WswModelKind _kind = WswModelKind.Missile;
         int _port;
 
@@ -25,7 +25,7 @@ namespace TeachingPlatformApp.WswPlatform
 
         private void CommonConstrctor()
         {
-            _command = new PositionCommand
+            _command = new VSPFlightVisualCommand
             {
                 MessageType = (int)WswMessageType.DataGlovePosture,
                 Position0 = default
@@ -73,7 +73,7 @@ namespace TeachingPlatformApp.WswPlatform
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
         }
 
-        public PositionCommand Build() => _command;
+        public VSPFlightVisualCommand Build() => _command;
 
         public byte[] BuildCommandBytes() => StructHelper.StructToBytes(_command);
 
@@ -105,4 +105,5 @@ namespace TeachingPlatformApp.WswPlatform
         }
 
     }
+
 }

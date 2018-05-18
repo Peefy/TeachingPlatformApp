@@ -10,7 +10,7 @@ namespace TeachingPlatformApp.WswPlatform
     /// <summary>
     /// 战斗机，直升机初始坐标设置通信Packet
     /// </summary>
-    public struct PositionCommand
+    public struct VSPFlightVisualCommand
     {
         public int MessageType;
         public int MessageSender;

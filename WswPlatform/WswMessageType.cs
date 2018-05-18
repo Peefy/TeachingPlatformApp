@@ -21,7 +21,8 @@ namespace TeachingPlatformApp.WswPlatform
         DataGlovePosture = 10,
         ResetFlightStatusDefault = 11,
         ResetFlightStatusMornitor = 12,
-        MaxMessageType = ResetFlightStatusMornitor
+        ShowText = 13,
+        MaxMessageType = ShowText
 
     }
 }
