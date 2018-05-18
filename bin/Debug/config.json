@@ -18,9 +18,9 @@
   "comConfig": {
     "selfPort": 16000,
     "udp720Port": 15000,
-    "ipSelf": "192.168.0.135",
-    "ip720Platform": "192.168.0.134",
-    "ip720Platform2": "192.168.0.132",
+    "ipSelf": "192.168.0.140",
+    "ip720Platform": "192.168.0.136",
+    "ip720Platform2": "192.168.0.137",
     "ipWswUdpServer": "192.168.0.131",
     "ipGunBarrel": "192.168.0.133",
     "wswUdpPort": 14000,
@@ -36,8 +36,8 @@
     "axesWidth": 1360.0,
     "maxHeight": 900.0,
     "maxWidth": 1900.0,
-    "windowHeight": 876.0,
-    "windowWidth": 1456.0,
+    "windowHeight": 728.0,
+    "windowWidth": 1366.0,
     "columnNumber": 200,
     "rowNumber": 200,
     "enableDragMove": true,
@@ -122,8 +122,13 @@
     "yawSign": true
   },
   "myFlighertInfo": {
+<<<<<<< HEAD
     "initMyPointX": 37.04044,
     "initMyPointY": 21.5073528,
+=======
+    "initMyPointX": 28.8602943,
+    "initMyPointY": 14.2463236,
+>>>>>>> 150bc83f9e84bd7f5e4e97b7e5bb2d00ad19c9c1
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
@@ -132,8 +137,13 @@
     "yawSign": false
   },
   "myFlighert2Info": {
+<<<<<<< HEAD
     "initMyPointX": 10.3860292,
     "initMyPointY": 10.3860292,
+=======
+    "initMyPointX": 58.31259,
+    "initMyPointY": -22.28038,
+>>>>>>> 150bc83f9e84bd7f5e4e97b7e5bb2d00ad19c9c1
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
@@ -155,7 +165,7 @@
     "volume": 70.0,
     "rate": 2.0,
     "isUsingDotnetSpeech": true,
-    "speechEnable": true,
+    "speechEnable": false,
     "speechTextOutofRouteLeft": "偏离航线",
     "speechTextReserved1": "SpeechTextReserved1",
     "speechTextReserved2": "SpeechTextReserved2",

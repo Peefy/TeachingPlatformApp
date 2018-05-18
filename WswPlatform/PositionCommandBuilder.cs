@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Windows;
+
 using DuGu.NetFramework.Services;
 
 using TeachingPlatformApp.Communications;

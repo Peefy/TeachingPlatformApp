@@ -17,7 +17,8 @@
     StateChanged="Window_StateChanged"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
-    WindowTransitionsEnabled="False">
+    WindowTransitionsEnabled="False"
+    Topmost="True">
     <!--  prism:ViewModelLocator.AutoWireViewModel="True"  -->
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>

@@ -346,6 +346,10 @@ namespace TeachingPlatformApp.Views
             {
                 MapChangeScale(this.Width * 8, false);
             }
+            if(e.Key == Key.T)
+            {
+                this.Topmost = !this.Topmost;
+            }
             if (fatherGrid.RenderTransform is ScaleTransform scale)
             {
                 if (e.Key == Key.PageUp)
