@@ -38,6 +38,10 @@ namespace TeachingPlatformApp.Views
             wswModelComboBox.Items.Add(config.Flighter2Name);
             wswModelComboBox.Items.Add(config.HelicopterName);
             wswModelComboBox.SelectedIndex = 0;
+            wswModelComboBox1.Items.Add(config.FlighterName);
+            wswModelComboBox1.Items.Add(config.Flighter2Name);
+            wswModelComboBox1.Items.Add(config.HelicopterName);
+            wswModelComboBox1.SelectedIndex = 0;
             SetXYBlockPositionText(WswModelKind.Flighter);
         }
 
@@ -76,12 +80,13 @@ namespace TeachingPlatformApp.Views
             var kind = IndexToModelKind(combo.SelectedIndex);
             SetXYBlockPositionText(kind);            
         }
-
+        
         private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
-                ButtonSetPositionClick(btnSetPosition, null);
+                //ButtonSetPositionClick(btnSetPosition, null);
+                btnSetShowText_Click(null, null);
             }
         }
 
@@ -89,6 +94,14 @@ namespace TeachingPlatformApp.Views
         {
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
             PositionCommandBuilder.SetDefaultPositionTo(kind);
+        }
+
+        private void btnSetShowText_Click(object sender, RoutedEventArgs e)
+        {
+            var kind = IndexToModelKind(wswModelComboBox1.SelectedIndex);
+            var time = int.Parse(textShowTime.Text);
+            var text = textShowText.Text;
+            ShowTextCommandBuilder.SetShowTextTo(kind, text, time);
         }
     }
 }

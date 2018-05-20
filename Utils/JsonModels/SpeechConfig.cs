@@ -55,5 +55,4 @@ namespace TeachingPlatformApp.Utils.JsonModels
         [JsonProperty("speechTextReserved3")]
         public string SpeechTextReserved3 { get; set; } = "SpeechTextReserved3";
     }
-
 }

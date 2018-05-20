@@ -200,9 +200,9 @@ namespace TeachingPlatformApp.Communications
         /// <param name="str"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        public async Task<int> SendStringToAsync(string str,int num)
+        public async Task<int> SendStringToAsync(string str,int num = 0)
         {
-            var bytes = Encoding.Default.GetBytes(str);
+            var bytes = Encoding.UTF8.GetBytes(str);
             await _server.SendAsync(bytes, bytes.Length);
             switch(num)
             {
@@ -212,6 +212,8 @@ namespace TeachingPlatformApp.Communications
                     return await SendToGunBarrelAsync(bytes);
                 case 2:
                     return await SendTo720PlatformAsync(bytes);
+                case 3:
+                    return await SendTo720Platform2Async(bytes);
                 default:
                     return await Task.FromResult(-1);
             }

@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
+using System.Text;
 using System.Windows;
 using DuGu.NetFramework.Services;
 
@@ -15,7 +17,7 @@ namespace TeachingPlatformApp.WswPlatform
 
         private IPEndPoint SendIp()
         {
-            return new IPEndPoint(WswHelper.WswModelKindToIp(WswModelKind.Flighter), _port);
+            return new IPEndPoint(WswHelper.WswModelKindToIp(WswModelKind.Helicopter), _port);
         }
 
         private void CommonConstrctor()
@@ -77,6 +79,8 @@ namespace TeachingPlatformApp.WswPlatform
 
         public byte[] BuildCommandBytes() => StructHelper.StructToBytes(_command);
 
+        public byte[] BuildCommandBytes(object obj) => StructHelper.StructToBytes(obj);
+
         public static void SetShowTextTo(WswModelKind kind, int textIndex, int showTime = 3)
         {
             if (kind == WswModelKind.Missile)
@@ -84,6 +88,25 @@ namespace TeachingPlatformApp.WswPlatform
             new ShowTextCommandBuilder(kind, textIndex, showTime).Send();
         }
 
+        public static void SetShowTextTo(WswModelKind kind, string text, int showTime = 3)
+        {
+            if (kind == WswModelKind.Missile)
+                return;
+            var builder = new ShowTextCommandBuilder();
+            var command = new ShowTextCommandHeader()
+            {
+                MessageType = (int)WswMessageType.ShowText,
+                Kind = (byte)kind,
+                ShowTime = (byte)showTime
+            };
+            var textBytes = Encoding.UTF8.GetBytes(text);
+            command.TextBytesLength = (byte)textBytes.Length;
+            var commandHeaderBytes = builder.BuildCommandBytes(command);
+            var totalBytes = new List<byte>();
+            totalBytes.AddRange(commandHeaderBytes);
+            totalBytes.AddRange(textBytes);
+            Ioc.Get<ITranslateData>().SendTo(totalBytes.ToArray(), builder.SendIp());
+        }
     }
 
 }

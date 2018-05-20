@@ -45,7 +45,7 @@ namespace TeachingPlatformApp.Communications
         /// <param name="str"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        Task<int> SendStringToAsync(string str, int num);
+        Task<int> SendStringToAsync(string str, int num = 0);
 
         /// <summary>
         /// 接收数据(不含IP数据)

@@ -15,7 +15,6 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-
         <GroupBox
             Width="499"
             Height="68"
@@ -62,7 +61,7 @@
                     VerticalAlignment="Top"
                     Click="ButtonSetPositionClick"
                     Content="设置"
-                    ToolTip="Enter设置初始坐标" />
+                    ToolTip="设置初始坐标" />
                 <Label
                     Margin="194,1,0,0"
                     HorizontalAlignment="Left"
@@ -83,5 +82,76 @@
                     ToolTip="恢复初始坐标" />
             </Grid>
         </GroupBox>
+        <GroupBox
+            Width="499"
+            Height="134"
+            Margin="10,90,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Header="显示文字设置">
+            <Grid>
+                <ComboBox
+                    x:Name="wswModelComboBox1"
+                    Width="120"
+                    Margin="63,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+                <Label
+                    Margin="0,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="模型选择" />
+                <Label
+                    Margin="188,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="显示文字"
+                    RenderTransformOrigin="1.707,1.5" />
+                <Label
+                    Margin="0,34,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="显示时长/秒" />
+                <Button
+                    x:Name="btnSetShowText"
+                    Width="78"
+                    Margin="8,68,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="btnSetShowText_Click"
+                    Content="设置"
+                    RenderTransformOrigin="-3.067,1.963"
+                    ToolTip="设置显示文字" />
+                <ctrls:NumuricTextBlock
+                    x:Name="textShowTime"
+                    Width="103"
+                    Height="23"
+                    Margin="80,35,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    RenderTransformOrigin="0.142,0.783"
+                    Text="3"
+                    TextWrapping="Wrap" />
+                <Button
+                    x:Name="btnSetPosition1_Copy"
+                    Width="78"
+                    Margin="105,68,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="ButtonSetPositionClick"
+                    Content="清空"
+                    RenderTransformOrigin="-3.067,1.963"
+                    ToolTip="清空显示文字" />
+            </Grid>
+        </GroupBox>
+        <TextBox
+            x:Name="textShowText"
+            Width="288"
+            Height="66"
+            Margin="209,149,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="设置直升机显示文字"
+            TextWrapping="Wrap" />
     </Grid>
 </Controls:MetroWindow>
