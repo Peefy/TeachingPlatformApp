@@ -13,11 +13,13 @@ namespace TeachingPlatformApp.WswPlatform
 {
     public class ShowTextCommandBuilder
     {
+
+        public const int TextMaxLength = 128;
+
         VSPFlightVisualCommand _command;
         WswModelKind _kind = WswModelKind.Missile;
         int _port;
-
-        public const int TextMaxLength = 128;
+        byte[] _textBytes = new byte[TextMaxLength];
 
         private IPEndPoint SendIp()
         {
@@ -54,14 +56,23 @@ namespace TeachingPlatformApp.WswPlatform
             _kind = kind;
         }
 
-        public byte[] SetTextAndBuildBytes(string text)
+        public ShowTextCommandBuilder(WswModelKind kind, string text ,int showTime = 3)
+        {
+            CommonConstrctor();
+            _command.Fire0 = (int)kind;
+            _command.Fire1 = showTime;
+            _kind = kind;
+            _textBytes = SetTextAndBuildBytes(text);
+        }
+
+        private byte[] SetTextAndBuildBytes(string text)
         {
             var textBytes = Encoding.Unicode.GetBytes(text);
             var totalBytes = new List<byte>();
             totalBytes.AddRange(textBytes);
             if (totalBytes.Count > TextMaxLength)
             {
-                throw new Exception("more charactor count!");
+                throw new Exception("Too many characters");
             }
             for (var i = totalBytes.Count; i < TextMaxLength; ++i)
             {
@@ -83,9 +94,15 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
+        public ShowTextCommandBuilder SetShowText(string text)
+        {
+            SetTextAndBuildBytes(text);
+            return this;
+        }
+
         public void Send()
         {
-            var bytes = BuildCommandBytes();
+            var bytes = BuildCommandTotalBytes();
             Ioc.Get<ITranslateData>().SendTo(bytes, SendIp());
         }
 
@@ -93,21 +110,19 @@ namespace TeachingPlatformApp.WswPlatform
 
         public byte[] BuildCommandBytes() => StructHelper.StructToBytes(_command);
 
-        public byte[] BuildCommandBytes(object obj) => StructHelper.StructToBytes(obj);
+        public byte[] BuildCommandTotalBytes()
+        {
+            var list = new List<byte>();
+            list.AddRange(BuildCommandBytes());
+            list.AddRange(_textBytes);
+            return list.ToArray();
+        }
 
         public static void SetShowTextTo(WswModelKind kind, string text, int showTime = 3)
         {
             if (kind == WswModelKind.Missile)
                 return;
-            var builder = new ShowTextCommandBuilder(kind, showTime);
-            var textbytes = builder.SetTextAndBuildBytes(text);
-            var bytes = builder.BuildCommandBytes();
-            var list = new List<byte>();
-            list.AddRange(bytes);
-            list.AddRange(textbytes);
-            var sendBytes = list.ToArray();
-            var ip = builder.SendIp();
-            Ioc.Get<ITranslateData>().SendTo(sendBytes, ip);
+            new ShowTextCommandBuilder(kind, text, showTime).Send();
         }
     }
 }
