@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 
-using System.Windows;
 using DuGu.NetFramework.Services;
 
 using TeachingPlatformApp.Communications;
 using TeachingPlatformApp.Utils;
-
 
 namespace TeachingPlatformApp.WswPlatform
 {
@@ -18,6 +16,7 @@ namespace TeachingPlatformApp.WswPlatform
         VSPFlightVisualCommand _command;
         WswModelKind _kind = WswModelKind.Missile;
         int _port;
+
         public const int TextMaxLength = 128;
 
         private IPEndPoint SendIp()
@@ -55,7 +54,7 @@ namespace TeachingPlatformApp.WswPlatform
             _kind = kind;
         }
 
-        public byte[] SetAndBuildText(string text)
+        public byte[] SetTextAndBuildBytes(string text)
         {
             var textBytes = Encoding.Unicode.GetBytes(text);
             var totalBytes = new List<byte>();
@@ -101,7 +100,7 @@ namespace TeachingPlatformApp.WswPlatform
             if (kind == WswModelKind.Missile)
                 return;
             var builder = new ShowTextCommandBuilder(kind, showTime);
-            var textbytes = builder.SetAndBuildText(text);
+            var textbytes = builder.SetTextAndBuildBytes(text);
             var bytes = builder.BuildCommandBytes();
             var list = new List<byte>();
             list.AddRange(bytes);
