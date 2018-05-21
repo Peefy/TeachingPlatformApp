@@ -77,7 +77,8 @@ namespace TeachingPlatformApp.WswPlatform
 
         public void Send()
         {
-            Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), SendIp());
+            var bytes = BuildCommandBytes();
+            Ioc.Get<ITranslateData>().SendTo(bytes, SendIp());
         }
 
         public VSPFlightVisualCommand Build() => _command;
