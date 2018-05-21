@@ -118,7 +118,7 @@ namespace TeachingPlatformApp.Views
             catch 
             {
                 
-                MessageBox.Show($"不超过{ShowTextCommandBuilder.TextMaxLength}个汉字!");
+                MessageBox.Show($"不超过{ShowTextCommandBuilder.TextMaxLength / 2}个汉字!");
             }
             
         }
