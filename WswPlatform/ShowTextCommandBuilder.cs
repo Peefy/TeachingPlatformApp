@@ -47,7 +47,7 @@ namespace TeachingPlatformApp.WswPlatform
             _kind = kind;
         }
 
-        public ShowTextCommandBuilder(WswModelKind kind, int showIndex, int showTime = 3)
+        public ShowTextCommandBuilder(WswModelKind kind, int showTime = 3)
         {
             CommonConstrctor();
             _command.Fire0 = (int)kind;
@@ -55,7 +55,7 @@ namespace TeachingPlatformApp.WswPlatform
             _kind = kind;
         }
 
-        public byte[] SetText(string text)
+        public byte[] SetAndBuildText(string text)
         {
             var textBytes = Encoding.Unicode.GetBytes(text);
             var totalBytes = new List<byte>();
@@ -78,12 +78,6 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
-        public ShowTextCommandBuilder SetShowTextIndex(int index)
-        {
-            _command.Fire0 = index;
-            return this;
-        }
-
         public ShowTextCommandBuilder SetShowTextTime(int time = 3)
         {
             _command.Fire1 = time;
@@ -102,19 +96,12 @@ namespace TeachingPlatformApp.WswPlatform
 
         public byte[] BuildCommandBytes(object obj) => StructHelper.StructToBytes(obj);
 
-        public static void SetShowTextTo(WswModelKind kind, int textIndex, int showTime = 3)
-        {
-            if (kind == WswModelKind.Missile)
-                return;
-            new ShowTextCommandBuilder(kind, textIndex, showTime).Send();
-        }
-
         public static void SetShowTextTo(WswModelKind kind, string text, int showTime = 3)
         {
             if (kind == WswModelKind.Missile)
                 return;
-            var builder = new ShowTextCommandBuilder(kind, 0, showTime);
-            var textbytes = builder.SetText(text);
+            var builder = new ShowTextCommandBuilder(kind, showTime);
+            var textbytes = builder.SetAndBuildText(text);
             var bytes = builder.BuildCommandBytes();
             var list = new List<byte>();
             list.AddRange(bytes);
@@ -124,5 +111,4 @@ namespace TeachingPlatformApp.WswPlatform
             Ioc.Get<ITranslateData>().SendTo(sendBytes, ip);
         }
     }
-
 }
