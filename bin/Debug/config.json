@@ -29,7 +29,7 @@
     "udp720TestConsolePort": 11000,
     "renewUIRecieveCount": 10,
     "udpClientExtraPort": 10000,
-    "wswModelPositionUdpPort": 6484
+    "wswModelPositionUdpPort": 2001
   },
   "mapGridAxesDrawPara": {
     "axesHeight": 860.0,

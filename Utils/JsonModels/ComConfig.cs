@@ -91,7 +91,7 @@ namespace TeachingPlatformApp.Utils.JsonModels
         /// 设置wsw模型的坐标的Udp端口号
         /// </summary>
         [JsonProperty("wswModelPositionUdpPort")]
-        public int WswModelPositionUdpPort { get; set; } = 6484;
+        public int WswModelPositionUdpPort { get; set; } = 2001;
 
     }
 
