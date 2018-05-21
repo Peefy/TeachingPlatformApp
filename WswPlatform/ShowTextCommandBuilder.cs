@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Net;
+using System.Linq;
 using System.Text;
+using System.Collections.Generic;
+
 using System.Windows;
 using DuGu.NetFramework.Services;
 
 using TeachingPlatformApp.Communications;
 using TeachingPlatformApp.Utils;
+
 
 namespace TeachingPlatformApp.WswPlatform
 {
@@ -14,6 +18,7 @@ namespace TeachingPlatformApp.WswPlatform
         VSPFlightVisualCommand _command;
         WswModelKind _kind = WswModelKind.Missile;
         int _port;
+        public const int TextMaxLength = 40;
 
         private IPEndPoint SendIp()
         {
@@ -99,13 +104,25 @@ namespace TeachingPlatformApp.WswPlatform
                 Kind = (byte)kind,
                 ShowTime = (byte)showTime
             };
-            var textBytes = Encoding.UTF8.GetBytes(text);
+            var textBytes = Encoding.Unicode.GetBytes(text);
             command.TextBytesLength = (byte)textBytes.Length;
             var commandHeaderBytes = builder.BuildCommandBytes(command);
             var totalBytes = new List<byte>();
             totalBytes.AddRange(commandHeaderBytes);
             totalBytes.AddRange(textBytes);
-            Ioc.Get<ITranslateData>().SendTo(totalBytes.ToArray(), builder.SendIp());
+            var headerSize = StructHelper.GetStructSize<ShowTextCommandHeader>();
+            var totalSize = headerSize + TextMaxLength;
+            var lastByte = totalBytes.LastOrDefault();
+            if(totalBytes.Count > totalSize)
+            {
+                throw new Exception("more charactor count!");
+            }
+            for(var i = totalBytes.Count; i < TextMaxLength + headerSize; ++i)
+            {
+                totalBytes.Add('\n' - 0);
+            }
+            var sendBytes = totalBytes.ToArray();
+            Ioc.Get<ITranslateData>().SendTo(sendBytes, builder.SendIp());
         }
     }
 

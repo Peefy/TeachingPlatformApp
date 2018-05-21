@@ -101,7 +101,15 @@ namespace TeachingPlatformApp.Views
             var kind = IndexToModelKind(wswModelComboBox1.SelectedIndex);
             var time = int.Parse(textShowTime.Text);
             var text = textShowText.Text;
-            ShowTextCommandBuilder.SetShowTextTo(kind, text, time);
+            try
+            {
+                ShowTextCommandBuilder.SetShowTextTo(kind, text, time);
+            }
+            catch 
+            {
+                MessageBox.Show("不超过20个汉字!");
+            }
+            
         }
     }
 }
