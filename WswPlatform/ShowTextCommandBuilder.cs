@@ -13,7 +13,6 @@ namespace TeachingPlatformApp.WswPlatform
 {
     public class ShowTextCommandBuilder
     {
-
         public const int TextMaxLength = 128;
 
         VSPFlightVisualCommand _command;
