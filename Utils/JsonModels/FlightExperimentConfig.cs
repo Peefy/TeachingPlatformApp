@@ -47,6 +47,22 @@ namespace TeachingPlatformApp.Utils.JsonModels
         };
 
         /// <summary>
+        /// 模型显示文字
+        /// </summary>
+        [JsonProperty("showText")]
+        public string[] ShowText { get; set; } =
+        {
+            "起飞",
+            "五边飞行",
+            "斤斗飞行",
+            "盘旋飞行",
+            "编队飞行",
+            "滚转30°",
+            "滚转75°",
+            "降落",          
+        };
+
+        /// <summary>
         /// 是否检测飞行实验
         /// </summary>
         [JsonProperty("isJudgeValid ")]

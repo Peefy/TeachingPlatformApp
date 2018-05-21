@@ -31,7 +31,7 @@ namespace TeachingPlatformApp.WswPlatform
                 MessageType = (int)WswMessageType.ShowText,
                 Position0 = default
             };
-            _port = JsonFileConfig.Instance.ComConfig.WswModelPositionUdpPort;
+            _port = JsonFileConfig.Instance.ComConfig.WswModelShowTextUdpPort;
         }
 
         protected ShowTextCommandBuilder()
