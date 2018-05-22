@@ -13,5 +13,4 @@ namespace TeachingPlatformApp.ZyPlatform
 
         public short Status;
     }
-
 }

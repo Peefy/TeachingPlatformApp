@@ -15,5 +15,4 @@ namespace TeachingPlatformApp.ZyPlatform
 
         public float Amplitude;
     }
-
 }

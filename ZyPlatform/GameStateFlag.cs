@@ -11,5 +11,4 @@ namespace TeachingPlatformApp.ZyPlatform
 
         public short Flag;
     }
-
 }

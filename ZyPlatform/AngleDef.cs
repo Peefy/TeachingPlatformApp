@@ -23,5 +23,4 @@ namespace TeachingPlatformApp.ZyPlatform
 
         public float Speed;
     }
-
 }

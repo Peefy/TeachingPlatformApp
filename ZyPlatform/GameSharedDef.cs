@@ -10,5 +10,4 @@ namespace TeachingPlatformApp.ZyPlatform
 
         public int GameStatus;
     }
-
 }

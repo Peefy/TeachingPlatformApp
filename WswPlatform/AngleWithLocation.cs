@@ -24,6 +24,5 @@ namespace TeachingPlatformApp.WswPlatform
         public double Pitch;
 
         public double Roll;
-
     }
 }

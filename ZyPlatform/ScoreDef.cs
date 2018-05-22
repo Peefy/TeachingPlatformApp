@@ -14,5 +14,4 @@ namespace TeachingPlatformApp.ZyPlatform
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
         public short[] PlayerScore;
     }
-
 }

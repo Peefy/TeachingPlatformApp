@@ -11,5 +11,4 @@ namespace TeachingPlatformApp.ZyPlatform
 
         public float Z;
     }
-
 }
