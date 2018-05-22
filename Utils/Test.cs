@@ -20,7 +20,7 @@ namespace TeachingPlatformApp.Utils
         /// <returns>返回测试字符串集合显示在MyConsole上</returns>
         public static string[] Run()
         {
-            ShowTextCommandBuilder.SetShowTextTo(WswModelKind.Helicopter, 0);
+            ShowTextCommandBuilder.SetShowTextTo(WswModelKind.Helicopter, "test");
 //             PositionCommandBuilder.SendPositionTo(WswModelKind.Flighter, 20, 20);
 //             PositionCommandBuilder.SendPositionTo(WswModelKind.Flighter, 20, 20);
 //             var FlighterInitInfo =  WswHelper.MathRound(JsonFileConfig.Instance.WswData.FlighterInitInfo, 3);

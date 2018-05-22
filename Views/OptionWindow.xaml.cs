@@ -34,14 +34,24 @@ namespace TeachingPlatformApp.Views
         private void ControlInit()
         {
             var config = JsonFileConfig.Instance.StringResource;
+
             wswModelComboBox.Items.Add(config.FlighterName);
             wswModelComboBox.Items.Add(config.Flighter2Name);
             wswModelComboBox.Items.Add(config.HelicopterName);
             wswModelComboBox.SelectedIndex = 0;
+
             wswModelComboBox1.Items.Add(config.FlighterName);
             wswModelComboBox1.Items.Add(config.Flighter2Name);
             wswModelComboBox1.Items.Add(config.HelicopterName);
             wswModelComboBox1.SelectedIndex = 0;
+
+            var showtexts = JsonFileConfig.ReadFromFile().FlightExperimentConfig.ShowText;
+            foreach(var str in showtexts)
+            {
+                showTextComboBox.Items.Add(str);
+            }
+            showTextComboBox.SelectedIndex = 0;
+
             SetXYBlockPositionText(WswModelKind.Flighter);
         }
 
@@ -107,9 +117,16 @@ namespace TeachingPlatformApp.Views
             }
             catch 
             {
-                MessageBox.Show($"不超过{ShowTextCommandBuilder.TextMaxLength}个汉字!");
+                
+                MessageBox.Show($"不超过{ShowTextCommandBuilder.TextMaxLength / 2}个汉字!");
             }
             
+        }
+
+        private void showTextComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            textShowText.Text = combo.SelectedItem.ToString();
         }
     }
 }

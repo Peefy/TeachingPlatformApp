@@ -84,7 +84,7 @@
         </GroupBox>
         <GroupBox
             Width="499"
-            Height="134"
+            Height="165"
             Margin="10,90,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -115,11 +115,13 @@
                 <Button
                     x:Name="btnSetShowText"
                     Width="78"
+                    Height="48"
                     Margin="8,68,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Click="btnSetShowText_Click"
                     Content="设置"
+                    FontSize="16"
                     RenderTransformOrigin="-3.067,1.963"
                     ToolTip="设置显示文字" />
                 <ctrls:NumuricTextBlock
@@ -135,22 +137,38 @@
                 <Button
                     x:Name="btnSetPosition1_Copy"
                     Width="78"
+                    Height="48"
                     Margin="105,68,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Click="ButtonSetPositionClick"
                     Content="清空"
+                    FontSize="16"
                     RenderTransformOrigin="-3.067,1.963"
                     ToolTip="清空显示文字" />
+                <Label
+                    Margin="188,59,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="常用指令文字"
+                    RenderTransformOrigin="1.707,1.5" />
+                <ComboBox
+                    x:Name="showTextComboBox"
+                    Width="280"
+                    Margin="197,90,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    SelectionChanged="showTextComboBox_SelectionChanged" />
             </Grid>
         </GroupBox>
         <TextBox
             x:Name="textShowText"
             Width="288"
-            Height="66"
+            Height="31"
             Margin="209,149,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            FontSize="16"
             Text="设置直升机显示文字"
             TextWrapping="Wrap" />
     </Grid>

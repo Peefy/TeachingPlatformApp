@@ -60,6 +60,7 @@ namespace TeachingPlatformApp.WswPlatform
 
         public int Fire0;
         public int Fire1;
+
     }
 
     public struct Glmdvec3
