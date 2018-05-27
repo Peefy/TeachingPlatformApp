@@ -443,7 +443,7 @@ namespace TeachingPlatformApp.ViewModels
                             UdpServer?.SendToUnity720View(new TeachingCommandBuilder(0, false).
                                 BuildCommandBytes());
                             await Task.Delay(10);
-                            UdpServer?.SendToUnity720View(new TeachingCommandBuilder(0, false).
+                            UdpServer?.SendToUnity720View2(new TeachingCommandBuilder(0, false).
                                 BuildCommandBytes());
                             await Task.Delay(100);
                             await item.EndAsync();
@@ -562,7 +562,7 @@ namespace TeachingPlatformApp.ViewModels
                     flight.NowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
-            else if(ip.StartsWith(config.ComConfig.IpWswUdpServer) == true)
+            else if (ip.StartsWith(config.ComConfig.IpWswUdpServer) == true)
             {
                 angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation, 
                     WswModelKind.Helicopter, angleDataDigit);
@@ -575,7 +575,7 @@ namespace TeachingPlatformApp.ViewModels
                     flight.SixPlatformNowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
-            else if(ip.StartsWith(config.ComConfig.Ip720Platform2) == true)
+            else if (ip.StartsWith(config.ComConfig.Ip720Platform2) == true)
             {
                 angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation,
                     WswModelKind.Flighter2, angleDataDigit);
@@ -588,11 +588,14 @@ namespace TeachingPlatformApp.ViewModels
                     flight.Flighter2NowLocation = new Point(angleWithLocation.X, angleWithLocation.Y);
                 }
             }
-            else if(ip.StartsWith(config.ComConfig.IpGunBarrel) == true)
+            else if (ip.StartsWith(config.ComConfig.IpGunBarrel) == true)
             {
 
             }
-            //WswDataDebuger.Record(ip, angleWithLocation);
+            else if (ip.StartsWith(config.ComConfig.IpViewMonitor) == true)
+            {
+
+            }
         }
     }
 }

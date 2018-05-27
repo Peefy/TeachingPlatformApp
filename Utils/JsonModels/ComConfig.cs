@@ -25,7 +25,12 @@ namespace TeachingPlatformApp.Utils.JsonModels
         /// 自己PC设备Udp的Ip地址
         /// </summary>
         [JsonProperty("ipSelf")]
-        public string IpSelf { get; set; } = "192.168.0.140";
+        public string IpSelf { get; set; } = "192.168.0.150";
+        /// <summary>
+        /// 自己PC设备Udp的Ip地址
+        /// </summary>
+        [JsonProperty("ipViewMonitor")]
+        public string IpViewMonitor { get; set; } = "192.168.0.140";
 
         /// <summary>
         /// 720度平台PC的Ip地址

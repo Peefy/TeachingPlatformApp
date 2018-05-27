@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 using MahApps.Metro.Controls;
 
 using TeachingPlatformApp.Utils;
-using TeachingPlatformApp.Utils.JsonModels;
 using TeachingPlatformApp.WswPlatform;
 
 namespace TeachingPlatformApp.Views
@@ -43,6 +33,7 @@ namespace TeachingPlatformApp.Views
             wswModelComboBox1.Items.Add(config.FlighterName);
             wswModelComboBox1.Items.Add(config.Flighter2Name);
             wswModelComboBox1.Items.Add(config.HelicopterName);
+            wswModelComboBox1.Items.Add("全部");
             wswModelComboBox1.SelectedIndex = 0;
 
             var showtexts = JsonFileConfig.ReadFromFile().FlightExperimentConfig.ShowText;
@@ -108,19 +99,25 @@ namespace TeachingPlatformApp.Views
 
         private void btnSetShowText_Click(object sender, RoutedEventArgs e)
         {
-            var kind = IndexToModelKind(wswModelComboBox1.SelectedIndex);
             var time = int.Parse(textShowTime.Text);
             var text = textShowText.Text;
+            // 给全部模型发送显示文字
+            if (wswModelComboBox1.SelectedIndex == 3)
+            {
+                ShowTextCommandBuilder.SetShowTextTo(WswModelKind.Helicopter, text, time);
+                ShowTextCommandBuilder.SetShowTextTo(WswModelKind.Flighter, text, time);
+                ShowTextCommandBuilder.SetShowTextTo(WswModelKind.Flighter2, text, time);
+                return;
+            }
+            var kind = IndexToModelKind(wswModelComboBox1.SelectedIndex);           
             try
             {
                 ShowTextCommandBuilder.SetShowTextTo(kind, text, time);
             }
             catch 
-            {
-                
+            {             
                 MessageBox.Show($"不超过{ShowTextCommandBuilder.TextMaxLength / 2}个汉字!");
-            }
-            
+            }     
         }
 
         private void showTextComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

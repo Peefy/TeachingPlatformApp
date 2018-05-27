@@ -1,4 +1,4 @@
-{
+﻿{
   "stringResource": {
     "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
@@ -19,6 +19,7 @@
     "selfPort": 16000,
     "udp720Port": 15000,
     "ipSelf": "192.168.0.140",
+    "ipViewMonitor": "192.168.0.140",
     "ip720Platform": "192.168.0.136",
     "ip720Platform2": "192.168.0.137",
     "ipWswUdpServer": "192.168.0.131",
@@ -30,7 +31,7 @@
     "renewUIRecieveCount": 10,
     "udpClientExtraPort": 10000,
     "wswModelShowTextUdpPort": 2001,
-    "wswModelPositionUdpPort": 2001
+    "wswModelPositionUdpPort": 6484
   },
   "mapGridAxesDrawPara": {
     "axesHeight": 860.0,
@@ -113,8 +114,8 @@
     "wswModelScaleFactor": 0.5464
   },
   "myHelicopterInfo": {
-    "initMyPointX": 24.8161774,
-    "initMyPointY": 18.106617,
+    "initMyPointX": 10,
+    "initMyPointY": 10,
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
@@ -133,8 +134,8 @@
     "yawSign": false
   },
   "myFlighert2Info": {
-    "initMyPointX": 20.5882359,
-    "initMyPointY": 10.8455887,
+    "initMyPointX": 10,
+    "initMyPointY": 10,
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
