@@ -1,6 +1,6 @@
 # TeachingPlatformApp
 
-TeachingPlatformApp is a C# WPF App using to teach flighterman to study flying.
+TeachingPlatformApp is a C# WPF App using to teach pilot to study flying.
 
 ## Dependence
 
@@ -23,6 +23,8 @@ TeachingPlatformApp is a C# WPF App using to teach flighterman to study flying.
 <img src="https://github.com/Peefy/TeachingPlatformAppV2/blob/master/screenshots/TeachingPlatform2.png"/>
 
 <img src="https://github.com/Peefy/TeachingPlatformAppV2/blob/master/screenshots/TeachingPlatform3.png"/>
+
+<img src="https://github.com/Peefy/TeachingPlatformAppV2/blob/master/screenshots/TeachingPlatform4.png"/>
 
 ## Thanks
 
