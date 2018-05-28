@@ -1,0 +1,39 @@
+﻿<UserControl
+    x:Class="TeachingPlatformApp.Controls.Flighter2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TeachingPlatformApp.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1"
+    d:DesignWidth="1"
+    mc:Ignorable="d">
+    <Grid>
+        <Canvas x:Name="canvas" Margin="0,-26,0,0">
+            <Path
+                Fill="DodgerBlue"
+                Stroke="DodgerBlue"
+                StrokeThickness="1">
+                <Path.Data>
+                    <PathGeometry Figures="M 0,0 L 7,5 7,25 22,25 25,40 -25,40 -22,25 -7,25 -7,5" />
+                </Path.Data>
+            </Path>
+            <Path
+                Fill="DodgerBlue"
+                Stroke="DodgerBlue"
+                StrokeThickness="1">
+                <Path.Data>
+                    <PathGeometry Figures="M 0,40 L -4,52 -12,52 -8,40" />
+                </Path.Data>
+            </Path>
+            <Path
+                Fill="DodgerBlue"
+                Stroke="DodgerBlue"
+                StrokeThickness="1">
+                <Path.Data>
+                    <PathGeometry Figures="M 0,40 L 4,52 12,52 8,40" />
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </Grid>
+</UserControl>

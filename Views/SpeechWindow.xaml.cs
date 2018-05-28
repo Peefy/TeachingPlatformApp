@@ -44,6 +44,7 @@ namespace TeachingPlatformApp.Views
 
         private void Init()
         {
+            
             //初始化语音引擎列表  
             foreach (ISpeechObjectToken Token in _speech.GetVoices(string.Empty, string.Empty))
             {

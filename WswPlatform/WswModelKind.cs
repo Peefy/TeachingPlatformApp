@@ -22,10 +22,14 @@ namespace TeachingPlatformApp.WswPlatform
         /// <summary>
         /// 导弹
         /// </summary>
-        Missile,
+        Missile = 2,
         /// <summary>
         /// 第2个战斗机
         /// </summary>
-        Flighter2 = 3
+        Flighter2 = 3,
+        /// <summary>
+        /// 所有模型
+        /// </summary>
+        All = Helicopter + Flighter + Flighter2 + Missile
     }
 }

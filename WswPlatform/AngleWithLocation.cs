@@ -13,16 +13,34 @@ namespace TeachingPlatformApp.WswPlatform
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct AngleWithLocation
     {
+        /// <summary>
+        /// X坐标(地心坐标系)
+        /// </summary>
         public double X;
 
+        /// <summary>
+        /// Y坐标(地心坐标系)
+        /// </summary>
         public double Y;
 
+        /// <summary>
+        /// Z坐标高度
+        /// </summary>
         public double Z;
 
+        /// <summary>
+        /// 偏航角
+        /// </summary>
         public double Yaw;
 
+        /// <summary>
+        /// 俯仰角
+        /// </summary>
         public double Pitch;
 
+        /// <summary>
+        /// 横滚角
+        /// </summary>
         public double Roll;
     }
 }

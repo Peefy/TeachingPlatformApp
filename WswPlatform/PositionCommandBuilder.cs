@@ -78,6 +78,11 @@ namespace TeachingPlatformApp.WswPlatform
 
         public byte[] BuildCommandBytes() => StructHelper.StructToBytes(_command);
 
+        /// <summary>
+        /// 设置模型在视景中的坐标位置
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <param name="point"></param>
         public static void SendPositionTo(WswModelKind kind, Point point)
         {
             if (kind == WswModelKind.Missile || point == null)
@@ -88,11 +93,21 @@ namespace TeachingPlatformApp.WswPlatform
                 Send();
         }
 
+        /// <summary>
+        /// 设置模型在视景中的坐标位置
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public static void SendPositionTo(WswModelKind kind, double x, double y)
         {
             SendPositionTo(kind, new Point(x, y));
         }
 
+        /// <summary>
+        /// 设置模型在视景中的初始默认坐标位置
+        /// </summary>
+        /// <param name="kind"></param>
         public static void SetDefaultPositionTo(WswModelKind kind)
         {
             if (kind == WswModelKind.Missile)

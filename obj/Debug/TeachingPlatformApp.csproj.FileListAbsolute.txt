@@ -377,3 +377,5 @@ D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.g.cs
 D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.baml
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.g.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.baml
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter2.g.cs
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter2.baml

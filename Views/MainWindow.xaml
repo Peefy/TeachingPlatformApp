@@ -14,16 +14,16 @@
     x:Name="Window"
     Title="{Binding Title}"
     Width="1000"
-    Height="700"
+    Height="750"
     MinWidth="1000"
-    MinHeight="700"
+    MinHeight="750"
     BorderThickness="1"
     GlowBrush="Black"
     Keyboard.KeyDown="Window_KeyDown"
     Keyboard.KeyUp="Window_KeyUp"
+    SizeChanged="Window_SizeChanged"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
-    SizeChanged="Window_SizeChanged"
     WindowTransitionsEnabled="False">
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>
@@ -374,7 +374,7 @@
                     Content="参 数 设 置"
                     FontSize="24"
                     Foreground="White"
-                    Visibility="{Binding ElementName=btnShow, Path=Visibility}" />
+                    Visibility="Visible" />
                 <Button
                     x:Name="testButton"
                     Height="42"
@@ -415,7 +415,7 @@
             VerticalAlignment="Stretch" />
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="350"/>
+                <RowDefinition Height="350" />
                 <RowDefinition Height="5" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>

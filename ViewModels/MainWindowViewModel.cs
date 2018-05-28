@@ -492,6 +492,8 @@ namespace TeachingPlatformApp.ViewModels
             //打开语音助手界面
             OpenSpeechWindowCommand = new DelegateCommand(() =>
             {
+                if (JsonFileConfig.Instance.SpeechConfig.SpeechEnable == false)
+                    return;
                 new SpeechWindow().Show();
             });
             //打开参数设置界面
@@ -520,7 +522,7 @@ namespace TeachingPlatformApp.ViewModels
                 {
                     for (var i = 0; i < item.SetPoints.Count; ++i)
                     {
-                        UdpServer?.SendTo720PlatformWsw(new DataPacketToWswBuilder(i,
+                        UdpServer?.SendTo720PlatformWsw(new WayPointCommandBuilder(i,
                             item.SetPoints[i].X, item.SetPoints[i].Y).BuildBytes());
                     }
                 }

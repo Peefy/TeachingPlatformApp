@@ -118,10 +118,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\CanvasTrail.cs" />
+    <Compile Include="Controls\Flighter2.xaml.cs">
+      <DependentUpon>Flighter2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Flighter.xaml.cs">
       <DependentUpon>Flighter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Flighter2.cs" />
     <Compile Include="Controls\GridAxes.xaml.cs">
       <DependentUpon>GridAxes.xaml</DependentUpon>
     </Compile>
@@ -183,8 +185,8 @@
     </Compile>
     <Compile Include="Utils\JsonModels\AirPlaneInfo.cs" />
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
-    <Compile Include="WswPlatform\DataPacketToWsw.cs" />
-    <Compile Include="WswPlatform\DataPacketToWswBuilder.cs" />
+    <Compile Include="WswPlatform\WayPointCommand.cs" />
+    <Compile Include="WswPlatform\WayPointCommandBuilder.cs" />
     <Compile Include="WswPlatform\ShowTextCommandHeader.cs" />
     <Compile Include="WswPlatform\VSPFlightVisualCommand.cs" />
     <Compile Include="WswPlatform\PositionCommandBuilder.cs" />
@@ -203,6 +205,10 @@
     <Compile Include="ZyPlatform\ShakeDef.cs" />
     <Compile Include="ZyPlatform\VectorAngExp.cs" />
     <Compile Include="Utils\StructHelper.cs" />
+    <Page Include="Controls\Flighter2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Flighter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

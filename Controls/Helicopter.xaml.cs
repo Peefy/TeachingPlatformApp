@@ -46,6 +46,7 @@ namespace TeachingPlatformApp.Controls
             {
                 BuildPaddleRotateTimer();
             }
+            UpdateColor(Colors.DarkSlateGray);
         }
 
         Color color;

@@ -538,9 +538,9 @@ namespace TeachingPlatformApp.Views
             var result = JudgeMouseIsHoverOnWswModel(WswModelKind.Flighter, mouseMapPoint);
             flighter.UpdateColor(result == true ? Colors.Purple : Colors.DodgerBlue);
             result = JudgeMouseIsHoverOnWswModel(WswModelKind.Flighter2, mouseMapPoint);
-            flighter2.UpdateColor(result == true ? Colors.Purple : Colors.DarkBlue);
+            flighter2.UpdateColor(result == true ? Colors.Purple : Colors.DarkGreen);
             result = JudgeMouseIsHoverOnWswModel(WswModelKind.Helicopter, mouseMapPoint);
-            helicopter.UpdateColor(result == true ? Colors.Purple : Colors.DodgerBlue);
+            helicopter.UpdateColor(result == true ? Colors.Purple : Colors.DarkSlateGray);
             if (flighter.IsChangeColor == true)
                 _willMoveKind = WswModelKind.Flighter;
             else if (flighter2.IsChangeColor == true)

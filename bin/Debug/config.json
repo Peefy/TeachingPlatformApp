@@ -1,10 +1,10 @@
-﻿{
+{
   "stringResource": {
     "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
-    "helicopterName": "直升机",
-    "flighterName": "战斗机1",
-    "flighter2Name": "战斗机2",
+    "helicopterName": "直升机H101",
+    "flighterName": "战斗机F-18",
+    "flighter2Name": "战斗机初教-6",
     "missileName": "导弹",
     "flightExperimentNames": [
       "起落航线",
@@ -39,7 +39,7 @@
     "maxHeight": 1000.0,
     "maxWidth": 2000.0,
     "windowHeight": 728.0,
-    "windowWidth": 683.0,
+    "windowWidth": 1366.0,
     "columnNumber": 200,
     "rowNumber": 200,
     "enableDragMove": true,
@@ -49,40 +49,40 @@
     "drawRight": 60.0,
     "drawLabelTop": 5.0,
     "drawLabelLeft": 12.0,
-    "labelFontSize": 13,
+    "labelFontSize": 17,
     "labelAxesInterval": 10,
     "labelAxesInit": 0,
-    "xAxesInternal": 54.64,
-    "yAxesInternal": 54.64,
+    "xAxesInternal": 73.999999999999915,
+    "yAxesInternal": 73.999999999999915,
     "mouseDoubleClickShowPointX": 50.0,
     "mouseDoubleClickShowPointY": 30.0,
     "helicopterPaddleRotateSpeed": 4.0,
-    "axexLineWidth": 1.0928
+    "axexLineWidth": 1.4799999999999984
   },
   "wswData": {
     "zeroPointInitInfo": {
       "X": -2165844.6698,
       "Y": 4379369.0368,
       "Z": 4104669.0426,
-      "Yaw": 0.0,
-      "Pitch": 0.0,
-      "Roll": 0.0
+      "Yaw": -0.5154596,
+      "Pitch": 0.0011189,
+      "Roll": 0.00139873
     },
     "flighterInitInfo": {
-      "X": -2185907.3768,
-      "Y": 4365171.6876,
-      "Z": 4104669.1241,
-      "Yaw": 0.1873927,
-      "Pitch": 0.0011897,
-      "Roll": 0.0013987
+      "X": -2165844.6698,
+      "Y": 4379369.0368,
+      "Z": 4104669.0426,
+      "Yaw": -0.5154596,
+      "Pitch": 0.0011189,
+      "Roll": 0.00139873
     },
     "flighterInitInfo2": {
-      "X": -2185907.3768,
-      "Y": 4365171.6876,
-      "Z": 4104669.1241,
-      "Yaw": 0.1873927,
-      "Pitch": 0.0011897,
-      "Roll": 0.0013987
+      "X": -2165844.6698,
+      "Y": 4379369.0368,
+      "Z": 4104669.0426,
+      "Yaw": -0.5154596,
+      "Pitch": 0.0011189,
+      "Roll": 0.00139873
     },
     "helicopterInitInfo": {
       "X": -2165844.6698,
@@ -106,21 +106,21 @@
     "pointShowDigit": 1,
     "mapUiRefreshMs": 50,
     "drawTrailPointNumUp": 5000,
-    "setPointsFontSize": 13.0,
-    "setPointsEllipseRadius": 3.2784,
+    "setPointsFontSize": 17.0,
+    "setPointsEllipseRadius": 4.4399999999999951,
     "locationStringFontSize": 22.0,
-    "setPointsLineWidth": 1.6392,
+    "setPointsLineWidth": 2.2199999999999975,
     "unRecieveduUdpDataShow": 0.0,
-    "wswModelScaleFactor": 0.5464
+    "wswModelScaleFactor": 0.7399999999999991
   },
   "myHelicopterInfo": {
-    "initMyPointX": 10,
-    "initMyPointY": 10,
+    "initMyPointX": 10.0,
+    "initMyPointY": 10.0,
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
     "pointScaleFactorZ": 0.003,
-    "initYaw": -153.435,
+    "initYaw": -63.35,
     "yawSign": true
   },
   "myFlighertInfo": {
@@ -130,17 +130,17 @@
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
     "pointScaleFactorZ": 0.003,
-    "initYaw": 206.435,
+    "initYaw": -63.35,
     "yawSign": false
   },
   "myFlighert2Info": {
-    "initMyPointX": 10,
-    "initMyPointY": 10,
+    "initMyPointX": 10.0,
+    "initMyPointY": 10.0,
     "initMyPointZ": 50.0,
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
     "pointScaleFactorZ": 0.003,
-    "initYaw": 206.435,
+    "initYaw": -63.35,
     "yawSign": false
   },
   "myMissileInfo": {

@@ -89,12 +89,12 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Panel.ZIndex="0">
-                    <myctrls:Flighter.RenderTransform>
+                    <myctrls:Flighter2.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1" ScaleY="1" />
                             <RotateTransform Angle="{Binding Flighter2.Angle}" />
                         </TransformGroup>
-                    </myctrls:Flighter.RenderTransform>
+                    </myctrls:Flighter2.RenderTransform>
                 </myctrls:Flighter2>
                 <myctrls:Missile
                     Width="1"
