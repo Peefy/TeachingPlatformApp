@@ -15,10 +15,10 @@
     Mouse.MouseWheel="Window_MouseWheel"
     SizeChanged="Window_SizeChanged"
     StateChanged="Window_StateChanged"
+    Topmost="True"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
-    WindowTransitionsEnabled="False"
-    Topmost="True">
+    WindowTransitionsEnabled="False">
     <!--  prism:ViewModelLocator.AutoWireViewModel="True"  -->
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>

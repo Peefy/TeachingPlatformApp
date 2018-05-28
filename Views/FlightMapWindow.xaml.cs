@@ -412,7 +412,6 @@ namespace TeachingPlatformApp.Views
             _viewModel.DrawMargin = new Thickness(left, top, 0, 0);
         }
 
-
         private void GridAxes_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var tmp = (GridAxes)sender;
