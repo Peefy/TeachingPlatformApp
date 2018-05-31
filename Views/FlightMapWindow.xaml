@@ -237,6 +237,36 @@
                             RadiusY="{Binding SetPointsEllipseRadius}" />
                     </Path.Data>
                 </Path>
+                <Path
+                    Fill="Purple"
+                    Stroke="Red"
+                    StrokeThickness="5">
+                    <Path.Data>
+                        <EllipseGeometry
+                            Center="{Binding ThuLocation, Converter={StaticResource SetPointToRealMarginPointConverter}}"
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
+                    </Path.Data>
+                </Path>
+                <TextBlock
+                    Margin="{Binding ThuLocation, Converter={StaticResource PositionToMarginConverter}}"
+                    FontSize="{Binding SetPointsFontSize}"
+                    Text="清华大学" />
+                <Path
+                    Fill="Purple"
+                    Stroke="Red"
+                    StrokeThickness="5">
+                    <Path.Data>
+                        <EllipseGeometry
+                            Center="{Binding BeijingAirportLocation, Converter={StaticResource SetPointToRealMarginPointConverter}}"
+                            RadiusX="{Binding SetPointsEllipseRadius}"
+                            RadiusY="{Binding SetPointsEllipseRadius}" />
+                    </Path.Data>
+                </Path>
+                <TextBlock
+                    Margin="{Binding BeijingAirportLocation, Converter={StaticResource PositionToMarginConverter}}"
+                    FontSize="{Binding SetPointsFontSize}"
+                    Text="北京国际机场" />
             </Canvas>
         </myctrls:GridAxes>
         <Grid Grid.Row="1">

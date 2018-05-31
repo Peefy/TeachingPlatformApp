@@ -38,8 +38,8 @@
     "axesWidth": 1360.0,
     "maxHeight": 1000.0,
     "maxWidth": 2000.0,
-    "windowHeight": 1080.0,
-    "windowWidth": 1920.0,
+    "windowHeight": 728.0,
+    "windowWidth": 1366.0,
     "columnNumber": 200,
     "rowNumber": 200,
     "enableDragMove": true,
@@ -49,15 +49,15 @@
     "drawRight": 60.0,
     "drawLabelTop": 5.0,
     "drawLabelLeft": 12.0,
-    "labelFontSize": 13,
+    "labelFontSize": 20,
     "labelAxesInterval": 10,
     "labelAxesInit": 0,
-    "xAxesInternal": 54.600000000000094,
-    "yAxesInternal": 54.600000000000094,
+    "xAxesInternal": 87.199999999999946,
+    "yAxesInternal": 87.199999999999946,
     "mouseDoubleClickShowPointX": 50.0,
     "mouseDoubleClickShowPointY": 30.0,
     "helicopterPaddleRotateSpeed": 4.0,
-    "axexLineWidth": 1.0920000000000019
+    "axexLineWidth": 1.7439999999999989
   },
   "wswData": {
     "zeroPointInitInfo": {
@@ -106,12 +106,12 @@
     "pointShowDigit": 1,
     "mapUiRefreshMs": 50,
     "drawTrailPointNumUp": 5000,
-    "setPointsFontSize": 13.0,
-    "setPointsEllipseRadius": 3.2760000000000056,
+    "setPointsFontSize": 20.0,
+    "setPointsEllipseRadius": 5.2319999999999967,
     "locationStringFontSize": 22.0,
-    "setPointsLineWidth": 1.6380000000000028,
+    "setPointsLineWidth": 2.6159999999999983,
     "unRecieveduUdpDataShow": 0.0,
-    "wswModelScaleFactor": 0.54600000000000093
+    "wswModelScaleFactor": 0.87199999999999944
   },
   "myHelicopterInfo": {
     "initMyPointX": 10.0,
@@ -199,5 +199,11 @@
   },
   "windowUiConfig": {
     "isInitShowOn": true
+  },
+  "mapConfig": {
+    "thuPositionX": 10.0,
+    "thuPositionY": 10.0,
+    "beijingAirportPositionX": 70.0,
+    "beijingAirportPositionY": -35.0
   }
 }

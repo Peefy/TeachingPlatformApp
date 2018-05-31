@@ -114,6 +114,12 @@ namespace TeachingPlatformApp.Utils
         public WindowUiConfig WindowUiConfig { get; set; }
 
         /// <summary>
+        /// 地图 配置
+        /// </summary>
+        [JsonProperty("mapConfig")]
+        public MapConfig MapConfig { get; set; }
+
+        /// <summary>
         /// 配置写入文件
         /// </summary>
         public void WriteToFile()
@@ -209,6 +215,7 @@ namespace TeachingPlatformApp.Utils
             this.TestTrailRouteConfig = new TestTrailRouteConfig();
             this.FlightExperimentConfig = new FlightExperimentConfig();
             this.WindowUiConfig = new WindowUiConfig();
+            this.MapConfig = new MapConfig();
         }
 
         /// <summary>
