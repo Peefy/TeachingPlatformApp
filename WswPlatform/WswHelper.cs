@@ -229,14 +229,15 @@ namespace TeachingPlatformApp.WswPlatform
         public static AngleWithLocation KindToWswInitData(WswModelKind kind)
         {
             AngleWithLocation info = default;
+            WswData data = new WswData();
             if (kind == WswModelKind.Flighter)
-                info = JsonFileConfig.Instance.WswData.FlighterInitInfo;
+                info = data.FlighterInitInfo;
             else if (kind == WswModelKind.Flighter2)
-                info = JsonFileConfig.Instance.WswData.Flighter2InitInfo;
+                info = data.Flighter2InitInfo;
             else if (kind == WswModelKind.Helicopter)
-                info = JsonFileConfig.Instance.WswData.HelicopterInitInfo;
+                info = data.HelicopterInitInfo;
             else
-                info = JsonFileConfig.Instance.WswData.MissileInitInfo;
+                info = data.MissileInitInfo;
             return info;
         }
 

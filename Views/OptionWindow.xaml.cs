@@ -59,9 +59,7 @@ namespace TeachingPlatformApp.Views
             var y = Convert.ToSingle(yBlock.Text);
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
             var info = WswHelper.KindToMyInfo(kind);
-            PositionCommandBuilder.SendPositionTo(kind, x, y);
-            info.InitMyPointX = x;
-            info.InitMyPointY = y;      
+            PositionCommandBuilder.SendPositionTo(kind, x, y);     
         }
 
         private WswModelKind IndexToModelKind(int index)

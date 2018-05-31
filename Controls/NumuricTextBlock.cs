@@ -57,7 +57,7 @@ namespace TeachingPlatformApp.Controls
                 return false;
             foreach (char c in _string)
             {
-                if (!char.IsDigit(c))
+                if (!(char.IsDigit(c) || c.Equals('-')))
                     return false;
             }
             return true;

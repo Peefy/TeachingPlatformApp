@@ -56,9 +56,8 @@
                 <Button
                     x:Name="btnSetPosition"
                     Width="45"
-                    Margin="367,0,0,0"
+                    Margin="365,1,0,1"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
                     Click="ButtonSetPositionClick"
                     Content="设置"
                     ToolTip="设置初始坐标" />
@@ -74,11 +73,11 @@
                     Content="Y" />
                 <Button
                     Width="45"
-                    Margin="422,-1,0,0"
+                    Margin="422,1,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Click="ButtonInitPositionClick"
-                    Content="初始化"
+                    Content="重置"
                     ToolTip="恢复初始坐标" />
             </Grid>
         </GroupBox>
