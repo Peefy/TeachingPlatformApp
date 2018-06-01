@@ -17,7 +17,7 @@
     <Grid>
         <GroupBox
             Width="499"
-            Height="68"
+            Height="94"
             Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -26,9 +26,8 @@
                 <ComboBox
                     x:Name="wswModelComboBox"
                     Width="120"
-                    Margin="63,1,0,0"
+                    Margin="63,1,0,28"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
                     SelectionChanged="WswModelComboBox_SelectionChanged" />
                 <Label
                     Margin="0,1,0,0"
@@ -56,7 +55,7 @@
                 <Button
                     x:Name="btnSetPosition"
                     Width="45"
-                    Margin="365,1,0,1"
+                    Margin="365,1,0,28"
                     HorizontalAlignment="Left"
                     Click="ButtonSetPositionClick"
                     Content="设置"
@@ -79,12 +78,30 @@
                     Click="ButtonInitPositionClick"
                     Content="重置"
                     ToolTip="恢复初始坐标" />
+                <Button
+                    x:Name="btnSetPosition_Copy"
+                    Width="71"
+                    Margin="0,30,0,-1"
+                    HorizontalAlignment="Left"
+                    Click="ButtonSetThuPositionClick"
+                    Content="设置清华"
+                    ToolTip="设置初始坐标" />
+                <Button
+                    x:Name="btnSetPosition_Copy1"
+                    Width="71"
+                    Height="26"
+                    Margin="88,30,0,-1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="ButtonSetAirPortPositionClick"
+                    Content="设置机场"
+                    ToolTip="设置初始坐标" />
             </Grid>
         </GroupBox>
         <GroupBox
             Width="499"
             Height="165"
-            Margin="10,90,0,0"
+            Margin="10,109,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Header="显示文字设置">

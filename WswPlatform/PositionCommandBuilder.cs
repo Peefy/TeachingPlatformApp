@@ -89,6 +89,13 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
+        public PositionCommandBuilder SetInitialLonLan(double lon, double lat)
+        {
+            _command.Lat = lat;
+            _command.Lon = lon;
+            return this;
+        }
+
         public PositionCommandBuilder SetAngleWithLocation(AngleWithLocation angleWithLocation)
         {
             _command.Lat = XYZToLat(angleWithLocation.X, angleWithLocation.Y, angleWithLocation.Z);
@@ -128,6 +135,21 @@ namespace TeachingPlatformApp.WswPlatform
             new PositionCommandBuilder().
                 SetWswModelKind(kind).
                 SetInitialPosition(point.X, point.Y, 0).
+                Send();
+        }
+
+        /// <summary>
+        /// 设置模型在视景中的经纬度位置
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <param name="point"></param>
+        public static void SendPositionLonLatTo(WswModelKind kind, float lon, float lat)
+        {
+            if (kind == WswModelKind.Missile)
+                return;
+            new PositionCommandBuilder().
+                SetWswModelKind(kind).
+                SetInitialLonLan(lon, lat).
                 Send();
         }
 
