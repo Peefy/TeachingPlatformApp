@@ -287,8 +287,7 @@ namespace TeachingPlatformApp.Views
             {
                 _enableScale = false;
                 _isCtrlDown = false;
-            }
-               
+            }              
         }
 
         int _setMapLeftTopKindCount = 0;
@@ -424,8 +423,6 @@ namespace TeachingPlatformApp.Views
                     To(e.GetPosition(null), _viewModel.DrawMargin);             
                 var info = WswHelper.KindToMyInfo(_willMoveKind);
                 PositionCommandBuilder.SendPositionTo(_willMoveKind, mouseMapPoint);
-                info.InitMyPointX = (float)mouseMapPoint.X;
-                info.InitMyPointY = (float)mouseMapPoint.Y;
                 _enableMoveModel = false;
                 _viewModel.RefreshSetPoints();
                 ClearTrail(_willMoveKind);
