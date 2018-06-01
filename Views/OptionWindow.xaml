@@ -170,5 +170,12 @@
             FontSize="16"
             Text="设置直升机显示文字"
             TextWrapping="Wrap" />
+        <Label
+            Margin="0,274,19,4"
+            HorizontalAlignment="Right"
+            Content="航电实验室"
+            FontFamily="楷体"
+            FontSize="30"
+            FontStyle="Italic" />
     </Grid>
 </Controls:MetroWindow>
