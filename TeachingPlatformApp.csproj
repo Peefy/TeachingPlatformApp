@@ -160,6 +160,7 @@
     <Compile Include="Utils\JsonModels\DataShowConfig.cs" />
     <Compile Include="Utils\JsonModels\FlightExperimentConfig.cs" />
     <Compile Include="Utils\JsonFileConfig.cs" />
+    <Compile Include="Utils\JsonModels\MapConfig.cs" />
     <Compile Include="Utils\JsonModels\WindowUiConfig.cs" />
     <Compile Include="Utils\MyConsole.cs" />
     <Compile Include="Utils\NumberUtil.cs" />

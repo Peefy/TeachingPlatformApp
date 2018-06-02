@@ -174,6 +174,20 @@ namespace TeachingPlatformApp.ViewModels
             set => SetProperty(ref _drawMargin, value);
         }
 
+        private Point _thuLocation = new Point(10, 10);
+        public Point ThuLocation
+        {
+            get => _thuLocation;
+            set => SetProperty(ref _thuLocation, value);
+        }
+        
+        private Point _beijingAirportLocation = new Point(70, -35);
+        public Point BeijingAirportLocation
+        {
+            get => _beijingAirportLocation;
+            set => SetProperty(ref _beijingAirportLocation, value);
+        }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -193,6 +207,8 @@ namespace TeachingPlatformApp.ViewModels
             {
                 false,false,false,false,false,false,false
             };
+            _thuLocation = new Point(_config.MapConfig.ThuPositionX, _config.MapConfig.ThuPositionY);
+            _beijingAirportLocation = new Point(_config.MapConfig.BeijingAirportPositionX, _config.MapConfig.BeijingAirportPositionY);
             SetDrawPara();
             BuildWswModelLocationString();
             InfoRenewInit();
@@ -609,10 +625,17 @@ namespace TeachingPlatformApp.ViewModels
                 randy + point.Y);
             point = Helicopter.MyMapPosition;
             Helicopter.MyMapPosition = new Point(point.X + randx, point.Y + randy);
-            if (SetPoints == null)
-                return;          
-            var points = SetPoints.ToArray();
-            SetPoints = new ObservableRangeCollection<Point>(points);               
+            if (SetPoints != null)
+            {
+                var points = SetPoints.ToArray();
+                SetPoints = new ObservableRangeCollection<Point>(points);
+            }       
+            point = ThuLocation;
+            ThuLocation = new Point(randx + point.X,
+                randy + point.Y);
+            point = BeijingAirportLocation;
+            BeijingAirportLocation = new Point(randx + point.X,
+                randy + point.Y);
         }
 
         /// <summary>

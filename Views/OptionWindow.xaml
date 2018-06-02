@@ -17,7 +17,7 @@
     <Grid>
         <GroupBox
             Width="499"
-            Height="68"
+            Height="94"
             Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -26,9 +26,8 @@
                 <ComboBox
                     x:Name="wswModelComboBox"
                     Width="120"
-                    Margin="63,1,0,0"
+                    Margin="63,1,0,28"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
                     SelectionChanged="WswModelComboBox_SelectionChanged" />
                 <Label
                     Margin="0,1,0,0"
@@ -56,9 +55,8 @@
                 <Button
                     x:Name="btnSetPosition"
                     Width="45"
-                    Margin="367,0,0,0"
+                    Margin="365,1,0,28"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
                     Click="ButtonSetPositionClick"
                     Content="设置"
                     ToolTip="设置初始坐标" />
@@ -74,18 +72,36 @@
                     Content="Y" />
                 <Button
                     Width="45"
-                    Margin="422,-1,0,0"
+                    Margin="422,1,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Click="ButtonInitPositionClick"
-                    Content="初始化"
+                    Content="重置"
                     ToolTip="恢复初始坐标" />
+                <Button
+                    x:Name="btnSetPosition_Copy"
+                    Width="71"
+                    Margin="0,30,0,-1"
+                    HorizontalAlignment="Left"
+                    Click="ButtonSetThuPositionClick"
+                    Content="设置清华"
+                    ToolTip="设置初始坐标" />
+                <Button
+                    x:Name="btnSetPosition_Copy1"
+                    Width="71"
+                    Height="26"
+                    Margin="88,30,0,-1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="ButtonSetAirPortPositionClick"
+                    Content="设置机场"
+                    ToolTip="设置初始坐标" />
             </Grid>
         </GroupBox>
         <GroupBox
             Width="499"
             Height="165"
-            Margin="10,90,0,0"
+            Margin="10,109,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Header="显示文字设置">
@@ -171,5 +187,12 @@
             FontSize="16"
             Text="设置直升机显示文字"
             TextWrapping="Wrap" />
+        <Label
+            Margin="0,274,19,4"
+            HorizontalAlignment="Right"
+            Content="航电实验室"
+            FontFamily="楷体"
+            FontSize="30"
+            FontStyle="Italic" />
     </Grid>
 </Controls:MetroWindow>

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Windows;
 
@@ -28,10 +29,10 @@ namespace TeachingPlatformApp.WswPlatform
         {
             _command = new VSPFlightVisualCommand
             {
-                MessageType = (int)WswMessageType.DataGlovePosture,
+                MessageType = (int)WswMessageType.ResetFlightStatusMornitor,
                 Position0 = default
             };
-            _port = JsonFileConfig.Instance.ComConfig.WswModelShowTextUdpPort;
+            _port = JsonFileConfig.Instance.ComConfig.WswModelPositionUdpPort;
         }
 
         protected PositionCommandBuilder()
@@ -51,32 +52,76 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
+        private double XYZToLon(double x, double y)
+        {
+            var lon = Math.Atan2(y, x);
+            return lon * 180.0 / Math.PI;
+        }
+
+        private double XYZToLat(double x, double y, double z)
+        {
+            var earth_r = 6378137.0;
+            var c = earth_r;
+            var lon = Math.Atan2(y, x);
+            double t0, t, tOld, dt;
+            dt = 1.0;
+            t0 = z / Math.Sqrt(x * x + y * y);
+            tOld = t0;
+            double p = 0;
+            double k = 1;
+            t = 0.0;
+            while(dt > 0.001)
+            {
+                t = t0 + p * tOld / Math.Sqrt(k + tOld * tOld);
+                dt = t - tOld;
+                tOld = t;
+            }
+            var lat = Math.Atan(t);
+            return lat * 180.0 / Math.PI;
+        }
+
         public PositionCommandBuilder SetInitialPosition(double x, double y, double z)
         {
             var anglePosition = WswHelper.DealMyMapDataToWswAngle(x, y, z, _kind);
-            _command.Position0.X = anglePosition.X;
-            _command.Position0.Y = anglePosition.Y;
-            _command.Position0.Z = anglePosition.Z;
+            var data = WswHelper.KindToWswInitData(_kind);
+            _command.Lat = XYZToLat(anglePosition.X, anglePosition.Y, data.Z);
+            _command.Lon = XYZToLon(anglePosition.X, anglePosition.Y);
+            return this;
+        }
+
+        public PositionCommandBuilder SetInitialLonLan(double lon, double lat)
+        {
+            _command.Lat = lat;
+            _command.Lon = lon;
             return this;
         }
 
         public PositionCommandBuilder SetAngleWithLocation(AngleWithLocation angleWithLocation)
         {
-            _command.Position0.X = angleWithLocation.X;
-            _command.Position0.Y = angleWithLocation.Y;
-            _command.Position0.Z = angleWithLocation.Z;
+            _command.Lat = XYZToLat(angleWithLocation.X, angleWithLocation.Y, angleWithLocation.Z);
+            _command.Lon = XYZToLon(angleWithLocation.X, angleWithLocation.Y);
             return this;
         }
 
         public void Send()
         {
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
-            Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
         }
 
         public VSPFlightVisualCommand Build() => _command;
 
-        public byte[] BuildCommandBytes() => StructHelper.StructToBytes(_command);
+        public byte[] BuildCommandBytes()
+        {
+            var bytes = StructHelper.StructToBytes(_command);
+            var sendBytes = new List<byte>();
+            sendBytes.AddRange(bytes);
+            for(var i = 0;i < ShowTextCommandBuilder.TextMaxLength ;++i)
+            {
+                sendBytes.Add(0);
+            }
+            return sendBytes.ToArray();
+        }
+        
 
         /// <summary>
         /// 设置模型在视景中的坐标位置
@@ -90,6 +135,21 @@ namespace TeachingPlatformApp.WswPlatform
             new PositionCommandBuilder().
                 SetWswModelKind(kind).
                 SetInitialPosition(point.X, point.Y, 0).
+                Send();
+        }
+
+        /// <summary>
+        /// 设置模型在视景中的经纬度位置
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <param name="point"></param>
+        public static void SendPositionLonLatTo(WswModelKind kind, float lon, float lat)
+        {
+            if (kind == WswModelKind.Missile)
+                return;
+            new PositionCommandBuilder().
+                SetWswModelKind(kind).
+                SetInitialLonLan(lon, lat).
                 Send();
         }
 

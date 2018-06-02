@@ -2,7 +2,7 @@
   "stringResource": {
     "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
-    "helicopterName": "直升机H101",
+    "helicopterName": "直升机EH101",
     "flighterName": "战斗机F-18",
     "flighter2Name": "战斗机初教-6",
     "missileName": "导弹",
@@ -38,8 +38,8 @@
     "axesWidth": 1360.0,
     "maxHeight": 1000.0,
     "maxWidth": 2000.0,
-    "windowHeight": 1080.0,
-    "windowWidth": 1920.0,
+    "windowHeight": 782.0,
+    "windowWidth": 1360.0,
     "columnNumber": 200,
     "rowNumber": 200,
     "enableDragMove": true,
@@ -49,15 +49,15 @@
     "drawRight": 60.0,
     "drawLabelTop": 5.0,
     "drawLabelLeft": 12.0,
-    "labelFontSize": 13,
+    "labelFontSize": 26,
     "labelAxesInterval": 10,
     "labelAxesInit": 0,
-    "xAxesInternal": 54.600000000000094,
-    "yAxesInternal": 54.600000000000094,
+    "xAxesInternal": 108.8,
+    "yAxesInternal": 108.8,
     "mouseDoubleClickShowPointX": 50.0,
     "mouseDoubleClickShowPointY": 30.0,
     "helicopterPaddleRotateSpeed": 4.0,
-    "axexLineWidth": 1.0920000000000019
+    "axexLineWidth": 2.176
   },
   "wswData": {
     "zeroPointInitInfo": {
@@ -106,12 +106,12 @@
     "pointShowDigit": 1,
     "mapUiRefreshMs": 50,
     "drawTrailPointNumUp": 5000,
-    "setPointsFontSize": 13.0,
-    "setPointsEllipseRadius": 3.2760000000000056,
+    "setPointsFontSize": 26.0,
+    "setPointsEllipseRadius": 6.528,
     "locationStringFontSize": 22.0,
-    "setPointsLineWidth": 1.6380000000000028,
+    "setPointsLineWidth": 3.264,
     "unRecieveduUdpDataShow": 0.0,
-    "wswModelScaleFactor": 0.54600000000000093
+    "wswModelScaleFactor": 1.088
   },
   "myHelicopterInfo": {
     "initMyPointX": 10.0,
@@ -150,7 +150,7 @@
     "pointScaleFactorX": -0.003,
     "pointScaleFactorY": 0.003,
     "pointScaleFactorZ": 0.003,
-    "initYaw": 180.0,
+    "initYaw": -63.35,
     "yawSign": false
   },
   "speechConfig": {
@@ -199,5 +199,15 @@
   },
   "windowUiConfig": {
     "isInitShowOn": true
+  },
+  "mapConfig": {
+    "thuPositionLon": 40.0042419,
+    "thuPositionLat": 116.314987,
+    "thuPositionX": 10.0,
+    "thuPositionY": 10.0,
+    "beijingAirportPositionX": 70.0,
+    "beijingAirportPositionY": -35.0,
+    "beijingAirportPositionLon": 40.0569267,
+    "beijingAirportPositionLat": 116.599922
   }
 }

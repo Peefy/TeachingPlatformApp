@@ -59,9 +59,27 @@ namespace TeachingPlatformApp.Views
             var y = Convert.ToSingle(yBlock.Text);
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
             var info = WswHelper.KindToMyInfo(kind);
-            PositionCommandBuilder.SendPositionTo(kind, x, y);
-            info.InitMyPointX = x;
-            info.InitMyPointY = y;      
+            PositionCommandBuilder.SendPositionTo(kind, x, y);     
+        }
+
+        private void ButtonSetThuPositionClick(object sender, RoutedEventArgs e)
+        {
+            var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
+            var info = WswHelper.KindToMyInfo(kind);
+            var config = JsonFileConfig.Instance.MapConfig;
+            var lon = config.ThuPositionLon;
+            var lat = config.ThuPositionLat;
+            PositionCommandBuilder.SendPositionLonLatTo(kind, lat, lon);
+        }
+
+        private void ButtonSetAirPortPositionClick(object sender, RoutedEventArgs e)
+        {
+            var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
+            var info = WswHelper.KindToMyInfo(kind);
+            var config = JsonFileConfig.Instance.MapConfig;
+            var lon = config.BeijingAirportPositionLon;
+            var lat = config.BeijingAirportPositionLat;
+            PositionCommandBuilder.SendPositionLonLatTo(kind, lat, lon);
         }
 
         private WswModelKind IndexToModelKind(int index)

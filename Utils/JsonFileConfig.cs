@@ -114,6 +114,12 @@ namespace TeachingPlatformApp.Utils
         public WindowUiConfig WindowUiConfig { get; set; }
 
         /// <summary>
+        /// 地图 配置
+        /// </summary>
+        [JsonProperty("mapConfig")]
+        public MapConfig MapConfig { get; set; }
+
+        /// <summary>
         /// 配置写入文件
         /// </summary>
         public void WriteToFile()
@@ -167,7 +173,7 @@ namespace TeachingPlatformApp.Utils
                 PointScaleFactorX = -0.003f,
                 PointScaleFactorY = 0.003f,
                 PointScaleFactorZ = 0.003f,
-                InitYaw = -153.435f,
+                InitYaw = -63.35f,
                 YawSign = true
             };
             this.MyFlighterInfo = new WswModelInfo()
@@ -178,7 +184,7 @@ namespace TeachingPlatformApp.Utils
                 PointScaleFactorX = -0.003f,
                 PointScaleFactorY = 0.003f,
                 PointScaleFactorZ = 0.003f,
-                InitYaw = 206.435f,
+                InitYaw = -63.35f,
                 YawSign = false,
             };
             this.MyFlighter2Info = new WswModelInfo()
@@ -189,18 +195,18 @@ namespace TeachingPlatformApp.Utils
                 PointScaleFactorX = -0.003f,
                 PointScaleFactorY = 0.003f,
                 PointScaleFactorZ = 0.003f,
-                InitYaw = 206.435f,
+                InitYaw = -63.35f,
                 YawSign = false,
             };
             this.MyMissileInfo = new WswModelInfo()
             {
-                InitMyPointX = 30,
-                InitMyPointY = 30,
+                InitMyPointX = 10,
+                InitMyPointY = 10,
                 InitMyPointZ = 50,
                 PointScaleFactorX = -0.003f,
                 PointScaleFactorY = 0.003f,
                 PointScaleFactorZ = 0.003f,
-                InitYaw = 180,
+                InitYaw = -63.35f,
                 YawSign = false,
             };
 
@@ -209,6 +215,7 @@ namespace TeachingPlatformApp.Utils
             this.TestTrailRouteConfig = new TestTrailRouteConfig();
             this.FlightExperimentConfig = new FlightExperimentConfig();
             this.WindowUiConfig = new WindowUiConfig();
+            this.MapConfig = new MapConfig();
         }
 
         /// <summary>
