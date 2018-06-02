@@ -275,7 +275,6 @@ D:\_VSPros\C#\WPF\TeachingPlatformApp\bin\Debug\ko\System.Windows.Interactivity.
 D:\_VSPros\C#\WPF\TeachingPlatformApp\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 D:\_VSPros\C#\WPF\TeachingPlatformApp\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 D:\_VSPros\C#\WPF\TeachingPlatformApp\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csprojResolveAssemblyReference.cache
 D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter.g.cs
 D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Controls\GridAxes.g.cs
 D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Controls\Helicopter.g.cs
@@ -379,3 +378,7 @@ F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.g.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\OptionWindow.baml
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter2.g.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter2.baml
+D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csprojAssemblyReference.cache
+D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter2.g.cs
+D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter2.baml
+D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csproj.CopyComplete
