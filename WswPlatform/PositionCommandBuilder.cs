@@ -52,13 +52,13 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
-        private double XYZToLon(double x, double y)
+        protected double XYZToLon(double x, double y)
         {
             var lon = Math.Atan2(y, x);
             return lon * 180.0 / Math.PI;
         }
 
-        private double XYZToLat(double x, double y, double z)
+        protected double XYZToLat(double x, double y, double z)
         {
             var earth_r = 6378137.0;
             var c = earth_r;

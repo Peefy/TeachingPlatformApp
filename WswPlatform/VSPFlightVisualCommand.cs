@@ -61,6 +61,8 @@ namespace TeachingPlatformApp.WswPlatform
         public int Fire0;
         public int Fire1;
 
+        //public char[] Text = new char[128];
+
     }
 
     public struct Glmdvec3

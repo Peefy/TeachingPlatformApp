@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using TeachingPlatformApp.Utils.JsonModels;
 using TeachingPlatformApp.Utils;
@@ -197,9 +193,20 @@ namespace TeachingPlatformApp.WswPlatform
                 case WswModelKind.Helicopter:
                     return IPAddress.Parse(comConfig.IpWswUdpServer);
                 case WswModelKind.Missile:
-                    return null;
+                    return IPAddress.Parse(comConfig.IpGunBarrel);
             }
             return null;
+        }
+
+        /// <summary>
+        /// 获取第三方视角对应PC的局域网IP地址
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <returns></returns>
+        public static IPAddress WswViewMoniorIp(WswModelKind kind)
+        {
+            var comConfig = JsonFileConfig.Instance.ComConfig;
+            return IPAddress.Parse(comConfig.IpViewMonitor);
         }
 
         /// <summary>

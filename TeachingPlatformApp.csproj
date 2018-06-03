@@ -188,7 +188,6 @@
     <Compile Include="WswPlatform\AngleWithLocation.cs" />
     <Compile Include="WswPlatform\WayPointCommand.cs" />
     <Compile Include="WswPlatform\WayPointCommandBuilder.cs" />
-    <Compile Include="WswPlatform\ShowTextCommandHeader.cs" />
     <Compile Include="WswPlatform\VSPFlightVisualCommand.cs" />
     <Compile Include="WswPlatform\PositionCommandBuilder.cs" />
     <Compile Include="WswPlatform\ShowTextCommandBuilder.cs" />
