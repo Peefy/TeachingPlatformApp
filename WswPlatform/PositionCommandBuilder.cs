@@ -35,29 +35,54 @@ namespace TeachingPlatformApp.WswPlatform
             _port = JsonFileConfig.Instance.ComConfig.WswModelPositionUdpPort;
         }
 
+        /// <summary>
+        /// 设置坐标构造器
+        /// </summary>
         protected PositionCommandBuilder()
         {
             CommonConstrctor();
         }
 
+        /// <summary>
+        /// 设置坐标构造器
+        /// </summary>
+        /// <param name="kind">模型的类型</param>
         public PositionCommandBuilder(WswModelKind kind)
         {
             CommonConstrctor();
             _kind = kind;
         }
 
+        /// <summary>
+        /// 设置需要设置的模型
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <returns></returns>
         public PositionCommandBuilder SetWswModelKind(WswModelKind kind)
         {
             _kind = kind;
             return this;
         }
 
+        /// <summary>
+        /// 地心坐标系坐标转经纬度坐标
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         protected double XYZToLon(double x, double y)
         {
             var lon = Math.Atan2(y, x);
             return lon * 180.0 / Math.PI;
         }
 
+        /// <summary>
+        /// 地心坐标系坐标转经纬度坐标
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         protected double XYZToLat(double x, double y, double z)
         {
             var earth_r = 6378137.0;
@@ -80,6 +105,13 @@ namespace TeachingPlatformApp.WswPlatform
             return lat * 180.0 / Math.PI;
         }
 
+        /// <summary>
+        /// 设置模型初始的在显示地图中的坐标
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         public PositionCommandBuilder SetInitialPosition(double x, double y, double z)
         {
             var anglePosition = WswHelper.DealMyMapDataToWswAngle(x, y, z, _kind);
@@ -89,6 +121,12 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
+        /// <summary>
+        /// 设置模型初始的经纬度坐标
+        /// </summary>
+        /// <param name="lon"></param>
+        /// <param name="lat"></param>
+        /// <returns></returns>
         public PositionCommandBuilder SetInitialLonLan(double lon, double lat)
         {
             _command.Lat = lat;
@@ -96,6 +134,11 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
+        /// <summary>
+        /// 设置模型初始的地心坐标
+        /// </summary>
+        /// <param name="angleWithLocation"></param>
+        /// <returns></returns>
         public PositionCommandBuilder SetAngleWithLocation(AngleWithLocation angleWithLocation)
         {
             _command.Lat = XYZToLat(angleWithLocation.X, angleWithLocation.Y, angleWithLocation.Z);
@@ -103,13 +146,24 @@ namespace TeachingPlatformApp.WswPlatform
             return this;
         }
 
+        /// <summary>
+        /// Udp发送数据
+        /// </summary>
         public void Send()
         {
             Ioc.Get<ITranslateData>().SendTo(BuildCommandBytes(), KindToIp());
         }
 
+        /// <summary>
+        /// 获得构造的通信数据结构体
+        /// </summary>
+        /// <returns></returns>
         public VSPFlightVisualCommand Build() => _command;
 
+        /// <summary>
+        /// 通信数据结构体构造通信字节
+        /// </summary>
+        /// <returns></returns>
         public byte[] BuildCommandBytes()
         {
             var bytes = StructHelper.StructToBytes(_command);
@@ -172,7 +226,6 @@ namespace TeachingPlatformApp.WswPlatform
         {
             if (kind == WswModelKind.Missile)
                 return;
-            var config = JsonFileConfig.Instance;
             var data = WswHelper.KindToWswInitData(kind);
             new PositionCommandBuilder().
                 SetWswModelKind(kind).

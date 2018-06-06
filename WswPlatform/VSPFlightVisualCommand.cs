@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-
-namespace TeachingPlatformApp.WswPlatform
+﻿namespace TeachingPlatformApp.WswPlatform
 {
     /// <summary>
     /// 战斗机，直升机初始坐标设置通信Packet
