@@ -6,6 +6,9 @@ using TeachingPlatformApp.Utils;
 
 namespace TeachingPlatformApp.WswPlatform
 {
+    /// <summary>
+    /// Wsw平摊帮助类
+    /// </summary>
     public static class WswHelper
     {
         /// <summary>

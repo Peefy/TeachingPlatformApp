@@ -143,9 +143,6 @@
     <Compile Include="Converters\SetPointToRealMarginPointConverter.cs" />
     <Compile Include="Converters\TrailPointsToPathFigureConverter.cs" />
     <Compile Include="Extensions\ICollectionExtension.cs" />
-    <Compile Include="MemoryShare\CLMemory.cs" />
-    <Compile Include="MemoryShare\CLStartCamera.cs" />
-    <Compile Include="MemoryShare\ZyShareMem.cs" />
     <Compile Include="Models\Flighter2Model.cs" />
     <Compile Include="Models\FlighterModel.cs" />
     <Compile Include="Models\HelicopterModel.cs" />
@@ -197,13 +194,6 @@
     <Compile Include="WswPlatform\WswModelKind.cs" />
     <Compile Include="WswPlatform\WswDataDebuger.cs" />
     <Compile Include="WswPlatform\WswHelper.cs" />
-    <Compile Include="ZyPlatform\AngleDef.cs" />
-    <Compile Include="ZyPlatform\EffectDef.cs" />
-    <Compile Include="ZyPlatform\GameSharedDef.cs" />
-    <Compile Include="ZyPlatform\GameStateFlag.cs" />
-    <Compile Include="ZyPlatform\ScoreDef.cs" />
-    <Compile Include="ZyPlatform\ShakeDef.cs" />
-    <Compile Include="ZyPlatform\VectorAngExp.cs" />
     <Compile Include="Utils\StructHelper.cs" />
     <Page Include="Controls\Flighter2.xaml">
       <Generator>MSBuild:Compile</Generator>
