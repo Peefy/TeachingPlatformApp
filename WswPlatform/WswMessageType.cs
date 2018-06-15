@@ -1,5 +1,8 @@
 ﻿namespace TeachingPlatformApp.WswPlatform
 {
+    /// <summary>
+    /// Wsw平台通信的消息类型
+    /// </summary>
     public enum WswMessageType
     {
         Idle = 0,

@@ -1,4 +1,4 @@
 HoverAngle|30
 MilliSeconds|1500
-AirlineFlightSetPoints|(15,15),(20,30),(50,50),(60,20),(40,5)
+AirlineFlightSetPoints|(15,15),(20,30),(50,5)
 OnlyInstrumencsSetPoints|(10,10),(30,50),(50,50),(50,30),(50,10),(30,10)
