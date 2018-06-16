@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 using DuGu.NetFramework.Services;
 
@@ -38,6 +31,7 @@ namespace TeachingPlatformApp
 
         void ServiceInit()
         {
+            // 注册服务
             Ioc.Register<ITranslateData, Server>();
             Ioc.Register<ISpeek, TeachingSpeeker>();
         }
