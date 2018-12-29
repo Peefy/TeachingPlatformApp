@@ -153,6 +153,7 @@
     <Compile Include="Speech\ISpeek.cs" />
     <Compile Include="Speech\TeachingSpeeker.cs" />
     <Compile Include="Utils\ClassObjectDeepCloneUtil.cs" />
+    <Compile Include="Utils\JsonModels\ATCSimulatorConfig.cs" />
     <Compile Include="Utils\JsonModels\ComConfig.cs" />
     <Compile Include="Utils\JsonModels\DataShowConfig.cs" />
     <Compile Include="Utils\JsonModels\FlightExperimentConfig.cs" />
