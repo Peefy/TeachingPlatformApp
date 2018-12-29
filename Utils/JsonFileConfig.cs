@@ -120,6 +120,12 @@ namespace TeachingPlatformApp.Utils
         public MapConfig MapConfig { get; set; }
 
         /// <summary>
+        /// 空管模拟器 配置
+        /// </summary>
+        [JsonProperty("ATCSimulatorConfig")]
+        public ATCSimulatorConfig ATCSimulatorConfig { get; set; }
+
+        /// <summary>
         /// 配置写入文件
         /// </summary>
         public void WriteToFile()
@@ -216,6 +222,7 @@ namespace TeachingPlatformApp.Utils
             this.FlightExperimentConfig = new FlightExperimentConfig();
             this.WindowUiConfig = new WindowUiConfig();
             this.MapConfig = new MapConfig();
+            this.ATCSimulatorConfig = new ATCSimulatorConfig();
         }
 
         /// <summary>
