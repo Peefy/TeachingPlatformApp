@@ -120,6 +120,12 @@ namespace TeachingPlatformApp.Utils
         public MapConfig MapConfig { get; set; }
 
         /// <summary>
+        /// 数据保存 配置
+        /// </summary>
+        [JsonProperty("dataSaveConfig")]
+        public DataSaveConfig DataSaveConfig { get; set; }
+
+        /// <summary>
         /// 空管模拟器 配置
         /// </summary>
         [JsonProperty("ATCSimulatorConfig")]
