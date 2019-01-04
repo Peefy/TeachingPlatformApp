@@ -209,5 +209,13 @@
     "beijingAirportPositionY": -35.0,
     "beijingAirportPositionLon": 40.0569267,
     "beijingAirportPositionLat": 116.599922
+  },
+  "dataSaveConfig": null,
+  "ATCSimulatorConfig": {
+    "ipATCSceneServer": "192.168.0.170",
+    "ipATCSceneClient1": "192.168.0.171",
+    "ipATCSceneClient2": "192.168.0.172",
+    "ipATCSceneClient3": "192.168.0.173",
+    "ipATCSDataAdapter": "192.168.0.180"
   }
 }

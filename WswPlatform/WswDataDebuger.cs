@@ -26,5 +26,20 @@ namespace TeachingPlatformApp.WswPlatform
                 deltaStr
             });
         }
+
+        public static void Record(WswModelKind kind, AngleWithLocation angleWithLocation)
+        {
+            var config = Utils.JsonFileConfig.Instance.DataSaveConfig;
+            if (config.IsDataSave == false)
+                return;
+            var timeStr = DateTime.Now.ToString();
+            var str = WswHelper.AngleWithLocationToString(angleWithLocation);
+            if (Directory.Exists(config.DataSavePath) == false)
+            {
+                Directory.CreateDirectory(config.DataSavePath);
+            }
+            var fileName = $"{kind.ToString()}_{timeStr}_{config.DataSaveFileName}";
+            File.AppendAllText(Path.Combine(config.DataSavePath, fileName), str);
+        }
     }
 }

@@ -69,4 +69,28 @@ namespace TeachingPlatformApp.Utils.JsonModels
 
     }
 
+    /// <summary>
+    /// 数据保存 配置
+    /// </summary>
+    public class DataSaveConfig
+    {
+        /// <summary>
+        /// 是否进行数据保存
+        /// </summary>
+        [JsonProperty("isDataSave")]
+        public bool IsDataSave { get; set; } = true;
+
+        /// <summary>
+        /// 数据保存文件名称
+        /// </summary>
+        [JsonProperty("dataSaveFileName")]
+        public string DataSaveFileName { get; set; } = "data.txt";
+
+        /// <summary>
+        /// 数据保存路径
+        /// </summary>
+        [JsonProperty("dataSavePath")]
+        public string DataSavePath { get; set; } = ".\\datas\\";
+    }
+
 }

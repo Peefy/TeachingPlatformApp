@@ -551,8 +551,10 @@ namespace TeachingPlatformApp.ViewModels
             var config = JsonFileConfig.Instance;
             var angleWithLocation = StructHelper.BytesToStruct<AngleWithLocation>(recieveBytes);
             var angleDataDigit = config.DataShowConfig.AngleShowDigit;
+            var kind = WswModelKind.Missile;
             if (ip.StartsWith(config.ComConfig.Ip720Platform) == true)
-            {             
+            {
+                kind = WswModelKind.Flighter;
                 angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation, 
                     WswModelKind.Flighter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
@@ -566,6 +568,7 @@ namespace TeachingPlatformApp.ViewModels
             }
             else if (ip.StartsWith(config.ComConfig.IpWswUdpServer) == true)
             {
+                kind = WswModelKind.Helicopter;
                 angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation, 
                     WswModelKind.Helicopter, angleDataDigit);
                 foreach (var flight in FlightExperiments)
@@ -579,6 +582,7 @@ namespace TeachingPlatformApp.ViewModels
             }
             else if (ip.StartsWith(config.ComConfig.Ip720Platform2) == true)
             {
+                kind = WswModelKind.Flighter2;
                 angleWithLocation = WswHelper.DealWswAngleToMyMapData(angleWithLocation,
                     WswModelKind.Flighter2, angleDataDigit);
                 foreach (var flight in FlightExperiments)
@@ -592,12 +596,13 @@ namespace TeachingPlatformApp.ViewModels
             }
             else if (ip.StartsWith(config.ComConfig.IpGunBarrel) == true)
             {
-
+                kind = WswModelKind.Missile;
             }
             else if (ip.StartsWith(config.ComConfig.IpViewMonitor) == true)
             {
 
             }
+            WswDataDebuger.Record(kind, angleWithLocation);
         }
     }
 }
