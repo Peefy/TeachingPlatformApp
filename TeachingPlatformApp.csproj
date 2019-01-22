@@ -170,6 +170,9 @@
     <Compile Include="Utils\JsonModels\WswData.cs" />
     <Compile Include="ViewModels\ConfigWindowViewModel.cs" />
     <Compile Include="ViewModels\FlightMapWindowViewModel.cs" />
+    <Compile Include="Views\AIJudgeWindow.xaml.cs">
+      <DependentUpon>AIJudgeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfigWindow.xaml.cs">
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
@@ -241,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIModels\ToTalFlightView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AIJudgeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

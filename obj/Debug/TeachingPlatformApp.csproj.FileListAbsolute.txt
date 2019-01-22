@@ -443,3 +443,5 @@ E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csproj.C
 E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csproj.CopyComplete
 E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.exe
 E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.pdb
+E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.g.cs
+E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.baml

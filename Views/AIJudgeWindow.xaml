@@ -1,0 +1,120 @@
+﻿<Controls:MetroWindow x:Class="TeachingPlatformApp.Views.AIJudgeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:ctrls="clr-namespace:TeachingPlatformApp.Controls"
+        xmlns:local="clr-namespace:TeachingPlatformApp.Views"
+        mc:Ignorable="d"
+        Title="智能电子教员"
+        Width="525"
+        Height="250"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <GroupBox
+            Width="499"
+            Height="94"
+            Margin="10,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Header="智能评价参数设置">
+            <Grid>
+                <TextBox
+                    Width="120"
+                    Margin="63,1,0,28"
+                    HorizontalAlignment="Left"
+                    Text="EH101型直升机"/>
+                <Label
+                    Margin="183,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="飞行科目" RenderTransformOrigin="1.823,0.656" />
+                <TextBox
+                    Width="120"
+                    Margin="240,1,0,28"
+                    HorizontalAlignment="Left"
+                    Text="航线飞行" RenderTransformOrigin="2.07,-0.436"/>
+                <Label
+                    Margin="0,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="模型选择" />
+                <TextBox
+                    Width="120"
+                    Margin="63,31,0,-2"
+                    HorizontalAlignment="Left"
+                    Text="AlexNet" RenderTransformOrigin="2.07,-0.436"/>
+                <Label
+                    Margin="0,29,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="算法选择" />
+                <Button
+                    Width="45"
+                    Margin="367,1,0,28"
+                    HorizontalAlignment="Left"
+                    Content="设置"
+                    ToolTip="设置初始坐标" />
+                <Button
+                    Width="45"
+                    Margin="422,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="重置"
+                    ToolTip="恢复初始坐标" />
+                <Button
+                    Width="45"
+                    Margin="367,31,0,-1"
+                    HorizontalAlignment="Left"
+                    Content="导入" />
+                <Button
+                    Width="45"
+                    Margin="422,30,0,-2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="导出"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox
+            Width="499"
+            Height="94"
+            Margin="10,110,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Header="智能评价输出参数">
+            <Grid>
+                <TextBox
+                    Width="120"
+                    Margin="63,1,0,28"
+                    HorizontalAlignment="Left"
+                    Text="90.0"/>
+                <Label
+                    Margin="183,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="评价等级" RenderTransformOrigin="1.823,0.656" />
+                <TextBox
+                    Width="120"
+                    Margin="240,2,0,27"
+                    HorizontalAlignment="Left"
+                    Text="A级"/>
+                <Label
+                    Margin="0,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="评价分数" />
+                <Button
+                    Width="99"
+                    Margin="365,1,0,28"
+                    HorizontalAlignment="Left"
+                    Content="导出评价" />
+                <Button
+                    Width="99"
+                    Margin="365,1,0,28"
+                    HorizontalAlignment="Left"
+                    Content="生成报告"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Controls:MetroWindow>

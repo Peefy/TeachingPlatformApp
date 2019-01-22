@@ -159,6 +159,11 @@ namespace TeachingPlatformApp.Views
                             _viewModel.AppendStatusText("打开参数设置");
                             isFind = true;
                         }
+                        if (Regex.IsMatch(text, "ai", RegexOptions.IgnoreCase))
+                        {
+                            new AIJudgeWindow().Show();
+                            isFind = true;
+                        }
                         if (isFind == true)
                             break;                          
                     }
