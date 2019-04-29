@@ -319,7 +319,6 @@ D:\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.pdb
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\TeachingPlatformApp.exe.config
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\TeachingPlatformApp.exe
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\TeachingPlatformApp.pdb
-F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\System.Windows.Interactivity.dll
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\de\System.Windows.Interactivity.resources.dll
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\en\System.Windows.Interactivity.resources.dll
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\es\System.Windows.Interactivity.resources.dll
@@ -330,7 +329,6 @@ F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\ko\System.Windows.Interactivi
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csprojResolveAssemblyReference.cache
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Controls\Flighter.g.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Controls\GridAxes.g.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Controls\Helicopter.g.cs
@@ -445,3 +443,7 @@ E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.exe
 E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.pdb
 E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.g.cs
 E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.baml
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csprojAssemblyReference.cache
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.g.cs
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.baml
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csproj.CopyComplete
