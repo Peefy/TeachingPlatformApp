@@ -39,8 +39,8 @@ namespace TeachingPlatformApp.Speech
             {
                 _speech = new SpVoice
                 {
-                    Volume = (int)NumberUtil.Clamp(_config.SpeechConfig.Volume, MinVolume, MaxVolume),
-                    Rate = (int)NumberUtil.Clamp(_config.SpeechConfig.Rate, MinRate, MaxRate)
+                    //Volume = (int)NumberUtil.Clamp(_config.SpeechConfig.Volume, MinVolume, MaxVolume),
+                    //Rate = (int)NumberUtil.Clamp(_config.SpeechConfig.Rate, MinRate, MaxRate)
                 };
             }
             else
