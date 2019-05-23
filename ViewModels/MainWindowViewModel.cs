@@ -602,7 +602,6 @@ namespace TeachingPlatformApp.ViewModels
             {
 
             }
-            WswDataDebuger.Record(kind, angleWithLocation);
         }
     }
 }

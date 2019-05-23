@@ -27,6 +27,7 @@ namespace TeachingPlatformApp.WswPlatform
             });
         }
 
+        [Obsolete]
         public static void Record(WswModelKind kind, AngleWithLocation angleWithLocation)
         {
             var config = Utils.JsonFileConfig.Instance.DataSaveConfig;
