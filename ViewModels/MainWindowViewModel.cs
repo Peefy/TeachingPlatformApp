@@ -95,7 +95,7 @@ namespace TeachingPlatformApp.ViewModels
                 var isStart = false;
                 foreach (var item in FlightExperiments)
                 {
-                    isStart = isStart | item.IsStart;
+                    isStart |= item.IsStart;
                 }
                 return isStart;
             }
