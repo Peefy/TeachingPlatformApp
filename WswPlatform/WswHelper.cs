@@ -63,8 +63,7 @@ namespace TeachingPlatformApp.WswPlatform
                 angleNew.Roll = angle.Roll;
                 angleNew.Pitch = angle.Pitch;              
                 angleNew.Yaw = angle.Yaw * yawSign - myFlighterInfo.InitYaw;
-
-            };
+            }
             if(wswAirplane == WswModelKind.Helicopter)
             {
                 var myHelicopterInfo = config.MyHelicopterInfo;
