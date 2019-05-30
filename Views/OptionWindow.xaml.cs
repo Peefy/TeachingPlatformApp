@@ -58,14 +58,14 @@ namespace TeachingPlatformApp.Views
             var x = Convert.ToSingle(xBlock.Text);
             var y = Convert.ToSingle(yBlock.Text);
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
-            var info = WswHelper.KindToMyInfo(kind);
+            _ = WswHelper.KindToMyInfo(kind);
             PositionCommandBuilder.SendPositionTo(kind, x, y);     
         }
 
         private void ButtonSetThuPositionClick(object sender, RoutedEventArgs e)
         {
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
-            var info = WswHelper.KindToMyInfo(kind);
+            _ = WswHelper.KindToMyInfo(kind);
             var config = JsonFileConfig.Instance.MapConfig;
             var lon = config.ThuPositionLon;
             var lat = config.ThuPositionLat;
