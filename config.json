@@ -2,8 +2,9 @@
   "stringResource": {
     "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
-    "helicopterName": "直升机",
-    "flighterName": "战斗机",
+    "helicopterName": "直升机EH101",
+    "flighterName": "战斗机F-18",
+    "flighter2Name": "战斗机初教-6",
     "missileName": "导弹",
     "flightExperimentNames": [
       "起落航线",
@@ -17,22 +18,28 @@
   "comConfig": {
     "selfPort": 16000,
     "udp720Port": 15000,
-    "ipSelf": "192.168.0.135",
-    "ip720Platform": "192.168.0.134",
-    "ip720Platform2": "192.168.0.132",
+    "ipSelf": "192.168.0.150",
+    "ipViewMonitor": "192.168.0.140",
+    "ip720Platform": "192.168.0.136",
+    "ip720Platform2": "192.168.0.137",
     "ipWswUdpServer": "192.168.0.131",
     "ipGunBarrel": "192.168.0.133",
     "wswUdpPort": 14000,
     "udp720TechingPort": 12000,
+    "udp720Teching2Port": 13000,
     "udp720TestConsolePort": 11000,
     "renewUIRecieveCount": 10,
-    "udpClientExtraPort": 10000
+    "udpClientExtraPort": 10000,
+    "wswModelShowTextUdpPort": 2001,
+    "wswModelPositionUdpPort": 6484
   },
   "mapGridAxesDrawPara": {
     "axesHeight": 860.0,
     "axesWidth": 1360.0,
     "maxHeight": 1000.0,
     "maxWidth": 2000.0,
+    "windowHeight": 728.0,
+    "windowWidth": 1024.0,
     "columnNumber": 200,
     "rowNumber": 200,
     "enableDragMove": true,
@@ -42,31 +49,40 @@
     "drawRight": 60.0,
     "drawLabelTop": 5.0,
     "drawLabelLeft": 12.0,
-    "labelFontSize": 24,
+    "labelFontSize": 12,
     "labelAxesInterval": 10,
     "labelAxesInit": 0,
-    "xAxesInternal": 100.0,
-    "yAxesInternal": 100.0,
+    "xAxesInternal": 45.199999999999889,
+    "yAxesInternal": 45.199999999999889,
     "mouseDoubleClickShowPointX": 50.0,
     "mouseDoubleClickShowPointY": 30.0,
-    "helicopterPaddleRotateSpeed": 4.0
+    "helicopterPaddleRotateSpeed": 4.0,
+    "axexLineWidth": 0.90399999999999781
   },
   "wswData": {
+    "zeroPointInitInfo": {
+      "X": -2165844.6698,
+      "Y": 4379369.0368,
+      "Z": 4104669.0426,
+      "Yaw": -0.5154596,
+      "Pitch": 0.0011189,
+      "Roll": 0.00139873
+    },
     "flighterInitInfo": {
-      "X": -2185907.3768,
-      "Y": 4365171.6876,
-      "Z": 4104669.1241,
-      "Yaw": 0.1873927,
-      "Pitch": 0.0011897,
-      "Roll": 0.0013987
+      "X": -2165844.6698,
+      "Y": 4379369.0368,
+      "Z": 4104669.0426,
+      "Yaw": -0.5154596,
+      "Pitch": 0.0011189,
+      "Roll": 0.00139873
     },
     "flighterInitInfo2": {
-      "X": -2185907.3768,
-      "Y": 4365171.6876,
-      "Z": 4104669.1241,
-      "Yaw": 0.1873927,
-      "Pitch": 0.0011897,
-      "Roll": 0.0013987
+      "X": -2165844.6698,
+      "Y": 4379369.0368,
+      "Z": 4104669.0426,
+      "Yaw": -0.5154596,
+      "Pitch": 0.0011189,
+      "Roll": 0.00139873
     },
     "helicopterInitInfo": {
       "X": -2165844.6698,
@@ -90,40 +106,51 @@
     "pointShowDigit": 1,
     "mapUiRefreshMs": 50,
     "drawTrailPointNumUp": 5000,
-    "setPointsFontSize": 24.0,
-    "setPointsEllipseRadius": 6.0,
+    "setPointsFontSize": 12.0,
+    "setPointsEllipseRadius": 2.7119999999999931,
     "locationStringFontSize": 22.0,
-    "setPointsLineWidth": 3.0,
-    "unRecieveduUdpDataShow": 0.0
+    "setPointsLineWidth": 1.3559999999999965,
+    "unRecieveduUdpDataShow": 0.0,
+    "wswModelScaleFactor": 0.4519999999999989
   },
   "myHelicopterInfo": {
-    "initMyPointX": 15.0,
-    "initMyPointY": 15.0,
+    "initMyPointX": 10.0,
+    "initMyPointY": 10.0,
     "initMyPointZ": 50.0,
-    "pointScaleFactorX": -0.01,
-    "pointScaleFactorY": 0.01,
-    "pointScaleFactorZ": 0.01,
-    "initYaw": -153.435,
-    "yawSign": true
+    "pointScaleFactorX": -0.003,
+    "pointScaleFactorY": 0.003,
+    "pointScaleFactorZ": 0.003,
+    "initYaw": -90.0,
+    "yawSign": false
   },
   "myFlighertInfo": {
     "initMyPointX": 10.0,
     "initMyPointY": 10.0,
     "initMyPointZ": 50.0,
-    "pointScaleFactorX": -0.01,
-    "pointScaleFactorY": 0.01,
-    "pointScaleFactorZ": 0.01,
-    "initYaw": 206.435,
-    "yawSign": false
+    "pointScaleFactorX": -0.003,
+    "pointScaleFactorY": 0.003,
+    "pointScaleFactorZ": 0.003,
+    "initYaw": 26.65,
+    "yawSign": true
+  },
+  "myFlighert2Info": {
+    "initMyPointX": 10.0,
+    "initMyPointY": 10.0,
+    "initMyPointZ": 50.0,
+    "pointScaleFactorX": -0.003,
+    "pointScaleFactorY": 0.003,
+    "pointScaleFactorZ": 0.003,
+    "initYaw": 26.65,
+    "yawSign": true
   },
   "myMissileInfo": {
     "initMyPointX": 30.0,
     "initMyPointY": 30.0,
     "initMyPointZ": 50.0,
-    "pointScaleFactorX": -0.01,
-    "pointScaleFactorY": 0.01,
-    "pointScaleFactorZ": 0.01,
-    "initYaw": 180.0,
+    "pointScaleFactorX": -0.003,
+    "pointScaleFactorY": 0.003,
+    "pointScaleFactorZ": 0.003,
+    "initYaw": -63.35,
     "yawSign": false
   },
   "speechConfig": {
@@ -142,7 +169,7 @@
     "outOfRouteDistance": 6.0,
     "outOfRouteTestIntervalMs": 300,
     "outOfRouteSpeechUpCount": 2,
-    "isAutoFollowing": 1,
+    "isAutoFollowing": 0,
     "autoFollowingIntervalMs": 50,
     "judgeNowSetPointsIndexRadius": 5.0,
     "initNowSetPointsIndex": -1,
@@ -158,6 +185,37 @@
       "    5.俯冲跃升实验：飞行学员驾驶飞行模拟器进行俯冲跃升实验，并在飞行过程中将坡度保持在一定范围内。考核指标是使飞机的坡度保持在一定范围内并且飞机在俯冲、跃升的过程中俯仰角保持在一定范围内。通过教员台界面可以实时记录飞机滚转角和俯仰角，并且可以设置在实验中飞机需要保持的坡度范围指标。",
       "    6.仪表飞行实验：飞行学员驾驶飞行模拟器在夜景下只通过仪表显示的内容并保持预设的坡度且根据预设的航路点进行飞行。考核指标是是否按照既定的航线和保持坡度进行飞行。通过教员台界面可以设置保持的坡度大小以及航路点坐标，且在教员台界面上可以实时显示飞机的滚转角和飞机当前飞行的坐标点。"
     ],
+    "showText": [
+      "起飞",
+      "五边飞行",
+      "斤斗飞行",
+      "盘旋飞行",
+      "编队飞行",
+      "滚转30°",
+      "滚转75°",
+      "降落"
+    ],
     "isJudgeValid ": true
+  },
+  "windowUiConfig": {
+    "isInitShowOn": true
+  },
+  "mapConfig": {
+    "thuPositionLon": 40.0042419,
+    "thuPositionLat": 116.314987,
+    "thuPositionX": 10.0,
+    "thuPositionY": 10.0,
+    "beijingAirportPositionX": 70.0,
+    "beijingAirportPositionY": -35.0,
+    "beijingAirportPositionLon": 40.0569267,
+    "beijingAirportPositionLat": 116.599922
+  },
+  "dataSaveConfig": null,
+  "ATCSimulatorConfig": {
+    "ipATCSceneServer": "192.168.0.170",
+    "ipATCSceneClient1": "192.168.0.171",
+    "ipATCSceneClient2": "192.168.0.172",
+    "ipATCSceneClient3": "192.168.0.173",
+    "ipATCSDataAdapter": "192.168.0.180"
   }
 }

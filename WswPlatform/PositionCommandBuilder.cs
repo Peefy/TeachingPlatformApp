@@ -77,7 +77,7 @@ namespace TeachingPlatformApp.WswPlatform
         }
 
         /// <summary>
-        /// 地心坐标系坐标转经纬度坐标
+        /// 地球坐标系坐标转经纬度坐标
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -108,9 +108,9 @@ namespace TeachingPlatformApp.WswPlatform
         /// <summary>
         /// 设置模型初始的在显示地图中的坐标
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
+        /// <param name="x">显示地图中的x坐标</param>
+        /// <param name="y">显示地图中的y坐标</param>
+        /// <param name="z">显示地图中的z坐标</param>
         /// <returns></returns>
         public PositionCommandBuilder SetInitialPosition(double x, double y, double z)
         {
