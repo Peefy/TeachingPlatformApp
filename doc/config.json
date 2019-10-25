@@ -1,4 +1,4 @@
-{
+﻿{
   "stringResource": {
     "windowTitle": "教员台界面",
     "flightMapTitle": "地图界面",
@@ -201,14 +201,14 @@
     "isInitShowOn": true
   },
   "mapConfig": {
-    "thuPositionLon": 40.0042419,
-    "thuPositionLat": 116.314987,
+    "thuPositionLon": 116.314987,
+    "thuPositionLat": 40.0042419,
     "thuPositionX": 10.0,
     "thuPositionY": 10.0,
     "beijingAirportPositionX": 70.0,
     "beijingAirportPositionY": -35.0,
-    "beijingAirportPositionLon": 40.0569267,
-    "beijingAirportPositionLat": 116.599922
+    "beijingAirportPositionLon": 116.599922,
+    "beijingAirportPositionLat": 40.0569267
   },
   "dataSaveConfig": null,
   "ATCSimulatorConfig": {

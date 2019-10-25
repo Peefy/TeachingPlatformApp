@@ -56,6 +56,9 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ATCSimulator.Core">
+      <HintPath>packages_my\ATCSimulator.Core.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetSpeech">
       <HintPath>packages_my\DotNetSpeech.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>

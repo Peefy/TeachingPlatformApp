@@ -65,7 +65,7 @@ namespace TeachingPlatformApp.WswPlatform
         }
 
         /// <summary>
-        /// 地心坐标系坐标转经纬度坐标
+        /// 地心坐标系坐标转经度坐标
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -80,7 +80,7 @@ namespace TeachingPlatformApp.WswPlatform
         }
 
         /// <summary>
-        /// 地球坐标系坐标转经纬度坐标
+        /// 地球坐标系坐标转纬度坐标
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -94,6 +94,13 @@ namespace TeachingPlatformApp.WswPlatform
             return lat;
         }
 
+        /// <summary>
+        /// 地球坐标系坐标转海拔
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         protected double XYZToHeight(double x, double y, double z)
         {
             var earthRadius = 6378137.0;

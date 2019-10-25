@@ -25,7 +25,7 @@ namespace TeachingPlatformApp
         {
             ServiceInit();
             ConverterPara.Init();
-            LogAndConfig.Init();            
+            LogAndConfig.Init();         
             this.Exit += App_Exit;         
         }
 

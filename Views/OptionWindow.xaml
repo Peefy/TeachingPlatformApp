@@ -38,7 +38,7 @@
                     x:Name="xBlock"
                     Width="50"
                     Height="24"
-                    Margin="217,2,0,0"
+                    Margin="217,31,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Text="10"
@@ -47,7 +47,7 @@
                     x:Name="yBlock"
                     Width="49"
                     Height="22"
-                    Margin="303,2,0,0"
+                    Margin="303,32,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Text="10"
@@ -55,29 +55,29 @@
                 <Button
                     x:Name="btnSetPosition"
                     Width="45"
-                    Margin="365,1,0,28"
+                    Margin="365,30,0,-1"
                     HorizontalAlignment="Left"
                     Click="ButtonSetPositionClick"
                     Content="设置"
                     ToolTip="设置初始坐标" />
                 <Label
-                    Margin="194,1,0,0"
+                    Margin="194,30,0,-1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="X" />
                 <Label
-                    Margin="281,1,0,0"
+                    Margin="281,30,0,-1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="Y" />
                 <Button
                     Width="45"
-                    Margin="422,1,0,0"
+                    Margin="422,30,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Click="ButtonInitPositionClick"
                     Content="重置"
-                    ToolTip="恢复初始坐标" />
+                    ToolTip="恢复初始坐标" RenderTransformOrigin="0.467,1.074" Height="25" />
                 <Button
                     x:Name="btnSetPosition_Copy"
                     Width="71"
@@ -96,6 +96,23 @@
                     Click="ButtonSetAirPortPositionClick"
                     Content="设置机场"
                     ToolTip="设置初始坐标" />
+                <ComboBox
+                    x:Name="standsComboBox"
+                    Width="120"
+                    Margin="272,2,0,27"
+                    HorizontalAlignment="Left"/>
+                <Label
+                    Margin="197,1,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="停机位选择" />
+                <Button
+                    x:Name="btnSetStands"
+                    Width="70"
+                    Margin="397,2,0,27"
+                    HorizontalAlignment="Left"
+                    Content="设置停机位"
+                    ToolTip="设置停机位" Click="BtnSetStands_Click" />
             </Grid>
         </GroupBox>
         <GroupBox

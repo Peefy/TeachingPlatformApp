@@ -36,6 +36,11 @@ namespace TeachingPlatformApp.Views
             wswModelComboBox1.Items.Add("全部");
             wswModelComboBox1.SelectedIndex = 0;
 
+            standsComboBox.Items.Add("806");
+            standsComboBox.Items.Add("808");
+            standsComboBox.Items.Add("810");
+            standsComboBox.SelectedIndex = 0;
+
             var showtexts = JsonFileConfig.ReadFromFile().FlightExperimentConfig.ShowText;
             foreach(var str in showtexts)
             {
@@ -58,28 +63,25 @@ namespace TeachingPlatformApp.Views
             var x = Convert.ToSingle(xBlock.Text);
             var y = Convert.ToSingle(yBlock.Text);
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
-            _ = WswHelper.KindToMyInfo(kind);
             PositionCommandBuilder.SendPositionTo(kind, x, y);     
         }
 
         private void ButtonSetThuPositionClick(object sender, RoutedEventArgs e)
         {
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
-            _ = WswHelper.KindToMyInfo(kind);
             var config = JsonFileConfig.Instance.MapConfig;
             var lon = config.ThuPositionLon;
             var lat = config.ThuPositionLat;
-            PositionCommandBuilder.SendPositionLonLatTo(kind, lat, lon);
+            PositionCommandBuilder.SendPositionLonLatTo(kind, lon, lat);
         }
 
         private void ButtonSetAirPortPositionClick(object sender, RoutedEventArgs e)
         {
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
-            var info = WswHelper.KindToMyInfo(kind);
             var config = JsonFileConfig.Instance.MapConfig;
             var lon = config.BeijingAirportPositionLon;
             var lat = config.BeijingAirportPositionLat;
-            PositionCommandBuilder.SendPositionLonLatTo(kind, lat, lon);
+            PositionCommandBuilder.SendPositionLonLatTo(kind, lon, lat);
         }
 
         private WswModelKind IndexToModelKind(int index)
@@ -142,6 +144,17 @@ namespace TeachingPlatformApp.Views
         {
             var combo = sender as ComboBox;
             textShowText.Text = combo.SelectedItem.ToString();
+        }
+
+
+        private void BtnSetStands_Click(object sender, RoutedEventArgs e)
+        {
+            var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
+            var name = standsComboBox.Text;
+            var position = ATCSimulator.Models.ZBAAStandPositionFactory.Get(name);
+            var lon = position.Lontitude;
+            var lat = position.Latitude;
+            PositionCommandBuilder.SendPositionLonLatTo(kind, lon, lat);
         }
     }
 }
