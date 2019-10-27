@@ -448,3 +448,4 @@ F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.g.cs
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\Views\AIJudgeWindow.baml
 F:\_VSpro\CSharp\WPF\TeachingPlatformApp\obj\Debug\TeachingPlatformApp.csproj.CopyComplete
 E:\xpf\_VSPros\C#\WPF\TeachingPlatformApp\bin\Debug\ATCSimulator.Core.dll
+F:\_VSpro\CSharp\WPF\TeachingPlatformApp\bin\Debug\ATCSimulator.Core.dll
