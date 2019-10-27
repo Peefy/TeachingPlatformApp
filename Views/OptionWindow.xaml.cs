@@ -152,8 +152,8 @@ namespace TeachingPlatformApp.Views
             var kind = IndexToModelKind(wswModelComboBox.SelectedIndex);
             var name = standsComboBox.Text;
             var position = ATCSimulator.Models.ZBAAStandPositionFactory.Get(name);
-            var lon = position.Lontitude;
-            var lat = position.Latitude;
+            var lon = position.Lontitude + 0.8f / 3600.0f;
+            var lat = position.Latitude - 5.0f / 3600.0f;
             PositionCommandBuilder.SendPositionLonLatTo(kind, lon, lat);
         }
     }
